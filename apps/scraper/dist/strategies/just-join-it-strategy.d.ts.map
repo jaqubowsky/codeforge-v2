@@ -1,0 +1,1 @@
+{"version":3,"file":"just-join-it-strategy.d.ts","sourceRoot":"","sources":["../../src/strategies/just-join-it-strategy.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,IAAI,EAAE,MAAM,YAAY,CAAC;AAGvC,OAAO,KAAK,EAAE,KAAK,EAAoC,MAAM,UAAU,CAAC;AAExE,OAAO,KAAK,EAAE,gBAAgB,EAAE,MAAM,YAAY,CAAC;AAInD,qBAAa,kBAAmB,YAAW,gBAAgB;IACnD,OAAO,CAAC,IAAI,EAAE,IAAI;CAqCzB"}

@@ -1,0 +1,25 @@
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "predeploy": "npm run build",
+    "deploy": "gcloud functions deploy scrapeHandler --gen2 --region=us-east1 --runtime=nodejs20 --trigger-http --allow-unauthenticated",
+    "dev": "npm run build && npx @google-cloud/functions-framework --target=scrapeHandler"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@codeforge-v2/typescript-config": "*",
+    "@types/node": "^20.19.14",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@google-cloud/functions-framework": "^4.0.0",
+    "playwright": "^1.55.0",
+    "zod": "^4.1.11"
+  }
+}
