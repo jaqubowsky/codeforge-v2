@@ -1,6 +1,7 @@
 import type { Page } from "playwright";
-import type { Offer } from "../types";
+import type { Offer, Technology } from "../types";
 
 export type ScrapingStrategy = {
-  execute(page: Page): Promise<Offer[]>;
+  getOffersByTechnology(page: Page, technology: string): Promise<Offer[]>;
+  getTechnologyCounts(page: Page): Promise<Technology[]>;
 };

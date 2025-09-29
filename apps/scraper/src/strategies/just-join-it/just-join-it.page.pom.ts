@@ -1,5 +1,5 @@
 import type { Locator, Page } from "playwright";
-import type { OfferWithoutDescriptionAndSkills } from "../../types";
+import type { OfferWithoutDescriptionAndSkills, Technology } from "../../types";
 import { getAttribute, getText, scrollDown } from "../../utils/poms";
 import { SELECTORS } from "./selectors";
 
@@ -12,6 +12,7 @@ export class JustJoinItPage {
   readonly url: string;
   readonly offersList: Locator;
   readonly cookieAcceptButton: Locator;
+  readonly technologiesList: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -23,6 +24,7 @@ export class JustJoinItPage {
         hasText: COOKIE_ACCEPT_REGEX,
       })
       .first();
+    this.technologiesList = page.locator(SELECTORS.listPage.technologiesList);
   }
 
   private async waitForInitialElements() {
@@ -101,6 +103,29 @@ export class JustJoinItPage {
       offerItems.map((item) => this.getOfferDetails(item))
     );
     return offers;
+  }
+
+  async getTechnologyCounts(): Promise<Technology[]> {
+    await this.technologiesList.waitFor();
+    const techItems = await this.technologiesList
+      .locator(SELECTORS.listPage.technologyItem)
+      .all();
+
+    const technologies = await Promise.all(
+      techItems.map(async (item) => {
+        const name = (await getText(item, SELECTORS.listPage.technologyName))
+          .trim()
+          .toLowerCase();
+        const countText = await getText(
+          item,
+          SELECTORS.listPage.technologyCount
+        );
+        const count = Number.parseInt(countText.trim(), 10);
+        return { name, count };
+      })
+    );
+
+    return technologies.filter((tech) => tech.name);
   }
 
   async handleCookies() {

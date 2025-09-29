@@ -1,14 +1,24 @@
 import type { Page } from "playwright";
-import type { Offer, OfferWithoutDescriptionAndSkills } from "../../types";
+import type {
+  Offer,
+  OfferWithoutDescriptionAndSkills,
+  Technology,
+} from "../../types";
 import { executeInBatches } from "../../utils/batch-processor";
 import type { ScrapingStrategy } from "../strategy";
 import { JustJoinItPage } from "./just-join-it.page.pom";
 import { JustJoinItOfferPage } from "./just-join-it-offer-page.pom";
 
 const CONCURRENCY_LIMIT = 5;
+const BASE_URL = "https://justjoin.it";
 
 export class JustJoinItStrategy implements ScrapingStrategy {
-  async execute(page: Page) {
+  async getOffersByTechnology(
+    page: Page,
+    technology: string
+  ): Promise<Offer[]> {
+    await page.goto(`${BASE_URL}/all/${technology}`);
+
     const justJoinItPage = new JustJoinItPage(page);
     await justJoinItPage.handleCookies();
     await justJoinItPage.scrollToEndOfList();
@@ -44,5 +54,12 @@ export class JustJoinItStrategy implements ScrapingStrategy {
     );
 
     return detailedOffers;
+  }
+
+  async getTechnologyCounts(page: Page): Promise<Technology[]> {
+    await page.goto(BASE_URL);
+    const justJoinItPage = new JustJoinItPage(page);
+    await justJoinItPage.handleCookies();
+    return await justJoinItPage.getTechnologyCounts();
   }
 }

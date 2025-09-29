@@ -16,3 +16,8 @@ export type Skill = {
   name: string;
   level: string;
 };
+
+export type Technology = {
+  name: string;
+  count: number;
+};

@@ -6,6 +6,10 @@ export const SELECTORS = {
     company: '[data-testid="ApartmentRoundedIcon"] + p',
     salary: "span.MuiTypography-lead3",
     url: "a.offer-card",
+    technologiesList: '[data-testid="technologies-list"]',
+    technologyItem: "a",
+    technologyName: "p.MuiTypography-body2",
+    technologyCount: '[data-testid="total-offers-count"]',
   },
   offerPage: {
     description: "h3:has-text('Job description') + div",

@@ -22,7 +22,7 @@ export const successResponse = <T>(
   res: Response,
   data: SuccessResponseData<T>
 ) => {
-  return res.status(STATUS_CODES.SUCCESS).json(data);
+  return res.status(STATUS_CODES.SUCCESS).json({ data });
 };
 
 export const withError = (fn: HttpFunction) => {
