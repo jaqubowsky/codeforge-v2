@@ -1,1 +1,0 @@
-{"version":3,"file":"default-strategy.d.ts","sourceRoot":"","sources":["../../src/strategies/default-strategy.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,IAAI,EAAE,MAAM,YAAY,CAAC;AAEvC,OAAO,KAAK,EAAE,gBAAgB,EAAE,MAAM,YAAY,CAAC;AAEnD,qBAAa,eAAgB,YAAW,gBAAgB;IAChD,OAAO,CAAC,IAAI,EAAE,IAAI,GAAG,OAAO,CAAC,IAAI,CAAC;IAKlC,cAAc,CAAC,IAAI,EAAE,IAAI,GAAG,OAAO,CAAC,MAAM,CAAC;CAIlD"}

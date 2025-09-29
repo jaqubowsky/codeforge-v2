@@ -1,1 +1,0 @@
-{"version":3,"file":"default-page.d.ts","sourceRoot":"","sources":["../../src/poms/default-page.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,IAAI,EAAE,MAAM,YAAY,CAAC;AAEvC,qBAAa,WAAW;IACtB,QAAQ,CAAC,IAAI,EAAE,IAAI,CAAC;gBAER,IAAI,EAAE,IAAI;IAIhB,gBAAgB;IAIhB,cAAc,IAAI,OAAO,CAAC,MAAM,CAAC;CAGxC"}
