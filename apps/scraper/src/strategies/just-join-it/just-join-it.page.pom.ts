@@ -17,31 +17,35 @@ export class JustJoinItPage {
   constructor(page: Page) {
     this.page = page;
     this.url = page.url();
-    this.offersList = page.locator(SELECTORS.listPage.offersList);
+    this.offersList = page.locator(SELECTORS.listPage().toString());
     this.cookieAcceptButton = page
       .locator("button")
       .filter({
         hasText: COOKIE_ACCEPT_REGEX,
       })
       .first();
-    this.technologiesList = page.locator(SELECTORS.listPage.technologiesList);
+    this.technologiesList = page.locator(
+      SELECTORS.technologiesList().toString()
+    );
   }
 
   private async waitForInitialElements() {
     await this.offersList.waitFor();
     await this.offersList
-      .locator(SELECTORS.listPage.offerItem)
+      .locator(SELECTORS.listPage().offerItem().toString())
       .first()
       .waitFor();
   }
 
   private async getOfferItemsCount(): Promise<number> {
-    return await this.offersList.locator(SELECTORS.listPage.offerItem).count();
+    return await this.offersList
+      .locator(SELECTORS.listPage().offerItem().toString())
+      .count();
   }
 
   private async waitForNewOfferItems(previousCount: number): Promise<boolean> {
     try {
-      const selectorParam = `${SELECTORS.listPage.offersList} ${SELECTORS.listPage.offerItem}`;
+      const selectorParam = `${SELECTORS.listPage().offersList().toString()} ${SELECTORS.listPage().offerItem().toString()}`;
 
       await this.page.waitForFunction(
         ({ selector, count }) =>
@@ -81,10 +85,20 @@ export class JustJoinItPage {
   private async getOfferDetails(
     item: Locator
   ): Promise<OfferWithoutDescriptionAndSkills> {
-    const title = await getText(item, SELECTORS.listPage.title);
-    const company = await getText(item, SELECTORS.listPage.company);
-    const salary = await getText(item, SELECTORS.listPage.salary);
-    const url = await getAttribute(item, SELECTORS.listPage.url, "href");
+    const title = await getText(item, SELECTORS.listPage().title().toString());
+    const company = await getText(
+      item,
+      SELECTORS.listPage().company().toString()
+    );
+    const salary = await getText(
+      item,
+      SELECTORS.listPage().salary().toString()
+    );
+    const url = await getAttribute(
+      item,
+      SELECTORS.listPage().url().toString(),
+      "href"
+    );
 
     return {
       title,
@@ -96,7 +110,7 @@ export class JustJoinItPage {
 
   async getOffers(): Promise<OfferWithoutDescriptionAndSkills[]> {
     const offerItems = await this.offersList
-      .locator(SELECTORS.listPage.offerItem)
+      .locator(SELECTORS.listPage().offerItem().toString())
       .all();
 
     const offers = await Promise.all(
@@ -108,17 +122,22 @@ export class JustJoinItPage {
   async getTechnologyCounts(): Promise<Technology[]> {
     await this.technologiesList.waitFor();
     const techItems = await this.technologiesList
-      .locator(SELECTORS.listPage.technologyItem)
+      .locator(SELECTORS.technologiesList().technologyItem().toString())
       .all();
 
     const technologies = await Promise.all(
       techItems.map(async (item) => {
-        const name = (await getText(item, SELECTORS.listPage.technologyName))
+        const name = (
+          await getText(
+            item,
+            SELECTORS.technologiesList().technologyName().toString()
+          )
+        )
           .trim()
           .toLowerCase();
         const countText = await getText(
           item,
-          SELECTORS.listPage.technologyCount
+          SELECTORS.technologiesList().technologyCount().toString()
         );
         const count = Number.parseInt(countText.trim(), 10);
         return { name, count };

@@ -1,20 +1,37 @@
+import SelectorBuilder from "../../builder/selector.builder";
+
 export const SELECTORS = {
-  listPage: {
-    offersList: "#up-offers-list",
-    offerItem: "li",
-    title: "h3",
-    company: '[data-testid="ApartmentRoundedIcon"] + p',
-    salary: "span.MuiTypography-lead3",
-    url: "a.offer-card",
-    technologiesList: '[data-testid="technologies-list"]',
-    technologyItem: "a",
-    technologyName: "p.MuiTypography-body2",
-    technologyCount: '[data-testid="total-offers-count"]',
+  listPage: () => {
+    const base = new SelectorBuilder("div#up-offers-list");
+
+    return {
+      offersList: () => base,
+      offerItem: () => base.child("li"),
+      title: () => base.child("li h3"),
+      company: () => base.child('[data-testid="ApartmentRoundedIcon"] + p'),
+      salary: () => base.child("span.MuiTypography-lead3"),
+      url: () => base.child("a.offer-card"),
+    };
   },
-  offerPage: {
-    description: "h3:has-text('Job description') + div",
-    techStackItem: "h2:has-text('Tech stack') + div ul > div",
-    techStackName: "h4",
-    techStackLevel: "span.MuiTypography-subtitle4",
+
+  technologiesList: () => {
+    const base = new SelectorBuilder('[data-testid="technologies-list"]');
+    return {
+      technologyItem: () => base.child("a"),
+      technologyName: () => base.child("p.MuiTypography-body2"),
+      technologyCount: () => base.child('[data-testid="total-offers-count"]'),
+    };
+  },
+
+  offerPage: () => {
+    const base = new SelectorBuilder("");
+
+    return {
+      description: () => base.child("h3:has-text('Job description') + div"),
+      techStackItem: () =>
+        base.child("h2:has-text('Tech stack') + div ul > div"),
+      techStackName: () => base.child("h4"),
+      techStackLevel: () => base.child("span.MuiTypography-subtitle4"),
+    };
   },
 };

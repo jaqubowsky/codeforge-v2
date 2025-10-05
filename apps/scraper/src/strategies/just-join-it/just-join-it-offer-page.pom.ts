@@ -1,8 +1,7 @@
 import type { Locator, Page } from "playwright";
+import type { Skill } from "../../types";
 import { getText } from "../../utils/poms";
 import { SELECTORS } from "./selectors";
-
-type Skill = { name: string; level: string };
 
 export class JustJoinItOfferPage {
   readonly page: Page;
@@ -11,13 +10,23 @@ export class JustJoinItOfferPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.descriptionElement = page.locator(SELECTORS.offerPage.description);
-    this.techStackItems = page.locator(SELECTORS.offerPage.techStackItem);
+    this.descriptionElement = page.locator(
+      SELECTORS.offerPage().description().toString()
+    );
+    this.techStackItems = page.locator(
+      SELECTORS.offerPage().techStackItem().toString()
+    );
   }
 
   private async getSkillDetails(item: Locator): Promise<Skill> {
-    const name = await getText(item, SELECTORS.offerPage.techStackName);
-    const level = await getText(item, SELECTORS.offerPage.techStackLevel);
+    const name = await getText(
+      item,
+      SELECTORS.offerPage().techStackName().toString()
+    );
+    const level = await getText(
+      item,
+      SELECTORS.offerPage().techStackLevel().toString()
+    );
 
     return { name, level };
   }
