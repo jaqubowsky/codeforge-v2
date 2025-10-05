@@ -6,7 +6,9 @@ import { ValidationError } from "../utils/errors";
 import { successResponse, withError } from "../utils/responses";
 
 export const getTechnologyCountsSchema = z.object({
-  url: z.url(),
+  url: z.url({
+    error: "Invalid URL",
+  }),
 });
 
 export const getTechnologyCounts: HttpFunction = withError(async (req, res) => {

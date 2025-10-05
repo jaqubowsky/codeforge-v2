@@ -1,4 +1,4 @@
-import type { Locator, Page } from "playwright";
+import type { Locator, Page } from "playwright-core";
 
 const WAIT_FOR_SCROLL_TIME_MS = 5000;
 const SCROLL_DISTANCE = 5000;

@@ -1,5 +1,4 @@
-import type { ZodError } from "zod";
-import z from "zod/mini";
+import z, { type ZodError } from "zod";
 import { STATUS_CODES } from "./responses";
 
 type StatusCode = (typeof STATUS_CODES)[keyof typeof STATUS_CODES];

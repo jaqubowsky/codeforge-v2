@@ -6,8 +6,12 @@ import { ValidationError } from "../utils/errors";
 import { successResponse, withError } from "../utils/responses";
 
 export const getOffersByTechnologySchema = z.object({
-  url: z.url(),
-  technology: z.string(),
+  url: z.url({
+    error: "Invalid URL",
+  }),
+  technology: z.string({
+    error: "Invalid technology",
+  }),
 });
 
 export const getOffersByTechnology: HttpFunction = withError(

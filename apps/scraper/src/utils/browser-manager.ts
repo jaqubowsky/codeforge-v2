@@ -1,4 +1,6 @@
-import { type Browser, type BrowserContext, chromium } from "playwright";
+import chromium from "@sparticuz/chromium";
+import type { Browser, BrowserContext } from "playwright-core";
+import { chromium as playwrightChromium } from "playwright-core";
 
 const USER_AGENT =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
@@ -11,9 +13,13 @@ const EXTRA_HTTP_HEADERS = {
 };
 
 export const launchBrowser = async (): Promise<Browser> => {
-  return await chromium.launch({
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  const browser = await playwrightChromium.launch({
+    executablePath: await chromium.executablePath,
+    args: chromium.args,
+    headless: true,
   });
+
+  return browser;
 };
 
 export const closeBrowser = async (browser: Browser | null): Promise<void> => {

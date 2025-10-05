@@ -4,9 +4,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "predeploy": "npm run build",
-    "deploy": "gcloud functions deploy scrapeHandler --gen2 --region=us-east1 --runtime=nodejs20 --trigger-http --allow-unauthenticated",
-    "dev": "npm run build && npx @google-cloud/functions-framework --target=scrapeHandler"
+    "dev:getOffersByTechnology": "npm run build && functions-framework --target=getOffersByTechnology --port=8080",
+    "dev:getTechnologyCounts": "npm run build && functions-framework --target=getTechnologyCounts --port=8081"
   },
   "keywords": [],
   "author": "",
@@ -14,12 +13,13 @@
   "type": "commonjs",
   "devDependencies": {
     "@codeforge-v2/typescript-config": "*",
+    "@sparticuz/chromium": "^106.0.2",
     "@types/node": "^20.19.14",
     "typescript": "^5.9.2"
   },
   "dependencies": {
     "@google-cloud/functions-framework": "^4.0.0",
-    "playwright": "^1.55.0",
+    "playwright-core": "^1.55.1",
     "zod": "^4.1.11"
   }
 }

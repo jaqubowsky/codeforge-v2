@@ -1,4 +1,4 @@
-import type { Locator, Page } from "playwright";
+import type { Locator, Page } from "playwright-core";
 import type { Skill } from "../../types";
 import { getText } from "../../utils/poms";
 import { SELECTORS } from "./selectors";
