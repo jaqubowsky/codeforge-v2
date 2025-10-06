@@ -13,9 +13,18 @@ export const STATUS_CODES = {
   NOT_FOUND: 404,
 } as const;
 
+type StatusCode = (typeof STATUS_CODES)[keyof typeof STATUS_CODES];
+type ErrorCode = keyof typeof STATUS_CODES;
+
 type SuccessResponseData<T = unknown> = {
   message?: string;
   data: T;
+};
+
+type ErrorResponseData = {
+  message: string;
+  statusCode: StatusCode;
+  code: ErrorCode;
 };
 
 export const successResponse = <T>(
@@ -23,6 +32,10 @@ export const successResponse = <T>(
   data: SuccessResponseData<T>
 ) => {
   return res.status(STATUS_CODES.SUCCESS).json({ data });
+};
+
+export const errorResponse = (res: Response, data: ErrorResponseData) => {
+  return res.status(data.statusCode).json(data);
 };
 
 export const withError = (fn: HttpFunction) => {
@@ -35,15 +48,15 @@ export const withError = (fn: HttpFunction) => {
       }
 
       if (isCustomError(error)) {
-        return res.status(error.statusCode).json({
-          error: getErrorMessage(error),
+        return errorResponse(res, {
+          message: getErrorMessage(error),
           statusCode: error.statusCode,
           code: error.code,
         });
       }
 
       return res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({
-        error: getErrorMessage(error),
+        message: getErrorMessage(error),
         statusCode: STATUS_CODES.INTERNAL_SERVER_ERROR,
         code: "INTERNAL_SERVER_ERROR",
       });
