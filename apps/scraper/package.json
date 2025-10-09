@@ -4,8 +4,10 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "dev:getOffersByTechnology": "npm run build && functions-framework --target=getOffersByTechnology --port=8080",
-    "dev:getTechnologyCounts": "npm run build && functions-framework --target=getTechnologyCounts --port=8081"
+    "kill:8080": "lsof -ti:8080 | xargs kill -9 || true",
+    "kill:8081": "lsof -ti:8081 | xargs kill -9 || true",
+    "dev:getOffersByTechnology": "npm run kill:8080 && npm run build && functions-framework --target=getOffersByTechnology --port=8080",
+    "dev:getTechnologyCounts": "npm run kill:8081 && npm run build && functions-framework --target=getTechnologyCounts --port=8081"
   },
   "keywords": [],
   "author": "",

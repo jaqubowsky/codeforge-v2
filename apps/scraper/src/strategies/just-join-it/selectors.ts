@@ -1,37 +1,39 @@
-import SelectorBuilder from "../../builder/selector.builder";
-
 export const SELECTORS = {
-  listPage: () => {
-    const base = new SelectorBuilder("div#up-offers-list");
-
-    return {
-      offersList: () => base,
-      offerItem: () => base.child("li"),
-      title: () => base.child("li h3"),
-      company: () => base.child('[data-testid="ApartmentRoundedIcon"] + p'),
-      salary: () => base.child("span.MuiTypography-lead3"),
-      url: () => base.child("a.offer-card"),
-    };
+  listPage: {
+    base: "div#up-offers-list ul",
+    children: {
+      offerItem: "li[data-index]",
+      offerItemChildren: {
+        title: "h3.MuiTypography-root",
+        company: '[data-testid="ApartmentRoundedIcon"] + p',
+        salary: "span.MuiTypography-lead3",
+        url: "a.offer-card",
+      },
+    },
   },
 
-  technologiesList: () => {
-    const base = new SelectorBuilder('[data-testid="technologies-list"]');
-    return {
-      technologyItem: () => base.child("a"),
-      technologyName: () => base.child("p.MuiTypography-body2"),
-      technologyCount: () => base.child('[data-testid="total-offers-count"]'),
-    };
+  technologiesList: {
+    base: "div.MuiStack-root.mui-3ya0bv",
+    children: {
+      technologyItem: "a.offer_list_category_link",
+      techItemChildren: {
+        technologyName: "div.mui-d11uud span",
+        technologyCount: "span.MuiBadge-badge",
+      },
+    },
   },
 
-  offerPage: () => {
-    const base = new SelectorBuilder("");
-
-    return {
-      description: () => base.child("h3:has-text('Job description') + div"),
-      techStackItem: () =>
-        base.child("h2:has-text('Tech stack') + div ul > div"),
-      techStackName: () => base.child("h4"),
-      techStackLevel: () => base.child("span.MuiTypography-subtitle4"),
-    };
+  offerPage: {
+    children: {
+      description: "h3.MuiTypography-overline + div.MuiBox-root",
+      techStackContainer: "ul:has(> div)",
+      techStackContainerChildren: {
+        techStackItem: "ul:has(> div) > div",
+        techStackItemChildren: {
+          techStackName: "h4",
+          techStackLevel: "span",
+        },
+      },
+    },
   },
-};
+} as const;

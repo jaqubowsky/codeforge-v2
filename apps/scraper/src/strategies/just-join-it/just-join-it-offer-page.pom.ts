@@ -1,38 +1,45 @@
 import type { Locator, Page } from "playwright-core";
 import type { Skill } from "../../types";
-import { getText } from "../../utils/poms";
+import { getText, safeWaitFor } from "../../utils/poms";
 import { SELECTORS } from "./selectors";
 
 export class JustJoinItOfferPage {
   readonly page: Page;
-  readonly descriptionElement: Locator;
-  readonly techStackItems: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.descriptionElement = page.locator(
-      SELECTORS.offerPage().description().toString()
-    );
-    this.techStackItems = page.locator(
-      SELECTORS.offerPage().techStackItem().toString()
-    );
   }
 
   private async getSkillDetails(item: Locator): Promise<Skill> {
     const name = await getText(
       item,
-      SELECTORS.offerPage().techStackName().toString()
+      SELECTORS.offerPage.children.techStackContainerChildren
+        .techStackItemChildren.techStackName
     );
     const level = await getText(
       item,
-      SELECTORS.offerPage().techStackLevel().toString()
+      SELECTORS.offerPage.children.techStackContainerChildren
+        .techStackItemChildren.techStackLevel
     );
 
     return { name, level };
   }
 
   async getTechStack(): Promise<Skill[]> {
-    const techStackItems = await this.techStackItems.all();
+    const exists = await safeWaitFor(
+      this.page,
+      SELECTORS.offerPage.children.techStackContainer
+    );
+
+    if (!exists) {
+      return [];
+    }
+
+    const techStackItems = await this.page
+      .locator(
+        SELECTORS.offerPage.children.techStackContainerChildren.techStackItem
+      )
+      .all();
 
     const skills = await Promise.all(
       techStackItems.map((item) => this.getSkillDetails(item))
@@ -42,8 +49,17 @@ export class JustJoinItOfferPage {
   }
 
   async getJobDescription(): Promise<string> {
-    const descriptionElement = this.descriptionElement;
-    await descriptionElement.waitFor();
-    return descriptionElement.innerHTML();
+    const exists = await safeWaitFor(
+      this.page,
+      SELECTORS.offerPage.children.description
+    );
+
+    if (!exists) {
+      return "";
+    }
+
+    return await this.page
+      .locator(SELECTORS.offerPage.children.description)
+      .innerHTML();
   }
 }

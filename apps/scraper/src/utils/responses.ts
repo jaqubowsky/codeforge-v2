@@ -13,7 +13,6 @@ export const STATUS_CODES = {
   NOT_FOUND: 404,
 } as const;
 
-type StatusCode = (typeof STATUS_CODES)[keyof typeof STATUS_CODES];
 type ErrorCode = keyof typeof STATUS_CODES;
 
 type SuccessResponseData<T = unknown> = {
@@ -23,7 +22,6 @@ type SuccessResponseData<T = unknown> = {
 
 type ErrorResponseData = {
   message: string;
-  statusCode: StatusCode;
   code: ErrorCode;
 };
 
@@ -31,11 +29,11 @@ export const successResponse = <T>(
   res: Response,
   data: SuccessResponseData<T>
 ) => {
-  return res.status(STATUS_CODES.SUCCESS).json({ data });
+  return res.status(STATUS_CODES.SUCCESS).json(data);
 };
 
 export const errorResponse = (res: Response, data: ErrorResponseData) => {
-  return res.status(data.statusCode).json(data);
+  return res.status(STATUS_CODES[data.code]).json(data);
 };
 
 export const withError = (fn: HttpFunction) => {
@@ -43,21 +41,23 @@ export const withError = (fn: HttpFunction) => {
     try {
       await fn(req, res);
     } catch (error) {
-      if (res.headersSent) {
-        return;
-      }
+      // biome-ignore lint/suspicious/noConsole: just for learning purposes
+      console.error("Request failed:", {
+        error,
+        stack: error instanceof Error ? error.stack : undefined,
+        url: req.url,
+        body: req.body,
+      });
 
       if (isCustomError(error)) {
         return errorResponse(res, {
           message: getErrorMessage(error),
-          statusCode: error.statusCode,
           code: error.code,
         });
       }
 
-      return res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({
-        message: getErrorMessage(error),
-        statusCode: STATUS_CODES.INTERNAL_SERVER_ERROR,
+      return errorResponse(res, {
+        message: "An unexpected error occurred",
         code: "INTERNAL_SERVER_ERROR",
       });
     }

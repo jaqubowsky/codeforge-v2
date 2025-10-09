@@ -1,4 +1,4 @@
-import type { Page } from "playwright-core";
+import type { BrowserContext, Page } from "playwright-core";
 import type {
   Offer,
   OfferWithoutDescriptionAndSkills,
@@ -13,43 +13,46 @@ const CONCURRENCY_LIMIT = 5;
 const BASE_URL = "https://justjoin.it";
 
 export class JustJoinItStrategy implements ScrapingStrategy {
+  private readonly processOffer = async (
+    context: BrowserContext,
+    offer: OfferWithoutDescriptionAndSkills
+  ): Promise<Offer | null> => {
+    const offerPageInstance = await context.newPage();
+
+    try {
+      await offerPageInstance.goto(offer.url);
+
+      const offerPage = new JustJoinItOfferPage(offerPageInstance);
+      const description = await offerPage.getJobDescription();
+      const skills = await offerPage.getTechStack();
+
+      return {
+        ...offer,
+        description,
+        skills,
+      };
+    } finally {
+      await offerPageInstance.close();
+    }
+  };
+
   async getOffersByTechnology(
     page: Page,
     technology: string
   ): Promise<Offer[]> {
-    await page.goto(`${BASE_URL}/all/${technology}`);
+    await page.goto(`${BASE_URL}/job-offers/all-locations/${technology}`);
 
     const justJoinItPage = new JustJoinItPage(page);
+
+    await page.waitForLoadState("networkidle");
     await justJoinItPage.handleCookies();
-    await justJoinItPage.scrollToEndOfList();
+
     const offers = await justJoinItPage.getOffers();
-
     const context = page.context();
-
-    const processOffer = async (
-      offer: OfferWithoutDescriptionAndSkills
-    ): Promise<Offer | null> => {
-      const offerPageInstance = await context.newPage();
-
-      try {
-        await offerPageInstance.goto(offer.url);
-        const offerPage = new JustJoinItOfferPage(offerPageInstance);
-        const description = await offerPage.getJobDescription();
-        const skills = await offerPage.getTechStack();
-
-        return {
-          ...offer,
-          description,
-          skills,
-        };
-      } finally {
-        await offerPageInstance.close();
-      }
-    };
 
     const detailedOffers = await executeInBatches(
       offers,
-      processOffer,
+      (offer) => this.processOffer(context, offer),
       CONCURRENCY_LIMIT
     );
 
@@ -58,7 +61,9 @@ export class JustJoinItStrategy implements ScrapingStrategy {
 
   async getTechnologyCounts(page: Page): Promise<Technology[]> {
     await page.goto(BASE_URL);
+
     const justJoinItPage = new JustJoinItPage(page);
+
     await justJoinItPage.handleCookies();
     return await justJoinItPage.getTechnologyCounts();
   }

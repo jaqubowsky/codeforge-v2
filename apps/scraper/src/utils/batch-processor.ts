@@ -1,3 +1,9 @@
+const chunk = <T>(array: T[], size: number): T[][] => {
+  return Array.from({ length: Math.ceil(array.length / size) }, (_, i) =>
+    array.slice(i * size, (i + 1) * size)
+  );
+};
+
 export const executeInBatches = async <T, R>(
   items: T[],
   asyncOperation: (item: T) => Promise<R | null>,
@@ -5,16 +11,11 @@ export const executeInBatches = async <T, R>(
 ): Promise<R[]> => {
   const results: R[] = [];
 
-  for (let i = 0; i < items.length; i += concurrencyLimit) {
-    const batch = items.slice(i, i + concurrencyLimit);
-    const batchPromises = batch.map(asyncOperation);
+  const chunks = chunk(items, concurrencyLimit);
 
-    const batchResults = await Promise.all(batchPromises);
-    const successfulResults = batchResults.filter(
-      (result): result is Awaited<R> => result !== null
-    );
-
-    results.push(...successfulResults);
+  for (const batch of chunks) {
+    const batchResults = await Promise.all(batch.map(asyncOperation));
+    results.push(...batchResults.filter((r): r is Awaited<R> => r !== null));
   }
 
   return results;
