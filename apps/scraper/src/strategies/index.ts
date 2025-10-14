@@ -1,19 +1,22 @@
+import type { JobBoard, ScrapingOptions, ScrapingStrategy } from "../types";
 import { NotFoundError } from "../utils/errors";
 import { JustJoinItStrategy } from "./just-join-it/just-join-it.strategy";
-import type { ScrapingStrategy } from "./strategy";
 
-const strategies = [
-  {
-    name: "justjoin.it",
-    strategy: new JustJoinItStrategy(),
-  },
-];
+type StrategyConstructor = new (options: ScrapingOptions) => ScrapingStrategy;
 
-export const getScrapingStrategy = (url: string): ScrapingStrategy => {
-  const foundStrategy = strategies.find((s) => url.includes(s.name));
-  if (!foundStrategy) {
-    throw new NotFoundError(`No strategy found for URL: ${url}`);
+const strategies: Record<JobBoard, StrategyConstructor> = {
+  justjoinit: JustJoinItStrategy,
+};
+
+export const getScrapingStrategy = (
+  board: JobBoard,
+  scrapingOptions: ScrapingOptions
+): ScrapingStrategy => {
+  const StrategyClass = strategies[board];
+
+  if (!StrategyClass) {
+    throw new NotFoundError(`No strategy found for board: ${board}`);
   }
 
-  return foundStrategy.strategy;
+  return new StrategyClass(scrapingOptions);
 };

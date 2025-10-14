@@ -6,7 +6,7 @@ const chunk = <T>(array: T[], size: number): T[][] => {
 
 export const executeInBatches = async <T, R>(
   items: T[],
-  asyncOperation: (item: T) => Promise<R | null>,
+  asyncOperation: (item: T) => R,
   concurrencyLimit: number
 ): Promise<R[]> => {
   const results: R[] = [];
@@ -15,7 +15,7 @@ export const executeInBatches = async <T, R>(
 
   for (const batch of chunks) {
     const batchResults = await Promise.all(batch.map(asyncOperation));
-    results.push(...batchResults.filter((r): r is Awaited<R> => r !== null));
+    results.push(...batchResults);
   }
 
   return results;

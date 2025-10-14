@@ -4,8 +4,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "dev:getOffersByTechnology": "npm run build && functions-framework --target=getOffersByTechnology --port=8080",
-    "dev:getTechnologyCounts": "npm run build && functions-framework --target=getTechnologyCounts --port=8081"
+    "dev:getOffersByTechnology": "npm run build && functions-framework --target=getOffersByTechnology --port=8080"
   },
   "keywords": [],
   "author": "",

@@ -14,7 +14,8 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.75.0"
+    "@supabase/supabase-js": "^2.75.0",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@codeforge-v2/typescript-config": "*",

@@ -1,3 +1,5 @@
+// biome-ignore-all lint/suspicious/noConsole: observability
+
 import type {
   HttpFunction,
   Request,
@@ -41,7 +43,6 @@ export const withError = (fn: HttpFunction) => {
     try {
       await fn(req, res);
     } catch (error) {
-      // biome-ignore lint/suspicious/noConsole: just for learning purposes
       console.error("Request failed:", {
         error,
         stack: error instanceof Error ? error.stack : undefined,

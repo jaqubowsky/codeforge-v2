@@ -34,39 +34,139 @@ export type Database = {
   };
   public: {
     Tables: {
-      offers: {
+      offer_technologies: {
         Row: {
-          company: string | null;
-          created_at: string;
-          description: string | null;
-          id: number;
-          offer_url: string;
-          salary: string | null;
-          scraping_run_id: number;
-          skills: Json | null;
-          title: string;
+          offer_id: number;
+          skill_level: Database["public"]["Enums"]["skill_level_enum"];
+          technology_id: number;
         };
         Insert: {
-          company?: string | null;
-          created_at?: string;
-          description?: string | null;
-          id?: number;
-          offer_url: string;
-          salary?: string | null;
-          scraping_run_id: number;
-          skills?: Json | null;
-          title: string;
+          offer_id: number;
+          skill_level: Database["public"]["Enums"]["skill_level_enum"];
+          technology_id: number;
         };
         Update: {
-          company?: string | null;
-          created_at?: string;
-          description?: string | null;
+          offer_id?: number;
+          skill_level?: Database["public"]["Enums"]["skill_level_enum"];
+          technology_id?: number;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "offer_technologies_offer_id_fkey";
+            columns: ["offer_id"];
+            isOneToOne: false;
+            referencedRelation: "offers";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "offer_technologies_technology_id_fkey";
+            columns: ["technology_id"];
+            isOneToOne: false;
+            referencedRelation: "technologies";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      offers: {
+        Row: {
+          application_url: string | null;
+          city: string | null;
+          company_logo_thumb_url: string | null;
+          company_name: string | null;
+          employment_type:
+            | Database["public"]["Enums"]["employment_type_enum"]
+            | null;
+          experience_level:
+            | Database["public"]["Enums"]["experience_level_enum"]
+            | null;
+          expired_at: string | null;
+          id: number;
+          languages: Json | null;
+          last_published_at: string | null;
+          offer_url: string;
+          published_at: string | null;
+          salary_currency: string | null;
+          salary_from: number | null;
+          salary_period:
+            | Database["public"]["Enums"]["salary_period_enum"]
+            | null;
+          salary_to: number | null;
+          scraping_run_id: number | null;
+          slug: string | null;
+          street: string | null;
+          title: string;
+          working_time: Database["public"]["Enums"]["working_time_enum"] | null;
+          workplace_type:
+            | Database["public"]["Enums"]["workplace_type_enum"]
+            | null;
+        };
+        Insert: {
+          application_url?: string | null;
+          city?: string | null;
+          company_logo_thumb_url?: string | null;
+          company_name?: string | null;
+          employment_type?:
+            | Database["public"]["Enums"]["employment_type_enum"]
+            | null;
+          experience_level?:
+            | Database["public"]["Enums"]["experience_level_enum"]
+            | null;
+          expired_at?: string | null;
           id?: number;
+          languages?: Json | null;
+          last_published_at?: string | null;
+          offer_url: string;
+          published_at?: string | null;
+          salary_currency?: string | null;
+          salary_from?: number | null;
+          salary_period?:
+            | Database["public"]["Enums"]["salary_period_enum"]
+            | null;
+          salary_to?: number | null;
+          scraping_run_id?: number | null;
+          slug?: string | null;
+          street?: string | null;
+          title: string;
+          working_time?:
+            | Database["public"]["Enums"]["working_time_enum"]
+            | null;
+          workplace_type?:
+            | Database["public"]["Enums"]["workplace_type_enum"]
+            | null;
+        };
+        Update: {
+          application_url?: string | null;
+          city?: string | null;
+          company_logo_thumb_url?: string | null;
+          company_name?: string | null;
+          employment_type?:
+            | Database["public"]["Enums"]["employment_type_enum"]
+            | null;
+          experience_level?:
+            | Database["public"]["Enums"]["experience_level_enum"]
+            | null;
+          expired_at?: string | null;
+          id?: number;
+          languages?: Json | null;
+          last_published_at?: string | null;
           offer_url?: string;
-          salary?: string | null;
-          scraping_run_id?: number;
-          skills?: Json | null;
+          published_at?: string | null;
+          salary_currency?: string | null;
+          salary_from?: number | null;
+          salary_period?:
+            | Database["public"]["Enums"]["salary_period_enum"]
+            | null;
+          salary_to?: number | null;
+          scraping_run_id?: number | null;
+          slug?: string | null;
+          street?: string | null;
           title?: string;
+          working_time?:
+            | Database["public"]["Enums"]["working_time_enum"]
+            | null;
+          workplace_type?:
+            | Database["public"]["Enums"]["workplace_type_enum"]
+            | null;
         };
         Relationships: [
           {
@@ -80,76 +180,64 @@ export type Database = {
       };
       scraping_runs: {
         Row: {
+          error_message: string | null;
+          finished_at: string | null;
           id: number;
-          offer_count: number;
-          run_at: string;
-          run_type: Database["public"]["Enums"]["run_type"];
-          search_keyword: string | null;
-          source_url: string | null;
-          status: Database["public"]["Enums"]["run_status"];
+          offers_found_count: number | null;
+          started_at: string;
+          status: Database["public"]["Enums"]["run_status_enum"];
         };
         Insert: {
+          error_message?: string | null;
+          finished_at?: string | null;
           id?: number;
-          offer_count?: number;
-          run_at?: string;
-          run_type: Database["public"]["Enums"]["run_type"];
-          search_keyword?: string | null;
-          source_url?: string | null;
-          status?: Database["public"]["Enums"]["run_status"];
+          offers_found_count?: number | null;
+          started_at?: string;
+          status?: Database["public"]["Enums"]["run_status_enum"];
         };
         Update: {
+          error_message?: string | null;
+          finished_at?: string | null;
           id?: number;
-          offer_count?: number;
-          run_at?: string;
-          run_type?: Database["public"]["Enums"]["run_type"];
-          search_keyword?: string | null;
-          source_url?: string | null;
-          status?: Database["public"]["Enums"]["run_status"];
+          offers_found_count?: number | null;
+          started_at?: string;
+          status?: Database["public"]["Enums"]["run_status_enum"];
         };
         Relationships: [];
       };
-      technology_counts: {
+      technologies: {
         Row: {
-          count: number;
-          created_at: string;
           id: number;
           name: string;
-          scraping_run_id: number;
         };
         Insert: {
-          count?: number;
-          created_at?: string;
           id?: number;
           name: string;
-          scraping_run_id: number;
         };
         Update: {
-          count?: number;
-          created_at?: string;
           id?: number;
           name?: string;
-          scraping_run_id?: number;
         };
-        Relationships: [
-          {
-            foreignKeyName: "technology_counts_scraping_run_id_fkey";
-            columns: ["scraping_run_id"];
-            isOneToOne: false;
-            referencedRelation: "scraping_runs";
-            referencedColumns: ["id"];
-          },
-        ];
+        Relationships: [];
       };
     };
     Views: {
       [_ in never]: never;
     };
     Functions: {
-      [_ in never]: never;
+      get_or_create_technology: {
+        Args: { tech_name: string };
+        Returns: number;
+      };
     };
     Enums: {
-      run_status: "pending" | "running" | "completed" | "failed";
-      run_type: "offer_collection" | "technology_counts";
+      employment_type_enum: "permanent" | "b2b" | "mandate_contract";
+      experience_level_enum: "junior" | "mid" | "senior";
+      run_status_enum: "running" | "completed" | "failed";
+      salary_period_enum: "day" | "month" | "hour" | "year";
+      skill_level_enum: "required" | "nice_to_have";
+      working_time_enum: "full_time" | "part_time" | "b2b" | "freelance";
+      workplace_type_enum: "remote" | "hybrid" | "office";
     };
     CompositeTypes: {
       [_ in never]: never;
@@ -283,8 +371,13 @@ export const Constants = {
   },
   public: {
     Enums: {
-      run_status: ["pending", "running", "completed", "failed"],
-      run_type: ["offer_collection", "technology_counts"],
+      employment_type_enum: ["permanent", "b2b", "mandate_contract"],
+      experience_level_enum: ["junior", "mid", "senior"],
+      run_status_enum: ["running", "completed", "failed"],
+      salary_period_enum: ["day", "month", "hour", "year"],
+      skill_level_enum: ["required", "nice_to_have"],
+      working_time_enum: ["full_time", "part_time", "b2b", "freelance"],
+      workplace_type_enum: ["remote", "hybrid", "office"],
     },
   },
 } as const;
