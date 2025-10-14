@@ -4,19 +4,19 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "kill:8080": "lsof -ti:8080 | xargs kill -9 || true",
-    "kill:8081": "lsof -ti:8081 | xargs kill -9 || true",
-    "dev:getOffersByTechnology": "npm run kill:8080 && npm run build && functions-framework --target=getOffersByTechnology --port=8080",
-    "dev:getTechnologyCounts": "npm run kill:8081 && npm run build && functions-framework --target=getTechnologyCounts --port=8081"
+    "dev:getOffersByTechnology": "npm run build && functions-framework --target=getOffersByTechnology --port=8080",
+    "dev:getTechnologyCounts": "npm run build && functions-framework --target=getTechnologyCounts --port=8081"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@codeforge-v2/database": "*",
     "@codeforge-v2/typescript-config": "*",
     "@sparticuz/chromium": "^106.0.2",
     "@types/node": "^20.19.14",
+    "dotenv": "^17.2.3",
     "typescript": "^5.9.2"
   },
   "dependencies": {

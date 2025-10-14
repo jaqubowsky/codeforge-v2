@@ -1,0 +1,23 @@
+{
+  "name": "@codeforge-v2/database",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.75.0"
+  },
+  "devDependencies": {
+    "@codeforge-v2/typescript-config": "*",
+    "typescript": "^5.9.2"
+  }
+}
