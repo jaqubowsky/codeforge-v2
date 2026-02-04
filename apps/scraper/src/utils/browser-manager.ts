@@ -13,7 +13,7 @@ const EXTRA_HTTP_HEADERS = {
 };
 
 export const launchBrowser = async (): Promise<Browser> => {
-  const executablePath = await chromium.executablePath;
+  const executablePath = await chromium.executablePath();
 
   const launchOptions = executablePath
     ? {

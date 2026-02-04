@@ -13,6 +13,12 @@
     "check-types": {
       "dependsOn": ["^check-types"]
     },
+    "check-deps": {
+      "dependsOn": ["^check-deps"]
+    },
+    "update-deps": {
+      "dependsOn": ["^update-deps"]
+    },
     "dev": {
       "cache": false,
       "persistent": true

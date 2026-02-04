@@ -11,14 +11,17 @@
     }
   },
   "scripts": {
+    "check-deps": "ncu --format group",
+    "check-types": "tsc --noEmit",
+    "update-deps": "ncu -u --format group -u",
     "build": "tsc"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.75.0",
-    "zod": "^4.1.11"
+    "@supabase/supabase-js": "^2.94.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@codeforge-v2/typescript-config": "*",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   }
 }

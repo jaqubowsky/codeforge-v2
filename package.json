@@ -11,9 +11,9 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "check-types": "turbo check-types",
-    "dev:native": "turbo -F native dev",
+    "check-deps": "turbo check-deps",
+    "update-deps": "turbo update-deps",
     "dev:web": "turbo -F web dev",
-    "dev:server": "turbo -F server dev",
     "prepare": "husky"
   },
   "devDependencies": {

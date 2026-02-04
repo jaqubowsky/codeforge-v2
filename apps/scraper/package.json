@@ -4,6 +4,9 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "check-deps": "ncu --format group",
+    "update-deps": "ncu -u --format group -u",
     "dev:getOffersByTechnology": "npm run build && functions-framework --target=getOffersByTechnology --port=8080"
   },
   "keywords": [],
@@ -13,14 +16,14 @@
   "devDependencies": {
     "@codeforge-v2/database": "*",
     "@codeforge-v2/typescript-config": "*",
-    "@sparticuz/chromium": "^106.0.2",
-    "@types/node": "^20.19.14",
+    "@sparticuz/chromium": "^143.0.4",
+    "@types/node": "^25.2.0",
     "dotenv": "^17.2.3",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@google-cloud/functions-framework": "^4.0.0",
-    "playwright-core": "^1.55.1",
-    "zod": "^4.1.11"
+    "@google-cloud/functions-framework": "^5.0.0",
+    "playwright-core": "^1.58.1",
+    "zod": "^4.3.6"
   }
 }
