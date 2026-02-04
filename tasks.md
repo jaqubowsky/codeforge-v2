@@ -349,51 +349,155 @@ packages/embeddings/
 
 ---
 
-## Milestone 8: UI Polish & Design System
+## Milestone 8: UI Polish & Code Quality ✅ COMPLETE
 
-**Goal:** Match the provided design mockup.
+**Goal:** Eliminate duplication, extract business logic, and establish reusable component architecture.
 
 ### Tasks
 
-- [ ] **8.1 Implement design tokens**
-  - Dark sidebar (#1a1f2e style)
-  - Light content area
-  - Primary accent color (blue)
-  - Status badge colors (green=saved, etc.)
+- [x] **8.1 Create reusable UI components**
+  - ✅ Created 6 shared components in `apps/web/src/shared/components/ui/`:
+    - `page-header.tsx` - Title/description with action slot
+    - `colored-section-card.tsx` - Section card with color accent and gradient
+    - `status-badge.tsx` - Status→badge variant mapping
+    - `company-avatar.tsx` - Company logo with fallback initials
+    - `match-score-indicator.tsx` - Visual score display with color coding
+    - `error-display.tsx` - Standardized error UI (centered/inline)
 
-- [ ] **8.2 Style sidebar**
-  - Dark background
-  - Logo/brand area
-  - Nav items with icons (Inbox, Profile)
-  - Active state highlight
+- [x] **8.2 Implement design tokens**
+  - ✅ Created `src/shared/lib/design-tokens.ts`
+  - ✅ SECTION_COLORS for colored section cards (blue, emerald, violet, amber, rose)
+  - ✅ MATCH_SCORE_COLORS for score indicators (excellent, good, fair, poor)
 
-- [ ] **8.3 Style header section**
-  - Large title + subtitle
-  - Status badge ("Scraping: Active")
-  - Action buttons (Configure, Run Now style)
+- [x] **8.3 Extend Badge component**
+  - ✅ Added 6 semantic variants to `@codeforge-v2/ui/components/badge`:
+    - `success`, `warning`, `info` - General purpose
+    - `remote`, `hybrid`, `office` - Workplace types
+  - ✅ All variants support dark mode with OKLCH colors
 
-- [ ] **8.4 Style filter section**
-  - Search input with icon
-  - Dropdown selects
-  - Status filter tabs/chips
-  - Grid/List view toggle
+- [x] **8.4 Extract business logic to utilities**
+  - ✅ Created `features/dashboard/utils/`:
+    - `filter-jobs.ts` - Search and status filtering logic
+    - `badge-variants.ts` - Workplace/experience badge mappings
+    - `job-display.ts` - Salary formatting and match percentage calculations
+  - ✅ Followed "components presentation-only" principle
+  - ✅ Null safety handled in utilities, not components
 
-- [ ] **8.5 Polish job cards**
-  - Card shadows, borders, rounded corners
-  - Company logo circle
-  - Tech tag pills
-  - Action buttons styling
-  - Hover states
+- [x] **8.5 Refactor existing components**
+  - ✅ Profile sections: Refactored 3 components to use ColoredSectionCard
+  - ✅ Dashboard: Refactored 4 components to use new utilities and components
+  - ✅ Eliminated ~80 lines of duplication across 8 files
 
-- [ ] **8.6 Responsive design**
-  - Mobile sidebar (hamburger menu)
-  - Single column on mobile
-  - Touch-friendly tap targets
+- [x] **8.6 Code quality fixes**
+  - ✅ Removed 4 `console.error` statements (violates linter rules)
+  - ✅ Fixed ProfileFormData type duplication across 3 files
+  - ✅ Added null safety checks for job URLs and currencies
+  - ✅ Fixed missing Controller imports in field components
+  - ✅ Prefixed unused catch variables with underscore
 
-- [ ] **8.7 Loading & empty states**
-  - Skeleton loaders
-  - Empty state illustrations/messages
-  - Error states
+- [x] **8.7 Standardize error displays**
+  - ✅ Replaced inline error markup with ErrorDisplay component
+  - ✅ Updated dashboard-content.tsx and profile-content.tsx
+  - ✅ Consistent error UI across all pages
+
+- [x] **8.8 Fix build issues**
+  - ✅ Added `@xenova/transformers` to transpilePackages in next.config.ts
+  - ✅ Fixed "can't be external" error for ESM module bundling
+  - ✅ Production build passes successfully
+
+**What was built:**
+- Clean component architecture with clear separation of concerns
+- Reusable building blocks eliminate future duplication
+- Business logic extracted to testable utility functions
+- Consistent error handling and display patterns
+- All code passes TypeScript and linter validation
+- Production build optimized and working
+
+**Files modified:** 23 files across features, components, and utilities
+
+---
+
+## Milestone 8.5: Enhanced Filtering & UX Improvements
+
+**Goal:** Improve job discovery with better filtering, sorting, and user feedback.
+
+### Tasks
+
+- [ ] **8.5.1 Rename 'Saved' status to 'Inbox'**
+  - Update STATUS_OPTIONS constant in `features/dashboard/constants`
+  - Update database enum `user_offer_status`: change 'saved' → 'inbox'
+  - Update all references in components and API
+  - Migration: `ALTER TYPE user_offer_status RENAME VALUE 'saved' TO 'inbox'`
+
+- [ ] **8.5.2 Add match score sorting**
+  - Add sort dropdown to SearchFilter component
+  - Options: "Best Match" (DESC), "Lowest Match" (ASC)
+  - Update filterJobs utility to accept sort parameter
+  - Sort by similarity_score in specified order
+  - Persist sort preference in URL params (nuqs)
+
+- [ ] **8.5.3 Add 'New' status filter**
+  - Add virtual "New" filter to status options (shows jobs from last match run)
+  - Query jobs where `created_at` >= last match run timestamp
+  - Add badge indicator on job cards for new jobs
+  - "New" count in filter chip (e.g., "New (12)")
+
+- [ ] **8.5.4 Create reusable ConfirmDialog component**
+  - Create `apps/web/src/shared/components/ui/confirm-dialog.tsx`
+  - Props: title, description, confirmText, cancelText, onConfirm, onCancel
+  - Use Radix Dialog primitive from shadcn/ui
+  - Destructive variant for delete actions
+  - Loading state during async operations
+
+- [ ] **8.5.5 Add delete confirmation modal**
+  - Update DeleteJobButton to use ConfirmDialog
+  - Title: "Delete Job?"
+  - Description: "This will permanently remove this job from your list."
+  - Confirm button: "Delete" (destructive variant)
+  - Show loading spinner during deletion
+
+- [ ] **8.5.6 Add tooltip for job title**
+  - Create or use Tooltip component from shadcn/ui
+  - Wrap job title with Tooltip
+  - Show full title on hover (no line-clamp in tooltip)
+  - Delay: 300ms
+
+- [ ] **8.5.7 Add tooltip for tech tags**
+  - Wrap "+X more" badge with Tooltip
+  - Show all technologies in vertical list
+  - Format: Badge-style chips in tooltip content
+  - Max width with wrapping for many tags
+
+- [ ] **8.5.8 Add salary range filter**
+  - Create dual-range slider component (or use shadcn/ui Slider)
+  - Min/Max inputs: 0 - 500,000 (configurable)
+  - Currency selector dropdown (PLN, EUR, USD, GBP)
+  - Filter jobs where salary overlaps selected range
+  - Clear button to reset range
+  - Display selected range above slider
+
+- [ ] **8.5.9 Update filter UI layout**
+  - Group filters logically:
+    - Row 1: Search input, Status filters, Sort dropdown
+    - Row 2: Salary range slider with currency
+  - Responsive: Stack on mobile
+  - Add "Clear all filters" button when filters active
+
+**What will be built:**
+- Enhanced job discovery with flexible sorting
+- "New jobs" indicator for latest matches
+- Safer delete action with confirmation
+- Better UX with tooltips for truncated content
+- Salary filtering for budget-conscious job search
+- Reusable ConfirmDialog component for future features
+
+**Files to modify:**
+- `features/dashboard/constants/` - Status options, filter options
+- `features/dashboard/components/` - SearchFilter, DeleteJobButton, JobCard
+- `features/dashboard/utils/filter-jobs.ts` - Add sorting and salary filtering logic
+- `features/dashboard/types/` - Add filter and sort types
+- `shared/components/ui/` - ConfirmDialog, Tooltip (if not exists)
+- Database migration for status rename
 
 ---
 
@@ -489,7 +593,8 @@ packages/embeddings/
 | 5 | Scraper Enhancement | ✅ Complete |
 | 6 | Main Dashboard | ✅ Complete |
 | 7 | User Profile Page | ✅ Complete |
-| 8 | UI Polish | **← NEXT** |
+| 8 | UI Polish & Code Quality | ✅ Complete |
+| 8.5 | Enhanced Filtering & UX | **← NEXT** |
 | 9 | Testing | Not started |
 | 10 | Deployment | Not started |
 

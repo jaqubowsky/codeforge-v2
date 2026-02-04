@@ -11,9 +11,10 @@ async function getLastRunFromDB(userId: string): Promise<MatchRunInfo> {
     .from("match_runs")
     .select("*")
     .eq("user_id", userId)
+    .gt("new_jobs_count", 0)
     .order("created_at", { ascending: false })
     .limit(1)
-    .single();
+    .maybeSingle();
 
   return lastRun
     ? {

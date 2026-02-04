@@ -64,7 +64,20 @@ export interface DashboardData {
   lastRun: MatchRunInfo;
 }
 
+export type SortOption = "match_desc" | "match_asc" | "date_desc" | "date_asc";
+
+export type Currency = "PLN" | "EUR" | "USD" | "GBP";
+
+export interface SalaryRangeFilter {
+  min: number;
+  max: number;
+  currency: Currency;
+}
+
 export interface FilterState {
   search: string;
   status: UserOfferStatus | "all";
+  sort: SortOption;
+  showOnlyNew: boolean;
+  salaryRange: SalaryRangeFilter;
 }

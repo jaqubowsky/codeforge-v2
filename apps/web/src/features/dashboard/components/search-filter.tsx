@@ -1,94 +1,134 @@
 "use client";
 
+import { Badge } from "@codeforge-v2/ui/components/badge";
+import { Button } from "@codeforge-v2/ui/components/button";
 import { Input } from "@codeforge-v2/ui/components/input";
-import { Search } from "lucide-react";
+import { Search, Sparkles, X } from "lucide-react";
 import { STATUS_OPTIONS } from "../constants";
+import { useDebouncedSearch } from "../hooks/use-debounced-search";
 import { useSearchFilters } from "../hooks/use-search-filters";
+import type { Currency, SortOption } from "../types";
+import { getStatusButtonClass } from "../utils/status-button-styles";
+import { SalaryRangeFilter } from "./salary-range-filter";
+import { SortDropdown } from "./sort-dropdown";
 
-const STATUS_COLORS = {
-  all: {
-    active:
-      "bg-slate-600 dark:bg-slate-400 text-white dark:text-slate-950 hover:bg-slate-700 dark:hover:bg-slate-300 shadow-sm",
-    inactive:
-      "bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800",
-  },
-  saved: {
-    active:
-      "bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-blue-400 shadow-sm",
-    inactive:
-      "bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-950",
-  },
-  applied: {
-    active:
-      "bg-emerald-600 dark:bg-emerald-500 text-white hover:bg-emerald-700 dark:hover:bg-emerald-400 shadow-sm",
-    inactive:
-      "bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-950",
-  },
-  interviewing: {
-    active:
-      "bg-violet-600 dark:bg-violet-500 text-white hover:bg-violet-700 dark:hover:bg-violet-400 shadow-sm",
-    inactive:
-      "bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 hover:bg-violet-100 dark:hover:bg-violet-950",
-  },
-  offered: {
-    active:
-      "bg-amber-600 dark:bg-amber-500 text-white hover:bg-amber-700 dark:hover:bg-amber-400 shadow-sm",
-    inactive:
-      "bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-950",
-  },
-  rejected: {
-    active:
-      "bg-rose-600 dark:bg-rose-500 text-white hover:bg-rose-700 dark:hover:bg-rose-400 shadow-sm",
-    inactive:
-      "bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-950",
-  },
-} as const satisfies Record<string, { active: string; inactive: string }>;
+interface SearchFilterProps {
+  newJobsCount?: number;
+}
 
-export function SearchFilter() {
-  const { search, setSearch, status, setStatus } = useSearchFilters();
+export function SearchFilter({ newJobsCount = 0 }: SearchFilterProps) {
+  const {
+    search,
+    setSearch,
+    status,
+    sort,
+    setSort,
+    showOnlyNew,
+    salaryMin,
+    setSalaryMin,
+    salaryMax,
+    setSalaryMax,
+    currency,
+    setCurrency,
+    setFilters,
+    resetFilters,
+    hasActiveFilters,
+  } = useSearchFilters();
 
-  const getButtonClass = (value: string) => {
-    const isActive = status === value || (!status && value === "all");
-    const colors =
-      (STATUS_COLORS as Record<string, { active: string; inactive: string }>)[
-        value
-      ] || STATUS_COLORS.all;
-    return `rounded-lg px-4 py-2 font-medium text-sm transition-all ${
-      isActive ? colors.active : colors.inactive
-    }`;
-  };
+  const { localValue: localSearch, handleChange: handleSearchChange } =
+    useDebouncedSearch({
+      value: search,
+      onValueChange: setSearch,
+    });
 
   return (
-    <div className="space-y-4">
-      <div className="relative">
-        <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-        <Input
-          className="pl-10"
-          onChange={(e) => setSearch(e.target.value || null)}
-          placeholder="Search jobs..."
-          value={search || ""}
+    <div className="space-y-6">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-start">
+        <div className="relative flex-1">
+          <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            className="pl-10"
+            onChange={(e) => handleSearchChange(e.target.value)}
+            placeholder="Search jobs by title or company..."
+            value={localSearch}
+          />
+        </div>
+
+        <SortDropdown
+          onChange={setSort}
+          value={(sort as SortOption) || "match_desc"}
         />
-      </div>
 
-      <div className="flex flex-wrap gap-2">
-        <button
-          className={getButtonClass("all")}
-          onClick={() => setStatus("all")}
-          type="button"
-        >
-          All
-        </button>
-
-        {STATUS_OPTIONS.map((opt) => (
+        <div className="flex flex-wrap gap-2">
           <button
-            className={getButtonClass(opt.value)}
-            key={opt.value}
-            onClick={() => setStatus(opt.value)}
+            className={getStatusButtonClass(showOnlyNew ? null : status, "all")}
+            onClick={() => {
+              setFilters({ status: "all", new: false });
+            }}
             type="button"
           >
-            {opt.label}
+            All
           </button>
-        ))}
+
+          {STATUS_OPTIONS.map((opt) => (
+            <button
+              className={getStatusButtonClass(
+                showOnlyNew ? null : status,
+                opt.value
+              )}
+              key={opt.value}
+              onClick={() => {
+                setFilters({ status: opt.value, new: false });
+              }}
+              type="button"
+            >
+              {opt.label}
+            </button>
+          ))}
+
+          {newJobsCount > 0 && (
+            <button
+              className={getStatusButtonClass(
+                showOnlyNew ? "new" : null,
+                "new"
+              )}
+              onClick={() => {
+                setFilters({ status: "saved", new: true });
+              }}
+              type="button"
+            >
+              <span className="flex items-center gap-1.5">
+                <Sparkles className="h-3.5 w-3.5" />
+                New
+                <Badge className="ml-0.5" variant="secondary">
+                  {newJobsCount}
+                </Badge>
+              </span>
+            </button>
+          )}
+        </div>
+      </div>
+
+      <SalaryRangeFilter
+        currency={(currency as Currency) || "PLN"}
+        maxSalary={salaryMax || 50_000}
+        minSalary={salaryMin || 0}
+        onCurrencyChange={(curr) => setCurrency(curr as Currency)}
+        onMaxChange={setSalaryMax}
+        onMinChange={setSalaryMin}
+      />
+
+      <div className="flex justify-end">
+        <Button
+          className="gap-1.5"
+          disabled={!hasActiveFilters}
+          onClick={resetFilters}
+          size="sm"
+          variant="outline"
+        >
+          <X className="h-3.5 w-3.5" />
+          Clear all filters
+        </Button>
       </div>
     </div>
   );

@@ -1,8 +1,6 @@
 "use client";
 
-import { useTransition } from "react";
-import { toast } from "sonner";
-import { updateJobStatus } from "../api";
+import { useJobStatus } from "../hooks/use-job-status";
 import type { UserOfferStatus } from "../types";
 import { StatusDropdown } from "./status-dropdown";
 
@@ -15,20 +13,7 @@ export function JobStatusDropdown({
   jobId,
   currentStatus,
 }: JobStatusDropdownProps) {
-  const [isPending, startTransition] = useTransition();
-
-  const handleStatusChange = (newStatus: UserOfferStatus) => {
-    startTransition(async () => {
-      const result = await updateJobStatus(jobId, newStatus);
-
-      if (!result.success) {
-        toast.error(result.error || "Failed to update status");
-        return;
-      }
-
-      toast.success("Status updated");
-    });
-  };
+  const { isPending, handleStatusChange } = useJobStatus({ jobId });
 
   return (
     <StatusDropdown

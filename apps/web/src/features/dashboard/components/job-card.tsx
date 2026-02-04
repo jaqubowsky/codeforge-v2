@@ -1,6 +1,9 @@
+"use client";
+
 import { Badge } from "@codeforge-v2/ui/components/badge";
 import { Button } from "@codeforge-v2/ui/components/button";
 import { Card } from "@codeforge-v2/ui/components/card";
+import { TooltipWrapper } from "@codeforge-v2/ui/components/tooltip-wrapper";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import { ExternalLink, MapPin } from "lucide-react";
 import { CompanyAvatar } from "@/shared/components/ui/company-avatar";
@@ -43,6 +46,8 @@ export function JobCard({ job }: JobCardProps) {
 
   const jobUrl = job.applicationUrl || job.offerUrl;
 
+  const remainingTechs = job.technologies.slice(MAX_VISIBLE_TECHS);
+
   return (
     <Card
       className={cn(
@@ -60,9 +65,11 @@ export function JobCard({ job }: JobCardProps) {
           />
 
           <div className="min-w-0 flex-1">
-            <h3 className="line-clamp-2 font-semibold leading-tight">
-              {job.title}
-            </h3>
+            <TooltipWrapper content={<p className="max-w-xs">{job.title}</p>}>
+              <h3 className="line-clamp-2 cursor-help font-semibold leading-tight">
+                {job.title}
+              </h3>
+            </TooltipWrapper>
             <p className="mt-1 truncate text-muted-foreground text-sm">
               {job.companyName}
             </p>
@@ -76,7 +83,7 @@ export function JobCard({ job }: JobCardProps) {
         </div>
       </div>
 
-      <div className="mb-4 flex h-6 flex-wrap items-center gap-2 text-muted-foreground text-sm">
+      <div className="mb-4 flex min-h-6 flex-wrap items-center gap-2 text-muted-foreground text-sm">
         {job.city && (
           <span className="flex items-center gap-1">
             <MapPin className="h-4 w-4" />
@@ -105,7 +112,7 @@ export function JobCard({ job }: JobCardProps) {
 
       <p className="mb-4 h-5 font-medium text-sm">{salaryText}</p>
 
-      <div className="mb-4 h-14">
+      <div className="mb-4 min-h-14">
         <div className="flex flex-wrap gap-2">
           {visibleTechs.map((tech) => (
             <Badge key={tech.name} variant="secondary">
@@ -114,7 +121,25 @@ export function JobCard({ job }: JobCardProps) {
           ))}
 
           {remainingCount > 0 && (
-            <Badge variant="outline">+{remainingCount} more</Badge>
+            <TooltipWrapper
+              content={
+                <div className="flex max-w-sm flex-wrap gap-1">
+                  {remainingTechs.map((tech) => (
+                    <Badge
+                      className="text-xs"
+                      key={tech.name}
+                      variant="secondary"
+                    >
+                      {tech.name}
+                    </Badge>
+                  ))}
+                </div>
+              }
+            >
+              <Badge className="cursor-help" variant="outline">
+                +{remainingCount} more
+              </Badge>
+            </TooltipWrapper>
           )}
         </div>
       </div>

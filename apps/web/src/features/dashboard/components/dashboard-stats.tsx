@@ -32,7 +32,7 @@ export function DashboardStats({ lastRun, jobCount }: DashboardStatsProps) {
           <StatusBadge status={statusType} />
           <span className="flex items-center gap-1">
             <Clock className="h-4 w-4" />
-            Last run: {lastRunText}
+            Last effective run: {lastRunText}
           </span>
         </div>
 

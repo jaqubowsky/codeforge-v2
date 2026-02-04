@@ -53,5 +53,9 @@ export async function triggerMatch(): Promise<{
 
   revalidatePath("/dashboard");
 
-  return result;
+  return {
+    success: result.success,
+    newJobsCount: result.newMatchesCount,
+    error: result.error,
+  };
 }
