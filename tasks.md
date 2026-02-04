@@ -324,21 +324,28 @@ packages/embeddings/
 
 ---
 
-## Milestone 7: User Profile Page
+## Milestone 7: User Profile Page ✅ COMPLETE
 
 **Goal:** Allow users to view and edit their profile.
 
 ### Tasks
 
-- [ ] **7.1 Create profile page (`/profile`)**
-  - Display current profile data
-  - Edit mode toggle
+- [x] **7.1 Create profile page (`/profile`)**
+  - ✅ Server component fetches and displays current profile data
+  - ✅ Always-editable form (no toggle)
+  - ✅ Dashboard-matching design with gradient headers and color-coded sections
 
-- [ ] **7.2 Build profile edit form**
-  - Reuse onboarding components
-  - Pre-populate with existing data
-  - On save: regenerate embedding with new data
-  - Success toast notification
+- [x] **7.2 Build profile edit form**
+  - ✅ Shared profile field components reused
+  - ✅ Pre-populated with existing data
+  - ✅ Regenerates embedding on save
+  - ✅ Success toast, stays on page
+
+**What was built:**
+- Profile feature with section components (ProfileBasicInfoSection, ProfileSkillsSection, ProfileCareerGoalsSection)
+- Shared infrastructure: constants, field components, hooks, API actions
+- Architecture aligned with onboarding (same component encapsulation pattern)
+- Removed duplicates from onboarding, proper feature boundaries maintained
 
 ---
 
@@ -481,8 +488,8 @@ packages/embeddings/
 | 4 | User-Job Relationships | ✅ Complete |
 | 5 | Scraper Enhancement | ✅ Complete |
 | 6 | Main Dashboard | ✅ Complete |
-| 7 | User Profile Page | **← NEXT** |
-| 8 | UI Polish | Not started |
+| 7 | User Profile Page | ✅ Complete |
+| 8 | UI Polish | **← NEXT** |
 | 9 | Testing | Not started |
 | 10 | Deployment | Not started |
 
