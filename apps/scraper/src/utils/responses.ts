@@ -17,15 +17,15 @@ export const STATUS_CODES = {
 
 type ErrorCode = keyof typeof STATUS_CODES;
 
-type SuccessResponseData<T = unknown> = {
+interface SuccessResponseData<T = unknown> {
   message?: string;
   data: T;
-};
+}
 
-type ErrorResponseData = {
+interface ErrorResponseData {
   message: string;
   code: ErrorCode;
-};
+}
 
 export const successResponse = <T>(
   res: Response,

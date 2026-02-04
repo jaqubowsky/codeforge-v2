@@ -28,57 +28,57 @@ export type ScrapingRun = Tables<"scraping_runs">;
 export type ScrapingRunInsert = TablesInsert<"scraping_runs">;
 export type ScrapingRunUpdate = TablesUpdate<"scraping_runs">;
 
-export type Skill = {
+export interface Skill {
   name: Technology["name"];
   level: SkillLevel;
-};
+}
 
-export type LanguageInfo = {
+export interface LanguageInfo {
   code: string;
   level: string;
-};
+}
 
-export type LocationInfo = {
+export interface LocationInfo {
   city: Offer["city"];
   street: Offer["street"];
-};
+}
 
-export type TechnologyData = {
+export interface TechnologyData {
   technology_name: string;
   skill_level: SkillLevel;
-};
+}
 
-export type TechnologyLink = {
+export interface TechnologyLink {
   offer_id: number;
   technology_id: number;
   skill_level: SkillLevel;
-};
+}
 
-export type PreparedOfferData = {
+export interface PreparedOfferData {
   offer: OfferInsert;
   technologies: TechnologyData[];
-};
+}
 
-export type ScrapeOffersByTechnologyResult = {
+export interface ScrapeOffersByTechnologyResult {
   runId: number;
   offersCount: number;
-};
+}
 
-export type ScrapingOptions = {
+export interface ScrapingOptions {
   itemsPerPage?: number;
   maxOffers?: number;
   maxIterations?: number;
   concurrencyLimit?: number;
 
   providerOptions?: Record<string, unknown>;
-};
+}
 
-export type ScrapingStrategy<TTechnology = string | undefined> = {
+export interface ScrapingStrategy<TTechnology = string | undefined> {
   getOffersByTechnology(
     technology: TTechnology | undefined,
     scrapingRunId: number
   ): Promise<PreparedOfferData[]>;
-};
+}
 
 export const AVAILABLE_JOB_BOARDS = ["justjoinit"] as const;
 export type JobBoard = (typeof AVAILABLE_JOB_BOARDS)[number];

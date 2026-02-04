@@ -1,4 +1,4 @@
-export type JustJoinItOffer = {
+export interface JustJoinItOffer {
   guid: string;
   slug: string;
   title: string;
@@ -26,9 +26,9 @@ export type JustJoinItOffer = {
   isSuperOffer: boolean;
   promotedPosition: string | null;
   promotedKeyFilters: string[];
-};
+}
 
-export type JustJoinItEmploymentType = {
+export interface JustJoinItEmploymentType {
   from: number | null;
   to: number | null;
   currency: string;
@@ -45,22 +45,22 @@ export type JustJoinItEmploymentType = {
   toGbp: number | null;
   toPln: number | null;
   toUsd: number | null;
-};
+}
 
-export type JustJoinItLocation = {
+export interface JustJoinItLocation {
   city: string;
   slug: string;
   street: string;
   latitude: number;
   longitude: number;
-};
+}
 
-export type JustJoinItLanguage = {
+export interface JustJoinItLanguage {
   code: string;
   level: string;
-};
+}
 
-export type JustJoinItApiResponse = {
+export interface JustJoinItApiResponse {
   data: JustJoinItOffer[];
   meta: {
     from: number;
@@ -74,7 +74,7 @@ export type JustJoinItApiResponse = {
     };
     totalItems: number;
   };
-};
+}
 
 export const JUST_JOIN_IT_TECHNOLOGIES = [
   "ai/ml",
@@ -135,9 +135,9 @@ export const TECHNOLOGY_TO_CATEGORY_MAP: Record<JustJoinItTechnology, number> =
     other: 24,
   } as const;
 
-export type JustJoinItProviderOptions = {
+export interface JustJoinItProviderOptions {
   currency?: "pln" | "usd" | "eur";
   orderBy?: "ASC" | "DESC";
   sortBy?: "published" | "salary";
   cityRadiusKm?: number;
-};
+}

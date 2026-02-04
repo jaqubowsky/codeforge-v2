@@ -7,26 +7,28 @@
     "packages/*"
   ],
   "scripts": {
-    "check": "biome check --write .",
+    "check": "ultracite check",
     "dev": "turbo dev",
     "build": "turbo build",
     "check-types": "turbo check-types",
     "check-deps": "turbo check-deps",
     "update-deps": "turbo update-deps",
     "dev:web": "turbo -F web dev",
-    "prepare": "husky"
+    "prepare": "husky",
+    "fix": "ultracite fix"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.2",
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
+    "@biomejs/biome": "2.3.14",
+    "@commitlint/cli": "^20.4.1",
+    "@commitlint/config-conventional": "^20.4.1",
     "husky": "^9.1.7",
-    "lint-staged": "^16.1.2",
-    "turbo": "^2.5.4",
-    "ultracite": "5.3.3"
+    "lint-staged": "^16.2.7",
+    "turbo": "^2.8.3",
+    "ultracite": "^7.1.4"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx}": [
+      "npx ultracite fix",
       "npx ultracite fix"
     ]
   },
@@ -35,7 +37,7 @@
       "@commitlint/config-conventional"
     ]
   },
-  "packageManager": "npm@11.5.2",
+  "packageManager": "npm@11.8.0",
   "version": "1.0.0",
   "description": "This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines Next.js, and more.",
   "main": "index.js",

@@ -2,7 +2,8 @@
   "extends": "@codeforge-v2/typescript-config/base.json",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "strictNullChecks": true
   },
   "include": ["./src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
