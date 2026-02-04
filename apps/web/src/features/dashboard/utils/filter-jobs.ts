@@ -33,6 +33,20 @@ function sortJobs(jobs: UserJobOffer[], sortBy: SortOption): UserJobOffer[] {
         return dateA - dateB;
       });
 
+    case "salary_desc":
+      return sorted.sort((a, b) => {
+        const salaryA = a.salaryTo ?? a.salaryFrom ?? -1;
+        const salaryB = b.salaryTo ?? b.salaryFrom ?? -1;
+        return salaryB - salaryA;
+      });
+
+    case "salary_asc":
+      return sorted.sort((a, b) => {
+        const salaryA = a.salaryTo ?? a.salaryFrom ?? Number.POSITIVE_INFINITY;
+        const salaryB = b.salaryTo ?? b.salaryFrom ?? Number.POSITIVE_INFINITY;
+        return salaryA - salaryB;
+      });
+
     default:
       return sorted;
   }

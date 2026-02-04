@@ -6,7 +6,7 @@ import {
   parseAsString,
   useQueryStates,
 } from "nuqs";
-import { DEFAULT_CURRENCY, SALARY_MAX, SALARY_MIN } from "../constants";
+import { DEFAULT_CURRENCY, SALARY_MIN } from "../constants";
 import type { SortOption } from "../types";
 
 const DEFAULT_SEARCH = "";
@@ -19,11 +19,11 @@ const filtersParsers = {
   sort: parseAsString.withDefault(DEFAULT_SORT),
   new: parseAsBoolean.withDefault(false),
   salaryMin: parseAsInteger.withDefault(SALARY_MIN),
-  salaryMax: parseAsInteger.withDefault(SALARY_MAX),
+  salaryMax: parseAsInteger,
   currency: parseAsString.withDefault(DEFAULT_CURRENCY),
 };
 
-export function useSearchFilters() {
+export function useSearchFilters(maxSalaryLimit?: number) {
   const [filters, setFilters] = useQueryStates(filtersParsers, {
     history: "push",
     shallow: false,
@@ -48,7 +48,9 @@ export function useSearchFilters() {
     filters.sort !== DEFAULT_SORT ||
     filters.new !== false ||
     filters.salaryMin !== SALARY_MIN ||
-    filters.salaryMax !== SALARY_MAX ||
+    (filters.salaryMax !== null &&
+      maxSalaryLimit !== undefined &&
+      filters.salaryMax !== maxSalaryLimit) ||
     filters.currency !== DEFAULT_CURRENCY;
 
   return {

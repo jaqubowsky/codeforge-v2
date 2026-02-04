@@ -38,7 +38,7 @@ export async function DashboardContent({
     );
   }
 
-  const { jobs, lastRun } = result.data;
+  const { jobs, lastRun, salaryMetadata } = result.data;
 
   const newJobsCount = calculateNewJobsCount(jobs, lastRun.lastRunAt);
 
@@ -57,7 +57,11 @@ export async function DashboardContent({
     <div className="container space-y-8 px-6 py-8">
       <DashboardHeader />
       <DashboardStats jobCount={filteredJobs.length} lastRun={lastRun} />
-      <SearchFilter newJobsCount={newJobsCount} />
+      <SearchFilter
+        currencies={salaryMetadata.currencies}
+        maxSalary={salaryMetadata.maxSalary}
+        newJobsCount={newJobsCount}
+      />
       <JobsGrid jobs={filteredJobs} />
     </div>
   );

@@ -20,6 +20,8 @@ export const SORT_OPTIONS: Array<{
   { value: "match_asc", label: "Lowest Match" },
   { value: "date_desc", label: "Newest First" },
   { value: "date_asc", label: "Oldest First" },
+  { value: "salary_desc", label: "Highest Salary" },
+  { value: "salary_asc", label: "Lowest Salary" },
 ];
 
 export const CURRENCY_OPTIONS: Currency[] = ["PLN", "EUR", "USD", "GBP"];

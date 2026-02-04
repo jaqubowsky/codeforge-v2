@@ -1,7 +1,7 @@
 "use server";
 
 import { createClient } from "@/shared/supabase/server";
-import { getUserJobs } from "../api";
+import { getSalaryFiltersMetadata, getUserJobs } from "../api";
 import type { DashboardData, MatchRunInfo } from "../types";
 
 async function getLastRunFromDB(userId: string): Promise<MatchRunInfo> {
@@ -47,10 +47,17 @@ export async function getDashboardData(): Promise<{
     return { success: false, error: "Not authenticated" };
   }
 
-  const jobsResult = await getUserJobs(undefined, 100);
+  const [jobsResult, salaryMetadataResult] = await Promise.all([
+    getUserJobs(undefined, 100),
+    getSalaryFiltersMetadata(),
+  ]);
 
   if (!jobsResult.success) {
     return { success: false, error: jobsResult.error };
+  }
+
+  if (!(salaryMetadataResult.success && salaryMetadataResult.data)) {
+    return { success: false, error: salaryMetadataResult.error };
   }
 
   const lastRun = await getLastRunFromDB(user.id);
@@ -61,6 +68,7 @@ export async function getDashboardData(): Promise<{
       jobs: jobsResult.data ?? [],
       totalCount: jobsResult.data?.length ?? 0,
       lastRun,
+      salaryMetadata: salaryMetadataResult.data,
     },
     error: null,
   };

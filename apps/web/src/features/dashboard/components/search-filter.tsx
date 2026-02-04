@@ -14,9 +14,15 @@ import { SortDropdown } from "./sort-dropdown";
 
 interface SearchFilterProps {
   newJobsCount?: number;
+  currencies: Currency[];
+  maxSalary: number;
 }
 
-export function SearchFilter({ newJobsCount = 0 }: SearchFilterProps) {
+export function SearchFilter({
+  newJobsCount = 0,
+  currencies,
+  maxSalary: maxSalaryLimit,
+}: SearchFilterProps) {
   const {
     search,
     setSearch,
@@ -33,7 +39,7 @@ export function SearchFilter({ newJobsCount = 0 }: SearchFilterProps) {
     setFilters,
     resetFilters,
     hasActiveFilters,
-  } = useSearchFilters();
+  } = useSearchFilters(maxSalaryLimit);
 
   const { localValue: localSearch, handleChange: handleSearchChange } =
     useDebouncedSearch({
@@ -110,9 +116,11 @@ export function SearchFilter({ newJobsCount = 0 }: SearchFilterProps) {
       </div>
 
       <SalaryRangeFilter
-        currency={(currency as Currency) || "PLN"}
-        maxSalary={salaryMax || 50_000}
-        minSalary={salaryMin || 0}
+        availableCurrencies={currencies}
+        currency={(currency as Currency) || currencies[0] || "PLN"}
+        maxSalary={salaryMax ?? maxSalaryLimit}
+        maxSalaryLimit={maxSalaryLimit}
+        minSalary={salaryMin ?? 0}
         onCurrencyChange={(curr) => setCurrency(curr as Currency)}
         onMaxChange={setSalaryMax}
         onMinChange={setSalaryMin}

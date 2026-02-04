@@ -58,13 +58,25 @@ export interface MatchRunInfo {
   status: "running" | "completed" | "failed" | null;
 }
 
+export interface SalaryFiltersMetadata {
+  currencies: Currency[];
+  maxSalary: number;
+}
+
 export interface DashboardData {
   jobs: UserJobOffer[];
   totalCount: number;
   lastRun: MatchRunInfo;
+  salaryMetadata: SalaryFiltersMetadata;
 }
 
-export type SortOption = "match_desc" | "match_asc" | "date_desc" | "date_asc";
+export type SortOption =
+  | "match_desc"
+  | "match_asc"
+  | "date_desc"
+  | "date_asc"
+  | "salary_desc"
+  | "salary_asc";
 
 export type Currency = "PLN" | "EUR" | "USD" | "GBP";
 

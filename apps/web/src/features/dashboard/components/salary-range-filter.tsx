@@ -9,12 +9,7 @@ import {
 } from "@codeforge-v2/ui/components/select";
 import { Slider } from "@codeforge-v2/ui/components/slider";
 import { DollarSign } from "lucide-react";
-import {
-  CURRENCY_OPTIONS,
-  SALARY_MAX,
-  SALARY_MIN,
-  SALARY_STEP,
-} from "../constants";
+import { SALARY_MIN, SALARY_STEP } from "../constants";
 import { useSalaryRangeFilter } from "../hooks/use-salary-range-filter";
 import type { Currency } from "../types";
 import { formatSalaryRange } from "../utils/salary-utils";
@@ -23,6 +18,8 @@ interface SalaryRangeFilterProps {
   minSalary: number;
   maxSalary: number;
   currency: Currency;
+  availableCurrencies: Currency[];
+  maxSalaryLimit: number;
   onMinChange: (value: number) => void;
   onMaxChange: (value: number) => void;
   onCurrencyChange: (currency: Currency) => void;
@@ -32,6 +29,8 @@ export function SalaryRangeFilter({
   minSalary,
   maxSalary,
   currency,
+  availableCurrencies,
+  maxSalaryLimit,
   onMinChange,
   onMaxChange,
   onCurrencyChange,
@@ -55,7 +54,7 @@ export function SalaryRangeFilter({
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            {CURRENCY_OPTIONS.map((curr) => (
+            {availableCurrencies.map((curr) => (
               <SelectItem key={curr} value={curr}>
                 {curr}
               </SelectItem>
@@ -67,18 +66,20 @@ export function SalaryRangeFilter({
       <div className="space-y-3">
         <Slider
           className="w-full"
-          max={SALARY_MAX}
+          max={maxSalaryLimit}
           min={SALARY_MIN}
           onValueChange={handleRangeChange}
           step={SALARY_STEP}
           value={[localMin, localMax]}
         />
         <div className="flex items-center justify-between text-muted-foreground text-xs">
-          <span>{formatSalaryRange(localMin, localMax, currency)}</span>
-          {localMin === 0 && localMax < SALARY_MAX && (
+          <span>
+            {formatSalaryRange(localMin, localMax, currency, maxSalaryLimit)}
+          </span>
+          {localMin === 0 && localMax < maxSalaryLimit && (
             <span className="text-primary">Includes jobs without salary</span>
           )}
-          {localMax === SALARY_MAX && (
+          {localMax === maxSalaryLimit && (
             <span className="text-primary">No upper limit</span>
           )}
         </div>

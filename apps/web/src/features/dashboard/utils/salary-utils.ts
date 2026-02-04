@@ -1,28 +1,32 @@
-import { SALARY_MAX } from "../constants";
-
 export function formatSalaryRange(
   min: number,
   max: number,
-  currency: string
+  currency: string,
+  maxLimit: number
 ): string {
   const formatNumber = (num: number) => {
+    if (num >= 1_000_000) {
+      const mValue = num / 1_000_000;
+      return mValue % 1 === 0 ? `${mValue}M` : `${mValue.toFixed(1)}M`;
+    }
     if (num >= 1000) {
       const kValue = num / 1000;
-      if (kValue % 1 === 0) {
-        return `${kValue}k`;
-      }
-      return `${kValue.toFixed(1)}k`;
+      return kValue % 1 === 0 ? `${kValue}k` : `${kValue.toFixed(1)}k`;
     }
     return num.toString();
   };
 
-  if (max === SALARY_MAX) {
+  if (max === maxLimit) {
     return `${formatNumber(min)} - ${formatNumber(max)}+ ${currency}`;
   }
 
   return `${formatNumber(min)} - ${formatNumber(max)} ${currency}`;
 }
 
-export function isValidSalaryRange(min: number, max: number): boolean {
-  return min >= 0 && max > min && max <= SALARY_MAX;
+export function isValidSalaryRange(
+  min: number,
+  max: number,
+  maxLimit: number
+): boolean {
+  return min >= 0 && max > min && max <= maxLimit;
 }
