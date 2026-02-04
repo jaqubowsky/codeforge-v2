@@ -1,8 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getTechnologies } from "../api";
-import type { Technology } from "../types";
+import { getTechnologies } from "../api/get-technologies";
+
+export interface Technology {
+  id: number;
+  name: string;
+}
 
 export function useTechnologies() {
   const [technologies, setTechnologies] = useState<Technology[]>([]);
