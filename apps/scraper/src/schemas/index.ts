@@ -19,3 +19,18 @@ export const baseOffersByTechnologyScrapingOptionsSchema = z.object({
   maxIterations: z.coerce.number().positive().optional(),
   concurrencyLimit: z.coerce.number().positive().optional(),
 });
+
+export type BaseOffersByTechnologyScrapingOptions = z.infer<
+  typeof baseOffersByTechnologyScrapingOptionsSchema
+> & {
+  providerOptions: BaseProviderOptions;
+};
+
+export const baseProviderOptionsSchema = z.object({
+  currency: z.enum(["pln", "usd", "eur"]).optional(),
+  orderBy: z.enum(["ASC", "DESC"]).optional(),
+  sortBy: z.enum(["publishedAt", "salary"]).optional(),
+  cityRadiusKm: z.coerce.number().positive().optional(),
+});
+
+export type BaseProviderOptions = z.infer<typeof baseProviderOptionsSchema>;

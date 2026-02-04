@@ -1,9 +1,14 @@
+export interface JustJoinItSkill {
+  name: string;
+  level: number;
+}
+
 export interface JustJoinItOffer {
   guid: string;
   slug: string;
   title: string;
-  requiredSkills: string[];
-  niceToHaveSkills: string[] | null;
+  requiredSkills: JustJoinItSkill[];
+  niceToHaveSkills: JustJoinItSkill[] | null;
   workplaceType: "remote" | "hybrid" | "office";
   workingTime: "full_time" | "part_time" | "b2b" | "freelance";
   experienceLevel: "junior" | "mid" | "senior" | "c_level";
@@ -77,8 +82,8 @@ export interface JustJoinItApiResponse {
 }
 
 export const JUST_JOIN_IT_TECHNOLOGIES = [
-  "ai/ml",
-  "js",
+  "ai",
+  "javascript",
   "html",
   "php",
   "ruby",
@@ -91,7 +96,7 @@ export const JUST_JOIN_IT_TECHNOLOGIES = [
   "testing",
   "devops",
   "admin",
-  "ux/ui",
+  "ux",
   "pm",
   "game",
   "analytics",
@@ -99,45 +104,9 @@ export const JUST_JOIN_IT_TECHNOLOGIES = [
   "data",
   "go",
   "support",
-  "ekp",
+  "erp",
   "architecture",
   "other",
 ] as const;
 
 export type JustJoinItTechnology = (typeof JUST_JOIN_IT_TECHNOLOGIES)[number];
-
-export const TECHNOLOGY_TO_CATEGORY_MAP: Record<JustJoinItTechnology, number> =
-  {
-    "ai/ml": 25,
-    js: 1,
-    html: 2,
-    php: 3,
-    ruby: 4,
-    python: 5,
-    java: 6,
-    net: 7,
-    scala: 8,
-    c: 9,
-    mobile: 10,
-    testing: 11,
-    devops: 12,
-    admin: 13,
-    "ux/ui": 14,
-    pm: 15,
-    game: 16,
-    analytics: 17,
-    security: 18,
-    data: 19,
-    go: 20,
-    support: 21,
-    ekp: 22,
-    architecture: 23,
-    other: 24,
-  } as const;
-
-export interface JustJoinItProviderOptions {
-  currency?: "pln" | "usd" | "eur";
-  orderBy?: "ASC" | "DESC";
-  sortBy?: "published" | "salary";
-  cityRadiusKm?: number;
-}

@@ -1,9 +1,12 @@
+import type { BaseProviderOptions } from "../../schemas";
+import type { JustJoinItProviderOptions } from "../../schemas/justjoinit";
 import type {
   ExperienceLevel,
   LanguageInfo,
   LocationInfo,
   OfferInsert,
   PreparedOfferData,
+  SalaryPeriod,
   ScrapingOptions,
   ScrapingStrategy,
   SkillLevel,
@@ -13,15 +16,13 @@ import type {
   JustJoinItApiResponse,
   JustJoinItEmploymentType,
   JustJoinItOffer,
-  JustJoinItProviderOptions,
+  JustJoinItSkill,
   JustJoinItTechnology,
 } from "../../types/just-join-it";
-import { TECHNOLOGY_TO_CATEGORY_MAP } from "../../types/just-join-it";
 import { executeInBatches } from "../../utils/batch-processor";
 import { sleep } from "../../utils/sleep";
 
-const API_BASE_URL =
-  "https://justjoin.it/api/base/v2/user-panel/offers/by-cursor";
+const API_BASE_URL = "https://justjoin.it/api/candidate-api/offers";
 
 const DEFAULT_OPTIONS: Required<Omit<ScrapingOptions, "providerOptions">> = {
   itemsPerPage: 100,
@@ -34,8 +35,8 @@ const RATE_LIMIT_DELAY_MS = 1000;
 
 const DEFAULT_PROVIDER_OPTIONS: Required<JustJoinItProviderOptions> = {
   currency: "pln",
-  orderBy: "DESC",
-  sortBy: "published",
+  orderBy: "descending",
+  sortBy: "publishedAt",
   cityRadiusKm: 30,
 };
 
@@ -51,11 +52,48 @@ export class JustJoinItStrategy
       ...options,
     };
 
+    const mappedOptions = this.mapProviderOptions(
+      options?.providerOptions as BaseProviderOptions | undefined
+    );
+
     this.providerOptions = {
       ...DEFAULT_PROVIDER_OPTIONS,
-      ...(options?.providerOptions as JustJoinItProviderOptions),
+      ...mappedOptions,
     };
   }
+
+  private mapProviderOptions(
+    baseOptions?: BaseProviderOptions
+  ): Partial<JustJoinItProviderOptions> {
+    if (!baseOptions) {
+      return {};
+    }
+
+    const prevCurrency = baseOptions.currency;
+    const prevSortBy = baseOptions.sortBy;
+    const prevOrderBy = baseOptions.orderBy;
+
+    const mapped: Partial<JustJoinItProviderOptions> = {};
+
+    if (prevCurrency) {
+      mapped.currency = prevCurrency;
+    }
+
+    if (prevSortBy) {
+      mapped.sortBy = prevSortBy === "publishedAt" ? "publishedAt" : "salary";
+    }
+
+    if (prevOrderBy) {
+      mapped.orderBy = prevOrderBy === "DESC" ? "descending" : "ascending";
+    }
+
+    if (baseOptions.cityRadiusKm) {
+      mapped.cityRadiusKm = baseOptions.cityRadiusKm;
+    }
+
+    return mapped;
+  }
+
   private processOfferForDatabase(
     apiOffer: JustJoinItOffer,
     scrapingRunId: number
@@ -78,7 +116,7 @@ export class JustJoinItStrategy
     technology?: JustJoinItTechnology | undefined
   ): Promise<JustJoinItApiResponse> {
     const params = new URLSearchParams({
-      cityRadiusKm: this.providerOptions.cityRadiusKm.toString(),
+      cityRadius: this.providerOptions.cityRadiusKm.toString(),
       currency: this.providerOptions.currency,
       from: cursor.toString(),
       itemsCount: itemsCount.toString(),
@@ -87,8 +125,7 @@ export class JustJoinItStrategy
     });
 
     if (technology) {
-      const categoryId = TECHNOLOGY_TO_CATEGORY_MAP[technology];
-      params.append("categories[]", categoryId.toString());
+      params.append("categories[]", technology);
     }
 
     const response = await fetch(`${API_BASE_URL}?${params.toString()}`);
@@ -128,7 +165,7 @@ export class JustJoinItStrategy
       from,
       to,
       currency: currency?.toUpperCase(),
-      period: unit,
+      period: unit?.toLowerCase() as SalaryPeriod,
       type: type === "any" ? undefined : type,
     };
   }
@@ -165,15 +202,15 @@ export class JustJoinItStrategy
   }
 
   private mapSkillsToTechnologies(
-    requiredSkills: string[],
-    niceToHaveSkills: string[] | null
+    requiredSkills: JustJoinItSkill[],
+    niceToHaveSkills: JustJoinItSkill[] | null
   ): TechnologyData[] {
     const required = requiredSkills.map((skill) =>
-      this.createTechnologyData(skill, "required")
+      this.createTechnologyData(skill.name, "required")
     );
     const niceToHave =
       niceToHaveSkills?.map((skill) =>
-        this.createTechnologyData(skill, "nice_to_have")
+        this.createTechnologyData(skill.name, "nice_to_have")
       ) ?? [];
 
     return [...required, ...niceToHave];
@@ -206,10 +243,10 @@ export class JustJoinItStrategy
       experience_level: experienceLevel,
       languages,
       published_at: apiOffer.publishedAt,
-      expired_at: apiOffer.expiredAt,
+      expires_at: apiOffer.expiredAt,
       last_published_at: apiOffer.publishedAt,
       company_logo_thumb_url: apiOffer.companyLogoThumbUrl,
-      application_url: undefined,
+      application_url: `https://justjoin.it/offers/${apiOffer.slug}`,
     };
   }
 

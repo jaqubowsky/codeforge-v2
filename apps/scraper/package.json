@@ -5,10 +5,10 @@
   "scripts": {
     "build": "tsc",
     "check-types": "tsc --noEmit",
-    "format": "biome check --write .",
+    "format": "biome check --write . --unsafe",
     "check-deps": "ncu --format group",
     "update-deps": "ncu -u --format group -u",
-    "dev:getOffersByTechnology": "npm run build && functions-framework --target=getOffersByTechnology --port=8080"
+    "dev:scraper": "npx kill-port 8080 && npm run build && functions-framework --target=getOffersByTechnology --port=8080"
   },
   "keywords": [],
   "author": "",

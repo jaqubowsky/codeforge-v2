@@ -96,7 +96,7 @@ CREATE TABLE public.offers (
     -- Timestamps
     published_at TIMESTAMPTZ,
     last_published_at TIMESTAMPTZ,
-    expired_at TIMESTAMPTZ
+    expires_at TIMESTAMPTZ
 );
 
 COMMENT ON TABLE public.offers IS 'Stores core details for each unique job offer.';

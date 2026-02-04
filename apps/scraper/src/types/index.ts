@@ -36,6 +36,7 @@ export interface Skill {
 export interface LanguageInfo {
   code: string;
   level: string;
+  [key: string]: string;
 }
 
 export interface LocationInfo {

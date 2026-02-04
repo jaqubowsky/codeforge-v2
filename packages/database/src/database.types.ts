@@ -79,7 +79,7 @@ export interface Database {
           experience_level:
             | Database["public"]["Enums"]["experience_level_enum"]
             | null;
-          expired_at: string | null;
+          expires_at: string | null;
           id: number;
           languages: Json | null;
           last_published_at: string | null;
@@ -111,7 +111,7 @@ export interface Database {
           experience_level?:
             | Database["public"]["Enums"]["experience_level_enum"]
             | null;
-          expired_at?: string | null;
+          expires_at?: string | null;
           id?: number;
           languages?: Json | null;
           last_published_at?: string | null;
@@ -145,7 +145,7 @@ export interface Database {
           experience_level?:
             | Database["public"]["Enums"]["experience_level_enum"]
             | null;
-          expired_at?: string | null;
+          expires_at?: string | null;
           id?: number;
           languages?: Json | null;
           last_published_at?: string | null;

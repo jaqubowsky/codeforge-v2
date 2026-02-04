@@ -11,10 +11,12 @@
     }
   },
   "scripts": {
+    "format": "biome check --write . --unsafe",
     "check-deps": "ncu --format group",
     "check-types": "tsc --noEmit",
     "update-deps": "ncu -u --format group -u",
-    "build": "tsc"
+    "build": "tsc",
+    "generate-api-types": "npx supabase gen types typescript --local > src/database.types.ts && npm run format"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.94.0",
