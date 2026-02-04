@@ -52,6 +52,22 @@ npm run check-types  # TypeScript validation
 - Use `"use client"` only when needed (forms, interactivity)
 - Metadata API for SEO (not `<Head>`)
 
+**Data fetching**:
+- Use Suspense boundaries to avoid blocking page render
+- Extract data fetching into separate components wrapped in `<Suspense>`
+- Use `revalidatePath()` in server actions to refresh data after mutations
+- Next.js automatically deduplicates requests within a single render
+
+**Constants organization**:
+- Single-use constants live close to usage (in same file or feature-specific)
+- Only centralize constants used by 3+ files
+- Extract inline strings/magic numbers to `const UPPER_CASE` in same file
+
+**Auth redirects pattern**:
+- Wrap auth checks in `<Suspense>` to avoid blocking page render
+- Use reusable `AuthRedirect` component for common auth/onboarding checks
+- Convert pages with redirect logic from async to sync with Suspense wrapper
+
 **Proxy (formerly middleware)**:
 - In Next.js 16, middleware is now called "proxy" (`src/proxy.ts`)
 - **Keep proxy minimal** - only handle session refresh, no redirects

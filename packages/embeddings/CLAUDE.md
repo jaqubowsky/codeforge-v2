@@ -175,7 +175,7 @@ ALTER TABLE public.offers
 -- Similarity search function
 CREATE FUNCTION match_jobs_for_user(
   user_embedding VECTOR(384),
-  match_threshold FLOAT DEFAULT 0.7
+  match_threshold FLOAT DEFAULT 0.4
 )
 RETURNS TABLE (offer_id BIGINT, similarity FLOAT);
 ```

@@ -1,6 +1,7 @@
 // biome-ignore-all lint/suspicious/noConsole: observability
 
 import { queries } from "@codeforge-v2/database";
+import { embeddings } from "@codeforge-v2/embeddings";
 import type {
   Offer,
   PreparedOfferData,
@@ -83,6 +84,38 @@ export class ScrapingService<TTechnology = string | undefined> {
       }
     }
     return technologyLinks;
+  }
+
+  private async generateOfferEmbeddings(
+    preparedData: PreparedOfferData[]
+  ): Promise<void> {
+    await Promise.all(
+      preparedData.map(async (data) => {
+        try {
+          const techNames =
+            data.technologies?.map((t) => t.technology_name).join(", ") || "";
+
+          const embeddingText = [
+            data.offer.title,
+            data.offer.experience_level || "",
+            techNames,
+            data.offer.city || "",
+          ]
+            .filter(Boolean)
+            .join(" | ");
+
+          const embedding = await embeddings.generateEmbedding(embeddingText);
+
+          // Store embedding as array - Supabase will handle VECTOR type
+          (data.offer as Record<string, unknown>).embedding = embedding;
+        } catch (error) {
+          console.error(
+            `Failed to generate embedding for offer "${data.offer.title}":`,
+            getErrorMessage(error)
+          );
+        }
+      })
+    );
   }
 
   private async buildTechnologyLinks(
@@ -185,10 +218,20 @@ export class ScrapingService<TTechnology = string | undefined> {
         };
       }
 
-      const insertedOffers = await this.saveOffers(
-        preparedData,
-        scrapingRun.id
+      await this.generateOfferEmbeddings(preparedData);
+
+      const validOffers = preparedData.filter(
+        (data) => data.offer.embedding !== undefined
       );
+      const failedCount = preparedData.length - validOffers.length;
+
+      if (failedCount > 0) {
+        console.warn(
+          `${failedCount} offers excluded due to embedding generation failures`
+        );
+      }
+
+      const insertedOffers = await this.saveOffers(validOffers, scrapingRun.id);
 
       if (insertedOffers.length > 0) {
         const technologyLinks = await this.buildTechnologyLinks(

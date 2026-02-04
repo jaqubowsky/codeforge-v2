@@ -42,6 +42,21 @@ export const offers = {
       .upsert(offersList, { onConflict: "offer_url" })
       .select();
   },
+
+  getOffersByIds: (offerIds: number[]) => {
+    return getAdminClient()
+      .from("offers")
+      .select(`
+        *,
+        offer_technologies (
+          skill_level,
+          technologies (
+            name
+          )
+        )
+      `)
+      .in("id", offerIds);
+  },
 };
 
 export const technologies = {

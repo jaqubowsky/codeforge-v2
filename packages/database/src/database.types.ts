@@ -34,6 +34,42 @@ export interface Database {
   };
   public: {
     Tables: {
+      match_runs: {
+        Row: {
+          created_at: string;
+          error_message: string | null;
+          finished_at: string | null;
+          id: number;
+          jobs_found: number | null;
+          new_jobs_count: number | null;
+          started_at: string;
+          status: Database["public"]["Enums"]["match_run_status"];
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          error_message?: string | null;
+          finished_at?: string | null;
+          id?: number;
+          jobs_found?: number | null;
+          new_jobs_count?: number | null;
+          started_at?: string;
+          status?: Database["public"]["Enums"]["match_run_status"];
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          error_message?: string | null;
+          finished_at?: string | null;
+          id?: number;
+          jobs_found?: number | null;
+          new_jobs_count?: number | null;
+          started_at?: string;
+          status?: Database["public"]["Enums"]["match_run_status"];
+          user_id?: string;
+        };
+        Relationships: [];
+      };
       offer_technologies: {
         Row: {
           offer_id: number;
@@ -259,6 +295,44 @@ export interface Database {
         };
         Relationships: [];
       };
+      user_offers: {
+        Row: {
+          created_at: string;
+          id: number;
+          offer_id: number;
+          similarity_score: number | null;
+          status: Database["public"]["Enums"]["job_status_enum"];
+          updated_at: string;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          id?: number;
+          offer_id: number;
+          similarity_score?: number | null;
+          status?: Database["public"]["Enums"]["job_status_enum"];
+          updated_at?: string;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          id?: number;
+          offer_id?: number;
+          similarity_score?: number | null;
+          status?: Database["public"]["Enums"]["job_status_enum"];
+          updated_at?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "user_offers_offer_id_fkey";
+            columns: ["offer_id"];
+            isOneToOne: false;
+            referencedRelation: "offers";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
     };
     Views: {
       [_ in never]: never;
@@ -287,6 +361,13 @@ export interface Database {
         | "internship"
         | "mandate_contract";
       experience_level_enum: "junior" | "mid" | "senior";
+      job_status_enum:
+        | "saved"
+        | "applied"
+        | "interviewing"
+        | "rejected"
+        | "offer_received";
+      match_run_status: "running" | "completed" | "failed";
       run_status_enum: "running" | "completed" | "failed";
       salary_period_enum: "day" | "month" | "hour" | "year";
       skill_level_enum: "required" | "nice_to_have";
@@ -437,6 +518,14 @@ export const Constants = {
         "mandate_contract",
       ],
       experience_level_enum: ["junior", "mid", "senior"],
+      job_status_enum: [
+        "saved",
+        "applied",
+        "interviewing",
+        "rejected",
+        "offer_received",
+      ],
+      match_run_status: ["running", "completed", "failed"],
       run_status_enum: ["running", "completed", "failed"],
       salary_period_enum: ["day", "month", "hour", "year"],
       skill_level_enum: ["required", "nice_to_have"],

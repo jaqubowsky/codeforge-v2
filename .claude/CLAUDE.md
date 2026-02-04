@@ -139,6 +139,8 @@ This project uses **Ultracite** (Biome-based) with pre-commit hooks. Code is aut
 - Extract constants to UPPER_CASE variables
 - No nested ternary expressions—use helper functions with if/else
 - Early returns with curly braces for block statements
+- Features cannot import from other features (maintain isolation)
+- Single-use constants belong close to usage, not in centralized constants file
 
 ## Package Imports
 

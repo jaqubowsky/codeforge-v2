@@ -49,7 +49,7 @@ COMMENT ON INDEX idx_offers_embedding IS 'IVFFlat index for fast cosine similari
 
 CREATE OR REPLACE FUNCTION public.match_jobs_for_user(
   user_embedding VECTOR(384),
-  match_threshold FLOAT DEFAULT 0.7,
+  match_threshold FLOAT DEFAULT 0.4,
   match_count INT DEFAULT 50
 )
 RETURNS TABLE (

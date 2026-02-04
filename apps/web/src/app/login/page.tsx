@@ -7,19 +7,16 @@ import {
   CardTitle,
 } from "@codeforge-v2/ui/components/card";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { Suspense } from "react";
 import { LoginForm } from "@/features/auth";
-import { getAuthState } from "@/shared/auth/get-auth-state";
+import { AuthRedirect } from "@/shared/auth/auth-redirect";
 
-export default async function LoginPage() {
-  const authState = await getAuthState();
-
-  if (authState.authenticated) {
-    redirect("/");
-  }
-
+export default function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center p-4">
+      <Suspense fallback={null}>
+        <AuthRedirect redirectTo="/" requireAuth={false} />
+      </Suspense>
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <CardTitle>Sign in</CardTitle>
