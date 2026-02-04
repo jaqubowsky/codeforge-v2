@@ -73,6 +73,7 @@ export interface Database {
           city: string | null;
           company_logo_thumb_url: string | null;
           company_name: string | null;
+          embedding: string | null;
           employment_type:
             | Database["public"]["Enums"]["employment_type_enum"]
             | null;
@@ -105,6 +106,7 @@ export interface Database {
           city?: string | null;
           company_logo_thumb_url?: string | null;
           company_name?: string | null;
+          embedding?: string | null;
           employment_type?:
             | Database["public"]["Enums"]["employment_type_enum"]
             | null;
@@ -139,6 +141,7 @@ export interface Database {
           city?: string | null;
           company_logo_thumb_url?: string | null;
           company_name?: string | null;
+          embedding?: string | null;
           employment_type?:
             | Database["public"]["Enums"]["employment_type_enum"]
             | null;
@@ -264,6 +267,17 @@ export interface Database {
       get_or_create_technology: {
         Args: { tech_name: string };
         Returns: number;
+      };
+      match_jobs_for_user: {
+        Args: {
+          match_count?: number;
+          match_threshold?: number;
+          user_embedding: string;
+        };
+        Returns: {
+          offer_id: number;
+          similarity: number;
+        }[];
       };
     };
     Enums: {

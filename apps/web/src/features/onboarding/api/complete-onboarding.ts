@@ -1,5 +1,6 @@
 "use server";
 
+import { embeddings } from "@codeforge-v2/embeddings";
 import { createClient } from "@/shared/supabase/server";
 import { YEARS_EXPERIENCE_OPTIONS } from "../constants";
 import type { OnboardingFormData } from "../schemas";
@@ -7,7 +8,6 @@ import type { OnboardingFormData } from "../schemas";
 export async function completeOnboarding(data: OnboardingFormData) {
   const supabase = await createClient();
 
-  // Get current user
   const {
     data: { user },
     error: userError,
@@ -20,13 +20,25 @@ export async function completeOnboarding(data: OnboardingFormData) {
     };
   }
 
-  // Map years experience string to numeric value for database
   const yearsExperienceOption = YEARS_EXPERIENCE_OPTIONS.find(
     (opt) => opt.value === data.yearsExperience
   );
   const yearsExperienceNumeric = yearsExperienceOption?.numericValue ?? 0;
 
-  // Update profile
+  const profileText = `${data.jobTitle} | ${yearsExperienceNumeric} years experience | ${data.skills.join(", ")} | ${data.idealRoleDescription}`;
+
+  let embedding: number[] | null = null;
+
+  try {
+    embedding = await embeddings.generateEmbedding(profileText);
+  } catch (error) {
+    console.error("Embedding generation failed:", error);
+    return {
+      success: false,
+      error: "Failed to generate profile embedding. Please try again.",
+    };
+  }
+
   const { error } = await supabase
     .from("profiles")
     .update({
@@ -34,6 +46,7 @@ export async function completeOnboarding(data: OnboardingFormData) {
       years_experience: yearsExperienceNumeric,
       skills: data.skills,
       ideal_role_description: data.idealRoleDescription,
+      embedding: JSON.stringify(embedding),
       onboarding_completed: true,
       updated_at: new Date().toISOString(),
     })

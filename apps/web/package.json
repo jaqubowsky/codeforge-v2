@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@codeforge-v2/database": "*",
+    "@codeforge-v2/embeddings": "*",
     "@hookform/resolvers": "^5.2.2",
     "@supabase/ssr": "^0.8.0",
     "lucide-react": "^0.563.0",

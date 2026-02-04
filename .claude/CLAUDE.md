@@ -15,6 +15,7 @@ apps/
 
 packages/
 ├── database/         # Supabase client, queries, and generated types
+├── embeddings/       # Local AI embeddings for job matching (transformers.js)
 ├── ui/               # Shared shadcn/ui components (Radix primitives)
 └── typescript-config/# Shared tsconfig presets (base, nextjs, react-library)
 ```
