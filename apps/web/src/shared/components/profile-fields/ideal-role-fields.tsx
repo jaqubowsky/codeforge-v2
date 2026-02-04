@@ -3,21 +3,12 @@
 import { Label } from "@codeforge-v2/ui/components/label";
 import { Textarea } from "@codeforge-v2/ui/components/textarea";
 import { type Control, Controller, type FieldErrors } from "react-hook-form";
+import type { ProfileFormData } from "@/features/profile/schemas";
 import { VALIDATION_RULES } from "@/shared/constants/profile";
 
 interface IdealRoleFieldsProps {
-  control: Control<{
-    jobTitle: string;
-    yearsExperience: "0-1" | "1-3" | "3-5" | "5-10" | "10+";
-    skills: string[];
-    idealRoleDescription: string;
-  }>;
-  errors: FieldErrors<{
-    jobTitle: string;
-    yearsExperience: "0-1" | "1-3" | "3-5" | "5-10" | "10+";
-    skills: string[];
-    idealRoleDescription: string;
-  }>;
+  control: Control<ProfileFormData>;
+  errors: FieldErrors<ProfileFormData>;
   showHeader?: boolean;
 }
 

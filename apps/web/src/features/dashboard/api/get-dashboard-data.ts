@@ -7,17 +7,13 @@ import type { DashboardData, MatchRunInfo } from "../types";
 async function getLastRunFromDB(userId: string): Promise<MatchRunInfo> {
   const supabase = await createClient();
 
-  const { data: lastRun, error } = await supabase
+  const { data: lastRun } = await supabase
     .from("match_runs")
     .select("*")
     .eq("user_id", userId)
     .order("created_at", { ascending: false })
     .limit(1)
     .single();
-
-  if (error && error.code !== "PGRST116") {
-    console.error("Error fetching last run:", error);
-  }
 
   return lastRun
     ? {

@@ -48,7 +48,6 @@ export async function triggerMatch(): Promise<{
     .eq("id", matchRun.id);
 
   if (updateError) {
-    console.error("Failed to update match run:", updateError);
     return { success: false, error: "Failed to update match run status" };
   }
 

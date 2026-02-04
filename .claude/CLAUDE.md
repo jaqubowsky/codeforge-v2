@@ -132,6 +132,7 @@ This project uses **Ultracite** (Biome-based) with pre-commit hooks. Code is aut
 - Function components only with hooks at top level
 - Complete dependency arrays in useEffect/useMemo/useCallback
 - Early returns over nested conditionals
+- Unused catch variables must be prefixed with underscore (e.g., `catch (_error)`)
 
 **Architecture conventions**:
 - Extract ALL business logic to custom hooks
@@ -148,6 +149,10 @@ This project uses **Ultracite** (Biome-based) with pre-commit hooks. Code is aut
 // UI components
 import { Button } from "@codeforge-v2/ui/components/button";
 import { cn } from "@codeforge-v2/ui/lib/utils";
+
+// Extended Badge with semantic variants
+import { Badge } from "@codeforge-v2/ui/components/badge";
+// Available variants: default, secondary, destructive, outline, success, warning, info, remote, hybrid, office
 
 // Database
 import { client, adminClient } from "@codeforge-v2/database";

@@ -5,20 +5,11 @@ import { Combobox } from "@codeforge-v2/ui/components/combobox";
 import { Label } from "@codeforge-v2/ui/components/label";
 import { X } from "lucide-react";
 import { type Control, Controller, type FieldErrors } from "react-hook-form";
+import type { ProfileFormData } from "@/features/profile/schemas";
 
 interface SkillsFieldsProps {
-  control: Control<{
-    jobTitle: string;
-    yearsExperience: "0-1" | "1-3" | "3-5" | "5-10" | "10+";
-    skills: string[];
-    idealRoleDescription: string;
-  }>;
-  errors: FieldErrors<{
-    jobTitle: string;
-    yearsExperience: "0-1" | "1-3" | "3-5" | "5-10" | "10+";
-    skills: string[];
-    idealRoleDescription: string;
-  }>;
+  control: Control<ProfileFormData>;
+  errors: FieldErrors<ProfileFormData>;
   technologies: Array<{ id: number; name: string }>;
   loading?: boolean;
   showHeader?: boolean;

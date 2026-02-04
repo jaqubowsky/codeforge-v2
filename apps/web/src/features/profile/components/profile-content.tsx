@@ -1,3 +1,4 @@
+import { ErrorDisplay } from "@/shared/components/ui/error-display";
 import { YEARS_EXPERIENCE_OPTIONS } from "@/shared/constants/profile";
 import { getProfile } from "../api";
 import type { ProfileFormData } from "../schemas";
@@ -9,11 +10,7 @@ export async function ProfileContent() {
   if (!(result.success && result.data)) {
     return (
       <div className="container max-w-3xl px-6 py-8">
-        <div className="rounded-lg border border-destructive bg-destructive/10 p-4">
-          <p className="text-destructive">
-            {result.error || "Failed to load profile data"}
-          </p>
-        </div>
+        <ErrorDisplay message={result.error || "Failed to load profile data"} />
       </div>
     );
   }

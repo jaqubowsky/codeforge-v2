@@ -1,4 +1,6 @@
+import { ErrorDisplay } from "@/shared/components/ui/error-display";
 import { getDashboardData } from "../api";
+import { filterJobs } from "../utils/filter-jobs";
 import { DashboardHeader } from "./dashboard-header";
 import { DashboardStats } from "./dashboard-stats";
 import { JobsGrid } from "./jobs-grid";
@@ -17,26 +19,16 @@ export async function DashboardContent({
 
   if (!(result.success && result.data)) {
     return (
-      <div className="flex h-full items-center justify-center">
-        <p className="text-destructive">
-          {result.error || "Failed to load dashboard"}
-        </p>
-      </div>
+      <ErrorDisplay
+        centered
+        message={result.error || "Failed to load dashboard"}
+      />
     );
   }
 
   const { jobs, lastRun } = result.data;
 
-  const filteredJobs = jobs.filter((job) => {
-    const matchesSearch = search
-      ? job.title.toLowerCase().includes(search.toLowerCase()) ||
-        job.companyName?.toLowerCase().includes(search.toLowerCase())
-      : true;
-
-    const matchesStatus = !status || status === "all" || job.status === status;
-
-    return matchesSearch && matchesStatus;
-  });
+  const filteredJobs = filterJobs(jobs, search, status);
 
   return (
     <div className="container space-y-8 px-6 py-8">

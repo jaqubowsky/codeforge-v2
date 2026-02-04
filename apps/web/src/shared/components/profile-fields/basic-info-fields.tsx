@@ -10,21 +10,12 @@ import {
   SelectValue,
 } from "@codeforge-v2/ui/components/select";
 import { type Control, Controller, type FieldErrors } from "react-hook-form";
+import type { ProfileFormData } from "@/features/profile/schemas";
 import { YEARS_EXPERIENCE_OPTIONS } from "@/shared/constants/profile";
 
 interface BasicInfoFieldsProps {
-  control: Control<{
-    jobTitle: string;
-    yearsExperience: "0-1" | "1-3" | "3-5" | "5-10" | "10+";
-    skills: string[];
-    idealRoleDescription: string;
-  }>;
-  errors: FieldErrors<{
-    jobTitle: string;
-    yearsExperience: "0-1" | "1-3" | "3-5" | "5-10" | "10+";
-    skills: string[];
-    idealRoleDescription: string;
-  }>;
+  control: Control<ProfileFormData>;
+  errors: FieldErrors<ProfileFormData>;
   showHeader?: boolean;
 }
 

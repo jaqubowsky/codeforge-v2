@@ -8,6 +8,7 @@ Next.js 16 frontend with React 19 (App Router), Supabase Auth, and job offer dis
 npm run dev          # Start dev server on port 3001
 npm run build        # Production build
 npm run check-types  # TypeScript validation
+npx biome check --write --unsafe .  # Auto-fix linter issues (use --unsafe for unused variables)
 ```
 
 ## Route Structure
@@ -122,6 +123,13 @@ src/features/
 
 This pattern keeps related code together. When adding new features, follow this structure.
 
+**Utility functions**: Business logic extracted to feature-specific `utils/` folders following "components presentation-only" principle
+- Filter logic: `filter-jobs.ts`
+- Display formatting: `job-display.ts` (formatSalaryDisplay, calculateMatchPercentage)
+- Badge mapping: `badge-variants.ts` (getWorkplaceBadgeVariant, getExperienceBadgeVariant)
+
+**Null safety pattern**: Handle nullable fields (currency, URLs) in utility functions, not in components
+
 **Form management**: All features with forms follow the react-hook-form + Zod resolver pattern with logic extracted to custom hooks. See root CLAUDE.md for pattern details.
 
 ## Environment Setup
@@ -136,6 +144,20 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 Environment variables are validated automatically by `@codeforge-v2/database` package on import.
 
 ## Shared Components
+
+**Component location**: App-specific shared components go in `/apps/web/src/shared/components/ui/`, NOT in `/packages/ui/`. Package components are for cross-app reuse only.
+
+**Reusable UI components** (`src/shared/components/ui/`):
+- `page-header.tsx` - Page title/description with optional action slot
+- `colored-section-card.tsx` - Section card with color accent and gradient (uses design tokens)
+- `status-badge.tsx` - Status→badge variant mapping
+- `company-avatar.tsx` - Company logo with fallback initials
+- `match-score-indicator.tsx` - Visual score display with color coding
+- `error-display.tsx` - Standardized error UI (centered or inline)
+
+**Design tokens**: Color mappings centralized in `src/shared/lib/design-tokens.ts` (SECTION_COLORS, MATCH_SCORE_COLORS)
+
+**Badge variants**: Extended Badge component supports semantic variants: success, warning, info, remote, hybrid, office
 
 Uses shadcn/ui components from `@codeforge-v2/ui`:
 

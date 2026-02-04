@@ -1,21 +1,11 @@
-import { Badge } from "@codeforge-v2/ui/components/badge";
 import { formatDistanceToNow } from "date-fns";
 import { Briefcase, Clock } from "lucide-react";
+import type { StatusType } from "@/shared/components/ui/status-badge";
+import { StatusBadge } from "@/shared/components/ui/status-badge";
 import type { MatchRunInfo } from "../types";
 import { RunNowButton } from "./run-now-button";
 
 const LAST_RUN_FALLBACK_TEXT = "Never";
-
-const RUN_STATUS = {
-  RUNNING: "running",
-  COMPLETED: "completed",
-  FAILED: "failed",
-} as const;
-
-const RUN_STATUS_LABELS = {
-  RUNNING: "Scraping Active",
-  IDLE: "Idle",
-} as const;
 
 interface DashboardStatsProps {
   lastRun: MatchRunInfo;
@@ -27,24 +17,19 @@ export function DashboardStats({ lastRun, jobCount }: DashboardStatsProps) {
     ? formatDistanceToNow(new Date(lastRun.lastRunAt), { addSuffix: true })
     : LAST_RUN_FALLBACK_TEXT;
 
-  let statusVariant: "default" | "destructive" | "secondary" = "secondary";
+  let statusType: StatusType = "idle";
 
-  if (lastRun.status === RUN_STATUS.RUNNING) {
-    statusVariant = "default";
-  } else if (lastRun.status === RUN_STATUS.FAILED) {
-    statusVariant = "destructive";
+  if (lastRun.status === "running") {
+    statusType = "running";
+  } else if (lastRun.status === "failed") {
+    statusType = "failed";
   }
-
-  const statusLabel =
-    lastRun.status === RUN_STATUS.RUNNING
-      ? RUN_STATUS_LABELS.RUNNING
-      : RUN_STATUS_LABELS.IDLE;
 
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-4 text-muted-foreground text-sm">
         <div className="flex items-center gap-2">
-          <Badge variant={statusVariant}>{statusLabel}</Badge>
+          <StatusBadge status={statusType} />
           <span className="flex items-center gap-1">
             <Clock className="h-4 w-4" />
             Last run: {lastRunText}
