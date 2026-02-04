@@ -19,40 +19,125 @@ packages/
 └── typescript-config/# Shared tsconfig presets (base, nextjs, react-library)
 ```
 
-**Data flow**: Scraper fetches job offers from boards (e.g., JustJoinIT) using Playwright, validates with Zod schemas, stores in Supabase. Web app displays data.
+**Data flow**: Scraper fetches job offers from boards (e.g., JustJoinIT) using Playwright, validates with Zod schemas, stores in Supabase. Web app displays data with AI-powered matching.
 
-**Key patterns in scraper**:
-- Strategy pattern for different job boards (`apps/scraper/src/strategies/`)
-- Service layer for orchestration (`apps/scraper/src/services/`)
-- Zod schemas for all external data (`apps/scraper/src/schemas/`)
+**Key features**:
+- Authentication via Supabase Auth (email/password)
+- User profiles with onboarding flow
+- AI job matching prep (pgvector embeddings for future matching)
+
+See app/package-specific CLAUDE.md files for detailed context:
+- `apps/web/CLAUDE.md` - Auth system, routes, Next.js patterns
+- `apps/scraper/CLAUDE.md` - Scraping strategies, deployment
+- `packages/database/CLAUDE.md` - Schema, migrations, client usage
+
+## Getting Started
+
+1. **Clone and install**:
+   ```bash
+   git clone <repo-url>
+   npm install
+   ```
+
+2. **Environment setup**:
+   - Copy `apps/web/.env.example` to `apps/web/.env.local`
+   - Copy `apps/scraper/.env.example` to `apps/scraper/.env`
+   - Fill in Supabase credentials (URL, anon key, service key)
+
+3. **Start development**:
+   ```bash
+   npm run dev        # Start all apps (web on port 3001)
+   npm run dev:web    # Web app only
+   ```
 
 ## Development Commands
 
 ```bash
+# Development
 npm run dev           # Start all apps (web on port 3001)
 npm run dev:web       # Web app only
-npm run build         # Production build all
-npm run check-types   # TypeScript validation
-npm run fix           # Auto-fix with Ultracite/Biome
 
-# Scraper
-npm run dev:getOffersByTechnology  # Run scraper function locally
+# Build & validation
+npm run build         # Production build all
+npm run check-types   # TypeScript validation across workspace
+
+# Code quality
+npm run fix           # Auto-fix with Ultracite/Biome
+npm run check         # Check without fixing
 ```
+
+## Form Management
+
+This project uses **react-hook-form** with **Zod resolver** for all forms.
+
+**Pattern**:
+```typescript
+// schemas.ts - Define schema with Zod
+export const myFormSchema = z.object({
+  field: z.string().min(1, "Required"),
+});
+export type MyFormData = z.infer<typeof myFormSchema>;
+
+// hooks/use-my-form.ts - Extract all form logic to custom hook
+export function useMyForm() {
+  const form = useForm<MyFormData>({
+    resolver: zodResolver(myFormSchema),
+    defaultValues: { field: "" },
+    mode: "onChange",
+  });
+
+  const onSubmit = async (data: MyFormData) => {
+    // submission logic
+  };
+
+  return { ...form, onSubmit };
+}
+
+// component.tsx - Presentation only with Controller
+export function MyForm() {
+  const { control, errors, handleSubmit, onSubmit } = useMyForm();
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        control={control}
+        name="field"
+        render={({ field }) => <Input {...field} />}
+      />
+    </form>
+  );
+}
+```
+
+**Rules**:
+- ALL form logic in custom hooks (validation, submission, state)
+- Components are presentation-only
+- Use Controller for form fields
+- Zod schemas define both validation and TypeScript types
 
 ## Code Quality
 
 This project uses **Ultracite** (Biome-based) with pre-commit hooks. Code is auto-formatted on commit via Husky + lint-staged.
 
-**Quick reference**:
-- `npm run fix` - Format and fix code
+**Commands**:
+- `npm run fix` - Format and fix all issues
 - `npm run check` - Check without fixing
 
-## Environment Variables
+**Project conventions** (enforced by linter):
+- No `console.log` or `debugger` in production
+- Prefer `unknown` over `any`
+- Use `import type` for types only
+- No enums—use const objects or union types
+- Function components only with hooks at top level
+- Complete dependency arrays in useEffect/useMemo/useCallback
+- Early returns over nested conditionals
 
-**Database package** (required for both apps):
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `SUPABASE_SERVICE_KEY` (scraper only)
+**Architecture conventions**:
+- Extract ALL business logic to custom hooks
+- Keep components presentation-only (JSX + props)
+- Extract constants to UPPER_CASE variables
+- No nested ternary expressions—use helper functions with if/else
+- Early returns with curly braces for block statements
 
 ## Package Imports
 
@@ -65,64 +150,13 @@ import { cn } from "@codeforge-v2/ui/lib/utils";
 import { client, adminClient } from "@codeforge-v2/database";
 ```
 
----
+**Important**: See `packages/database/CLAUDE.md` for `client` vs `adminClient` usage patterns.
 
-# Ultracite Code Standards
+## Environment Variables
 
-This project enforces strict code quality through Ultracite/Biome. Most issues are auto-fixable.
+**Required for both apps** (from `@codeforge-v2/database` package):
+- `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Public anon key
+- `SUPABASE_SERVICE_KEY` - Service role key (scraper only)
 
-## Core Principles
-
-Write code that is **accessible, performant, type-safe, and maintainable**.
-
-### TypeScript
-
-- Prefer `unknown` over `any`
-- Use `as const` for immutable values
-- Use `import type` and `export type` for types
-- No enums—use const objects or union types
-- No non-null assertions (`!`)
-
-### Modern JS/TS
-
-- Arrow functions for callbacks
-- `for...of` over `.forEach()`
-- Optional chaining (`?.`) and nullish coalescing (`??`)
-- Template literals over concatenation
-- `const` by default, `let` when needed, never `var`
-
-### React & JSX
-
-- Function components only
-- Hooks at top level, never conditional
-- Complete dependency arrays
-- Unique `key` props (not array indices)
-- Children nested, not as props
-- No components defined inside components
-
-### Accessibility
-
-- Meaningful alt text for images
-- `<button type="button">` or `type="submit"`
-- Keyboard handlers alongside mouse handlers
-- Semantic elements over ARIA roles
-- `rel="noopener"` with `target="_blank"`
-
-### Next.js
-
-- `<Image>` component, not `<img>`
-- App Router metadata API for head elements
-- Server Components for async data fetching
-
-### Async
-
-- Always await promises in async functions
-- `async/await` over promise chains
-- No async Promise executors
-
-### Style
-
-- No `console.log` or `debugger` in production
-- Throw `Error` objects with messages
-- Early returns over nested conditionals
-- No nested ternaries
+Environment variables are validated on import via Zod schema. See `packages/database/src/env.ts` for validation rules.

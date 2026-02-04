@@ -16,11 +16,20 @@
     "check-types": "tsc --noEmit",
     "update-deps": "ncu -u --format group -u",
     "build": "tsc",
-    "generate-api-types": "npx supabase gen types typescript --local > src/database.types.ts && npm run format"
+    "db-reset": "npx supabase db reset && npm run generate-api-types",
+    "generate-api-types": "npx supabase gen types typescript --local > src/database.types.ts && npm run format && npm run build"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.94.0",
     "zod": "^4.3.6"
+  },
+  "peerDependencies": {
+    "next": ">=14"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.14",

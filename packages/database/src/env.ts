@@ -7,9 +7,12 @@ const envSchema = z.object({
   NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1, {
     message: "NEXT_PUBLIC_SUPABASE_ANON_KEY is required",
   }),
-  SUPABASE_SERVICE_KEY: z.string().min(1, {
-    message: "SUPABASE_SERVICE_KEY is required",
-  }),
+  SUPABASE_SERVICE_KEY: z
+    .string()
+    .min(1, {
+      message: "SUPABASE_SERVICE_KEY is required",
+    })
+    .optional(),
 });
 
 function validateEnv() {

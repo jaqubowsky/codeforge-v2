@@ -25,9 +25,9 @@ DROP TYPE IF EXISTS public.skill_level_enum CASCADE;
 -- ====================================================================
 CREATE TYPE public.run_status_enum AS ENUM ('running', 'completed', 'failed');
 CREATE TYPE public.workplace_type_enum AS ENUM ('remote', 'hybrid', 'office');
-CREATE TYPE public.working_time_enum AS ENUM ('full_time', 'part_time', 'b2b', 'freelance');
+CREATE TYPE public.working_time_enum AS ENUM ('full_time', 'part_time', 'b2b', 'internship', 'freelance');
 CREATE TYPE public.experience_level_enum AS ENUM ('junior', 'mid', 'senior');
-CREATE TYPE public.employment_type_enum AS ENUM ('permanent', 'b2b', 'mandate_contract');
+CREATE TYPE public.employment_type_enum AS ENUM ('permanent', 'b2b', 'internship', 'mandate_contract');
 CREATE TYPE public.salary_period_enum AS ENUM ('day', 'month', 'hour', 'year');
 CREATE TYPE public.skill_level_enum AS ENUM ('required', 'nice_to_have');
 

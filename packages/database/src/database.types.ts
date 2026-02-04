@@ -178,6 +178,42 @@ export interface Database {
           },
         ];
       };
+      profiles: {
+        Row: {
+          created_at: string;
+          embedding: string | null;
+          id: string;
+          ideal_role_description: string | null;
+          job_title: string | null;
+          onboarding_completed: boolean;
+          skills: string[] | null;
+          updated_at: string;
+          years_experience: number | null;
+        };
+        Insert: {
+          created_at?: string;
+          embedding?: string | null;
+          id: string;
+          ideal_role_description?: string | null;
+          job_title?: string | null;
+          onboarding_completed?: boolean;
+          skills?: string[] | null;
+          updated_at?: string;
+          years_experience?: number | null;
+        };
+        Update: {
+          created_at?: string;
+          embedding?: string | null;
+          id?: string;
+          ideal_role_description?: string | null;
+          job_title?: string | null;
+          onboarding_completed?: boolean;
+          skills?: string[] | null;
+          updated_at?: string;
+          years_experience?: number | null;
+        };
+        Relationships: [];
+      };
       scraping_runs: {
         Row: {
           error_message: string | null;
@@ -231,12 +267,21 @@ export interface Database {
       };
     };
     Enums: {
-      employment_type_enum: "permanent" | "b2b" | "mandate_contract";
+      employment_type_enum:
+        | "permanent"
+        | "b2b"
+        | "internship"
+        | "mandate_contract";
       experience_level_enum: "junior" | "mid" | "senior";
       run_status_enum: "running" | "completed" | "failed";
       salary_period_enum: "day" | "month" | "hour" | "year";
       skill_level_enum: "required" | "nice_to_have";
-      working_time_enum: "full_time" | "part_time" | "b2b" | "freelance";
+      working_time_enum:
+        | "full_time"
+        | "part_time"
+        | "b2b"
+        | "internship"
+        | "freelance";
       workplace_type_enum: "remote" | "hybrid" | "office";
     };
     CompositeTypes: {
@@ -371,12 +416,23 @@ export const Constants = {
   },
   public: {
     Enums: {
-      employment_type_enum: ["permanent", "b2b", "mandate_contract"],
+      employment_type_enum: [
+        "permanent",
+        "b2b",
+        "internship",
+        "mandate_contract",
+      ],
       experience_level_enum: ["junior", "mid", "senior"],
       run_status_enum: ["running", "completed", "failed"],
       salary_period_enum: ["day", "month", "hour", "year"],
       skill_level_enum: ["required", "nice_to_have"],
-      working_time_enum: ["full_time", "part_time", "b2b", "freelance"],
+      working_time_enum: [
+        "full_time",
+        "part_time",
+        "b2b",
+        "internship",
+        "freelance",
+      ],
       workplace_type_enum: ["remote", "hybrid", "office"],
     },
   },
