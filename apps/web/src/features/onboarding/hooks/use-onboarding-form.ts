@@ -9,8 +9,9 @@ import { completeOnboarding } from "../api";
 import { type OnboardingFormData, onboardingSchema } from "../schemas";
 
 const FORM_DEFAULT_VALUES: OnboardingFormData = {
-  jobTitle: "",
-  yearsExperience: "0-1",
+  jobTitles: [],
+  experienceLevel: [],
+  preferredLocations: [],
   skills: [],
   idealRoleDescription: "",
 };
@@ -19,7 +20,6 @@ const VALIDATION_MESSAGES = {
   basicInfo: "Please fill in all required fields correctly",
   skills: "Please select at least 3 skills",
   idealRole: "Please provide a description of at least 50 characters",
-  submitError: "Failed to complete onboarding",
   unexpectedError: "An unexpected error occurred",
 } as const;
 
@@ -43,9 +43,12 @@ export function useOnboardingForm() {
     formState: { errors },
   } = form;
 
-  // Validation functions for each step
   const validateBasicInfo = async (): Promise<boolean> => {
-    const result = await trigger(["jobTitle", "yearsExperience"]);
+    const result = await trigger([
+      "jobTitles",
+      "experienceLevel",
+      "preferredLocations",
+    ]);
     if (!result) {
       toast.error(VALIDATION_MESSAGES.basicInfo);
     }
@@ -68,7 +71,6 @@ export function useOnboardingForm() {
     return result;
   };
 
-  // Final submission
   const onSubmit = async (data: OnboardingFormData) => {
     setIsSubmitting(true);
 
@@ -76,13 +78,12 @@ export function useOnboardingForm() {
       const result = await completeOnboarding(data);
 
       if (!result.success) {
-        toast.error(result.error || VALIDATION_MESSAGES.submitError);
+        toast.error(result.error);
         setIsSubmitting(false);
         return;
       }
 
       toast.success(SUCCESS_MESSAGE);
-      // Use replace to avoid back button returning to onboarding
       router.replace(REDIRECT_PATH);
     } catch {
       toast.error(VALIDATION_MESSAGES.unexpectedError);

@@ -1,8 +1,12 @@
 "use server";
 
+import type { Result } from "@/shared/api";
+import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
+import type { ProfileData } from "../types";
+import { mapProfile } from "./mappers";
 
-export async function getProfile() {
+export async function getProfile(): Promise<Result<ProfileData>> {
   const supabase = await createClient();
 
   const {
@@ -11,30 +15,20 @@ export async function getProfile() {
   } = await supabase.auth.getUser();
 
   if (userError || !user) {
-    return {
-      success: false,
-      error: "You must be logged in to view your profile",
-      data: null,
-    };
+    return err("You must be logged in to view your profile");
   }
 
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
-    .select("job_title, years_experience, skills, ideal_role_description")
+    .select(
+      "job_titles, experience_level, preferred_locations, skills, ideal_role_description"
+    )
     .eq("id", user.id)
     .single();
 
   if (profileError || !profile) {
-    return {
-      success: false,
-      error: "Failed to fetch profile data",
-      data: null,
-    };
+    return err("Failed to fetch profile data");
   }
 
-  return {
-    success: true,
-    error: null,
-    data: profile,
-  };
+  return ok(mapProfile(profile));
 }

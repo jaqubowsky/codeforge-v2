@@ -1,12 +1,17 @@
 "use server";
 
+import type { Database } from "@codeforge-v2/database";
+import type { Result } from "@/shared/api";
+import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
-import type { MatchJobsResult } from "../types";
+import type { MatchJobsData } from "../types";
+
+type UserOfferInsert = Database["public"]["Tables"]["user_offers"]["Insert"];
 
 const MATCH_THRESHOLD = 0.4;
 const MATCH_COUNT = 50;
 
-export async function matchJobs(): Promise<MatchJobsResult> {
+export async function matchJobs(): Promise<Result<MatchJobsData>> {
   const supabase = await createClient();
 
   const {
@@ -15,10 +20,7 @@ export async function matchJobs(): Promise<MatchJobsResult> {
   } = await supabase.auth.getUser();
 
   if (userError || !user) {
-    return {
-      success: false,
-      error: "You must be logged in to match jobs",
-    };
+    return err("You must be logged in to match jobs");
   }
 
   const { data: profile, error: profileError } = await supabase
@@ -28,10 +30,7 @@ export async function matchJobs(): Promise<MatchJobsResult> {
     .single();
 
   if (profileError || !profile?.embedding) {
-    return {
-      success: false,
-      error: "Profile embedding not found. Please complete your profile.",
-    };
+    return err("Profile embedding not found. Please complete your profile.");
   }
 
   const { data: matches, error: matchError } = await supabase.rpc(
@@ -44,18 +43,11 @@ export async function matchJobs(): Promise<MatchJobsResult> {
   );
 
   if (matchError) {
-    return {
-      success: false,
-      error: `Failed to find matching jobs: ${matchError.message}`,
-    };
+    return err(`Failed to find matching jobs: ${matchError.message}`);
   }
 
   if (!matches || matches.length === 0) {
-    return {
-      success: true,
-      newMatchesCount: 0,
-      error: null,
-    };
+    return ok({ newMatchesCount: 0 });
   }
 
   const { data: existingOffers, error: existingError } = await supabase
@@ -64,32 +56,25 @@ export async function matchJobs(): Promise<MatchJobsResult> {
     .eq("user_id", user.id);
 
   if (existingError) {
-    return {
-      success: false,
-      error: `Failed to check existing offers: ${existingError.message}`,
-    };
+    return err(`Failed to check existing offers: ${existingError.message}`);
   }
 
-  const existingOfferIds = new Set(
+  const excludedOfferIds = new Set(
     existingOffers?.map((o) => o.offer_id) || []
   );
 
   const newMatches = matches.filter(
-    (match) => !existingOfferIds.has(match.offer_id)
+    (match) => !excludedOfferIds.has(match.offer_id)
   );
 
   if (newMatches.length === 0) {
-    return {
-      success: true,
-      newMatchesCount: 0,
-      error: null,
-    };
+    return ok({ newMatchesCount: 0 });
   }
 
-  const userOffers = newMatches.map((match) => ({
+  const userOffers: UserOfferInsert[] = newMatches.map((match) => ({
     user_id: user.id,
     offer_id: match.offer_id,
-    status: "saved" as const,
+    status: "saved",
     similarity_score: match.similarity,
   }));
 
@@ -98,15 +83,8 @@ export async function matchJobs(): Promise<MatchJobsResult> {
     .insert(userOffers);
 
   if (insertError) {
-    return {
-      success: false,
-      error: `Failed to save matches: ${insertError.message}`,
-    };
+    return err(`Failed to save matches: ${insertError.message}`);
   }
 
-  return {
-    success: true,
-    newMatchesCount: newMatches.length,
-    error: null,
-  };
+  return ok({ newMatchesCount: newMatches.length });
 }

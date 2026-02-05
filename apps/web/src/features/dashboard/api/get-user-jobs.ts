@@ -1,7 +1,9 @@
 "use server";
 
+import type { Result } from "@/shared/api";
+import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
-import type { GetUserJobsResult, UserOfferStatus } from "../types";
+import type { UserJobOffer, UserOfferStatus } from "../types";
 import { mapUserJobOffer } from "./mappers";
 
 const DEFAULT_JOB_LIMIT = 20;
@@ -64,7 +66,7 @@ async function getUserJobsFromDB(
 export async function getUserJobs(
   status?: UserOfferStatus,
   limit = DEFAULT_JOB_LIMIT
-): Promise<GetUserJobsResult> {
+): Promise<Result<UserJobOffer[]>> {
   const supabase = await createClient();
 
   const {
@@ -73,23 +75,13 @@ export async function getUserJobs(
   } = await supabase.auth.getUser();
 
   if (userError || !user) {
-    return {
-      success: false,
-      error: "You must be logged in to view jobs",
-    };
+    return err("You must be logged in to view jobs");
   }
 
   try {
     const jobs = await getUserJobsFromDB(user.id, status, limit);
-    return {
-      success: true,
-      data: jobs,
-      error: null,
-    };
+    return ok(jobs);
   } catch (error) {
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : "Failed to fetch jobs",
-    };
+    return err(error instanceof Error ? error.message : "Failed to fetch jobs");
   }
 }

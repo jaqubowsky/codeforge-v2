@@ -34,6 +34,35 @@ export interface Database {
   };
   public: {
     Tables: {
+      dismissed_offers: {
+        Row: {
+          dismissed_at: string;
+          id: number;
+          offer_id: number;
+          user_id: string;
+        };
+        Insert: {
+          dismissed_at?: string;
+          id?: number;
+          offer_id: number;
+          user_id: string;
+        };
+        Update: {
+          dismissed_at?: string;
+          id?: number;
+          offer_id?: number;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "dismissed_offers_offer_id_fkey";
+            columns: ["offer_id"];
+            isOneToOne: false;
+            referencedRelation: "offers";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       match_runs: {
         Row: {
           created_at: string;
@@ -221,10 +250,13 @@ export interface Database {
         Row: {
           created_at: string;
           embedding: string | null;
+          experience_level: string[] | null;
           id: string;
           ideal_role_description: string | null;
           job_title: string | null;
+          job_titles: string[] | null;
           onboarding_completed: boolean;
+          preferred_locations: string[] | null;
           skills: string[] | null;
           updated_at: string;
           years_experience: number | null;
@@ -232,10 +264,13 @@ export interface Database {
         Insert: {
           created_at?: string;
           embedding?: string | null;
+          experience_level?: string[] | null;
           id: string;
           ideal_role_description?: string | null;
           job_title?: string | null;
+          job_titles?: string[] | null;
           onboarding_completed?: boolean;
+          preferred_locations?: string[] | null;
           skills?: string[] | null;
           updated_at?: string;
           years_experience?: number | null;
@@ -243,10 +278,13 @@ export interface Database {
         Update: {
           created_at?: string;
           embedding?: string | null;
+          experience_level?: string[] | null;
           id?: string;
           ideal_role_description?: string | null;
           job_title?: string | null;
+          job_titles?: string[] | null;
           onboarding_completed?: boolean;
+          preferred_locations?: string[] | null;
           skills?: string[] | null;
           updated_at?: string;
           years_experience?: number | null;

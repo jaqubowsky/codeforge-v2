@@ -1,12 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import type { Result } from "@/shared/api";
+import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
 
-export async function deleteJob(offerId: number): Promise<{
-  success: boolean;
-  error: string | null;
-}> {
+export async function deleteJob(offerId: number): Promise<Result<void>> {
   const supabase = await createClient();
 
   const {
@@ -15,29 +14,20 @@ export async function deleteJob(offerId: number): Promise<{
   } = await supabase.auth.getUser();
 
   if (userError || !user) {
-    return {
-      success: false,
-      error: "You must be logged in to delete jobs",
-    };
+    return err("You must be logged in to delete jobs");
   }
 
   const { error } = await supabase
     .from("user_offers")
-    .delete()
+    .update({ status: "deleted" })
     .eq("user_id", user.id)
     .eq("offer_id", offerId);
 
   if (error) {
-    return {
-      success: false,
-      error: error.message,
-    };
+    return err(error.message);
   }
 
   revalidatePath("/dashboard");
 
-  return {
-    success: true,
-    error: null,
-  };
+  return ok(undefined);
 }

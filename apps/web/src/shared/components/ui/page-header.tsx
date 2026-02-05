@@ -14,12 +14,16 @@ export function PageHeader({
   className,
 }: PageHeaderProps) {
   return (
-    <div className={cn("flex items-start justify-between", className)}>
-      <div>
-        <h1 className="font-bold text-3xl tracking-tight">{title}</h1>
-        <p className="mt-1 text-muted-foreground">{description}</p>
+    <div className={cn("flex items-start justify-between gap-4", className)}>
+      <div className="space-y-1">
+        <h1 className="font-bold text-2xl tracking-tight sm:text-3xl">
+          {title}
+        </h1>
+        <p className="text-muted-foreground text-sm sm:text-base">
+          {description}
+        </p>
       </div>
-      {action && <div>{action}</div>}
+      {action && <div className="shrink-0">{action}</div>}
     </div>
   );
 }

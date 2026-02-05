@@ -3,7 +3,8 @@ export type UserOfferStatus =
   | "applied"
   | "interviewing"
   | "rejected"
-  | "offer_received";
+  | "offer_received"
+  | "deleted";
 
 export interface Technology {
   name: string;
@@ -32,23 +33,6 @@ export interface UserJobOffer extends JobOffer {
   similarityScore: number | null;
   status: UserOfferStatus;
   matchedAt: string;
-}
-
-export interface MatchJobsResult {
-  success: boolean;
-  newMatchesCount?: number;
-  error: string | null;
-}
-
-export interface GetUserJobsResult {
-  success: boolean;
-  data?: UserJobOffer[];
-  error: string | null;
-}
-
-export interface UpdateJobStatusResult {
-  success: boolean;
-  error: string | null;
 }
 
 export interface MatchRunInfo {
@@ -92,4 +76,17 @@ export interface FilterState {
   sort: SortOption;
   showOnlyNew: boolean;
   salaryRange: SalaryRangeFilter;
+}
+
+export interface MatchJobsData {
+  newMatchesCount: number;
+}
+
+export interface ScrapeAndMatchData {
+  newJobsCount: number;
+  scrapedCount?: number;
+}
+
+export interface TriggerMatchData {
+  newJobsCount: number;
 }

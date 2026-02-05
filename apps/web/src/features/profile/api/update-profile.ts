@@ -2,11 +2,14 @@
 
 import { embeddings } from "@codeforge-v2/embeddings";
 import { revalidatePath } from "next/cache";
-import { YEARS_EXPERIENCE_OPTIONS } from "@/shared/constants/profile";
+import type { Result } from "@/shared/api";
+import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
 import type { ProfileFormData } from "../schemas";
 
-export async function updateProfile(data: ProfileFormData) {
+export async function updateProfile(
+  data: ProfileFormData
+): Promise<Result<void>> {
   const supabase = await createClient();
 
   const {
@@ -15,35 +18,29 @@ export async function updateProfile(data: ProfileFormData) {
   } = await supabase.auth.getUser();
 
   if (userError || !user) {
-    return {
-      success: false,
-      error: "You must be logged in to update your profile",
-    };
+    return err("You must be logged in to update your profile");
   }
 
-  const yearsExperienceOption = YEARS_EXPERIENCE_OPTIONS.find(
-    (opt) => opt.value === data.yearsExperience
-  );
-  const yearsExperienceNumeric = yearsExperienceOption?.numericValue ?? 0;
+  const jobTitles = data.jobTitles.join(", ");
+  const experienceLevels = data.experienceLevel.join(", ");
+  const workLocations = data.preferredLocations.join(", ");
 
-  const profileText = `${data.jobTitle} | ${yearsExperienceNumeric} years experience | ${data.skills.join(", ")} | ${data.idealRoleDescription}`;
+  const profileText = `Job titles: ${jobTitles} | Experience levels: ${experienceLevels} | Work locations: ${workLocations} | ${data.skills.join(", ")} | ${data.idealRoleDescription}`;
 
   let embedding: number[] | null = null;
 
   try {
     embedding = await embeddings.generateEmbedding(profileText);
   } catch (_error) {
-    return {
-      success: false,
-      error: "Failed to generate profile embedding. Please try again.",
-    };
+    return err("Failed to generate profile embedding. Please try again.");
   }
 
   const { error } = await supabase
     .from("profiles")
     .update({
-      job_title: data.jobTitle,
-      years_experience: yearsExperienceNumeric,
+      job_titles: data.jobTitles,
+      experience_level: data.experienceLevel,
+      preferred_locations: data.preferredLocations,
       skills: data.skills,
       ideal_role_description: data.idealRoleDescription,
       embedding: JSON.stringify(embedding),
@@ -52,10 +49,10 @@ export async function updateProfile(data: ProfileFormData) {
     .eq("id", user.id);
 
   if (error) {
-    return { success: false, error: error.message };
+    return err(error.message);
   }
 
   revalidatePath("/profile");
 
-  return { success: true, error: null };
+  return ok(undefined);
 }

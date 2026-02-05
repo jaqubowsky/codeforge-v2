@@ -1,14 +1,13 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import type { Result } from "@/shared/api";
+import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
+import type { TriggerMatchData } from "../types";
 import { matchJobs } from "./match-jobs";
 
-export async function triggerMatch(): Promise<{
-  success: boolean;
-  newJobsCount?: number;
-  error: string | null;
-}> {
+export async function triggerMatch(): Promise<Result<TriggerMatchData>> {
   const supabase = await createClient();
 
   const {
@@ -17,7 +16,7 @@ export async function triggerMatch(): Promise<{
   } = await supabase.auth.getUser();
 
   if (userError || !user) {
-    return { success: false, error: "Not authenticated" };
+    return err("Not authenticated");
   }
 
   const { data: matchRun, error: createError } = await supabase
@@ -30,7 +29,7 @@ export async function triggerMatch(): Promise<{
     .single();
 
   if (createError || !matchRun) {
-    return { success: false, error: "Failed to create match run" };
+    return err("Failed to create match run");
   }
 
   const result = await matchJobs();
@@ -42,20 +41,20 @@ export async function triggerMatch(): Promise<{
     .update({
       finished_at: new Date().toISOString(),
       status: finalStatus,
-      new_jobs_count: result.newMatchesCount ?? 0,
-      error_message: result.error,
+      new_jobs_count: result.success ? result.data.newMatchesCount : 0,
+      error_message: result.success ? null : result.error,
     })
     .eq("id", matchRun.id);
 
   if (updateError) {
-    return { success: false, error: "Failed to update match run status" };
+    return err("Failed to update match run status");
   }
 
   revalidatePath("/dashboard");
 
-  return {
-    success: result.success,
-    newJobsCount: result.newMatchesCount,
-    error: result.error,
-  };
+  if (!result.success) {
+    return err(result.error);
+  }
+
+  return ok({ newJobsCount: result.data.newMatchesCount });
 }

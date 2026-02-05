@@ -1,19 +1,60 @@
-export type YearsExperience = "0-1" | "1-3" | "3-5" | "5-10" | "10+";
+export type ExperienceLevel = "junior" | "mid" | "senior" | "c-level";
 
-export const YEARS_EXPERIENCE_OPTIONS: Array<{
-  value: YearsExperience;
+export const EXPERIENCE_LEVEL_OPTIONS: Array<{
+  value: ExperienceLevel;
   label: string;
-  numericValue: number;
+  description: string;
 }> = [
-  { value: "0-1", label: "0-1 years", numericValue: 0 },
-  { value: "1-3", label: "1-3 years", numericValue: 2 },
-  { value: "3-5", label: "3-5 years", numericValue: 4 },
-  { value: "5-10", label: "5-10 years", numericValue: 7 },
-  { value: "10+", label: "10+ years", numericValue: 10 },
+  {
+    value: "junior",
+    label: "Junior",
+    description: "0-2 years of experience",
+  },
+  {
+    value: "mid",
+    label: "Mid-Level",
+    description: "2-5 years of experience",
+  },
+  {
+    value: "senior",
+    label: "Senior",
+    description: "5+ years of experience",
+  },
+  {
+    value: "c-level",
+    label: "C-Level / Lead",
+    description: "Leadership and executive roles",
+  },
+] as const;
+
+export type WorkLocation = "remote" | "hybrid" | "office";
+
+export const WORK_LOCATION_OPTIONS: Array<{
+  value: WorkLocation;
+  label: string;
+  description: string;
+}> = [
+  {
+    value: "remote",
+    label: "Remote",
+    description: "Work from anywhere",
+  },
+  {
+    value: "hybrid",
+    label: "Hybrid",
+    description: "Mix of remote and office",
+  },
+  {
+    value: "office",
+    label: "Office",
+    description: "On-site work only",
+  },
 ] as const;
 
 export const VALIDATION_RULES = {
   MIN_SKILLS: 3,
   MIN_IDEAL_ROLE_CHARS: 50,
   MIN_JOB_TITLE_CHARS: 2,
+  MIN_EXPERIENCE_LEVELS: 1,
+  MIN_WORK_LOCATIONS: 1,
 } as const;

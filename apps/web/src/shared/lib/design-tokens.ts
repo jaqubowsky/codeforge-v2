@@ -1,8 +1,3 @@
-/**
- * Design tokens for UI components
- * Centralized color and style mappings for consistent theming
- */
-
 export const SECTION_COLORS = {
   blue: {
     border: "border-l-blue-500",
@@ -36,11 +31,64 @@ export const SECTION_COLORS = {
   },
 } as const;
 
+export const FORM_COLORS = {
+  label: "text-foreground",
+  description: "text-muted-foreground",
+  error: "text-destructive",
+  required: "text-destructive",
+  input: {
+    border: "border-input",
+    focus: "focus-visible:ring-ring",
+  },
+  checkbox: {
+    checked:
+      "data-[state=checked]:border-primary data-[state=checked]:bg-primary",
+  },
+  selectable: {
+    default: "border-border hover:border-border/80 bg-background",
+    selected: "border-primary bg-primary/5 dark:bg-primary/10",
+  },
+} as const;
+
+export const WIZARD_COLORS = {
+  step: {
+    completed: "bg-emerald-500 text-white shadow-sm",
+    current:
+      "bg-primary text-primary-foreground shadow-md ring-4 ring-primary/20",
+    upcoming: "bg-muted text-muted-foreground",
+  },
+  connector: {
+    completed: "bg-emerald-500",
+    upcoming: "bg-border",
+  },
+  label: {
+    completed: "text-emerald-600 dark:text-emerald-400",
+    current: "font-medium text-foreground",
+    upcoming: "text-muted-foreground",
+  },
+  navigation: {
+    border: "border-border",
+    complete: "bg-emerald-600 hover:bg-emerald-700 text-white",
+  },
+} as const;
+
 export const MATCH_SCORE_COLORS = {
-  excellent: "bg-green-500", // 80%+
-  good: "bg-blue-500", // 60%+
-  fair: "bg-yellow-500", // 40%+
-  poor: "bg-orange-500", // <40%
+  excellent: "bg-green-500",
+  good: "bg-blue-500",
+  fair: "bg-yellow-500",
+  poor: "bg-orange-500",
+} as const;
+
+export const AI_COLORS = {
+  icon: "text-primary",
+  badge: "bg-primary text-primary-foreground hover:bg-primary/90",
+  gradient: "bg-gradient-to-r from-primary to-primary/80",
+  button: "bg-primary hover:bg-primary/90",
+} as const;
+
+export const SURFACE_COLORS = {
+  subtle: "bg-muted/50 dark:bg-muted/20",
+  card: "bg-card",
 } as const;
 
 export type SectionColor = keyof typeof SECTION_COLORS;

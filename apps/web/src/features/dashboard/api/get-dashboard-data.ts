@@ -1,41 +1,28 @@
 "use server";
 
+import type { Result } from "@/shared/api";
+import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
 import { getSalaryFiltersMetadata, getUserJobs } from "../api";
-import type { DashboardData, MatchRunInfo } from "../types";
+import type { DashboardData } from "../types";
+import { mapMatchRunInfo } from "./mappers";
 
-async function getLastRunFromDB(userId: string): Promise<MatchRunInfo> {
+async function getLastRunFromDB(userId: string) {
   const supabase = await createClient();
 
   const { data: lastRun } = await supabase
     .from("match_runs")
-    .select("*")
+    .select("created_at, jobs_found, new_jobs_count, status")
     .eq("user_id", userId)
     .gt("new_jobs_count", 0)
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
 
-  return lastRun
-    ? {
-        lastRunAt: lastRun.created_at,
-        jobsFound: lastRun.jobs_found ?? 0,
-        newJobsCount: lastRun.new_jobs_count ?? 0,
-        status: lastRun.status,
-      }
-    : {
-        lastRunAt: null,
-        jobsFound: 0,
-        newJobsCount: 0,
-        status: null,
-      };
+  return mapMatchRunInfo(lastRun);
 }
 
-export async function getDashboardData(): Promise<{
-  success: boolean;
-  data?: DashboardData;
-  error: string | null;
-}> {
+export async function getDashboardData(): Promise<Result<DashboardData>> {
   const supabase = await createClient();
 
   const {
@@ -44,7 +31,7 @@ export async function getDashboardData(): Promise<{
   } = await supabase.auth.getUser();
 
   if (userError || !user) {
-    return { success: false, error: "Not authenticated" };
+    return err("Not authenticated");
   }
 
   const [jobsResult, salaryMetadataResult] = await Promise.all([
@@ -53,23 +40,19 @@ export async function getDashboardData(): Promise<{
   ]);
 
   if (!jobsResult.success) {
-    return { success: false, error: jobsResult.error };
+    return err(jobsResult.error);
   }
 
-  if (!(salaryMetadataResult.success && salaryMetadataResult.data)) {
-    return { success: false, error: salaryMetadataResult.error };
+  if (!salaryMetadataResult.success) {
+    return err(salaryMetadataResult.error);
   }
 
   const lastRun = await getLastRunFromDB(user.id);
 
-  return {
-    success: true,
-    data: {
-      jobs: jobsResult.data ?? [],
-      totalCount: jobsResult.data?.length ?? 0,
-      lastRun,
-      salaryMetadata: salaryMetadataResult.data,
-    },
-    error: null,
-  };
+  return ok({
+    jobs: jobsResult.data,
+    totalCount: jobsResult.data.length,
+    lastRun,
+    salaryMetadata: salaryMetadataResult.data,
+  });
 }

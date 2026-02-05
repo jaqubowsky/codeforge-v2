@@ -116,6 +116,45 @@ export function MyForm() {
 - Use Controller for form fields
 - Zod schemas define both validation and TypeScript types
 
+## API Response Pattern
+
+Server actions return discriminated unions for type-safe error handling:
+
+```typescript
+// src/shared/api/result.ts
+import { ok, err, type Result } from "@/shared/api";
+
+export async function myAction(): Promise<Result<MyData>> {
+  if (error) return err("Error message");
+  return ok(data);
+}
+
+// Consumer - TypeScript narrows type after success check
+const result = await myAction();
+if (!result.success) {
+  toast.error(result.error); // error is string
+  return;
+}
+console.log(result.data); // data is MyData
+```
+
+## Database Type Decoupling
+
+App types are standalone (no database imports). Mappers convert database types to app types.
+
+```
+features/example/
+├── types/index.ts      # App types (NO database imports)
+├── api/
+│   ├── mappers/index.ts # Import Database types here, export mappers
+│   └── my-action.ts     # Uses mapper, returns Result<AppType>
+```
+
+**Rules**:
+- App types (`types/`) must NOT import from `@codeforge-v2/database`
+- Only mappers (`api/mappers/`) import database types
+- Use `Pick<DatabaseRow, "field1" | "field2">` for DTOs in mappers
+
 ## Code Quality
 
 This project uses **Ultracite** (Biome-based) with pre-commit hooks. Code is auto-formatted on commit via Husky + lint-staged.
@@ -126,6 +165,7 @@ This project uses **Ultracite** (Biome-based) with pre-commit hooks. Code is aut
 
 **Project conventions** (enforced by linter):
 - No `console.log` or `debugger` in production
+- No code comments (self-documenting code preferred)
 - Prefer `unknown` over `any`
 - Use `import type` for types only
 - No enums—use const objects or union types

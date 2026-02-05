@@ -1,33 +1,103 @@
 "use client";
 
-import { useTransition } from "react";
+import { useCallback, useEffect, useState, useTransition } from "react";
 import { toast } from "sonner";
-import { triggerMatch } from "../api";
+import { checkRateLimit, scrapeAndMatch } from "../api";
+
+const PROFILE_INCOMPLETE_ERRORS = [
+  "profile not found",
+  "embedding not found",
+  "no skills found",
+  "complete your profile",
+];
+
+function isProfileIncompleteError(error: string): boolean {
+  const lowerError = error.toLowerCase();
+  return PROFILE_INCOMPLETE_ERRORS.some((phrase) =>
+    lowerError.includes(phrase)
+  );
+}
+
+function isRateLimitError(error: string): boolean {
+  return error.includes("rate limit") || error.includes("once per hour");
+}
+
+function handleError(error: string): void {
+  if (isProfileIncompleteError(error)) {
+    toast.info("Complete your profile to find matching jobs", {
+      description: "Add skills and preferences to get personalized matches",
+    });
+    return;
+  }
+
+  if (isRateLimitError(error)) {
+    toast.info("Please wait before running again", {
+      description: error,
+    });
+    return;
+  }
+
+  toast.info("Could not find matches right now", {
+    description: "Please try again later",
+  });
+}
+
+function handleSuccess(newJobsCount: number, scrapedCount?: number): void {
+  if (newJobsCount === 0) {
+    toast.info("No new matches found", {
+      description: "We'll keep looking for jobs that match your profile",
+    });
+    return;
+  }
+
+  const scrapedInfo = scrapedCount
+    ? ` (scraped ${scrapedCount} fresh jobs)`
+    : "";
+
+  toast.success(
+    `Found ${newJobsCount} new ${newJobsCount === 1 ? "job" : "jobs"}!${scrapedInfo}`
+  );
+}
 
 export function useRunNow() {
   const [isPending, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isRateLimited, setIsRateLimited] = useState(false);
+  const [minutesRemaining, setMinutesRemaining] = useState<number | null>(null);
+
+  const refreshRateLimitStatus = useCallback(async () => {
+    const result = await checkRateLimit();
+    if (result.success) {
+      setIsRateLimited(result.data.isLimited);
+      setMinutesRemaining(result.data.minutesRemaining);
+    }
+    setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    refreshRateLimitStatus();
+  }, [refreshRateLimitStatus]);
 
   const handleRun = () => {
     startTransition(async () => {
-      const result = await triggerMatch();
+      const result = await scrapeAndMatch();
 
       if (!result.success) {
-        toast.error(result.error || "Failed to find jobs");
+        handleError(result.error);
+        await refreshRateLimitStatus();
         return;
       }
 
-      const count = result.newJobsCount ?? 0;
-
-      if (count === 0) {
-        toast.info("No new matches found");
-      } else {
-        toast.success(`Found ${count} new ${count === 1 ? "job" : "jobs"}!`);
-      }
+      handleSuccess(result.data.newJobsCount, result.data.scrapedCount);
+      await refreshRateLimitStatus();
     });
   };
 
   return {
     isPending,
+    isLoading,
+    isRateLimited,
+    minutesRemaining,
     handleRun,
   };
 }

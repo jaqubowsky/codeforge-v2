@@ -10,6 +10,7 @@ export const STATUS_OPTIONS: Array<{
   { value: "interviewing", label: "Interviewing", variant: "outline" },
   { value: "rejected", label: "Rejected", variant: "destructive" },
   { value: "offer_received", label: "Offer", variant: "default" },
+  { value: "deleted", label: "Deleted", variant: "outline" },
 ];
 
 export const SORT_OPTIONS: Array<{

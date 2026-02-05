@@ -79,11 +79,11 @@ export function Wizard({ children, onComplete, initialStep = 0 }: WizardProps) {
 
   return (
     <WizardContext.Provider value={contextValue}>
-      <div className="space-y-6">{steps[currentStep]}</div>
+      <div>{steps[currentStep]}</div>
     </WizardContext.Provider>
   );
 }
 
 export function WizardStep({ children }: WizardStepProps) {
-  return <div className="space-y-4">{children}</div>;
+  return <div className="space-y-0">{children}</div>;
 }

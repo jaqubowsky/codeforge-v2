@@ -2,6 +2,7 @@ import { ErrorDisplay } from "@/shared/components/ui/error-display";
 import { getDashboardData } from "../api";
 import type { Currency, SortOption } from "../types";
 import { calculateNewJobsCount } from "../utils/calculate-new-jobs-count";
+import { calculateStatusCounts } from "../utils/calculate-status-counts";
 import { filterJobs } from "../utils/filter-jobs";
 import { DashboardHeader } from "./dashboard-header";
 import { DashboardStats } from "./dashboard-stats";
@@ -29,18 +30,14 @@ export async function DashboardContent({
 }: DashboardContentProps) {
   const result = await getDashboardData();
 
-  if (!(result.success && result.data)) {
-    return (
-      <ErrorDisplay
-        centered
-        message={result.error || "Failed to load dashboard"}
-      />
-    );
+  if (!result.success) {
+    return <ErrorDisplay centered message={result.error} />;
   }
 
   const { jobs, lastRun, salaryMetadata } = result.data;
 
   const newJobsCount = calculateNewJobsCount(jobs, lastRun.lastRunAt);
+  const statusCounts = calculateStatusCounts(jobs);
 
   const filteredJobs = filterJobs(jobs, {
     search,
@@ -56,11 +53,12 @@ export async function DashboardContent({
   return (
     <div className="container space-y-8 px-6 py-8">
       <DashboardHeader />
-      <DashboardStats jobCount={filteredJobs.length} lastRun={lastRun} />
+      <DashboardStats lastRun={lastRun} />
       <SearchFilter
         currencies={salaryMetadata.currencies}
         maxSalary={salaryMetadata.maxSalary}
         newJobsCount={newJobsCount}
+        statusCounts={statusCounts}
       />
       <JobsGrid jobs={filteredJobs} />
     </div>

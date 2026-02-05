@@ -15,17 +15,17 @@ export function DeleteJobButton({ jobId }: DeleteJobButtonProps) {
     const result = await deleteJob(jobId);
 
     if (!result.success) {
-      toast.error(result.error || "Failed to delete job");
+      toast.error(result.error);
       return;
     }
 
-    toast.success("Job removed");
+    toast.success("Job moved to Deleted");
   };
 
   return (
     <ConfirmButton
       confirmText="Delete"
-      description="This will permanently remove this job from your list. This action cannot be undone."
+      description="This job will be moved to your Deleted list. You can view deleted jobs in the Deleted tab."
       onConfirm={handleDelete}
       title="Delete Job?"
       variant="destructive"

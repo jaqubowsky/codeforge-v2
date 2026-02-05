@@ -1,8 +1,13 @@
 import { z } from "zod";
 
 export const basicInfoSchema = z.object({
-  jobTitle: z.string().min(2, "Job title must be at least 2 characters"),
-  yearsExperience: z.enum(["0-1", "1-3", "3-5", "5-10", "10+"]),
+  jobTitles: z.array(z.string()).min(1, "Please add at least one job title"),
+  experienceLevel: z
+    .array(z.enum(["junior", "mid", "senior", "c-level"]))
+    .min(1, "Please select at least one experience level"),
+  preferredLocations: z
+    .array(z.enum(["remote", "hybrid", "office"]))
+    .min(1, "Please select at least one work location"),
 });
 
 export const skillsSchema = z.object({

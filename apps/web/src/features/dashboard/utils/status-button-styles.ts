@@ -41,6 +41,12 @@ const STATUS_COLORS = {
     inactive:
       "bg-purple-50 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-purple-950",
   },
+  deleted: {
+    active:
+      "bg-gray-600 dark:bg-gray-500 text-white hover:bg-gray-700 dark:hover:bg-gray-400 shadow-sm",
+    inactive:
+      "bg-gray-50 dark:bg-gray-950/50 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-950",
+  },
 } as const satisfies Record<string, { active: string; inactive: string }>;
 
 export function getStatusButtonClass(

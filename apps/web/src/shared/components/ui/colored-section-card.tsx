@@ -38,23 +38,23 @@ export function ColoredSectionCard({
       <CardHeader
         className={cn("bg-gradient-to-r to-transparent", colorConfig.gradient)}
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <div
             className={cn(
-              "flex h-8 w-8 items-center justify-center rounded-lg",
+              "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg",
               colorConfig.iconBg,
               colorConfig.iconText
             )}
           >
             <Icon className="h-4 w-4" />
           </div>
-          <div>
-            <h2 className="font-semibold text-lg">{title}</h2>
+          <div className="space-y-0.5">
+            <h2 className="font-semibold text-base">{title}</h2>
             <p className="text-muted-foreground text-xs">{description}</p>
           </div>
         </div>
       </CardHeader>
-      <CardContent className="pt-6">{children}</CardContent>
+      <CardContent className="pt-5">{children}</CardContent>
     </Card>
   );
 }

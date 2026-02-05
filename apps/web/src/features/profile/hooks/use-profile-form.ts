@@ -6,13 +6,13 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { updateProfile } from "../api";
 import { type ProfileFormData, profileSchema } from "../schemas";
+import type { ProfileData } from "../types";
 
 const SUCCESS_MESSAGE = "Profile updated successfully!";
-const SUBMIT_ERROR_MESSAGE = "Failed to update profile";
 const UNEXPECTED_ERROR_MESSAGE = "An unexpected error occurred";
 
 interface UseProfileFormProps {
-  initialData: ProfileFormData;
+  initialData: ProfileData;
 }
 
 export function useProfileForm({ initialData }: UseProfileFormProps) {
@@ -37,7 +37,7 @@ export function useProfileForm({ initialData }: UseProfileFormProps) {
       const result = await updateProfile(data);
 
       if (!result.success) {
-        toast.error(result.error || SUBMIT_ERROR_MESSAGE);
+        toast.error(result.error);
         setIsSubmitting(false);
         return;
       }

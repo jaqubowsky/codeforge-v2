@@ -17,7 +17,7 @@ export function useJobStatus({ jobId }: UseJobStatusProps) {
       const result = await updateJobStatus(jobId, newStatus);
 
       if (!result.success) {
-        toast.error(result.error || "Failed to update status");
+        toast.error(result.error);
         return;
       }
 

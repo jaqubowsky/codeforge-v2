@@ -417,58 +417,58 @@ packages/embeddings/
 
 ---
 
-## Milestone 8.5: Enhanced Filtering & UX Improvements
+## Milestone 8.5: Enhanced Filtering & UX Improvements ✅ COMPLETE
 
 **Goal:** Improve job discovery with better filtering, sorting, and user feedback.
 
 ### Tasks
 
-- [ ] **8.5.1 Rename 'Saved' status to 'Inbox'**
+- [x] **8.5.1 Rename 'Saved' status to 'Inbox'**
   - Update STATUS_OPTIONS constant in `features/dashboard/constants`
   - Update database enum `user_offer_status`: change 'saved' → 'inbox'
   - Update all references in components and API
   - Migration: `ALTER TYPE user_offer_status RENAME VALUE 'saved' TO 'inbox'`
 
-- [ ] **8.5.2 Add match score sorting**
+- [x] **8.5.2 Add match score sorting**
   - Add sort dropdown to SearchFilter component
   - Options: "Best Match" (DESC), "Lowest Match" (ASC)
   - Update filterJobs utility to accept sort parameter
   - Sort by similarity_score in specified order
   - Persist sort preference in URL params (nuqs)
 
-- [ ] **8.5.3 Add 'New' status filter**
+- [x] **8.5.3 Add 'New' status filter**
   - Add virtual "New" filter to status options (shows jobs from last match run)
   - Query jobs where `created_at` >= last match run timestamp
   - Add badge indicator on job cards for new jobs
   - "New" count in filter chip (e.g., "New (12)")
 
-- [ ] **8.5.4 Create reusable ConfirmDialog component**
+- [x] **8.5.4 Create reusable ConfirmDialog component**
   - Create `apps/web/src/shared/components/ui/confirm-dialog.tsx`
   - Props: title, description, confirmText, cancelText, onConfirm, onCancel
   - Use Radix Dialog primitive from shadcn/ui
   - Destructive variant for delete actions
   - Loading state during async operations
 
-- [ ] **8.5.5 Add delete confirmation modal**
+- [x] **8.5.5 Add delete confirmation modal**
   - Update DeleteJobButton to use ConfirmDialog
   - Title: "Delete Job?"
   - Description: "This will permanently remove this job from your list."
   - Confirm button: "Delete" (destructive variant)
   - Show loading spinner during deletion
 
-- [ ] **8.5.6 Add tooltip for job title**
+- [x] **8.5.6 Add tooltip for job title**
   - Create or use Tooltip component from shadcn/ui
   - Wrap job title with Tooltip
   - Show full title on hover (no line-clamp in tooltip)
   - Delay: 300ms
 
-- [ ] **8.5.7 Add tooltip for tech tags**
+- [x] **8.5.7 Add tooltip for tech tags**
   - Wrap "+X more" badge with Tooltip
   - Show all technologies in vertical list
   - Format: Badge-style chips in tooltip content
   - Max width with wrapping for many tags
 
-- [ ] **8.5.8 Add salary range filter**
+- [x] **8.5.8 Add salary range filter**
   - Create dual-range slider component (or use shadcn/ui Slider)
   - Min/Max inputs: 0 - 500,000 (configurable)
   - Currency selector dropdown (PLN, EUR, USD, GBP)
@@ -476,7 +476,7 @@ packages/embeddings/
   - Clear button to reset range
   - Display selected range above slider
 
-- [ ] **8.5.9 Update filter UI layout**
+- [x] **8.5.9 Update filter UI layout**
   - Group filters logically:
     - Row 1: Search input, Status filters, Sort dropdown
     - Row 2: Salary range slider with currency
@@ -498,6 +498,74 @@ packages/embeddings/
 - `features/dashboard/types/` - Add filter and sort types
 - `shared/components/ui/` - ConfirmDialog, Tooltip (if not exists)
 - Database migration for status rename
+
+---
+
+## Milestone 8.6: Enhanced Profile & Soft Delete ✅ COMPLETE
+
+**Goal:** Improve AI matching accuracy by adding experience level and job location preferences to user profiles. Implement soft delete for dismissed jobs to prevent re-scraping.
+
+### Tasks
+
+#### Feature 1: Experience Level Preference
+- [x] **8.6.1 Add experience_level to profiles table**
+  - Migration: Add `experience_level TEXT[]` column (values: 'junior', 'mid', 'senior', 'c-level')
+  - Update profile types in `packages/database`
+  - Regenerate TypeScript types
+
+- [x] **8.6.2 Add experience level selection to onboarding**
+  - Create multi-select component for experience levels
+  - Add to onboarding Step 1 (Basic Info)
+  - Include in embedding generation text
+
+- [x] **8.6.3 Add experience level to profile page**
+  - Add experience level field to profile edit form
+  - Save and regenerate embedding on change
+
+#### Feature 2: Job Location Preference
+- [x] **8.6.4 Add preferred_locations to profiles table**
+  - Migration: Add `preferred_locations TEXT[]` column (values: 'remote', 'hybrid', 'office')
+  - Update profile types in `packages/database`
+  - Regenerate TypeScript types
+
+- [x] **8.6.5 Add location preference to onboarding**
+  - Create multi-select component for work location preferences
+  - Add to onboarding Step 1 (Basic Info)
+  - Include in embedding generation text
+
+- [x] **8.6.6 Add location preference to profile page**
+  - Add location preference field to profile edit form
+  - Save and regenerate embedding on change
+
+#### Feature 3: Soft Delete for Dismissed Jobs
+- [x] **8.6.7 Create dismissed_offers table**
+  - Migration: Create table with `user_id`, `offer_id`, `dismissed_at`
+  - Add RLS policies for user isolation
+  - Add unique constraint on (user_id, offer_id)
+
+- [x] **8.6.8 Update delete job action**
+  - Change deleteJob server action to insert into `dismissed_offers` instead of hard delete from `user_offers`
+  - Keep user_offers deletion for UI consistency
+
+- [x] **8.6.9 Filter dismissed jobs from matching results**
+  - Update matchJobs() to exclude offers in `dismissed_offers`
+  - Ensure dismissed jobs never appear again for that user
+
+**What will be built:**
+- Enhanced user profile with experience level and location preferences
+- Better AI matching by including preferences in embedding text
+- Soft delete mechanism preventing dismissed jobs from reappearing
+
+**Database changes:**
+- `profiles` table: add `experience_level TEXT[]`, `preferred_locations TEXT[]`
+- New `dismissed_offers` table with user_id, offer_id, dismissed_at
+
+**Files to modify:**
+- `packages/database/` - Types, queries, migrations
+- `apps/web/src/features/onboarding/` - Add new fields to schemas, components, and API
+- `apps/web/src/features/profile/` - Add new fields to form and API
+- `apps/web/src/features/dashboard/` - Update delete action and match-jobs
+- `apps/web/src/shared/components/profile-fields/` - New shared field components
 
 ---
 
@@ -536,22 +604,12 @@ packages/embeddings/
 
 ### Tasks
 
-- [ ] **10.1 Environment setup**
-  - Vercel project configuration
-  - Production environment variables
-  - OpenAI API key for embeddings
-
-- [ ] **10.2 Supabase production**
+- [ ] **10.1 Supabase production**
   - Apply all migrations
   - Verify RLS policies
   - Enable pgvector extension
 
-- [ ] **10.3 Cloud Functions deployment**
-  - Deploy scraper functions
-  - Deploy matchJobsForUser function
-  - Configure secrets
-
-- [ ] **10.4 Final verification**
+- [ ] **10.2 Final verification**
   - Test full flow in production
   - Monitor for errors
   - Verify embedding generation works
@@ -594,8 +652,9 @@ packages/embeddings/
 | 6 | Main Dashboard | ✅ Complete |
 | 7 | User Profile Page | ✅ Complete |
 | 8 | UI Polish & Code Quality | ✅ Complete |
-| 8.5 | Enhanced Filtering & UX | **← NEXT** |
-| 9 | Testing | Not started |
+| 8.5 | Enhanced Filtering & UX | ✅ Complete |
+| 8.6 | Enhanced Profile & Soft Delete | ✅ Complete |
+| 9 | Testing | **← NEXT** |
 | 10 | Deployment | Not started |
 
 **Existing Assets:**

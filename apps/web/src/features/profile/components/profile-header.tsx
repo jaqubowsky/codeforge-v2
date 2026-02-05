@@ -6,7 +6,7 @@ export function ProfileHeader() {
   return (
     <PageHeader
       action={
-        <Badge className="bg-violet-600 text-white hover:bg-violet-700 dark:bg-violet-500 dark:hover:bg-violet-400">
+        <Badge>
           <Sparkles className="mr-1 h-3 w-3" />
           AI Powered
         </Badge>

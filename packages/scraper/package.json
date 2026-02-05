@@ -1,0 +1,30 @@
+{
+  "name": "@codeforge-v2/scraper",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "check-deps": "ncu --format group",
+    "update-deps": "ncu -u --format group -u"
+  },
+  "dependencies": {
+    "@codeforge-v2/database": "*",
+    "@codeforge-v2/embeddings": "*",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.14",
+    "@codeforge-v2/typescript-config": "*",
+    "typescript": "^5.9.3",
+    "ultracite": "^7.1.4"
+  }
+}

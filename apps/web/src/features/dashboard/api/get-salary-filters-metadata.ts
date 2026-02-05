@@ -1,7 +1,9 @@
 "use server";
 
+import type { Result } from "@/shared/api";
+import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
-import type { Currency } from "../types";
+import type { Currency, SalaryFiltersMetadata } from "../types";
 
 const VALID_CURRENCIES: Currency[] = ["PLN", "EUR", "USD", "GBP"];
 
@@ -9,16 +11,9 @@ function isCurrency(value: string): value is Currency {
   return VALID_CURRENCIES.includes(value as Currency);
 }
 
-interface SalaryFiltersMetadata {
-  currencies: Currency[];
-  maxSalary: number;
-}
-
-export async function getSalaryFiltersMetadata(): Promise<{
-  success: boolean;
-  data?: SalaryFiltersMetadata;
-  error: string | null;
-}> {
+export async function getSalaryFiltersMetadata(): Promise<
+  Result<SalaryFiltersMetadata>
+> {
   const supabase = await createClient();
 
   const {
@@ -27,7 +22,7 @@ export async function getSalaryFiltersMetadata(): Promise<{
   } = await supabase.auth.getUser();
 
   if (userError || !user) {
-    return { success: false, error: "Not authenticated" };
+    return err("Not authenticated");
   }
 
   const { data: jobsData, error: jobsError } = await supabase
@@ -44,7 +39,7 @@ export async function getSalaryFiltersMetadata(): Promise<{
     .eq("user_id", user.id);
 
   if (jobsError) {
-    return { success: false, error: jobsError.message };
+    return err(jobsError.message);
   }
 
   const currenciesSet = new Set<Currency>();
@@ -86,12 +81,8 @@ export async function getSalaryFiltersMetadata(): Promise<{
     }
   }
 
-  return {
-    success: true,
-    data: {
-      currencies,
-      maxSalary: Math.ceil(maxSalary / 1000) * 1000,
-    },
-    error: null,
-  };
+  return ok({
+    currencies,
+    maxSalary: Math.ceil(maxSalary / 1000) * 1000,
+  });
 }

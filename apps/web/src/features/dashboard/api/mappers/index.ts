@@ -1,32 +1,44 @@
-import type { Technology, UserJobOffer } from "../../types";
+import type { Database } from "@codeforge-v2/database";
+import type { MatchRunInfo, Technology, UserJobOffer } from "../../types";
 
-interface OfferDTO {
-  id: number;
-  title: string;
-  company_name: string | null;
-  company_logo_thumb_url: string | null;
-  workplace_type: string | null;
-  experience_level: string | null;
-  city: string | null;
-  salary_from: unknown;
-  salary_to: unknown;
-  salary_currency: string | null;
-  salary_period: string | null;
-  application_url: string | null;
-  offer_url: string;
-  published_at: string | null;
+type MatchRunRow = Database["public"]["Tables"]["match_runs"]["Row"];
+type UserOfferRow = Database["public"]["Tables"]["user_offers"]["Row"];
+type OfferRow = Database["public"]["Tables"]["offers"]["Row"];
+
+type OfferDTO = Pick<
+  OfferRow,
+  | "id"
+  | "title"
+  | "company_name"
+  | "company_logo_thumb_url"
+  | "workplace_type"
+  | "experience_level"
+  | "city"
+  | "salary_from"
+  | "salary_to"
+  | "salary_currency"
+  | "salary_period"
+  | "application_url"
+  | "offer_url"
+  | "published_at"
+> & {
   offer_technologies: Array<{
     skill_level: string;
     technologies: { name: string } | null;
   }>;
-}
+};
 
-interface UserOfferDTO {
-  similarity_score: number | null;
-  status: string;
-  created_at: string;
+type UserOfferDTO = Pick<
+  UserOfferRow,
+  "similarity_score" | "status" | "created_at"
+> & {
   offers: OfferDTO;
-}
+};
+
+type MatchRunDTO = Pick<
+  MatchRunRow,
+  "created_at" | "jobs_found" | "new_jobs_count" | "status"
+>;
 
 function mapTechnology(offerTech: {
   skill_level: string;
@@ -60,9 +72,8 @@ export function mapUserJobOffer(userOffer: UserOfferDTO): UserJobOffer | null {
     workplaceType: offer.workplace_type,
     experienceLevel: offer.experience_level,
     city: offer.city,
-    salaryFrom:
-      typeof offer.salary_from === "number" ? offer.salary_from : null,
-    salaryTo: typeof offer.salary_to === "number" ? offer.salary_to : null,
+    salaryFrom: offer.salary_from,
+    salaryTo: offer.salary_to,
     salaryCurrency: offer.salary_currency,
     salaryPeriod: offer.salary_period,
     technologies,
@@ -70,12 +81,25 @@ export function mapUserJobOffer(userOffer: UserOfferDTO): UserJobOffer | null {
     offerUrl: offer.offer_url,
     publishedAt: offer.published_at,
     similarityScore: userOffer.similarity_score,
-    status: userOffer.status as
-      | "saved"
-      | "applied"
-      | "interviewing"
-      | "rejected"
-      | "offer_received",
+    status: userOffer.status as UserJobOffer["status"],
     matchedAt: userOffer.created_at,
+  };
+}
+
+export function mapMatchRunInfo(dto: MatchRunDTO | null): MatchRunInfo {
+  if (!dto) {
+    return {
+      lastRunAt: null,
+      jobsFound: 0,
+      newJobsCount: 0,
+      status: null,
+    };
+  }
+
+  return {
+    lastRunAt: dto.created_at,
+    jobsFound: dto.jobs_found ?? 0,
+    newJobsCount: dto.new_jobs_count ?? 0,
+    status: dto.status,
   };
 }
