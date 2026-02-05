@@ -727,6 +727,205 @@ apps/web/src/shared/hooks/
 
 ---
 
+## Milestone 8.8: AI Matching Improvements
+
+**Goal:** Fix AI job matching accuracy - users with frontend/fullstack preferences receive irrelevant backend/.NET job recommendations.
+
+**Problem Statement:**
+- User profile indicates preference for frontend or fullstack jobs
+- AI matching returns irrelevant results (backend, .NET, C#, etc.)
+- Semantic embeddings alone may not capture job type distinctions well
+
+### Phase 1: Discovery & Analysis ✅ COMPLETE
+
+- [x] **8.8.1 Analyze current embedding generation**
+  - Profile text: `Job titles: {titles} | Experience levels: {levels} | Work locations: {locations} | {skills} | {description}`
+  - Job offer text: `{title} | {experience_level} | {technologies} | {city}`
+  - **Issues found:**
+    - Job offers lack workplace_type (remote/hybrid/office) in embedding
+    - Job offers lack job description text (not available from JustJoinIT API)
+    - Profile has labeled sections, jobs don't (inconsistent format)
+
+- [x] **8.8.2 Analyze matching algorithm**
+  - Uses pure cosine similarity (no hard filters)
+  - Threshold: 0.4 (40% similarity)
+  - Returns top 50 matches
+  - **Critical finding:** User preferences (experience_level, preferred_locations) are NOT used as hard filters - only embedded in semantic text
+
+- [x] **8.8.3 Research best practices**
+  - Hybrid search (semantic + keyword) outperforms pure semantic
+  - Two-stage retrieval: fast retrieval → re-ranking improves accuracy
+  - Hard filters + semantic ranking is more precise for structured criteria
+
+### Phase 2: Root Cause Analysis
+
+**Root Causes Identified (Priority Order):**
+
+1. **NO HARD FILTERS** (HIGH IMPACT)
+   - User explicitly selects "frontend" job titles but system returns backend/.NET jobs
+   - Experience level preference (junior/mid/senior) not enforced
+   - Work location preference (remote/hybrid/office) not enforced
+   - Pure embedding similarity cannot reliably distinguish job categories
+
+2. **ASYMMETRIC EMBEDDING TEXT** (MEDIUM IMPACT)
+   - Profile: `Job titles: Frontend Developer | Experience levels: mid, senior | ...`
+   - Job: `Senior .NET Developer | senior | C#, .NET, SQL | Warsaw`
+   - Job doesn't have "Job titles:" label, model may not align fields well
+
+3. **MISSING JOB DATA** (MEDIUM IMPACT)
+   - Job offers lack workplace_type in embedding (user wants remote, gets office jobs)
+   - Job offers lack job description (limited semantic signal)
+
+4. **LOW THRESHOLD** (LOW IMPACT)
+   - 0.4 (40%) threshold allows loosely related jobs
+   - "Frontend" and "Backend" both contain "Developer" semantics
+
+### Phase 3: Solution Design ✅ COMPLETE
+
+**Approved Approach: Minimal Changes with Hybrid SQL Function**
+
+1. Update `match_jobs_for_user()` SQL function with:
+   - Job title keyword filter (ILIKE)
+   - Experience level filter (ANY)
+   - Workplace type filter (ANY)
+   - Skill overlap filter (≥25% job technologies match user skills)
+   - Semantic ranking (cosine similarity)
+
+2. Update `match-jobs.ts` to:
+   - Fetch complete profile (job_titles, experience_level, preferred_locations, skills)
+   - Pass new parameters to SQL function
+
+### Phase 4: Implementation ✅ COMPLETE
+- [x] **8.8.4 Create database migration**
+  - Created `20260206000000_hybrid_job_matching.sql`
+  - Updated `match_jobs_for_user()` SQL function with hybrid filtering
+- [x] **8.8.5 Update match-jobs.ts**
+  - Now fetches complete profile (job_titles, experience_level, preferred_locations, skills)
+  - Passes all filter parameters to RPC call
+- [x] **8.8.6 Regenerate database types**
+  - Updated `database.types.ts` with new function signature
+
+### Phase 5: Validation ✅ COMPLETE
+- [x] **8.8.7 Run validation suite**
+  - ✅ pnpm build - passed
+  - ✅ pnpm check-types - passed
+  - ✅ pnpm lint - passed
+  - ✅ pnpm knip - passed
+- [ ] **8.8.8 Manual testing** - User to test with their profile
+- [x] **8.8.9 Document changes** - See summary below
+
+---
+
+### Summary of Changes
+
+**Problem:** User with frontend/fullstack preferences received irrelevant backend/.NET job matches.
+
+**Root Cause:** Pure semantic embedding similarity couldn't enforce hard constraints.
+
+**Solution:** Hybrid filtering with hard filters + semantic ranking.
+
+**Files Modified:**
+1. `packages/database/supabase/migrations/20260206000000_hybrid_job_matching.sql` (NEW)
+2. `packages/database/src/database.types.ts` (UPDATED function signature)
+3. `apps/web/src/features/dashboard/api/match-jobs.ts` (UPDATED to pass filter params)
+
+**How Matching Now Works:**
+1. **Experience Level Filter (STRICT)** - Job must match user's preferred levels (junior/mid/senior/c-level)
+2. **Workplace Type Filter (STRICT)** - Job must match user's preferences (remote/hybrid/office)
+3. **Skill Overlap Filter (≥1 match)** - At least 1 of job's technologies must match user's skills
+4. **Skill Normalization** - Handles variants like NextJS/Next.js/next.JS
+5. **Semantic Similarity (≥30%)** - Remaining jobs ranked by embedding similarity
+
+**Key Decision:** Removed job title filter (e.g., "Frontend" keyword matching) because skill overlap is more reliable for technology-specific roles.
+
+---
+
+## Milestone 8.9: AI Matching v2 - Deep Improvements
+
+**Goal:** Further improve job matching quality after initial hybrid filtering implementation still produces suboptimal results.
+
+**Problem Statement:**
+- Even with hybrid filtering (experience + location + skills), users still receive low-relevance matches
+- Skills from user profiles don't always match technology names in job listings
+- Embeddings may not capture role-specific nuances well enough
+- Need more sophisticated matching logic and potentially better data
+
+### Phase 1: Analysis & Debugging
+
+- [ ] **8.9.1 Analyze current matching data**
+  - Query actual match results and compare to user profile
+  - Identify patterns in low-relevance matches
+  - Check skill name mismatches (user skills vs offer technologies)
+
+- [ ] **8.9.2 Review technology normalization**
+  - Current: normalize_skill() removes dots/dashes/spaces, lowercases
+  - Check if more aggressive normalization needed
+  - Consider adding skill aliases table (React Native → react-native, reactnative)
+
+- [ ] **8.9.3 Analyze scraper data quality**
+  - Check how technologies are being extracted from job listings
+  - Verify experience_level and workplace_type are correctly mapped
+  - Check if job descriptions could be used for better embeddings
+
+### Phase 2: Potential Improvements
+
+- [ ] **8.9.4 Technology aliases/synonyms**
+  - Create `technology_aliases` table mapping variations
+  - E.g., "React.js" → "React", "Node" → "Node.js", "TS" → "TypeScript"
+  - Update matching to use canonical technology names
+
+- [ ] **8.9.5 Weighted skill matching**
+  - Give higher weight to "required" skills vs "nice to have"
+  - Implement skill priority scoring based on job requirements
+
+- [ ] **8.9.6 Category-based filtering**
+  - Group technologies by domain: frontend, backend, devops, mobile, etc.
+  - If user has 80%+ frontend skills, penalize backend-heavy jobs
+  - Add job category detection based on dominant technology stack
+
+- [ ] **8.9.7 Improve embedding quality**
+  - Consider upgrading from all-MiniLM-L6-v2 (384d) to larger model
+  - Test multilingual models for non-English job listings
+  - Add more context to embedding text (e.g., job category, seniority signals)
+
+- [ ] **8.9.8 Re-ranking layer**
+  - Two-stage retrieval: broad semantic search → precision re-ranking
+  - Use skill overlap as re-ranking signal
+  - Consider adding user feedback loop (thumbs up/down on matches)
+
+### Phase 3: Data Quality Improvements
+
+- [ ] **8.9.9 Scraper enhancements**
+  - Scrape more job boards (not just JustJoinIT)
+  - Extract more structured data (benefits, team size, tech stack details)
+  - Better deduplication across sources
+
+- [ ] **8.9.10 User profile enhancements**
+  - Add "anti-preferences" (technologies user wants to AVOID)
+  - Add role type preference (IC vs management, startup vs enterprise)
+  - Add company size preference
+
+### Phase 4: Monitoring & Feedback
+
+- [ ] **8.9.11 Add match quality metrics**
+  - Track click-through rate on matched jobs
+  - Track status changes (saved → applied conversion)
+  - Create match quality dashboard
+
+- [ ] **8.9.12 User feedback mechanism**
+  - Add "Not interested" with reason selection
+  - Use negative feedback to improve future matches
+  - A/B test different matching strategies
+
+**Files likely to be modified:**
+- `packages/database/supabase/migrations/` - New tables/functions
+- `packages/scraper/` - Enhanced data extraction
+- `apps/web/src/features/dashboard/api/match-jobs.ts` - Matching logic
+- `apps/web/src/features/profile/` - New preference fields
+- `apps/web/src/features/onboarding/` - New preference fields
+
+---
+
 ## Milestone 9: Testing & QA
 
 **Goal:** Ensure stability before launch.
@@ -813,7 +1012,9 @@ apps/web/src/shared/hooks/
 | 8.5 | Enhanced Filtering & UX | ✅ Complete |
 | 8.6 | Enhanced Profile & Soft Delete | ✅ Complete |
 | 8.7 | Landing Page | ✅ Complete |
-| 9 | Testing | **← NEXT** |
+| 8.8 | AI Matching Improvements | ✅ Complete |
+| 8.9 | AI Matching v2 - Deep Improvements | **← NEXT** |
+| 9 | Testing | Not started |
 | 10 | Deployment | Not started |
 
 **Existing Assets:**

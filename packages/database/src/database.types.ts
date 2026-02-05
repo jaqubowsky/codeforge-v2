@@ -396,13 +396,21 @@ export interface Database {
         Args: {
           match_count?: number;
           match_threshold?: number;
+          min_skill_matches?: number;
           user_embedding: string;
+          user_experience_levels: string[];
+          user_job_titles: string[];
+          user_skills: string[];
+          user_work_locations: string[];
         };
         Returns: {
+          matching_skills_count: number;
           offer_id: number;
           similarity: number;
+          total_skills_count: number;
         }[];
       };
+      normalize_skill: { Args: { skill_name: string }; Returns: string };
     };
     Enums: {
       employment_type_enum:

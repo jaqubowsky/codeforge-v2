@@ -1,6 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useState, useTransition } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+  useTransition,
+} from "react";
 import { toast } from "sonner";
 import { checkRateLimit, scrapeAndMatch } from "../api";
 
@@ -59,7 +66,17 @@ function handleSuccess(newJobsCount: number, scrapedCount?: number): void {
   );
 }
 
-export function useRunNow() {
+interface RunNowContextValue {
+  isPending: boolean;
+  isLoading: boolean;
+  isRateLimited: boolean;
+  minutesRemaining: number | null;
+  handleRun: () => void;
+}
+
+const RunNowContext = createContext<RunNowContextValue | null>(null);
+
+export function RunNowProvider({ children }: { children: React.ReactNode }) {
   const [isPending, startTransition] = useTransition();
   const [isLoading, setIsLoading] = useState(true);
   const [isRateLimited, setIsRateLimited] = useState(false);
@@ -78,7 +95,7 @@ export function useRunNow() {
     refreshRateLimitStatus();
   }, [refreshRateLimitStatus]);
 
-  const handleRun = () => {
+  const handleRun = useCallback(() => {
     startTransition(async () => {
       const result = await scrapeAndMatch();
 
@@ -91,13 +108,27 @@ export function useRunNow() {
       handleSuccess(result.data.newJobsCount, result.data.scrapedCount);
       await refreshRateLimitStatus();
     });
-  };
+  }, [refreshRateLimitStatus]);
 
-  return {
-    isPending,
-    isLoading,
-    isRateLimited,
-    minutesRemaining,
-    handleRun,
-  };
+  return (
+    <RunNowContext.Provider
+      value={{
+        isPending,
+        isLoading,
+        isRateLimited,
+        minutesRemaining,
+        handleRun,
+      }}
+    >
+      {children}
+    </RunNowContext.Provider>
+  );
+}
+
+export function useRunNowContext() {
+  const context = useContext(RunNowContext);
+  if (!context) {
+    throw new Error("useRunNowContext must be used within RunNowProvider");
+  }
+  return context;
 }

@@ -69,7 +69,7 @@ export function LandingHero() {
               <h1 className="font-bold font-display text-4xl tracking-tight sm:text-5xl lg:text-6xl">
                 {HERO_CONTENT.headline}
                 <br />
-                <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                   {HERO_CONTENT.headlineAccent}
                 </span>
               </h1>

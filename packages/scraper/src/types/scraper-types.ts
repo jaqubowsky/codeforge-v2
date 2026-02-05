@@ -59,16 +59,14 @@ export interface ScrapingStrategy<TTechnology = string | undefined> {
 export const AVAILABLE_JOB_BOARDS = ["justjoinit"] as const;
 export type JobBoard = (typeof AVAILABLE_JOB_BOARDS)[number];
 
-export interface ScrapeForUserOptions {
-  userSkills: string[];
+export interface ScrapeOffersOptions {
   board?: JobBoard;
   maxOffers?: number;
 }
 
-export interface ScrapeForUserResult {
+export interface ScrapeOffersResult {
   success: boolean;
   runId?: number;
   offersCount?: number;
-  filteredCount?: number;
   error?: string;
 }

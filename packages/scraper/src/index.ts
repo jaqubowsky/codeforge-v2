@@ -1,6 +1,6 @@
-export { scrapeForUser } from "./controllers/scrape-for-user";
+export { scrapeOffers } from "./controllers/scrape-for-user";
 
 export type {
-  ScrapeForUserOptions,
-  ScrapeForUserResult,
+  ScrapeOffersOptions,
+  ScrapeOffersResult,
 } from "./types/scraper-types";

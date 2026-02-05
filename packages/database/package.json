@@ -17,7 +17,7 @@
     "update-deps": "pnpm dlx npm-check-updates -u --format group",
     "start": "pnpm dlx supabase start",
     "db-reset": "pnpm dlx supabase db reset && pnpm generate-api-types",
-    "generate-api-types": "pnpm dlx supabase gen types typescript --local > src/database.types.ts && pnpm ultracite fix && pnpm build"
+    "generate-api-types": "pnpm dlx supabase gen types typescript --local > src/database.types.ts && cd ../.. && pnpm ultracite fix --unsafe && cd ./packages/database && pnpm build"
   },
   "dependencies": {
     "@supabase/postgrest-js": "^2.94.1",

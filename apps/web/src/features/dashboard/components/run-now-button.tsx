@@ -3,7 +3,7 @@
 import { Button } from "@codeforge-v2/ui/components/button";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import { Clock, Loader2, Play } from "lucide-react";
-import { useRunNow } from "../hooks/use-run-now";
+import { useRunNowContext } from "../context/run-now-context";
 
 function ButtonContent({
   isLoading,
@@ -44,7 +44,7 @@ interface RunNowButtonProps {
 
 export function RunNowButton({ variant = "default" }: RunNowButtonProps) {
   const { isPending, isLoading, isRateLimited, minutesRemaining, handleRun } =
-    useRunNow();
+    useRunNowContext();
 
   const isDisabled = isLoading || isPending || isRateLimited;
 

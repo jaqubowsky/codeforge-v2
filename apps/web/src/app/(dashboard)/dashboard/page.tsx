@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { DashboardContent } from "@/features/dashboard/components/dashboard-content";
+import { DashboardProvider } from "@/features/dashboard/components/dashboard-provider";
 
 interface DashboardPageProps {
   searchParams: Promise<{
@@ -19,17 +20,19 @@ export default async function DashboardPage({
   const params = await searchParams;
 
   return (
-    <Suspense fallback={<DashboardSkeleton />}>
-      <DashboardContent
-        currency={params.currency}
-        salaryMax={params.salaryMax}
-        salaryMin={params.salaryMin}
-        search={params.search}
-        showOnlyNew={params.new}
-        sort={params.sort}
-        status={params.status}
-      />
-    </Suspense>
+    <DashboardProvider>
+      <Suspense fallback={<DashboardSkeleton />}>
+        <DashboardContent
+          currency={params.currency}
+          salaryMax={params.salaryMax}
+          salaryMin={params.salaryMin}
+          search={params.search}
+          showOnlyNew={params.new}
+          sort={params.sort}
+          status={params.status}
+        />
+      </Suspense>
+    </DashboardProvider>
   );
 }
 

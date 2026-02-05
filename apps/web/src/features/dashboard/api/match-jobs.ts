@@ -8,7 +8,8 @@ import type { MatchJobsData } from "../types";
 
 type UserOfferInsert = Database["public"]["Tables"]["user_offers"]["Insert"];
 
-const MATCH_THRESHOLD = 0.4;
+const MATCH_THRESHOLD = 0.3;
+const MIN_SKILL_MATCHES = 1;
 const MATCH_COUNT = 50;
 
 export async function matchJobs(): Promise<Result<MatchJobsData>> {
@@ -25,19 +26,37 @@ export async function matchJobs(): Promise<Result<MatchJobsData>> {
 
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
-    .select("embedding")
+    .select("embedding, experience_level, preferred_locations, skills")
     .eq("id", user.id)
     .single();
 
-  if (profileError || !profile?.embedding) {
-    return err("Profile embedding not found. Please complete your profile.");
+  if (profileError || !profile) {
+    return err("Profile not found. Please complete your profile.");
+  }
+
+  if (
+    !(
+      profile.embedding &&
+      profile.experience_level?.length &&
+      profile.preferred_locations?.length &&
+      profile.skills?.length
+    )
+  ) {
+    return err(
+      "Profile incomplete. Please fill in your skills, experience level, and work location preferences."
+    );
   }
 
   const { data: matches, error: matchError } = await supabase.rpc(
     "match_jobs_for_user",
     {
       user_embedding: profile.embedding,
+      user_job_titles: [],
+      user_experience_levels: profile.experience_level,
+      user_work_locations: profile.preferred_locations,
+      user_skills: profile.skills,
       match_threshold: MATCH_THRESHOLD,
+      min_skill_matches: MIN_SKILL_MATCHES,
       match_count: MATCH_COUNT,
     }
   );

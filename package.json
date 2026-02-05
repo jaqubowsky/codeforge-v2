@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "turbo dev",
-    "dev:web": "turbo -F web dev",
+    "start": "turbo start",
     "build": "turbo build",
     "lint": "ultracite check",
     "check-types": "turbo check-types",

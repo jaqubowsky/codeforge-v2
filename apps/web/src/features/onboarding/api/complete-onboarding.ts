@@ -20,11 +20,10 @@ export async function completeOnboarding(
     return err("You must be logged in to complete onboarding");
   }
 
-  const jobTitles = data.jobTitles.join(", ");
   const experienceLevels = data.experienceLevel.join(", ");
   const workLocations = data.preferredLocations.join(", ");
 
-  const profileText = `Job titles: ${jobTitles} | Experience levels: ${experienceLevels} | Work locations: ${workLocations} | ${data.skills.join(", ")} | ${data.idealRoleDescription}`;
+  const profileText = `Skills: ${data.skills.join(", ")} | Experience levels: ${experienceLevels} | Work locations: ${workLocations} | ${data.idealRoleDescription}`;
 
   let embedding: number[] | null = null;
 
@@ -37,7 +36,6 @@ export async function completeOnboarding(
   const { error } = await supabase
     .from("profiles")
     .update({
-      job_titles: data.jobTitles,
       experience_level: data.experienceLevel,
       preferred_locations: data.preferredLocations,
       skills: data.skills,

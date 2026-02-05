@@ -9,22 +9,20 @@ import { completeOnboarding } from "../api";
 import { type OnboardingFormData, onboardingSchema } from "../schemas";
 
 const FORM_DEFAULT_VALUES: OnboardingFormData = {
-  jobTitles: [],
+  skills: [],
   experienceLevel: [],
   preferredLocations: [],
-  skills: [],
   idealRoleDescription: "",
 };
 
 const VALIDATION_MESSAGES = {
-  basicInfo: "Please fill in all required fields correctly",
-  skills: "Please select at least 3 skills",
+  preferences: "Please fill in all required fields correctly",
   idealRole: "Please provide a description of at least 50 characters",
   unexpectedError: "An unexpected error occurred",
 } as const;
 
 const SUCCESS_MESSAGE = "Welcome to Job Tracker! Your profile is complete.";
-const REDIRECT_PATH = "/";
+const REDIRECT_PATH = "/dashboard";
 
 export function useOnboardingForm() {
   const router = useRouter();
@@ -43,22 +41,14 @@ export function useOnboardingForm() {
     formState: { errors },
   } = form;
 
-  const validateBasicInfo = async (): Promise<boolean> => {
+  const validatePreferences = async (): Promise<boolean> => {
     const result = await trigger([
-      "jobTitles",
+      "skills",
       "experienceLevel",
       "preferredLocations",
     ]);
     if (!result) {
-      toast.error(VALIDATION_MESSAGES.basicInfo);
-    }
-    return result;
-  };
-
-  const validateSkills = async (): Promise<boolean> => {
-    const result = await trigger("skills");
-    if (!result) {
-      toast.error(VALIDATION_MESSAGES.skills);
+      toast.error(VALIDATION_MESSAGES.preferences);
     }
     return result;
   };
@@ -97,8 +87,7 @@ export function useOnboardingForm() {
     isSubmitting,
     handleSubmit,
     onSubmit,
-    validateBasicInfo,
-    validateSkills,
+    validatePreferences,
     validateIdealRole,
   };
 }

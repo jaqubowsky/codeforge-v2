@@ -4,7 +4,6 @@ import type { Control, FieldErrors } from "react-hook-form";
 import type { ProfileFormData } from "@/features/profile/schemas";
 import { FormSection } from "@/shared/components/form";
 import { ExperienceLevelFields } from "./experience-level-fields";
-import { JobTitlesFields } from "./job-titles-fields";
 import { LocationPreferenceFields } from "./location-preference-fields";
 
 interface BasicInfoFieldsProps {
@@ -20,7 +19,6 @@ export function BasicInfoFields({
 }: BasicInfoFieldsProps) {
   const content = (
     <div className="space-y-5">
-      <JobTitlesFields control={control} errors={errors} showHeader={false} />
       <ExperienceLevelFields
         control={control}
         errors={errors}
@@ -37,8 +35,8 @@ export function BasicInfoFields({
   if (showHeader) {
     return (
       <FormSection
-        description="Tell us about your professional background"
-        title="Basic Information"
+        description="Tell us about your professional preferences"
+        title="Preferences"
       >
         {content}
       </FormSection>

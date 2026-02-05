@@ -5,7 +5,6 @@ type ProfileRow = Database["public"]["Tables"]["profiles"]["Row"];
 
 type ProfileDTO = Pick<
   ProfileRow,
-  | "job_titles"
   | "experience_level"
   | "preferred_locations"
   | "skills"
@@ -17,10 +16,9 @@ export function mapProfile(dto: ProfileDTO): ProfileData {
   const preferredLocations = dto.preferred_locations ?? [];
 
   return {
-    jobTitles: dto.job_titles ?? [],
+    skills: dto.skills ?? [],
     experienceLevel,
     preferredLocations,
-    skills: dto.skills ?? [],
     idealRoleDescription: dto.ideal_role_description ?? "",
   };
 }
