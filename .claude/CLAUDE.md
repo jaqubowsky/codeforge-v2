@@ -133,8 +133,10 @@ components/
 ```
 
 **When to co-locate**:
-- Hook/util used by ONE component → put it IN that component's wrapper folder
-- Hook/util used by 2+ components → put it in feature-level `hooks/` or `utils/` folder
+- Hook/util/schema/constant used by ONE component → separate file IN that component's wrapper folder
+- Hook/util/schema/constant used by 2+ components → feature-level `hooks/`, `utils/`, `schemas/`, or `constants/` folder
+- Types/interfaces used by ONE file → inline directly into that file (no separate types file)
+- Types/interfaces used by 2+ files → feature-level `types/` folder
 
 ## Web App Route Structure
 

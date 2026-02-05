@@ -22,13 +22,14 @@ export function PrimaryButton({
   return (
     <Button
       className={cn(
-        "h-11 w-full rounded-xl font-medium",
+        "w-full",
         "shadow-md shadow-primary/20",
         "transition-all duration-200",
         "hover:shadow-lg hover:shadow-primary/30",
         className
       )}
       disabled={disabled || loading}
+      size="lg"
       {...props}
     >
       {loading ? (

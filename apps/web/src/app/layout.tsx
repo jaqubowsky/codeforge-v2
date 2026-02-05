@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
+import { DM_Sans, JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import "./index.css";
 import Providers from "@/shared/ui/providers";
@@ -16,6 +16,12 @@ const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-display",
 });
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
+});
+
 export const metadata: Metadata = {
   title: "LandIT - AI-Powered Job Matching",
   description:
@@ -29,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`${dmSans.variable} ${plusJakarta.variable} scroll-smooth antialiased`}
+      className={`${dmSans.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} scroll-smooth antialiased`}
       lang="en"
       suppressHydrationWarning
     >

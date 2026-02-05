@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@codeforge-v2/ui/components/button";
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import { Clock, Loader2, Play } from "lucide-react";
 import { useRunNowContext } from "../context/run-now-context";
@@ -60,7 +61,7 @@ export function RunNowButton({ variant = "default" }: RunNowButtonProps) {
       <Button
         className={cn(
           "gap-2.5 font-semibold",
-          isHero && "h-14 px-8 text-base shadow-lg",
+          isHero && "px-8 text-base shadow-lg",
           isDisabled && "opacity-70"
         )}
         disabled={isDisabled}
@@ -70,11 +71,13 @@ export function RunNowButton({ variant = "default" }: RunNowButtonProps) {
         <ButtonContent isLoading={isLoading} isPending={isPending} />
       </Button>
 
-      <p
+      <Text
+        as="span"
         className={cn(
-          "flex h-5 items-center gap-1.5 text-xs",
-          isRateLimited ? "text-warning" : "text-muted-foreground"
+          "flex h-5 items-center gap-1.5",
+          isRateLimited ? "text-warning" : ""
         )}
+        variant="caption"
       >
         {isRateLimited && minutesRemaining !== null ? (
           <>
@@ -84,7 +87,7 @@ export function RunNowButton({ variant = "default" }: RunNowButtonProps) {
         ) : (
           <span className="opacity-60">AI-powered job matching</span>
         )}
-      </p>
+      </Text>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { Button } from "@codeforge-v2/ui/components/button";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import { ArrowLeft, ArrowRight, Check, Loader2 } from "lucide-react";
 import { useWizard } from "@/shared/components/wizard";
-import { WIZARD_COLORS } from "@/shared/lib/design-tokens";
+import { WIZARD_COLORS } from "@/shared/components/wizard/wizard-tokens";
 
 interface WizardNavigationProps {
   isSubmitting: boolean;
@@ -57,6 +57,7 @@ export function WizardNavigation({ isSubmitting }: WizardNavigationProps) {
           disabled={isSubmitting}
           onClick={goToNext}
           type="button"
+          variant="dark"
         >
           Continue
           <ArrowRight className="size-4" />

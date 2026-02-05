@@ -31,7 +31,9 @@ export function DashboardSidebar({
       )}
     >
       <div className="flex items-center justify-between border-b p-6">
-        <h1 className="font-bold text-xl">Job Tracker</h1>
+        <h1 className="font-mono font-semibold text-sm uppercase tracking-tight">
+          LandIT
+        </h1>
         {onClose && (
           <button
             className="rounded-md p-1 hover:bg-accent lg:hidden"
@@ -55,7 +57,7 @@ export function DashboardSidebar({
                   className={cn(
                     "flex items-center gap-3 rounded-md px-3 py-2 transition-colors",
                     isActive
-                      ? "bg-primary text-primary-foreground"
+                      ? "bg-foreground text-background"
                       : "hover:bg-accent"
                   )}
                   href={item.href as never}

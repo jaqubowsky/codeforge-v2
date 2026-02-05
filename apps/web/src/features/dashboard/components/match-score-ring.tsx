@@ -1,8 +1,15 @@
 "use client";
 
 import { cn } from "@codeforge-v2/ui/lib/utils";
-import type { MatchScoreLevel } from "@/shared/lib/design-tokens";
-import { MATCH_SCORE_COLORS } from "@/shared/lib/design-tokens";
+
+const MATCH_SCORE_COLORS = {
+  excellent: "bg-success",
+  good: "bg-info",
+  fair: "bg-warning",
+  poor: "bg-destructive/70",
+} as const;
+
+type MatchScoreLevel = keyof typeof MATCH_SCORE_COLORS;
 
 interface MatchScoreRingProps {
   percentage: number;

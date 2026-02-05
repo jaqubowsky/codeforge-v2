@@ -3,7 +3,7 @@
 import { Label } from "@codeforge-v2/ui/components/label";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import type { ComponentProps } from "react";
-import { FORM_COLORS } from "@/shared/lib/design-tokens";
+import { FORM_COLORS } from "./form-tokens";
 
 interface FormLabelProps extends ComponentProps<typeof Label> {
   required?: boolean;

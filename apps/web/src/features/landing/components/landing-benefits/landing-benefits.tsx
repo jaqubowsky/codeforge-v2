@@ -1,5 +1,7 @@
 "use client";
 
+import { Heading } from "@codeforge-v2/ui/components/heading";
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import { useScrollReveal } from "@/shared/hooks/use-scroll-reveal";
 import { BENEFITS } from "../../constants/content";
@@ -9,33 +11,36 @@ export function LandingBenefits() {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section className="relative py-24" id="benefits">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_0%_50%,var(--primary)/0.03,transparent)]" />
+    <section className="relative py-28" id="benefits">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_0%_50%,var(--primary)/0.03,transparent)]" />
 
       <div className="container relative px-6">
         <div
           className={cn(
-            "mx-auto mb-16 max-w-2xl text-center",
+            "mx-auto mb-20 max-w-xl text-center lg:mx-0 lg:text-left",
             "transition-all duration-700",
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           )}
           ref={ref}
         >
-          <h2 className="font-bold font-display text-3xl tracking-tight sm:text-4xl">
-            Why Choose LandIT?
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Stop wasting time on job boards. Let AI do the heavy lifting.
-          </p>
+          <Text as="span" className="mb-4 block" muted variant="mono">
+            Why LandIT
+          </Text>
+          <Heading level={2}>
+            Engineered for
+            <br />
+            <span className="text-muted-foreground">your job search</span>
+          </Heading>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-px overflow-hidden rounded-lg border border-border/50 bg-border/50 sm:grid-cols-2">
           {BENEFITS.map((benefit, index) => (
             <BenefitCard
               color={benefit.color}
               delay={index * 100}
               description={benefit.description}
               icon={benefit.icon}
+              index={index}
               key={benefit.title}
               title={benefit.title}
             />

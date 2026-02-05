@@ -1,5 +1,6 @@
 "use client";
 
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import { formatDistanceToNow } from "date-fns";
 import {
@@ -43,6 +44,7 @@ export function DashboardHero({
         <PageHeroHeader
           action={<RunNowButton />}
           description="Your AI-powered command center for job hunting. Track applications, discover matches, and land your dream role."
+          sectionLabel="Dashboard"
           title="Job Tracker"
         />
 
@@ -82,18 +84,20 @@ export function DashboardHero({
           <div
             className={cn(
               "flex items-center justify-center gap-6",
-              "rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm",
+              "rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm",
               "p-4 text-center"
             )}
           >
-            <div className="flex items-center gap-2 text-muted-foreground text-sm">
-              <Clock className="h-4 w-4" />
-              <span>Last scan: {lastRunText}</span>
+            <div className="flex items-center gap-2">
+              <Clock className="h-4 w-4 text-muted-foreground" />
+              <Text as="span" variant="caption">
+                Last scan: {lastRunText}
+              </Text>
             </div>
             <div className="h-4 w-px bg-border" />
-            <div className="flex items-center gap-2 text-muted-foreground text-sm">
-              <TrendingUp className="h-4 w-4" />
-              <span>
+            <div className="flex items-center gap-2">
+              <TrendingUp className="h-4 w-4 text-muted-foreground" />
+              <Text as="span" variant="caption">
                 Found{" "}
                 <span className="font-medium text-foreground">
                   {lastRun.jobsFound}
@@ -105,7 +109,7 @@ export function DashboardHero({
                     ({lastRun.newJobsCount} new)
                   </span>
                 )}
-              </span>
+              </Text>
             </div>
           </div>
         )}

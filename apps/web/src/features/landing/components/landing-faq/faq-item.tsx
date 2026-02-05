@@ -1,8 +1,8 @@
 "use client";
 
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
-import { ChevronDown } from "lucide-react";
-import { GlassCard } from "@/shared/components/ui/glass-card";
+import { Plus } from "lucide-react";
 import { useScrollReveal } from "@/shared/hooks/use-scroll-reveal";
 
 interface FaqItemProps {
@@ -31,37 +31,41 @@ export function FaqItem({
       ref={ref}
       style={{ transitionDelay: `${index * 50}ms` }}
     >
-      <GlassCard className="overflow-hidden">
-        <button
-          className={cn(
-            "flex w-full items-center justify-between p-5 text-left",
-            "transition-colors duration-200",
-            "hover:bg-muted/30"
-          )}
-          onClick={() => onToggle(index)}
-          type="button"
-        >
-          <span className="pr-4 font-medium">{question}</span>
-          <ChevronDown
-            className={cn(
-              "h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300",
-              isOpen && "rotate-180"
-            )}
-          />
-        </button>
-        <div
-          className={cn(
-            "grid transition-all duration-300",
-            isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-          )}
-        >
-          <div className="overflow-hidden">
-            <p className="border-border/50 border-t px-5 py-4 text-muted-foreground leading-relaxed">
-              {answer}
-            </p>
-          </div>
+      <button
+        className={cn(
+          "flex w-full items-center justify-between gap-4 py-6 text-left",
+          "transition-colors duration-200",
+          "hover:text-foreground",
+          isOpen ? "text-foreground" : "text-muted-foreground"
+        )}
+        onClick={() => onToggle(index)}
+        type="button"
+      >
+        <div className="flex items-start gap-4">
+          <Text as="span" className="mt-0.5 shrink-0 opacity-50" variant="mono">
+            {String(index + 1).padStart(2, "0")}
+          </Text>
+          <span className="font-medium">{question}</span>
         </div>
-      </GlassCard>
+        <Plus
+          className={cn(
+            "h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-300",
+            isOpen && "rotate-45"
+          )}
+        />
+      </button>
+      <div
+        className={cn(
+          "grid transition-all duration-300",
+          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        )}
+      >
+        <div className="overflow-hidden">
+          <p className="pb-6 pl-10 text-muted-foreground leading-relaxed">
+            {answer}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

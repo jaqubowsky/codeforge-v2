@@ -1,8 +1,9 @@
 "use client";
 
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
-import { FORM_COLORS } from "@/shared/lib/design-tokens";
 import { FormCheckbox } from "./form-checkbox";
+import { FORM_COLORS } from "./form-tokens";
 
 interface SelectableCardProps {
   id: string;
@@ -54,9 +55,13 @@ export function SelectableCardTitle({
   className,
 }: SelectableCardTitleProps) {
   return (
-    <div className={cn("font-medium text-sm", FORM_COLORS.label, className)}>
+    <Text
+      as="div"
+      className={cn("font-medium", FORM_COLORS.label, className)}
+      variant="caption"
+    >
       {children}
-    </div>
+    </Text>
   );
 }
 
@@ -70,8 +75,12 @@ export function SelectableCardDescription({
   className,
 }: SelectableCardDescriptionProps) {
   return (
-    <div className={cn("text-xs", FORM_COLORS.description, className)}>
+    <Text
+      as="div"
+      className={cn(FORM_COLORS.description, className)}
+      variant="caption"
+    >
       {children}
-    </div>
+    </Text>
   );
 }

@@ -13,9 +13,8 @@ export function AuthInput({ className, icon, ...props }: AuthInputProps) {
     <div className="relative">
       <Input
         className={cn(
-          "h-11 rounded-xl border-border/60 bg-background",
+          "border-border/50 bg-background",
           "placeholder:text-muted-foreground/60",
-          "focus-visible:border-primary focus-visible:ring-primary/20",
           icon && "pl-10",
           className
         )}

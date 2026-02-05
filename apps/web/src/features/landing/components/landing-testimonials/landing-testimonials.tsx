@@ -1,5 +1,7 @@
 "use client";
 
+import { Heading } from "@codeforge-v2/ui/components/heading";
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import { useScrollReveal } from "@/shared/hooks/use-scroll-reveal";
 import { TESTIMONIALS } from "../../constants/content";
@@ -9,24 +11,26 @@ export function LandingTestimonials() {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section className="relative py-24" id="testimonials">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_100%_50%,var(--primary)/0.03,transparent)]" />
+    <section className="relative py-28" id="testimonials">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_600px_at_50%_50%,var(--primary)/0.03,transparent)]" />
 
       <div className="container relative px-6">
         <div
           className={cn(
-            "mx-auto mb-16 max-w-2xl text-center",
+            "mx-auto mb-20 max-w-xl text-center lg:mx-0 lg:text-left",
             "transition-all duration-700",
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           )}
           ref={ref}
         >
-          <h2 className="font-bold font-display text-3xl tracking-tight sm:text-4xl">
-            What Developers Say
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Join hundreds of developers who transformed their job search
-          </p>
+          <Text as="span" className="mb-4 block" muted variant="mono">
+            Testimonials
+          </Text>
+          <Heading level={2}>
+            Trusted by
+            <br />
+            <span className="text-muted-foreground">developers like you</span>
+          </Heading>
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">

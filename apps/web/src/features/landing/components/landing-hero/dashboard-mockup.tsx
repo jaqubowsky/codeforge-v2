@@ -1,9 +1,9 @@
 "use client";
 
 import { Badge } from "@codeforge-v2/ui/components/badge";
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import { Briefcase, ExternalLink } from "lucide-react";
-import { GlassCard } from "@/shared/components/ui/glass-card";
 import { useDelayedVisibility } from "../../hooks/use-delayed-visibility";
 import { MockJobCard } from "./mock-job-card";
 
@@ -50,27 +50,35 @@ export function DashboardMockup() {
         isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       )}
     >
-      <GlassCard className="overflow-hidden" elevated>
-        <div className="border-border/50 border-b bg-muted/30 px-4 py-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Briefcase className="h-3.5 w-3.5" />
-              </div>
-              <span className="font-semibold text-sm">Job Tracker</span>
+      <div className="overflow-hidden rounded-lg border border-border/50 bg-card/90 shadow-2xl shadow-black/5 backdrop-blur-sm dark:shadow-black/20">
+        <div className="flex items-center justify-between border-border/30 border-b bg-muted/20 px-4 py-2.5">
+          <div className="flex items-center gap-3">
+            <div className="flex gap-1.5">
+              <div className="h-2.5 w-2.5 rounded-full bg-destructive/60" />
+              <div className="h-2.5 w-2.5 rounded-full bg-warning/60" />
+              <div className="h-2.5 w-2.5 rounded-full bg-success/60" />
             </div>
-            <Badge className="text-xs" variant="success">
-              2 new
-            </Badge>
+            <div className="flex items-center gap-1.5">
+              <Briefcase className="h-3 w-3 text-muted-foreground" />
+              <Text as="span" variant="mono-sm">
+                Job Tracker
+              </Text>
+            </div>
           </div>
+          <Badge
+            className="rounded-sm font-mono text-[9px] uppercase tracking-wider"
+            variant="success"
+          >
+            2 new
+          </Badge>
         </div>
 
-        <div className="space-y-3 p-4">
+        <div className="space-y-2.5 p-3">
           {MOCK_JOBS.map((job, index) => (
             <MockJobCard
               company={job.company}
               companyInitials={job.companyInitials}
-              delay={600 + index * 200}
+              delay={600 + index * 250}
               key={job.title}
               location={job.location}
               matchScore={job.matchScore}
@@ -82,18 +90,20 @@ export function DashboardMockup() {
           ))}
         </div>
 
-        <div className="border-border/50 border-t bg-muted/20 px-4 py-3">
+        <div className="border-border/30 border-t bg-muted/10 px-4 py-2.5">
           <div className="flex items-center justify-between">
-            <span className="text-muted-foreground text-xs">
-              2 matched jobs found
-            </span>
-            <span className="flex items-center gap-1 text-primary text-xs">
-              View all
-              <ExternalLink className="h-3 w-3" />
+            <Text as="span" muted variant="mono-sm">
+              2 matched
+            </Text>
+            <span className="flex items-center gap-1 text-primary">
+              <Text as="span" variant="mono-sm">
+                View all
+              </Text>
+              <ExternalLink className="h-2.5 w-2.5" />
             </span>
           </div>
         </div>
-      </GlassCard>
+      </div>
     </div>
   );
 }

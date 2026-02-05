@@ -1,3 +1,5 @@
+import { Heading } from "@codeforge-v2/ui/components/heading";
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import type { ReactNode } from "react";
 
@@ -26,6 +28,7 @@ export function PageHero({ children, className }: PageHeroProps) {
 interface PageHeroHeaderProps {
   title: string;
   description?: string;
+  sectionLabel?: string;
   action?: ReactNode;
   statusIndicator?: ReactNode;
   className?: string;
@@ -34,6 +37,7 @@ interface PageHeroHeaderProps {
 export function PageHeroHeader({
   title,
   description,
+  sectionLabel,
   action,
   statusIndicator,
   className,
@@ -46,15 +50,18 @@ export function PageHeroHeader({
       )}
     >
       <div className="space-y-2">
+        {sectionLabel && (
+          <Text as="span" className="block" muted variant="mono">
+            {sectionLabel}
+          </Text>
+        )}
         <div className="flex items-center gap-3">
-          <h1 className="font-semibold text-3xl tracking-tight sm:text-4xl">
+          <Heading className="sm:text-4xl" level={2}>
             {title}
-          </h1>
+          </Heading>
           {statusIndicator}
         </div>
-        {description && (
-          <p className="max-w-md text-muted-foreground">{description}</p>
-        )}
+        {description && <Text variant="caption">{description}</Text>}
       </div>
 
       {action}

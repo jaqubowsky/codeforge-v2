@@ -11,10 +11,6 @@ import {
   FilterBarExpandable,
   FilterBarRow,
 } from "@/shared/components/ui/filter-bar";
-import {
-  FILTER_BUTTON_STYLES,
-  STATUS_INTENT,
-} from "@/shared/lib/design-tokens";
 import { STATUS_OPTIONS } from "../../constants/filter-options";
 import type {
   Currency,
@@ -23,6 +19,7 @@ import type {
 } from "../../types/dashboard";
 import { SalaryRangeFilter } from "../salary-range-filter";
 import { SortDropdown } from "../sort-dropdown";
+import { FILTER_BUTTON_STYLES, STATUS_INTENT } from "./filter-styles";
 import { useDebouncedSearch } from "./use-debounced-search";
 import { useSearchFilters } from "./use-search-filters";
 
@@ -103,9 +100,8 @@ export function SearchFilter({
             <Search className="absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               className={cn(
-                "h-11 rounded-xl border-border/50 bg-background/50 pl-11",
-                "placeholder:text-muted-foreground/60",
-                "focus-visible:border-primary/50 focus-visible:ring-primary/20"
+                "rounded-md border-border/50 bg-background/50 pl-11",
+                "placeholder:text-muted-foreground/60"
               )}
               onChange={(e) => handleSearchChange(e.target.value)}
               placeholder="Search by job title or company..."
@@ -121,7 +117,7 @@ export function SearchFilter({
 
             <Button
               className={cn(
-                "gap-2 rounded-xl",
+                "gap-2 rounded-md",
                 showAdvanced && "bg-primary/10 text-primary"
               )}
               onClick={() => setShowAdvanced(!showAdvanced)}
@@ -134,7 +130,7 @@ export function SearchFilter({
 
             {hasActiveFilters && (
               <Button
-                className="gap-1.5 rounded-xl text-muted-foreground"
+                className="gap-1.5 rounded-md text-muted-foreground"
                 onClick={resetFilters}
                 size="sm"
                 variant="ghost"

@@ -1,3 +1,4 @@
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import { Briefcase } from "lucide-react";
 import Link from "next/link";
@@ -7,50 +8,72 @@ export function LandingFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-border/50 border-t bg-muted/30">
-      <div className="container px-6 py-12">
-        <div className="flex flex-col items-center gap-8 text-center md:flex-row md:items-start md:justify-between md:text-left">
-          <div className="max-w-sm">
+    <footer className="border-border/30 border-t">
+      <div className="container px-6 py-16">
+        <div className="flex flex-col gap-12 md:flex-row md:justify-between">
+          <div className="max-w-xs">
             <Link
-              className="inline-flex items-center gap-2.5 transition-opacity hover:opacity-80"
+              className="group inline-flex items-center gap-3 transition-opacity hover:opacity-90"
               href="/"
             >
               <div
                 className={cn(
-                  "flex h-9 w-9 items-center justify-center rounded-lg",
-                  "bg-primary text-primary-foreground",
-                  "shadow-md shadow-primary/20"
+                  "flex h-8 w-8 items-center justify-center rounded-md",
+                  "bg-foreground text-background",
+                  "transition-transform duration-300 group-hover:rotate-[-4deg]"
                 )}
               >
-                <Briefcase className="h-4.5 w-4.5" />
+                <Briefcase className="h-4 w-4" />
               </div>
-              <span className="font-display font-semibold text-lg tracking-tight">
+              <span className="font-mono font-semibold text-sm uppercase tracking-tight">
                 LandIT
               </span>
             </Link>
-            <p className="mt-4 text-muted-foreground text-sm leading-relaxed">
-              AI-powered job matching for developers. Stop scrolling, start
-              matching.
-            </p>
+            <Text className="mt-4" variant="caption">
+              AI-powered job matching built for developers who value their time.
+            </Text>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 md:justify-end">
-            {FOOTER_LINKS.product.map((link) => (
-              <Link
-                className="text-muted-foreground text-sm transition-colors hover:text-foreground"
-                href={link.href}
-                key={link.href}
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="flex gap-16">
+            <div>
+              <Text as="span" className="mb-4 block" muted variant="mono-sm">
+                Product
+              </Text>
+              <div className="flex flex-col gap-3">
+                {FOOTER_LINKS.product.map((link) => (
+                  <Link
+                    className="text-muted-foreground text-sm transition-colors hover:text-foreground"
+                    href={link.href}
+                    key={link.href}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div>
+              <Text as="span" className="mb-4 block" muted variant="mono-sm">
+                Legal
+              </Text>
+              <div className="flex flex-col gap-3">
+                {FOOTER_LINKS.legal.map((link) => (
+                  <Link
+                    className="text-muted-foreground text-sm transition-colors hover:text-foreground"
+                    href={link.href}
+                    key={link.href}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="mt-12 border-border/50 border-t pt-8 text-center">
-          <p className="text-muted-foreground text-sm">
+        <div className="mt-16 border-border/30 border-t pt-8">
+          <Text as="span" muted variant="mono-sm">
             &copy; {currentYear} LandIT. All rights reserved.
-          </p>
+          </Text>
         </div>
       </div>
     </footer>

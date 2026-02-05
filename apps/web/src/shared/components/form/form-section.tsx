@@ -1,7 +1,8 @@
 "use client";
 
+import { Heading } from "@codeforge-v2/ui/components/heading";
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
-import { FORM_COLORS } from "@/shared/lib/design-tokens";
 
 interface FormSectionProps {
   title: string;
@@ -19,14 +20,8 @@ export function FormSection({
   return (
     <div className={cn("space-y-3", className)}>
       <div>
-        <h3 className={cn("font-semibold text-lg", FORM_COLORS.label)}>
-          {title}
-        </h3>
-        {description && (
-          <p className={cn("text-sm", FORM_COLORS.description)}>
-            {description}
-          </p>
-        )}
+        <Heading level={3}>{title}</Heading>
+        {description && <Text variant="caption">{description}</Text>}
       </div>
       {children}
     </div>

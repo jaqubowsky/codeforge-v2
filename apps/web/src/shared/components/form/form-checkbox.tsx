@@ -3,7 +3,7 @@
 import { Checkbox } from "@codeforge-v2/ui/components/checkbox";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import type { ComponentProps } from "react";
-import { FORM_COLORS } from "@/shared/lib/design-tokens";
+import { FORM_COLORS } from "./form-tokens";
 
 type FormCheckboxProps = ComponentProps<typeof Checkbox>;
 

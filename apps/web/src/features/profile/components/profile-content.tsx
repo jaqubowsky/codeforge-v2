@@ -19,6 +19,7 @@ export async function ProfileContent() {
       <PageHero>
         <PageHeroHeader
           description="Update your professional information to improve job matching"
+          sectionLabel="Profile"
           title="Your Profile"
         />
       </PageHero>

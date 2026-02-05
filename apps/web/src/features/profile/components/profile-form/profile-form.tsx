@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@codeforge-v2/ui/components/button";
+import { Text } from "@codeforge-v2/ui/components/text";
 import { Sparkles } from "lucide-react";
 import type { ProfileData } from "../../types/profile";
 import { ProfileBasicInfoSection } from "../profile-basic-info-section";
@@ -22,14 +23,14 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
       <ProfileSkillsSection control={control} errors={errors} />
       <ProfileCareerGoalsSection control={control} errors={errors} />
 
-      <div className="flex flex-col gap-4 rounded-lg border bg-muted/30 p-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-3 text-muted-foreground text-sm">
+      <div className="flex flex-col gap-4 rounded-lg border border-border/50 bg-muted/30 p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-3">
           <Sparkles className="h-4 w-4 shrink-0 text-primary" />
-          <span>
+          <Text as="span" muted variant="mono-sm">
             Changes will regenerate your AI profile for better job matching
-          </span>
+          </Text>
         </div>
-        <Button disabled={isSubmitting} size="lg" type="submit">
+        <Button disabled={isSubmitting} size="lg" type="submit" variant="dark">
           {isSubmitting ? "Saving..." : "Save Changes"}
         </Button>
       </div>

@@ -1,5 +1,8 @@
 "use client";
 
+import { Heading } from "@codeforge-v2/ui/components/heading";
+import { NoiseOverlay } from "@codeforge-v2/ui/components/noise-overlay";
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import { Briefcase } from "lucide-react";
 import Link from "next/link";
@@ -24,6 +27,7 @@ export function AuthLayout({
       <div className="absolute inset-0 bg-muted/20" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,var(--primary)/0.06,transparent)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_80%_at_100%_50%,var(--primary)/0.03,transparent)]" />
+      <NoiseOverlay />
 
       <div className="absolute top-4 right-4 z-10">
         <ModeToggle />
@@ -34,9 +38,9 @@ export function AuthLayout({
           <Link
             className={cn(
               "flex items-center justify-center",
-              "h-12 w-12 rounded-xl",
-              "bg-primary text-primary-foreground",
-              "shadow-lg shadow-primary/20",
+              "h-12 w-12 rounded-md",
+              "bg-foreground text-background",
+              "shadow-lg",
               "transition-transform duration-200 hover:scale-105"
             )}
             href="/"
@@ -45,16 +49,16 @@ export function AuthLayout({
           </Link>
 
           <div className="space-y-2">
-            <h1 className="font-display font-semibold text-2xl tracking-tight">
-              {title}
-            </h1>
-            <p className="text-muted-foreground text-sm">{subtitle}</p>
+            <Heading level={3}>{title}</Heading>
+            <Text muted variant="mono">
+              {subtitle}
+            </Text>
           </div>
         </div>
 
         <div
           className={cn(
-            "rounded-2xl border border-border/50",
+            "rounded-lg border border-border/50",
             "bg-card/80 backdrop-blur-sm",
             "p-6 shadow-black/5 shadow-xl",
             "dark:shadow-black/20"
@@ -63,13 +67,17 @@ export function AuthLayout({
           {children}
         </div>
 
-        <div className="text-center text-muted-foreground text-sm">
-          {footer}
+        <div className="text-center">
+          <Text as="div" variant="caption">
+            {footer}
+          </Text>
         </div>
       </div>
 
-      <div className="absolute bottom-8 text-center text-muted-foreground/60 text-xs">
-        <p>LandIT</p>
+      <div className="absolute bottom-8 text-center">
+        <Text muted variant="mono-sm">
+          LandIT
+        </Text>
       </div>
     </div>
   );

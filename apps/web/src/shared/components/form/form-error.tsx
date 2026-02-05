@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@codeforge-v2/ui/lib/utils";
-import { FORM_COLORS } from "@/shared/lib/design-tokens";
+import { FORM_COLORS } from "./form-tokens";
 
 interface FormErrorProps {
   message?: string;

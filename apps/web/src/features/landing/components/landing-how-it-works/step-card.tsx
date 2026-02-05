@@ -1,19 +1,10 @@
 "use client";
 
+import { Heading } from "@codeforge-v2/ui/components/heading";
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
-import { GlassCard } from "@/shared/components/ui/glass-card";
 import { useScrollReveal } from "@/shared/hooks/use-scroll-reveal";
 import { SECTION_COLORS } from "@/shared/lib/design-tokens";
-
-function getShadowColor(color: keyof typeof SECTION_COLORS) {
-  if (color === "blue") {
-    return "primary";
-  }
-  if (color === "emerald") {
-    return "success";
-  }
-  return "accent";
-}
 
 interface StepCardProps {
   step: number;
@@ -38,45 +29,41 @@ export function StepCard({
   return (
     <div
       className={cn(
-        "transition-all duration-700",
+        "group relative transition-all duration-700",
         isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       )}
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <div className="flex gap-6 lg:gap-8">
-        <div className="relative z-10 flex-shrink-0">
+      <div className="relative h-full overflow-hidden rounded-lg border border-border/50 bg-card p-8 transition-colors duration-300 hover:border-border lg:p-10">
+        <span className="absolute -top-6 -right-2 font-bold font-display text-[120px] text-muted-foreground/[0.04] leading-none lg:text-[140px]">
+          {step}
+        </span>
+
+        <div className="relative">
           <div
             className={cn(
-              "flex h-16 w-16 items-center justify-center rounded-2xl",
-              "border-2",
+              "mb-8 flex h-12 w-12 items-center justify-center rounded-lg",
               colorStyles.iconBg,
               colorStyles.iconText,
-              "shadow-lg"
+              "transition-transform duration-300 group-hover:scale-105"
             )}
-            style={{
-              boxShadow: `0 8px 32px -8px var(--${getShadowColor(color)})`,
-            }}
           >
-            <Icon className="h-7 w-7" />
+            <Icon className="h-6 w-6" />
           </div>
-        </div>
 
-        <GlassCard className="flex-1 p-6" hoverable>
-          <div className="mb-2 flex items-center gap-3">
-            <span
-              className={cn(
-                "flex h-6 w-6 items-center justify-center rounded-full font-semibold text-xs",
-                colorStyles.iconBg,
-                colorStyles.iconText
-              )}
-            >
-              {step}
-            </span>
-            <h3 className="font-semibold text-xl">{title}</h3>
+          <div className="mb-3 flex items-center gap-3">
+            <Text as="span" muted variant="mono">
+              Step {String(step).padStart(2, "0")}
+            </Text>
+            <div className="h-px flex-1 bg-border" />
           </div>
-          <p className="text-muted-foreground leading-relaxed">{description}</p>
-        </GlassCard>
+
+          <Heading level={3}>{title}</Heading>
+          <Text className="mt-3" variant="caption">
+            {description}
+          </Text>
+        </div>
       </div>
     </div>
   );

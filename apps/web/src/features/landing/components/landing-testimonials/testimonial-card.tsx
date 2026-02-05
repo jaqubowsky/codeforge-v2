@@ -1,8 +1,7 @@
 "use client";
 
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
-import { Quote } from "lucide-react";
-import { GlassCard } from "@/shared/components/ui/glass-card";
 import { useScrollReveal } from "@/shared/hooks/use-scroll-reveal";
 
 interface TestimonialCardProps {
@@ -33,25 +32,27 @@ export function TestimonialCard({
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <GlassCard className="relative flex h-full flex-col p-6" hoverable>
-        <Quote className="absolute top-4 right-4 h-8 w-8 text-primary/10" />
+      <div className="group relative flex h-full flex-col rounded-lg border border-border/50 bg-card p-8 transition-colors duration-300 hover:border-border">
+        <span className="mb-6 block font-display text-5xl text-primary/15 leading-none">
+          &ldquo;
+        </span>
 
-        <p className="mb-auto flex-1 pr-8 text-muted-foreground leading-relaxed">
-          &ldquo;{quote}&rdquo;
+        <p className="mb-auto flex-1 text-muted-foreground leading-relaxed">
+          {quote}
         </p>
 
-        <div className="mt-6 flex items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary font-semibold text-primary-foreground text-sm">
+        <div className="mt-8 flex items-center gap-3 border-border/30 border-t pt-6">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-foreground font-mono font-semibold text-background text-xs">
             {avatar}
           </div>
           <div>
             <p className="font-semibold text-sm">{name}</p>
-            <p className="text-muted-foreground text-xs">
+            <Text as="span" variant="mono-sm">
               {role} &middot; {company}
-            </p>
+            </Text>
           </div>
         </div>
-      </GlassCard>
+      </div>
     </div>
   );
 }

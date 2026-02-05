@@ -1,14 +1,15 @@
-import { cn } from "@codeforge-v2/ui/lib/utils";
-import type { ReactNode } from "react";
+import type * as React from "react";
+
+import { cn } from "../../lib/utils";
 
 interface GlassCardProps {
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
   hoverable?: boolean;
   elevated?: boolean;
 }
 
-export function GlassCard({
+function GlassCard({
   children,
   className,
   hoverable = false,
@@ -17,7 +18,7 @@ export function GlassCard({
   return (
     <div
       className={cn(
-        "rounded-2xl border border-border/50",
+        "rounded-lg border border-border/50",
         "bg-card/80 backdrop-blur-sm",
         "transition-all duration-300 ease-out",
         hoverable && [
@@ -29,6 +30,7 @@ export function GlassCard({
         elevated && "shadow-sm",
         className
       )}
+      data-slot="glass-card"
     >
       {children}
     </div>
@@ -36,16 +38,15 @@ export function GlassCard({
 }
 
 interface GlassCardFooterProps {
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
 }
 
-export function GlassCardFooter({ children, className }: GlassCardFooterProps) {
+function GlassCardFooter({ children, className }: GlassCardFooterProps) {
   return (
     <div
       className={cn(
-        "border-border/40 border-t bg-muted/20 p-4",
-        "rounded-b-2xl",
+        "rounded-b-lg border-border/40 border-t bg-muted/20 p-4",
         className
       )}
     >
@@ -53,3 +54,5 @@ export function GlassCardFooter({ children, className }: GlassCardFooterProps) {
     </div>
   );
 }
+
+export { GlassCard, GlassCardFooter };

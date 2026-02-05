@@ -39,13 +39,17 @@ features/[feature-name]/
 - Import from named files: `from "../types/dashboard"` not `from "../types"`
 
 ### Co-location Pattern (CRITICAL)
-**When a hook/util is used by ONLY ONE component:**
+**When a hook/util/schema/constant is used by ONLY ONE component:**
 - Create a wrapper folder for the component
-- Move the hook/util INTO the component's folder
+- Move the hook/util/schema/constant INTO the component's folder as a separate file
 - Update imports to use `./` for co-located files
 
-**When a hook/util is used by 2+ components:**
-- Keep it in feature-level `hooks/` or `utils/` folder
+**When a hook/util/schema/constant is used by 2+ components:**
+- Keep it in feature-level `hooks/`, `utils/`, `schemas/`, or `constants/` folder
+
+**Types/interfaces follow a different rule:**
+- Used by ONLY ONE file → inline directly into that file (no separate types file)
+- Used by 2+ files → feature-level `types/` folder
 
 ### Type Decoupling
 - `types/` - App types only, NO database imports
@@ -73,7 +77,8 @@ export async function myAction(): Promise<Result<MyData>> {
    - [ ] Put in feature-level `hooks/` or `utils/` folder
 
 3. **Adding types?**
-   - [ ] Put in `types/[feature].ts` (named file, not index.ts)
+   - [ ] Used by 1 file only? → inline directly into that file
+   - [ ] Used by 2+ files? → put in `types/[feature].ts` (named file, not index.ts)
    - [ ] NO database imports in type files
 
 4. **Adding schemas?**

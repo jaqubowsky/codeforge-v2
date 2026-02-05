@@ -1,3 +1,4 @@
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import type { ReactNode } from "react";
 
@@ -19,7 +20,7 @@ export function StatCard({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-2xl",
+        "group relative overflow-hidden rounded-lg",
         "bg-card/50 backdrop-blur-sm",
         "border border-border/50",
         "p-5 transition-all duration-300",
@@ -38,15 +39,19 @@ export function StatCard({
 
       <div className="flex items-start justify-between gap-3">
         <div className="space-y-3">
-          <div className="flex items-center gap-2 font-medium text-muted-foreground text-xs uppercase tracking-wider">
+          <div className="flex items-center gap-2">
             {icon}
-            <span>{label}</span>
+            <Text as="span" muted variant="caption">
+              {label}
+            </Text>
           </div>
 
           <div className="space-y-0.5">
             <p className="font-semibold text-3xl tracking-tight">{value}</p>
             {subtext && (
-              <p className="text-muted-foreground text-xs">{subtext}</p>
+              <Text as="span" muted variant="caption">
+                {subtext}
+              </Text>
             )}
           </div>
         </div>

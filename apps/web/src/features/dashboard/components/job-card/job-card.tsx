@@ -2,6 +2,12 @@
 
 import { Badge } from "@codeforge-v2/ui/components/badge";
 import { Button } from "@codeforge-v2/ui/components/button";
+import {
+  GlassCard,
+  GlassCardFooter,
+} from "@codeforge-v2/ui/components/glass-card";
+import { Heading } from "@codeforge-v2/ui/components/heading";
+import { Text } from "@codeforge-v2/ui/components/text";
 import { TooltipWrapper } from "@codeforge-v2/ui/components/tooltip-wrapper";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import {
@@ -12,7 +18,6 @@ import {
   Sparkles,
 } from "lucide-react";
 import { CompanyAvatar } from "@/shared/components/ui/company-avatar";
-import { GlassCard, GlassCardFooter } from "@/shared/components/ui/glass-card";
 import type { UserJobOffer } from "../../types/dashboard";
 import { DeleteJobButton } from "../delete-job-button";
 import { JobStatusDropdown } from "../job-status-dropdown";
@@ -77,23 +82,27 @@ export function JobCard({ job }: JobCardProps) {
 
           <div className="min-w-0 flex-1 space-y-1 pr-14">
             <TooltipWrapper content={<p className="max-w-xs">{job.title}</p>}>
-              <h3 className="line-clamp-2 cursor-help font-semibold text-base leading-snug tracking-tight">
+              <Heading className="line-clamp-2 cursor-help" level={4}>
                 {job.title}
-              </h3>
+              </Heading>
             </TooltipWrapper>
 
-            <div className="flex items-center gap-2 text-muted-foreground text-sm">
-              <Building2 className="h-3.5 w-3.5 shrink-0" />
-              <span className="truncate">{job.companyName}</span>
+            <div className="flex items-center gap-2">
+              <Building2 className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+              <Text as="span" className="truncate" variant="caption">
+                {job.companyName}
+              </Text>
             </div>
           </div>
         </div>
 
-        <div className="mt-4 flex flex-wrap items-center gap-2 text-muted-foreground text-xs">
+        <div className="mt-4 flex flex-wrap items-center gap-2">
           {job.city && (
-            <span className="flex items-center gap-1 rounded-full bg-muted/50 px-2.5 py-1">
-              <MapPin className="h-3 w-3" />
-              {job.city}
+            <span className="flex items-center gap-1 rounded-sm bg-muted/50 px-2.5 py-1">
+              <MapPin className="h-3 w-3 text-muted-foreground" />
+              <Text as="span" variant="caption">
+                {job.city}
+              </Text>
             </span>
           )}
 
@@ -120,7 +129,7 @@ export function JobCard({ job }: JobCardProps) {
           <div className="mt-4 flex items-center gap-2">
             <div
               className={cn(
-                "flex items-center gap-2 rounded-xl px-3 py-2",
+                "flex items-center gap-2 rounded-sm px-3 py-2",
                 "bg-success/10",
                 "border border-success/20"
               )}
@@ -137,7 +146,7 @@ export function JobCard({ job }: JobCardProps) {
           <div className="flex flex-wrap gap-1.5">
             {visibleTechs.map((tech) => (
               <Badge
-                className="border-0 bg-secondary/80 text-[11px]"
+                className="border-0 bg-secondary/80 font-mono text-[10px] uppercase tracking-widest"
                 key={tech.name}
                 variant="secondary"
               >
@@ -151,7 +160,7 @@ export function JobCard({ job }: JobCardProps) {
                   <div className="flex max-w-sm flex-wrap gap-1">
                     {remainingTechs.map((tech) => (
                       <Badge
-                        className="text-xs"
+                        className="font-mono text-[10px] uppercase tracking-widest"
                         key={tech.name}
                         variant="secondary"
                       >
@@ -162,7 +171,7 @@ export function JobCard({ job }: JobCardProps) {
                 }
               >
                 <Badge
-                  className="cursor-help border-dashed text-[11px]"
+                  className="cursor-help border-dashed font-mono text-[10px] uppercase tracking-widest"
                   variant="outline"
                 >
                   +{remainingCount}
@@ -182,8 +191,9 @@ export function JobCard({ job }: JobCardProps) {
           {jobUrl && (
             <Button
               asChild
-              className={cn("gap-1.5 rounded-xl", "shadow-sm hover:shadow-md")}
+              className="gap-1.5 shadow-sm hover:shadow-md"
               size="sm"
+              variant="dark"
             >
               <a href={jobUrl} rel="noopener noreferrer" target="_blank">
                 <span>Apply</span>

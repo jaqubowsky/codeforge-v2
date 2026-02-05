@@ -1,8 +1,10 @@
 "use client";
 
 import { Button } from "@codeforge-v2/ui/components/button";
+import { Heading } from "@codeforge-v2/ui/components/heading";
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
-import { ArrowRight, LayoutDashboard, Sparkles } from "lucide-react";
+import { ArrowRight, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { useAuthState } from "@/shared/hooks/use-auth-state";
 import { useScrollReveal } from "@/shared/hooks/use-scroll-reveal";
@@ -16,16 +18,12 @@ function CtaButton({
   isAuthenticated: boolean;
 }) {
   if (isLoading) {
-    return <div className="h-11 w-48 animate-pulse rounded-md bg-muted" />;
+    return <div className="h-12 w-52 animate-pulse rounded-md bg-muted" />;
   }
 
   if (isAuthenticated) {
     return (
-      <Button
-        asChild
-        className="gap-2 px-8 shadow-lg shadow-primary/25"
-        size="lg"
-      >
+      <Button asChild className="gap-2 px-8" size="lg" variant="dark">
         <Link href="/dashboard">
           <LayoutDashboard className="h-4 w-4" />
           Go to Dashboard
@@ -35,14 +33,10 @@ function CtaButton({
   }
 
   return (
-    <Button
-      asChild
-      className="gap-2 px-8 shadow-lg shadow-primary/25"
-      size="lg"
-    >
+    <Button asChild className="group gap-2 px-8" size="lg" variant="dark">
       <Link href="/signup">
         {CTA_CONTENT.button}
-        <ArrowRight className="h-4 w-4" />
+        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
       </Link>
     </Button>
   );
@@ -53,29 +47,27 @@ export function LandingCta() {
   const { isAuthenticated, isLoading } = useAuthState();
 
   return (
-    <section className="relative py-24">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_50%,var(--primary)/0.08,transparent)]" />
+    <section className="relative py-28">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,var(--primary)/0.06,transparent)]" />
 
       <div className="container relative px-6">
         <div
           className={cn(
-            "mx-auto max-w-3xl text-center",
+            "mx-auto max-w-2xl text-center",
             "transition-all duration-700",
             isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           )}
           ref={ref}
         >
-          <div className="mb-6 inline-flex items-center justify-center rounded-full border border-primary/20 bg-primary/10 p-3">
-            <Sparkles className="h-6 w-6 text-primary" />
-          </div>
+          <Text as="span" className="mb-6 block" muted variant="mono">
+            Get Started
+          </Text>
 
-          <h2 className="font-bold font-display text-3xl tracking-tight sm:text-4xl lg:text-5xl">
-            {CTA_CONTENT.headline}
-          </h2>
+          <Heading level={2}>{CTA_CONTENT.headline}</Heading>
 
-          <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
+          <Text className="mx-auto mt-6 max-w-lg" variant="lead">
             {CTA_CONTENT.subheadline}
-          </p>
+          </Text>
 
           <div className="mt-10">
             <CtaButton
@@ -85,9 +77,9 @@ export function LandingCta() {
           </div>
 
           {!(isLoading || isAuthenticated) && (
-            <p className="mt-6 text-muted-foreground text-sm">
+            <Text as="span" className="mt-6 block" muted variant="mono-sm">
               No credit card required &middot; Free during launch
-            </p>
+            </Text>
           )}
         </div>
       </div>

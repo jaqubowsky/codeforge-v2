@@ -1,3 +1,5 @@
+import { Heading } from "@codeforge-v2/ui/components/heading";
+import { Text } from "@codeforge-v2/ui/components/text";
 import { Suspense } from "react";
 import { OnboardingWizard } from "@/features/onboarding";
 import { AuthRedirect } from "@/shared/auth/auth-redirect";
@@ -10,19 +12,22 @@ export default function OnboardingPage() {
       </Suspense>
 
       <div className="flex flex-1 flex-col">
-        <header className="border-border/60 border-b bg-card/80 px-4 py-4 backdrop-blur-sm">
+        <header className="border-border/50 border-b bg-card/80 px-6 py-4 backdrop-blur-sm">
           <div className="mx-auto max-w-xl text-center">
-            <h1 className="font-semibold text-foreground text-xl tracking-tight">
-              Complete Your Profile
-            </h1>
-            <p className="mt-1 text-muted-foreground text-sm">
-              Help us match you with the perfect job opportunities
-            </p>
+            <div className="mx-auto mb-3 flex h-8 w-8 items-center justify-center rounded-md bg-foreground">
+              <span className="font-bold font-mono text-background text-xs">
+                L
+              </span>
+            </div>
+            <Heading level={3}>Complete Your Profile</Heading>
+            <Text className="mt-1" variant="mono">
+              Set up your preferences
+            </Text>
           </div>
         </header>
 
         <main className="flex flex-1 flex-col overflow-y-auto">
-          <div className="mx-auto w-full max-w-xl flex-1 px-4 py-6">
+          <div className="mx-auto w-full max-w-xl flex-1 px-6 py-6">
             <OnboardingWizard />
           </div>
         </main>

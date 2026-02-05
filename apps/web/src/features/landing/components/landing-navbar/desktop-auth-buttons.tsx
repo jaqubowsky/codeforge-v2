@@ -19,9 +19,9 @@ export function DesktopAuthButtons({
 
   if (isAuthenticated) {
     return (
-      <Button asChild className="gap-2 shadow-md shadow-primary/20" size="sm">
+      <Button asChild className="gap-2" size="sm" variant="dark">
         <Link href="/dashboard">
-          <LayoutDashboard className="h-4 w-4" />
+          <LayoutDashboard className="h-3.5 w-3.5" />
           Dashboard
         </Link>
       </Button>
@@ -33,7 +33,7 @@ export function DesktopAuthButtons({
       <Button asChild size="sm" variant="ghost">
         <Link href="/login">Log in</Link>
       </Button>
-      <Button asChild className="shadow-md shadow-primary/20" size="sm">
+      <Button asChild size="sm" variant="dark">
         <Link href="/signup">Get Started</Link>
       </Button>
     </>

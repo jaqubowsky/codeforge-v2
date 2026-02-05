@@ -25,7 +25,7 @@ export function ColoredSectionCard({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm",
+        "overflow-hidden rounded-lg border border-border/50 bg-card/80 backdrop-blur-sm",
         className
       )}
     >

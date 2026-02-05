@@ -10,7 +10,7 @@ export function FilterBar({ children, className }: FilterBarProps) {
   return (
     <div
       className={cn(
-        "rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm",
+        "rounded-lg border border-border/50 bg-card/50 backdrop-blur-sm",
         "p-4 shadow-sm",
         className
       )}

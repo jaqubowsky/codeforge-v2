@@ -1,14 +1,12 @@
 "use client";
 
-import { Badge } from "@codeforge-v2/ui/components/badge";
 import { Button } from "@codeforge-v2/ui/components/button";
+import { Heading } from "@codeforge-v2/ui/components/heading";
+import { NoiseOverlay } from "@codeforge-v2/ui/components/noise-overlay";
+import { StatusIndicator } from "@codeforge-v2/ui/components/status-indicator";
+import { Text } from "@codeforge-v2/ui/components/text";
 import { cn } from "@codeforge-v2/ui/lib/utils";
-import {
-  ArrowRight,
-  ChevronDown,
-  LayoutDashboard,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight, ChevronDown, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { useAuthState } from "@/shared/hooks/use-auth-state";
 import { HERO_CONTENT } from "../../constants/content";
@@ -24,12 +22,12 @@ function HeroPrimaryButton({
   isAuthenticated: boolean;
 }) {
   if (isLoading) {
-    return <div className="h-11 w-44 animate-pulse rounded-md bg-muted" />;
+    return <div className="h-12 w-48 animate-pulse rounded-md bg-muted" />;
   }
 
   if (isAuthenticated) {
     return (
-      <Button asChild className="gap-2 shadow-lg shadow-primary/25" size="lg">
+      <Button asChild className="gap-2 px-6" size="lg" variant="dark">
         <Link href="/dashboard">
           <LayoutDashboard className="h-4 w-4" />
           Go to Dashboard
@@ -39,10 +37,10 @@ function HeroPrimaryButton({
   }
 
   return (
-    <Button asChild className="gap-2 shadow-lg shadow-primary/25" size="lg">
+    <Button asChild className="group gap-2 px-6" size="lg" variant="dark">
       <Link href="/signup">
         {HERO_CONTENT.ctaPrimary}
-        <ArrowRight className="h-4 w-4" />
+        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
       </Link>
     </Button>
   );
@@ -53,30 +51,39 @@ export function LandingHero() {
 
   return (
     <section className="relative overflow-hidden pt-16 lg:min-h-screen">
-      <div className="absolute inset-0 bg-muted/20" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,var(--primary)/0.12,transparent)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_80%_at_100%_50%,var(--primary)/0.05,transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_-10%,var(--primary)/0.08,transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_100%_200px,var(--primary)/0.04,transparent)]" />
 
-      <div className="container relative px-6 py-20 lg:py-28">
-        <div className="flex flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-16">
-          <div className="flex-1 space-y-8 text-center lg:text-left">
+      <NoiseOverlay />
+
+      <div className="absolute top-24 left-12 hidden h-px w-32 bg-gradient-to-r from-transparent via-border to-transparent lg:block" />
+      <div className="absolute top-48 right-16 hidden h-32 w-px bg-gradient-to-b from-transparent via-border to-transparent lg:block" />
+
+      <div className="container relative px-6 py-20 lg:py-32">
+        <div className="flex flex-col items-center gap-16 lg:flex-row lg:items-start lg:gap-20">
+          <div className="flex-1 space-y-10 text-center lg:text-left">
             <div className="space-y-6">
-              <Badge className="rounded-full px-4 py-1.5" variant="secondary">
-                <Sparkles className="mr-1.5 h-3.5 w-3.5 text-primary" />
+              <StatusIndicator variant="success">
                 {HERO_CONTENT.badge}
-              </Badge>
+              </StatusIndicator>
 
-              <h1 className="font-bold font-display text-4xl tracking-tight sm:text-5xl lg:text-6xl">
-                {HERO_CONTENT.headline}
-                <br />
-                <span className="bg-linear-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                  {HERO_CONTENT.headlineAccent}
+              <Heading level={1}>
+                <span className="block">{HERO_CONTENT.headline}</span>
+                <span className="relative mt-2 block">
+                  <Text
+                    as="span"
+                    className="relative z-10 text-[inherit]"
+                    variant="gradient"
+                  >
+                    {HERO_CONTENT.headlineAccent}
+                  </Text>
+                  <span className="absolute -bottom-2 left-0 hidden h-3 w-full bg-primary/5 lg:block" />
                 </span>
-              </h1>
+              </Heading>
 
-              <p className="mx-auto max-w-lg text-lg text-muted-foreground leading-relaxed lg:mx-0">
+              <Text className="mx-auto max-w-lg lg:mx-0" variant="lead">
                 {HERO_CONTENT.subheadline}
-              </p>
+              </Text>
             </div>
 
             <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
@@ -84,22 +91,27 @@ export function LandingHero() {
                 isAuthenticated={isAuthenticated}
                 isLoading={isLoading}
               />
-              <Button asChild className="gap-2" size="lg" variant="outline">
+              <Button
+                asChild
+                className="gap-2 font-mono text-xs uppercase tracking-widest"
+                size="lg"
+                variant="ghost"
+              >
                 <Link href="#how-it-works">
                   {HERO_CONTENT.ctaSecondary}
-                  <ChevronDown className="h-4 w-4" />
+                  <ChevronDown className="h-3.5 w-3.5" />
                 </Link>
               </Button>
             </div>
 
-            <div className="flex flex-col items-center gap-4 pt-4 sm:flex-row sm:gap-6 lg:justify-start">
-              <div className="flex -space-x-2">
+            <div className="flex flex-col items-center gap-4 border-border/30 border-t pt-8 sm:flex-row sm:gap-6 lg:justify-start">
+              <div className="flex -space-x-2.5">
                 {SOCIAL_PROOF_INITIALS.map((initials, i) => (
                   <div
                     className={cn(
-                      "flex h-8 w-8 items-center justify-center rounded-full",
-                      "border-2 border-background bg-muted font-medium text-muted-foreground text-xs",
-                      "transition-transform duration-200 hover:-translate-y-1"
+                      "flex h-9 w-9 items-center justify-center rounded-md",
+                      "border border-border/50 bg-muted font-mono text-[10px] text-muted-foreground",
+                      "transition-all duration-300 hover:-translate-y-1 hover:border-foreground/20"
                     )}
                     key={initials}
                     style={{ zIndex: SOCIAL_PROOF_INITIALS.length - i }}
@@ -108,14 +120,14 @@ export function LandingHero() {
                   </div>
                 ))}
               </div>
-              <p className="text-muted-foreground text-sm">
+              <Text as="span" variant="mono">
                 <span className="font-semibold text-foreground">500+</span>{" "}
-                developers already finding better jobs
-              </p>
+                developers matched
+              </Text>
             </div>
           </div>
 
-          <div className="relative w-full flex-1">
+          <div className="relative w-full flex-1 lg:mt-8">
             <DashboardMockup />
           </div>
         </div>
@@ -123,14 +135,13 @@ export function LandingHero() {
 
       <div className="absolute right-1/2 bottom-8 hidden translate-x-1/2 lg:block">
         <Link
-          className={cn(
-            "flex flex-col items-center gap-2 text-muted-foreground text-sm",
-            "transition-colors hover:text-foreground"
-          )}
+          className="flex flex-col items-center gap-2 transition-colors hover:text-foreground"
           href="#benefits"
         >
-          <span>Scroll to explore</span>
-          <ChevronDown className="h-5 w-5 animate-bounce" />
+          <Text as="span" muted variant="mono-sm">
+            Scroll
+          </Text>
+          <ChevronDown className="h-4 w-4 animate-bounce text-muted-foreground" />
         </Link>
       </div>
     </section>
