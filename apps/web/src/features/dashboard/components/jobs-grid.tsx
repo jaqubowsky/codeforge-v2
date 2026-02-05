@@ -14,7 +14,7 @@ export function JobsGrid({ jobs }: JobsGridProps) {
   }
 
   return (
-    <div className={`grid ${GRID_COLUMNS} gap-6`}>
+    <div className={`grid ${GRID_COLUMNS} gap-6 pt-2`}>
       {jobs.map((job) => (
         <JobCard job={job} key={job.id} />
       ))}

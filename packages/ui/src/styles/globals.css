@@ -5,10 +5,17 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@font-face {
+  font-family: "Satoshi";
+  src: url("https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap");
+  font-display: swap;
+}
+
 @theme {
   --font-sans:
-    "Inter", "Geist", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "DM Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: "Satoshi", "DM Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
 html,
@@ -58,6 +65,18 @@ body {
   --chart-3: oklch(0.5 0.12 140);
   --chart-4: oklch(0.65 0.16 85);
   --chart-5: oklch(0.6 0.18 40);
+
+  /* Semantic status colors */
+  --success: oklch(0.55 0.15 145);
+  --success-foreground: oklch(0.99 0 0);
+  --warning: oklch(0.75 0.15 85);
+  --warning-foreground: oklch(0.25 0.05 85);
+  --info: oklch(0.55 0.15 230);
+  --info-foreground: oklch(0.99 0 0);
+
+  /* Surface variants */
+  --surface-elevated: oklch(1 0 0);
+  --surface-sunken: oklch(0.97 0.003 250);
 }
 
 .dark {
@@ -96,6 +115,18 @@ body {
   --chart-3: oklch(0.7 0.18 140);
   --chart-4: oklch(0.7 0.16 85);
   --chart-5: oklch(0.65 0.2 40);
+
+  /* Semantic status colors */
+  --success: oklch(0.65 0.18 145);
+  --success-foreground: oklch(0.15 0.02 145);
+  --warning: oklch(0.8 0.15 85);
+  --warning-foreground: oklch(0.2 0.05 85);
+  --info: oklch(0.65 0.18 230);
+  --info-foreground: oklch(0.15 0.02 230);
+
+  /* Surface variants */
+  --surface-elevated: oklch(0.2 0.01 250);
+  --surface-sunken: oklch(0.14 0.01 250);
 }
 
 @theme inline {
@@ -126,6 +157,14 @@ body {
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-sunken: var(--surface-sunken);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);

@@ -64,20 +64,6 @@ export type SortOption =
 
 export type Currency = "PLN" | "EUR" | "USD" | "GBP";
 
-export interface SalaryRangeFilter {
-  min: number;
-  max: number;
-  currency: Currency;
-}
-
-export interface FilterState {
-  search: string;
-  status: UserOfferStatus | "all";
-  sort: SortOption;
-  showOnlyNew: boolean;
-  salaryRange: SalaryRangeFilter;
-}
-
 export interface MatchJobsData {
   newMatchesCount: number;
 }
@@ -85,8 +71,4 @@ export interface MatchJobsData {
 export interface ScrapeAndMatchData {
   newJobsCount: number;
   scrapedCount?: number;
-}
-
-export interface TriggerMatchData {
-  newJobsCount: number;
 }

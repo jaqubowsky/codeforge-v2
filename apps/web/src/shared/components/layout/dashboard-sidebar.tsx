@@ -5,6 +5,7 @@ import { LayoutDashboard, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SignOutButton } from "@/features/auth";
+import { ModeToggle } from "@/shared/ui/theme-toggle";
 
 const NAV_ITEMS = [
   { href: "/dashboard" as const, label: "Dashboard", icon: LayoutDashboard },
@@ -55,8 +56,9 @@ export function DashboardSidebar({ className }: DashboardSidebarProps) {
         </ul>
       </nav>
 
-      <div className="border-t p-4">
+      <div className="flex items-center justify-between border-t p-4">
         <SignOutButton />
+        <ModeToggle />
       </div>
     </aside>
   );

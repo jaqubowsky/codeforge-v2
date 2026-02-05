@@ -1,33 +1,33 @@
 export const SECTION_COLORS = {
   blue: {
-    border: "border-l-blue-500",
-    gradient: "from-blue-50/50 dark:from-blue-950/20",
-    iconBg: "bg-blue-600 dark:bg-blue-500",
-    iconText: "text-white",
+    border: "border-l-primary",
+    gradient: "from-primary/5 to-transparent",
+    iconBg: "bg-primary",
+    iconText: "text-primary-foreground",
   },
   emerald: {
-    border: "border-l-emerald-500",
-    gradient: "from-emerald-50/50 dark:from-emerald-950/20",
-    iconBg: "bg-emerald-600 dark:bg-emerald-500",
-    iconText: "text-white",
+    border: "border-l-success",
+    gradient: "from-success/5 to-transparent",
+    iconBg: "bg-success",
+    iconText: "text-success-foreground",
   },
   violet: {
-    border: "border-l-violet-500",
-    gradient: "from-violet-50/50 dark:from-violet-950/20",
-    iconBg: "bg-violet-600 dark:bg-violet-500",
-    iconText: "text-white",
+    border: "border-l-accent",
+    gradient: "from-accent/10 to-transparent",
+    iconBg: "bg-accent",
+    iconText: "text-accent-foreground",
   },
   amber: {
-    border: "border-l-amber-500",
-    gradient: "from-amber-50/50 dark:from-amber-950/20",
-    iconBg: "bg-amber-600 dark:bg-amber-500",
-    iconText: "text-white",
+    border: "border-l-warning",
+    gradient: "from-warning/5 to-transparent",
+    iconBg: "bg-warning",
+    iconText: "text-warning-foreground",
   },
   rose: {
-    border: "border-l-rose-500",
-    gradient: "from-rose-50/50 dark:from-rose-950/20",
-    iconBg: "bg-rose-600 dark:bg-rose-500",
-    iconText: "text-white",
+    border: "border-l-destructive",
+    gradient: "from-destructive/5 to-transparent",
+    iconBg: "bg-destructive",
+    iconText: "text-destructive-foreground",
   },
 } as const;
 
@@ -46,49 +46,88 @@ export const FORM_COLORS = {
   },
   selectable: {
     default: "border-border hover:border-border/80 bg-background",
-    selected: "border-primary bg-primary/5 dark:bg-primary/10",
+    selected: "border-primary bg-primary/5",
   },
 } as const;
 
 export const WIZARD_COLORS = {
   step: {
-    completed: "bg-emerald-500 text-white shadow-sm",
+    completed: "bg-success text-success-foreground shadow-sm",
     current:
       "bg-primary text-primary-foreground shadow-md ring-4 ring-primary/20",
     upcoming: "bg-muted text-muted-foreground",
   },
   connector: {
-    completed: "bg-emerald-500",
+    completed: "bg-success",
     upcoming: "bg-border",
   },
   label: {
-    completed: "text-emerald-600 dark:text-emerald-400",
+    completed: "text-success",
     current: "font-medium text-foreground",
     upcoming: "text-muted-foreground",
   },
   navigation: {
     border: "border-border",
-    complete: "bg-emerald-600 hover:bg-emerald-700 text-white",
+    complete: "bg-success hover:bg-success/90 text-success-foreground",
   },
 } as const;
 
 export const MATCH_SCORE_COLORS = {
-  excellent: "bg-green-500",
-  good: "bg-blue-500",
-  fair: "bg-yellow-500",
-  poor: "bg-orange-500",
+  excellent: "bg-success",
+  good: "bg-info",
+  fair: "bg-warning",
+  poor: "bg-destructive/70",
 } as const;
 
-export const AI_COLORS = {
-  icon: "text-primary",
-  badge: "bg-primary text-primary-foreground hover:bg-primary/90",
-  gradient: "bg-gradient-to-r from-primary to-primary/80",
-  button: "bg-primary hover:bg-primary/90",
+export const STATUS_INTENT = {
+  saved: {
+    bg: "bg-info/10",
+    text: "text-info",
+    border: "border-info/30",
+    solid: "bg-info text-info-foreground",
+  },
+  applied: {
+    bg: "bg-success/10",
+    text: "text-success",
+    border: "border-success/30",
+    solid: "bg-success text-success-foreground",
+  },
+  interviewing: {
+    bg: "bg-primary/10",
+    text: "text-primary",
+    border: "border-primary/30",
+    solid: "bg-primary text-primary-foreground",
+  },
+  rejected: {
+    bg: "bg-destructive/10",
+    text: "text-destructive",
+    border: "border-destructive/30",
+    solid: "bg-destructive text-destructive-foreground",
+  },
+  offer_received: {
+    bg: "bg-warning/10",
+    text: "text-warning",
+    border: "border-warning/30",
+    solid: "bg-warning text-warning-foreground",
+  },
+  deleted: {
+    bg: "bg-muted",
+    text: "text-muted-foreground",
+    border: "border-border",
+    solid: "bg-muted text-muted-foreground",
+  },
 } as const;
 
-export const SURFACE_COLORS = {
-  subtle: "bg-muted/50 dark:bg-muted/20",
-  card: "bg-card",
+export const FILTER_BUTTON_STYLES = {
+  base: [
+    "inline-flex items-center justify-center gap-1.5",
+    "rounded-full border px-4 py-2",
+    "font-medium text-sm transition-all duration-200",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+  ].join(" "),
+  inactive:
+    "bg-transparent border-border/60 text-muted-foreground hover:border-border hover:text-foreground",
+  activeDefault: "bg-foreground text-background border-foreground shadow-md",
 } as const;
 
 export type SectionColor = keyof typeof SECTION_COLORS;

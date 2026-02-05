@@ -4,8 +4,7 @@ import type { Currency, SortOption } from "../types";
 import { calculateNewJobsCount } from "../utils/calculate-new-jobs-count";
 import { calculateStatusCounts } from "../utils/calculate-status-counts";
 import { filterJobs } from "../utils/filter-jobs";
-import { DashboardHeader } from "./dashboard-header";
-import { DashboardStats } from "./dashboard-stats";
+import { DashboardHero } from "./dashboard-hero";
 import { JobsGrid } from "./jobs-grid";
 import { SearchFilter } from "./search-filter";
 
@@ -51,16 +50,23 @@ export async function DashboardContent({
   });
 
   return (
-    <div className="container space-y-8 px-6 py-8">
-      <DashboardHeader />
-      <DashboardStats lastRun={lastRun} />
-      <SearchFilter
-        currencies={salaryMetadata.currencies}
-        maxSalary={salaryMetadata.maxSalary}
+    <div className="min-h-screen">
+      <DashboardHero
+        lastRun={lastRun}
         newJobsCount={newJobsCount}
         statusCounts={statusCounts}
+        totalJobs={jobs.length}
       />
-      <JobsGrid jobs={filteredJobs} />
+
+      <div className="container space-y-8 px-6 py-8">
+        <SearchFilter
+          currencies={salaryMetadata.currencies}
+          maxSalary={salaryMetadata.maxSalary}
+          newJobsCount={newJobsCount}
+          statusCounts={statusCounts}
+        />
+        <JobsGrid jobs={filteredJobs} />
+      </div>
     </div>
   );
 }

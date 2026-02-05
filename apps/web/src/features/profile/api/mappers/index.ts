@@ -13,10 +13,13 @@ type ProfileDTO = Pick<
 >;
 
 export function mapProfile(dto: ProfileDTO): ProfileData {
+  const experienceLevel = dto.experience_level ?? [];
+  const preferredLocations = dto.preferred_locations ?? [];
+
   return {
     jobTitles: dto.job_titles ?? [],
-    experienceLevel: dto.experience_level ?? [],
-    preferredLocations: dto.preferred_locations ?? [],
+    experienceLevel,
+    preferredLocations,
     skills: dto.skills ?? [],
     idealRoleDescription: dto.ideal_role_description ?? "",
   };

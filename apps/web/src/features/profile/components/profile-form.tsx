@@ -6,7 +6,6 @@ import { useProfileForm } from "../hooks/use-profile-form";
 import type { ProfileData } from "../types";
 import { ProfileBasicInfoSection } from "./profile-basic-info-section";
 import { ProfileCareerGoalsSection } from "./profile-career-goals-section";
-import { ProfileHeader } from "./profile-header";
 import { ProfileSkillsSection } from "./profile-skills-section";
 
 interface ProfileFormProps {
@@ -18,26 +17,22 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
     useProfileForm({ initialData });
 
   return (
-    <div className="space-y-8">
-      <ProfileHeader />
+    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+      <ProfileBasicInfoSection control={control} errors={errors} />
+      <ProfileSkillsSection control={control} errors={errors} />
+      <ProfileCareerGoalsSection control={control} errors={errors} />
 
-      <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-        <ProfileBasicInfoSection control={control} errors={errors} />
-        <ProfileSkillsSection control={control} errors={errors} />
-        <ProfileCareerGoalsSection control={control} errors={errors} />
-
-        <div className="flex flex-col gap-4 rounded-lg border bg-muted/30 p-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3 text-muted-foreground text-sm">
-            <Sparkles className="h-4 w-4 shrink-0 text-primary" />
-            <span>
-              Changes will regenerate your AI profile for better job matching
-            </span>
-          </div>
-          <Button disabled={isSubmitting} size="lg" type="submit">
-            {isSubmitting ? "Saving..." : "Save Changes"}
-          </Button>
+      <div className="flex flex-col gap-4 rounded-lg border bg-muted/30 p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-3 text-muted-foreground text-sm">
+          <Sparkles className="h-4 w-4 shrink-0 text-primary" />
+          <span>
+            Changes will regenerate your AI profile for better job matching
+          </span>
         </div>
-      </form>
-    </div>
+        <Button disabled={isSubmitting} size="lg" type="submit">
+          {isSubmitting ? "Saving..." : "Save Changes"}
+        </Button>
+      </div>
+    </form>
   );
 }

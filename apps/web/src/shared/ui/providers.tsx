@@ -12,7 +12,16 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       enableSystem
     >
       {children}
-      <Toaster richColors />
+      <Toaster
+        closeButton
+        duration={4000}
+        expand={false}
+        gap={8}
+        offset={16}
+        position="bottom-right"
+        richColors
+        visibleToasts={4}
+      />
     </ThemeProvider>
   );
 }

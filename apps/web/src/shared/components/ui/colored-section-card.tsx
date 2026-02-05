@@ -1,8 +1,3 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-} from "@codeforge-v2/ui/components/card";
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import type { LucideIcon } from "lucide-react";
 import type { SectionColor } from "@/shared/lib/design-tokens";
@@ -28,33 +23,28 @@ export function ColoredSectionCard({
   const colorConfig = SECTION_COLORS[color];
 
   return (
-    <Card
+    <div
       className={cn(
-        "overflow-hidden border-l-4",
-        colorConfig.border,
+        "overflow-hidden rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm",
         className
       )}
     >
-      <CardHeader
-        className={cn("bg-gradient-to-r to-transparent", colorConfig.gradient)}
-      >
-        <div className="flex items-center gap-3">
-          <div
-            className={cn(
-              "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg",
-              colorConfig.iconBg,
-              colorConfig.iconText
-            )}
-          >
-            <Icon className="h-4 w-4" />
-          </div>
-          <div className="space-y-0.5">
-            <h2 className="font-semibold text-base">{title}</h2>
-            <p className="text-muted-foreground text-xs">{description}</p>
-          </div>
+      <div className="flex items-center gap-3 border-border/50 border-b px-6 py-4">
+        <div
+          className={cn(
+            "flex h-9 w-9 shrink-0 items-center justify-center rounded-lg",
+            colorConfig.iconBg,
+            colorConfig.iconText
+          )}
+        >
+          <Icon className="h-4 w-4" />
         </div>
-      </CardHeader>
-      <CardContent className="pt-5">{children}</CardContent>
-    </Card>
+        <div className="space-y-0.5">
+          <h2 className="font-semibold text-base">{title}</h2>
+          <p className="text-muted-foreground text-xs">{description}</p>
+        </div>
+      </div>
+      <div className="p-6">{children}</div>
+    </div>
   );
 }

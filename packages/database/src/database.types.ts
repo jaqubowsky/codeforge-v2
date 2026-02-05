@@ -250,13 +250,17 @@ export interface Database {
         Row: {
           created_at: string;
           embedding: string | null;
-          experience_level: string[] | null;
+          experience_level:
+            | Database["public"]["Enums"]["profile_experience_level"][]
+            | null;
           id: string;
           ideal_role_description: string | null;
           job_title: string | null;
           job_titles: string[] | null;
           onboarding_completed: boolean;
-          preferred_locations: string[] | null;
+          preferred_locations:
+            | Database["public"]["Enums"]["profile_work_location"][]
+            | null;
           skills: string[] | null;
           updated_at: string;
           years_experience: number | null;
@@ -264,13 +268,17 @@ export interface Database {
         Insert: {
           created_at?: string;
           embedding?: string | null;
-          experience_level?: string[] | null;
+          experience_level?:
+            | Database["public"]["Enums"]["profile_experience_level"][]
+            | null;
           id: string;
           ideal_role_description?: string | null;
           job_title?: string | null;
           job_titles?: string[] | null;
           onboarding_completed?: boolean;
-          preferred_locations?: string[] | null;
+          preferred_locations?:
+            | Database["public"]["Enums"]["profile_work_location"][]
+            | null;
           skills?: string[] | null;
           updated_at?: string;
           years_experience?: number | null;
@@ -278,13 +286,17 @@ export interface Database {
         Update: {
           created_at?: string;
           embedding?: string | null;
-          experience_level?: string[] | null;
+          experience_level?:
+            | Database["public"]["Enums"]["profile_experience_level"][]
+            | null;
           id?: string;
           ideal_role_description?: string | null;
           job_title?: string | null;
           job_titles?: string[] | null;
           onboarding_completed?: boolean;
-          preferred_locations?: string[] | null;
+          preferred_locations?:
+            | Database["public"]["Enums"]["profile_work_location"][]
+            | null;
           skills?: string[] | null;
           updated_at?: string;
           years_experience?: number | null;
@@ -404,8 +416,11 @@ export interface Database {
         | "applied"
         | "interviewing"
         | "rejected"
-        | "offer_received";
+        | "offer_received"
+        | "deleted";
       match_run_status: "running" | "completed" | "failed";
+      profile_experience_level: "junior" | "mid" | "senior" | "c-level";
+      profile_work_location: "remote" | "hybrid" | "office";
       run_status_enum: "running" | "completed" | "failed";
       salary_period_enum: "day" | "month" | "hour" | "year";
       skill_level_enum: "required" | "nice_to_have";
@@ -562,8 +577,11 @@ export const Constants = {
         "interviewing",
         "rejected",
         "offer_received",
+        "deleted",
       ],
       match_run_status: ["running", "completed", "failed"],
+      profile_experience_level: ["junior", "mid", "senior", "c-level"],
+      profile_work_location: ["remote", "hybrid", "office"],
       run_status_enum: ["running", "completed", "failed"],
       salary_period_enum: ["day", "month", "hour", "year"],
       skill_level_enum: ["required", "nice_to_have"],

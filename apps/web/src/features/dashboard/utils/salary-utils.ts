@@ -22,11 +22,3 @@ export function formatSalaryRange(
 
   return `${formatNumber(min)} - ${formatNumber(max)} ${currency}`;
 }
-
-export function isValidSalaryRange(
-  min: number,
-  max: number,
-  maxLimit: number
-): boolean {
-  return min >= 0 && max > min && max <= maxLimit;
-}

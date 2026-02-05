@@ -25,8 +25,6 @@ export const SORT_OPTIONS: Array<{
   { value: "salary_asc", label: "Lowest Salary" },
 ];
 
-export const CURRENCY_OPTIONS: Currency[] = ["PLN", "EUR", "USD", "GBP"];
-
 export const SALARY_MIN = 0;
 export const SALARY_MAX = 50_000;
 export const SALARY_STEP = 500;

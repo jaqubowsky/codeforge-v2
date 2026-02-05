@@ -1,15 +1,22 @@
 "use client";
 
 import { Button } from "@codeforge-v2/ui/components/button";
+import { cn } from "@codeforge-v2/ui/lib/utils";
 import { Clock, Loader2, Play } from "lucide-react";
 import { useRunNow } from "../hooks/use-run-now";
 
-function getButtonContent(isLoading: boolean, isPending: boolean) {
+function ButtonContent({
+  isLoading,
+  isPending,
+}: {
+  isLoading: boolean;
+  isPending: boolean;
+}) {
   if (isLoading) {
     return (
       <>
-        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-        Loading...
+        <Loader2 className="h-5 w-5 animate-spin" />
+        <span>Loading...</span>
       </>
     );
   }
@@ -17,38 +24,65 @@ function getButtonContent(isLoading: boolean, isPending: boolean) {
   if (isPending) {
     return (
       <>
-        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-        Finding Jobs...
+        <Loader2 className="h-5 w-5 animate-spin" />
+        <span>Finding Jobs...</span>
       </>
     );
   }
 
   return (
     <>
-      <Play className="mr-2 h-4 w-4" />
-      Run Now
+      <Play className="h-5 w-5" />
+      <span>Scan for Jobs</span>
     </>
   );
 }
 
-export function RunNowButton() {
+interface RunNowButtonProps {
+  variant?: "default" | "hero";
+}
+
+export function RunNowButton({ variant = "default" }: RunNowButtonProps) {
   const { isPending, isLoading, isRateLimited, minutesRemaining, handleRun } =
     useRunNow();
 
   const isDisabled = isLoading || isPending || isRateLimited;
 
+  const isHero = variant === "hero";
+
   return (
-    <div className="flex flex-col items-end gap-1">
-      <Button disabled={isDisabled} onClick={handleRun} size="lg">
-        {getButtonContent(isLoading, isPending)}
+    <div
+      className={cn(
+        "flex flex-col gap-2",
+        isHero ? "items-center" : "items-end"
+      )}
+    >
+      <Button
+        className={cn(
+          "gap-2.5 font-semibold",
+          isHero && "h-14 px-8 text-base shadow-lg",
+          isDisabled && "opacity-70"
+        )}
+        disabled={isDisabled}
+        onClick={handleRun}
+        size="lg"
+      >
+        <ButtonContent isLoading={isLoading} isPending={isPending} />
       </Button>
 
-      <p className="flex h-4 items-center gap-1 text-muted-foreground text-xs">
-        {isRateLimited && minutesRemaining !== null && (
+      <p
+        className={cn(
+          "flex h-5 items-center gap-1.5 text-xs",
+          isRateLimited ? "text-warning" : "text-muted-foreground"
+        )}
+      >
+        {isRateLimited && minutesRemaining !== null ? (
           <>
             <Clock className="h-3 w-3" />
-            Available in {minutesRemaining} min
+            <span>Available in {minutesRemaining} min</span>
           </>
+        ) : (
+          <span className="opacity-60">AI-powered job matching</span>
         )}
       </p>
     </div>

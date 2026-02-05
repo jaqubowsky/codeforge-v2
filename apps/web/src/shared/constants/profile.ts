@@ -1,4 +1,4 @@
-export type ExperienceLevel = "junior" | "mid" | "senior" | "c-level";
+type ExperienceLevel = "junior" | "mid" | "senior" | "c-level";
 
 export const EXPERIENCE_LEVEL_OPTIONS: Array<{
   value: ExperienceLevel;
@@ -27,7 +27,7 @@ export const EXPERIENCE_LEVEL_OPTIONS: Array<{
   },
 ] as const;
 
-export type WorkLocation = "remote" | "hybrid" | "office";
+type WorkLocation = "remote" | "hybrid" | "office";
 
 export const WORK_LOCATION_OPTIONS: Array<{
   value: WorkLocation;
