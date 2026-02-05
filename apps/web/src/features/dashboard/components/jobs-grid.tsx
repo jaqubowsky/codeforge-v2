@@ -1,4 +1,4 @@
-import type { UserJobOffer } from "../types";
+import type { UserJobOffer } from "../types/dashboard";
 import { JobCard } from "./job-card";
 import { JobsEmptyState } from "./jobs-empty-state";
 

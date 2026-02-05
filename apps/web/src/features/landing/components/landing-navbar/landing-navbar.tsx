@@ -6,10 +6,10 @@ import Link from "next/link";
 import { useAuthState } from "@/shared/hooks/use-auth-state";
 import { ModeToggle } from "@/shared/ui/theme-toggle";
 import { NAV_LINKS } from "../../constants/content";
-import { useMobileMenu } from "../../hooks/use-mobile-menu";
-import { useNavbarScroll } from "../../hooks/use-navbar-scroll";
 import { DesktopAuthButtons } from "./desktop-auth-buttons";
 import { MobileAuthButtons } from "./mobile-auth-buttons";
+import { useMobileMenu } from "./use-mobile-menu";
+import { useNavbarScroll } from "./use-navbar-scroll";
 
 export function LandingNavbar() {
   const isScrolled = useNavbarScroll();

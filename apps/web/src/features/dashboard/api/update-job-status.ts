@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
-import type { UserOfferStatus } from "../types";
+import type { UserOfferStatus } from "../types/dashboard";
 
 export async function updateJobStatus(
   offerId: number,

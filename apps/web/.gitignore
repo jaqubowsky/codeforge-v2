@@ -11,6 +11,9 @@
 # Testing
 /coverage
 
+# AI
+.claude
+
 # Build outputs
 /.next/
 /out/

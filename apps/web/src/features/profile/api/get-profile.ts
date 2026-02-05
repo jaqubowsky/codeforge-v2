@@ -3,8 +3,8 @@
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
-import type { ProfileData } from "../types";
-import { mapProfile } from "./mappers";
+import type { ProfileData } from "../types/profile";
+import { mapProfile } from "./mappers/profile";
 
 export async function getProfile(): Promise<Result<ProfileData>> {
   const supabase = await createClient();

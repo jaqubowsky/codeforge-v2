@@ -5,7 +5,7 @@ import type { Control, FieldErrors } from "react-hook-form";
 import { SkillsFields } from "@/shared/components/profile-fields/skills-fields";
 import { ColoredSectionCard } from "@/shared/components/ui/colored-section-card";
 import { useTechnologies } from "@/shared/hooks/use-technologies";
-import type { ProfileFormData } from "../schemas";
+import type { ProfileFormData } from "../schemas/profile";
 
 interface ProfileSkillsSectionProps {
   control: Control<ProfileFormData>;

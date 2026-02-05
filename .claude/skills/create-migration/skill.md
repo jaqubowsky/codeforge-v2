@@ -1,7 +1,9 @@
 ---
 name: create-migration
-description: Creates a new Supabase migration file with proper naming and structure. Use when adding database schema changes, tables, indexes, or RLS policies.
+description: Creates Supabase migration files with proper naming, structure, and best practices. Use when (1) user wants to create a new database migration, (2) adding/modifying tables, columns, or constraints, (3) adding indexes for performance, (4) setting up Row Level Security (RLS) policies, (5) creating triggers or functions, (6) any database schema changes. Example requests include "create migration", "add table for bookmarks", "add column to users", "set up RLS", "create database trigger".
 ---
+
+# Database Migration
 
 When creating a migration:
 

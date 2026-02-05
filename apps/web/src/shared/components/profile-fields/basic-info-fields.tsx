@@ -1,7 +1,7 @@
 "use client";
 
 import type { Control, FieldErrors } from "react-hook-form";
-import type { ProfileFormData } from "@/features/profile/schemas";
+import type { ProfileFormData } from "@/features/profile/schemas/profile";
 import { FormSection } from "@/shared/components/form";
 import { ExperienceLevelFields } from "./experience-level-fields";
 import { LocationPreferenceFields } from "./location-preference-fields";

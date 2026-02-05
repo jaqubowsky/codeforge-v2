@@ -4,7 +4,7 @@ import { embeddings } from "@codeforge-v2/embeddings";
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
-import type { OnboardingFormData } from "../schemas";
+import type { OnboardingFormData } from "../schemas/onboarding";
 
 export async function completeOnboarding(
   data: OnboardingFormData

@@ -3,8 +3,8 @@
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
-import type { UserJobOffer, UserOfferStatus } from "../types";
-import { mapUserJobOffer } from "./mappers";
+import type { UserJobOffer, UserOfferStatus } from "../types/dashboard";
+import { mapUserJobOffer } from "./mappers/dashboard";
 
 const DEFAULT_JOB_LIMIT = 20;
 

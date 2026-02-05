@@ -3,7 +3,7 @@
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
-import type { Currency, SalaryFiltersMetadata } from "../types";
+import type { Currency, SalaryFiltersMetadata } from "../types/dashboard";
 
 const VALID_CURRENCIES: Currency[] = ["PLN", "EUR", "USD", "GBP"];
 

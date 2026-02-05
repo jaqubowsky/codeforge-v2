@@ -1,8 +1,13 @@
 "use client";
 
 import { Children, isValidElement, useCallback, useState } from "react";
-import type { WizardStepProps } from "./types";
 import { WizardContext } from "./wizard-context";
+
+interface WizardStepProps {
+  name: string;
+  children: React.ReactNode;
+  validate?: () => Promise<boolean> | boolean;
+}
 
 interface WizardProps {
   children: React.ReactNode;

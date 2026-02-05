@@ -4,7 +4,7 @@ import type { Database } from "@codeforge-v2/database";
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
-import type { MatchJobsData } from "../types";
+import type { MatchJobsData } from "../types/dashboard";
 
 type UserOfferInsert = Database["public"]["Tables"]["user_offers"]["Insert"];
 

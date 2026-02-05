@@ -1,121 +1,125 @@
 # Database Package - CLAUDE.md
 
-Supabase client, queries, and generated TypeScript types.
+Supabase client, queries, and auto-generated TypeScript types for the Codeforge-v2 monorepo.
 
 ## Commands
 
 ```bash
-pnpm build        # Generate TypeScript types from Supabase schema
-pnpm check-types  # TypeScript validation
+pnpm build              # Compile TypeScript to dist/
+pnpm check-types        # TypeScript validation
+pnpm start              # Start local Supabase instance
+pnpm db-reset           # Reset database, run migrations, regenerate types
+pnpm generate-api-types # Regenerate database.types.ts from schema
 ```
 
 ## Package Structure
 
 ```
 src/
-├── client.ts          # Supabase clients (client & adminClient)
-├── queries.ts         # Database query functions
+├── client.ts          # Supabase clients (adminClient)
+├── queries.ts         # Pre-built query functions using adminClient
 ├── env.ts             # Environment variable validation (Zod)
-├── database.types.ts  # Auto-generated from Supabase schema
-└── index.ts           # Public exports
+├── database.types.ts  # Auto-generated types - NEVER EDIT MANUALLY
+└── index.ts           # Public exports: adminClient, types, queries
 ```
 
-## Client vs AdminClient - CRITICAL
-
-**Use `client` for**:
-- User-scoped queries (respects RLS policies)
-- Client-side operations
-- Reading data visible to current user
-
-**Use `adminClient` for**:
-- Server-side operations requiring elevated privileges
-- Creating user profiles (bypasses RLS)
-- Scraper writes
-- Admin operations
+## Exports
 
 ```typescript
-import { client, adminClient } from "@codeforge-v2/database";
+import { adminClient } from "@codeforge-v2/database";
+import type { Database, Tables, TablesInsert, TablesUpdate } from "@codeforge-v2/database";
+import { queries } from "@codeforge-v2/database";
+```
 
-// ✅ User-scoped read
-const { data } = await client.from("profiles").select("*");
+## Client Usage - CRITICAL
 
+**`adminClient`** (server-side only, bypasses RLS):
+- Server actions, scraper writes, admin operations
+- Requires `SUPABASE_SERVICE_KEY` env var
+- Can be `null` if service key is missing - always check
+
+```typescript
 // ✅ Server action creating profile (bypasses RLS)
 const { data } = await adminClient.from("profiles").insert({ ... });
 
-// ❌ DON'T use adminClient for user reads (bypasses security)
+// ❌ DON'T use adminClient for user-scoped reads (bypasses security)
 ```
 
-**Gotcha**: `adminClient` requires `SUPABASE_SERVICE_KEY` environment variable. It bypasses Row Level Security (RLS), so only use in trusted server contexts.
+**Note**: The web app maintains its own Supabase client instance for RLS-respecting user queries. This package only exports `adminClient`.
+
+## Pre-built Queries
+
+```typescript
+import { queries } from "@codeforge-v2/database";
+
+queries.scraping_runs.create(newRun)
+queries.scraping_runs.update(runId, updates)
+queries.offers.upsertOne(offer)
+queries.offers.upsertMany(offersList)          // Upserts by offer_url unique constraint
+queries.offers.getOffersByIds(offerIds)         // Returns offers with technologies
+queries.technologies.getOrCreateId(name)        // RPC: get_or_create_technology
+queries.offer_technologies.linkManyToOffer(links)
+```
 
 ## Database Schema
 
-**Key tables**:
+### Core Tables
 
-```sql
-profiles
-  - id (uuid, FK to auth.users)
-  - job_title (text)
-  - years_experience (int)
-  - skills (text[])
-  - ideal_role_description (text)
-  - onboarding_completed (boolean)
-  - embedding (vector(384))  # For local AI job matching (all-MiniLM-L6-v2)
-  - created_at, updated_at
+| Table | Purpose |
+|-------|---------|
+| **profiles** | User profiles (1:1 with auth.users). Fields: job_title, skills[], embedding VECTOR(384), onboarding_completed |
+| **offers** | Job listings. Fields: offer_url (unique), title, company_name, workplace_type, experience_level, salary_from/to, embedding |
+| **user_offers** | User-specific offer state (status: saved/applied/interviewing/rejected/offer_received/deleted, similarity_score) |
+| **technologies** | Master list of tech skills |
+| **offer_technologies** | M2M: offers ↔ technologies (skill_level: required/nice_to_have) |
+| **scraping_runs** | Scraper execution audit log |
+| **match_runs** | Job matching execution log |
+| **dismissed_offers** | Offers user dismissed |
 
-job_offers
-  - [Schema from scraper - see apps/scraper/CLAUDE.md]
-```
+### Key Enums
 
-**Embeddings**: Uses 384 dimensions for `all-MiniLM-L6-v2` model (transformers.js). NOT OpenAI's 1536 dimensions. See Milestone 2.5 in `tasks.md` for implementation details.
+- `workplace_type_enum`: remote, hybrid, office
+- `experience_level_enum`: junior, mid, senior, c-level
+- `employment_type_enum`: permanent, b2b, internship, mandate_contract
+- `job_status_enum`: saved, applied, interviewing, rejected, offer_received, deleted
+- `skill_level_enum`: required, nice_to_have
 
-## Migrations
+### Database Functions (RPC)
 
-**Location**: `supabase/migrations/`
-
-**Recent migrations**:
-- `20260204000000_auth_profiles.sql` - Adds profiles table, pgvector extension, RLS policies, and auto-creation trigger
-
-**Workflow**:
-1. Create migration file in `supabase/migrations/`
-2. Test locally with Supabase CLI
-3. Deploy to production via Supabase dashboard or CLI
-
-**Gotcha**: Profiles are auto-created via trigger when user signs up. Don't manually create profiles—let the trigger handle it.
+- `get_or_create_technology(tech_name)` → technology ID
+- `match_jobs_for_user(user_embedding, user_experience_levels, user_job_titles, user_skills, user_work_locations, match_threshold, min_skill_matches, match_count)` → matching offers with similarity scores
+- `normalize_skill(skill_name)` → normalized skill name
 
 ## Environment Variables
 
-This package validates required environment variables on import:
-
-```typescript
-// env.ts validates these with Zod:
-NEXT_PUBLIC_SUPABASE_URL       # Required
-NEXT_PUBLIC_SUPABASE_ANON_KEY  # Required
-SUPABASE_SERVICE_KEY           # Optional (required for adminClient)
-```
-
-If validation fails, app won't start—you'll see clear error messages.
-
-## TypeScript Types
-
-Types are auto-generated from Supabase schema to `src/database.types.ts`.
-
-**Regenerate types**:
 ```bash
-pnpm build  # In packages/database
+NEXT_PUBLIC_SUPABASE_URL       # Required: Supabase project URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY  # Required: Public anon key
+SUPABASE_SERVICE_KEY           # Optional: Service role key (needed for adminClient)
 ```
 
-**Usage**:
-```typescript
-import type { Database } from "@codeforge-v2/database";
+Validated on import via Zod schema in `env.ts`. App fails fast if required vars are missing.
 
-type Profile = Database["public"]["Tables"]["profiles"]["Row"];
+## Type Generation Flow
+
+```
+Schema change → pnpm db-reset → runs migrations → supabase gen types → database.types.ts → pnpm build
 ```
 
-## Row Level Security (RLS)
+**Never edit `database.types.ts`** - always modify the schema and regenerate.
 
-**Profiles table policies**:
-- Users can read their own profile
-- Users can update their own profile
-- Profile creation handled by trigger (bypass via adminClient)
+## Migrations
 
-See migration file for full RLS policy definitions.
+20+ migration files in `supabase/migrations/`. Applied in order during `pnpm start` or `db-reset`. Covers: table creation, RLS policies, pgvector setup, enum definitions, RPC functions.
+
+## AI/Vector Features
+
+- Uses pgvector extension for VECTOR(384) columns on profiles and offers
+- `match_jobs_for_user()` RPC performs cosine similarity search
+- Embeddings generated by `@codeforge-v2/embeddings` package
+
+## Dependencies
+
+- `@supabase/supabase-js` - Supabase client
+- `@supabase/postgrest-js` - PostgreSQL query builder
+- `zod` - Environment validation

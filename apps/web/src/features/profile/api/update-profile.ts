@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
-import type { ProfileFormData } from "../schemas";
+import type { ProfileFormData } from "../schemas/profile";
 
 export async function updateProfile(
   data: ProfileFormData

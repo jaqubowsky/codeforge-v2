@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
-import type { ScrapeAndMatchData } from "../types";
+import type { ScrapeAndMatchData } from "../types/dashboard";
 import { matchJobs } from "./match-jobs";
 
 const RATE_LIMIT_HOURS = 1;

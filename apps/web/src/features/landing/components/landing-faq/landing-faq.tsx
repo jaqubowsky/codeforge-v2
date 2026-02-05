@@ -3,8 +3,8 @@
 import { cn } from "@codeforge-v2/ui/lib/utils";
 import { useScrollReveal } from "@/shared/hooks/use-scroll-reveal";
 import { FAQ_ITEMS } from "../../constants/content";
-import { useFaqAccordion } from "../../hooks/use-faq-accordion";
 import { FaqItem } from "./faq-item";
+import { useFaqAccordion } from "./use-faq-accordion";
 
 export function LandingFaq() {
   const { ref, isVisible } = useScrollReveal();

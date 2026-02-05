@@ -838,91 +838,122 @@ apps/web/src/shared/hooks/
 
 **Key Decision:** Removed job title filter (e.g., "Frontend" keyword matching) because skill overlap is more reliable for technology-specific roles.
 
----
+## Milestone 8.9: AI Matching v2 - Re-Ranking Pipeline
 
-## Milestone 8.9: AI Matching v2 - Deep Improvements
-
-**Goal:** Further improve job matching quality after initial hybrid filtering implementation still produces suboptimal results.
+**Goal:** Implement a "Two-Stage Retrieval" architecture to fix semantic "fuzziness" and improve precision.
 
 **Problem Statement:**
-- Even with hybrid filtering (experience + location + skills), users still receive low-relevance matches
-- Skills from user profiles don't always match technology names in job listings
-- Embeddings may not capture role-specific nuances well enough
-- Need more sophisticated matching logic and potentially better data
 
-### Phase 1: Analysis & Debugging
+* **Issue:** Milestone 8.8 (Hybrid Filtering) solves the "wrong tech stack" issue, but ranking within valid results is still based on Cosine Similarity (Bi-Encoder).
+* **Limitation:** Bi-Encoders compress a whole profile into one vector, causing "pooling loss" (averaging out specific strong signals). They often fail to distinguish between "Junior" and "Senior" nuances or specific tool combinations because they look at the general "vibe" of the text.
+* **Solution:** Add a **Cross-Encoder (Re-Ranking)** stage. This model takes the User Profile and Job Description as a *pair* and outputs a specific relevance score. It is computationally heavier but significantly more accurate than embeddings alone.
 
-- [ ] **8.9.1 Analyze current matching data**
-  - Query actual match results and compare to user profile
-  - Identify patterns in low-relevance matches
-  - Check skill name mismatches (user skills vs offer technologies)
+### Phase 1: Infrastructure Upgrade (Cross-Encoder)
 
-- [ ] **8.9.2 Review technology normalization**
-  - Current: normalize_skill() removes dots/dashes/spaces, lowercases
-  - Check if more aggressive normalization needed
-  - Consider adding skill aliases table (React Native → react-native, reactnative)
+* [ ] **8.9.1 Update Embeddings Package**
+* Add support for **Cross-Encoders** to `@codeforge-v2/embeddings`
+* Model: `Xenova/ms-marco-MiniLM-L-6-v2` (Pre-trained on Bing search data, excellent for "Query vs Document" relevance)
+* Implement `rank_pairs(user_text, job_texts[])` function
+* *Note:* This runs locally; no training required.
 
-- [ ] **8.9.3 Analyze scraper data quality**
-  - Check how technologies are being extracted from job listings
-  - Verify experience_level and workplace_type are correctly mapped
-  - Check if job descriptions could be used for better embeddings
 
-### Phase 2: Potential Improvements
+* [ ] **8.9.2 Create Re-Ranking Logic**
+* Logic:
+1. **Retrieval (Stage 1):** Use M8.8 SQL function to get Top 50 candidates (fast, filters hard constraints).
+2. **Re-Ranking (Stage 2):** Pass Top 50 candidates + User Profile to Cross-Encoder.
+3. **Sort:** Re-order based on the Cross-Encoder score (Sigmoid output 0-1).
 
-- [ ] **8.9.4 Technology aliases/synonyms**
-  - Create `technology_aliases` table mapping variations
-  - E.g., "React.js" → "React", "Node" → "Node.js", "TS" → "TypeScript"
-  - Update matching to use canonical technology names
+* Define the "User Query String" format: `"{Job Title} with {Years} exp in {Skills}. Looking for {Locations}."`
+* Define the "Job Document String" format: `"{Title} at {Company}. {Description fragment}..."`
 
-- [ ] **8.9.5 Weighted skill matching**
-  - Give higher weight to "required" skills vs "nice to have"
-  - Implement skill priority scoring based on job requirements
+### Phase 2: Implementation & Integration
 
-- [ ] **8.9.6 Category-based filtering**
-  - Group technologies by domain: frontend, backend, devops, mobile, etc.
-  - If user has 80%+ frontend skills, penalize backend-heavy jobs
-  - Add job category detection based on dominant technology stack
+* [ ] **8.9.3 Update `matchJobs` Server Action**
+* Integrate the new 2-stage pipeline.
+* **Performance Guardrail:** Only re-rank the top 20-50 results to keep response time <5s on local hardware.
+* Store the new `relevance_score` in `user_offers` (distinct from the vector `similarity_score`).
 
-- [ ] **8.9.7 Improve embedding quality**
-  - Consider upgrading from all-MiniLM-L6-v2 (384d) to larger model
-  - Test multilingual models for non-English job listings
-  - Add more context to embedding text (e.g., job category, seniority signals)
 
-- [ ] **8.9.8 Re-ranking layer**
-  - Two-stage retrieval: broad semantic search → precision re-ranking
-  - Use skill overlap as re-ranking signal
-  - Consider adding user feedback loop (thumbs up/down on matches)
+* [ ] **8.9.4 Improve Text Representation**
+* Current embeddings use "bag of words" style concatenation.
+* Update `generateOfferEmbeddings` to structure text better for the model.
+* Ensure "Remote" vs "Office" is explicitly stated in the text string passed to the Cross-Encoder, as it handles negation and context better than vectors.
 
-### Phase 3: Data Quality Improvements
+### Phase 3: Data Quality (Synonyms)
 
-- [ ] **8.9.9 Scraper enhancements**
-  - Scrape more job boards (not just JustJoinIT)
-  - Extract more structured data (benefits, team size, tech stack details)
-  - Better deduplication across sources
+* [ ] **8.9.5 Implement Technology Normalization (Aliases)**
+* Create `technology_aliases` table or constant map.
+* Map variations to canonical names before matching (e.g., `ReactJS`, `React.js` -> `react`).
+* This improves the "Hard Filter" stage (M8.8) to ensure the Cross-Encoder actually gets relevant candidates to rank.
 
-- [ ] **8.9.10 User profile enhancements**
-  - Add "anti-preferences" (technologies user wants to AVOID)
-  - Add role type preference (IC vs management, startup vs enterprise)
-  - Add company size preference
+### Phase 4: Feedback Loop
 
-### Phase 4: Monitoring & Feedback
+* [ ] **8.9.6 Add User Feedback UI**
+* Add "Not Relevant" button to Job Card.
+* When clicked, ask "Why?": (Wrong Tech / Wrong Seniority / Not Remote).
+* Use this data to manually tune the hard filters in M8.8 if needed.
 
-- [ ] **8.9.11 Add match quality metrics**
-  - Track click-through rate on matched jobs
-  - Track status changes (saved → applied conversion)
-  - Create match quality dashboard
+**Files to modify:**
 
-- [ ] **8.9.12 User feedback mechanism**
-  - Add "Not interested" with reason selection
-  - Use negative feedback to improve future matches
-  - A/B test different matching strategies
+* `packages/embeddings/src/providers/local.ts` - Add Cross-Encoder support
+* `apps/web/src/features/dashboard/api/match-jobs.ts` - Implement 2-stage logic
+* `packages/scraper/src/utils/text-prep.ts` - Better text formatting for models
+
+## Milestone 8.10: Salary Parsing Bug Fixes
+
+**Goal:** Fix incorrect salary data parsing where salary values are mismatched with salary periods (e.g., 30,000-50,000 PLN with salary_period="day" instead of "month").
+
+**Problem Statement:**
+- Salary values like 30,000-50,000 are being saved with `salary_period = "day"` which is incorrect
+- This likely stems from wrong parsing logic in the scraper
+- Salary period should be inferred correctly from the source data or normalized based on value ranges
+
+### Phase 1: Analysis
+
+- [ ] **8.10.1 Investigate current salary parsing**
+  - Review JustJoinIT API response format for salary data
+  - Check how `salary_from`, `salary_to`, `salary_currency`, `salary_period` are mapped
+  - Identify where the parsing logic fails
+
+- [ ] **8.10.2 Audit existing data**
+  - Query offers table for suspicious salary/period combinations
+  - E.g., `SELECT * FROM offers WHERE salary_from > 1000 AND salary_period = 'day'`
+  - Document patterns of incorrect data
+
+### Phase 2: Fix Implementation
+
+- [ ] **8.10.3 Fix salary parser in scraper**
+  - Update `packages/scraper/` salary extraction logic
+  - Ensure `salary_period` is correctly mapped from API response
+  - Add validation: if period is "day" but values > X, normalize to "month"
+
+- [ ] **8.10.4 Add salary validation/normalization**
+  - Create utility function to validate salary ranges
+  - Auto-detect period based on value ranges (heuristic):
+    - Daily: 100-2,000
+    - Monthly: 3,000-100,000
+    - Yearly: 50,000-2,000,000
+  - Log warnings for suspicious values
+
+- [ ] **8.10.5 Create data cleanup migration**
+  - Migration to fix existing incorrect salary_period values
+  - Update offers where salary values don't match the period
+
+### Phase 3: Validation
+
+- [ ] **8.10.6 Add unit tests for salary parsing**
+  - Test various JustJoinIT response formats
+  - Test edge cases (no salary, partial salary, unusual periods)
+
+- [ ] **8.10.7 Manual verification**
+  - Re-scrape sample jobs and verify correct salary display
+  - Check dashboard salary filter works correctly with fixed data
 
 **Files likely to be modified:**
-- `packages/database/supabase/migrations/` - New tables/functions
-- `packages/scraper/` - Enhanced data extraction
-- `apps/web/src/features/dashboard/api/match-jobs.ts` - Matching logic
-- `apps/web/src/features/profile/` - New preference fields
-- `apps/web/src/features/onboarding/` - New preference fields
+- `packages/scraper/src/strategies/` - JustJoinIT salary parsing
+- `packages/scraper/src/mappers/` - Data transformation
+- `packages/database/supabase/migrations/` - Data cleanup migration
+- `apps/web/src/features/dashboard/utils/` - Salary display formatting
 
 ---
 
@@ -1014,6 +1045,7 @@ apps/web/src/shared/hooks/
 | 8.7 | Landing Page | ✅ Complete |
 | 8.8 | AI Matching Improvements | ✅ Complete |
 | 8.9 | AI Matching v2 - Deep Improvements | **← NEXT** |
+| 8.10 | Salary Parsing Bug Fixes | Not started |
 | 9 | Testing | Not started |
 | 10 | Deployment | Not started |
 

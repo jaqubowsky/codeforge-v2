@@ -4,8 +4,8 @@ import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
 import { createClient } from "@/shared/supabase/server";
 import { getSalaryFiltersMetadata, getUserJobs } from "../api";
-import type { DashboardData } from "../types";
-import { mapMatchRunInfo } from "./mappers";
+import type { DashboardData } from "../types/dashboard";
+import { mapMatchRunInfo } from "./mappers/dashboard";
 
 async function getLastRunFromDB(userId: string) {
   const supabase = await createClient();

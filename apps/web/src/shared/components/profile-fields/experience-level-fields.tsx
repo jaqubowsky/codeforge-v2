@@ -1,7 +1,7 @@
 "use client";
 
 import { type Control, Controller, type FieldErrors } from "react-hook-form";
-import type { ProfileFormData } from "@/features/profile/schemas";
+import type { ProfileFormData } from "@/features/profile/schemas/profile";
 import {
   FormError,
   FormLabel,

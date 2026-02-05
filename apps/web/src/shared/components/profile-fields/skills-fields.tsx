@@ -4,7 +4,7 @@ import { Badge } from "@codeforge-v2/ui/components/badge";
 import { Combobox } from "@codeforge-v2/ui/components/combobox";
 import { X } from "lucide-react";
 import { type Control, Controller, type FieldErrors } from "react-hook-form";
-import type { ProfileFormData } from "@/features/profile/schemas";
+import type { ProfileFormData } from "@/features/profile/schemas/profile";
 import { FormError, FormLabel, FormSection } from "@/shared/components/form";
 
 interface SkillsFieldsProps {

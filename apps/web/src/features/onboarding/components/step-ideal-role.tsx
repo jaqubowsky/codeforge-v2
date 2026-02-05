@@ -2,7 +2,7 @@
 
 import type { Control, FieldErrors } from "react-hook-form";
 import { IdealRoleFields } from "@/shared/components/profile-fields/ideal-role-fields";
-import type { OnboardingFormData } from "../schemas";
+import type { OnboardingFormData } from "../schemas/onboarding";
 
 interface StepIdealRoleProps {
   control: Control<OnboardingFormData>;

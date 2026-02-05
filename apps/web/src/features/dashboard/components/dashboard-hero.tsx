@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { PageHero, PageHeroHeader } from "@/shared/components/ui/page-hero";
 import { StatCard } from "@/shared/components/ui/stat-card";
-import type { MatchRunInfo, UserOfferStatus } from "../types";
+import type { MatchRunInfo, UserOfferStatus } from "../types/dashboard";
 import { RunNowButton } from "./run-now-button";
 
 type StatusCounts = Record<UserOfferStatus | "all", number>;

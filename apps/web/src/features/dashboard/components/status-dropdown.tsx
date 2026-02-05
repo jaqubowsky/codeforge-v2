@@ -7,8 +7,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@codeforge-v2/ui/components/select";
-import { STATUS_OPTIONS } from "../constants";
-import type { UserOfferStatus } from "../types";
+import { STATUS_OPTIONS } from "../constants/filter-options";
+import type { UserOfferStatus } from "../types/dashboard";
 
 interface StatusDropdownProps {
   currentStatus: UserOfferStatus;

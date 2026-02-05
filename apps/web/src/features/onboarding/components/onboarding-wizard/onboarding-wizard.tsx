@@ -1,10 +1,10 @@
 "use client";
 
 import { Wizard, WizardProgress, WizardStep } from "@/shared/components/wizard";
-import { WIZARD_STEPS } from "../../constants";
-import { useOnboardingForm } from "../../hooks/use-onboarding-form";
+import { WIZARD_STEPS } from "../../constants/wizard-steps";
 import { StepIdealRole } from "../step-ideal-role";
 import { StepPreferences } from "../step-preferences";
+import { useOnboardingForm } from "./use-onboarding-form";
 import { WizardNavigation } from "./wizard-navigation";
 
 export function OnboardingWizard() {

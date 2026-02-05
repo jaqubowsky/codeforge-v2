@@ -8,8 +8,8 @@ import {
   SelectValue,
 } from "@codeforge-v2/ui/components/select";
 import { ArrowUpDown } from "lucide-react";
-import { SORT_OPTIONS } from "../constants";
-import type { SortOption } from "../types";
+import { SORT_OPTIONS } from "../constants/filter-options";
+import type { SortOption } from "../types/dashboard";
 
 interface SortDropdownProps {
   value: SortOption;

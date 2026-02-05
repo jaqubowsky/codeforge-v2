@@ -5,7 +5,7 @@ import { ExperienceLevelFields } from "@/shared/components/profile-fields/experi
 import { LocationPreferenceFields } from "@/shared/components/profile-fields/location-preference-fields";
 import { SkillsFields } from "@/shared/components/profile-fields/skills-fields";
 import { useTechnologies } from "@/shared/hooks/use-technologies";
-import type { OnboardingFormData } from "../schemas";
+import type { OnboardingFormData } from "../schemas/onboarding";
 
 interface StepPreferencesProps {
   control: Control<OnboardingFormData>;
