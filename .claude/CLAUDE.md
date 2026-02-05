@@ -59,14 +59,44 @@ npm run dev           # Start all apps (web on port 3001)
 npm run dev:web       # Web app only
 
 # Build & validation
-npm run build         # Production build all
-npm run check-types   # TypeScript validation across workspace
+npm run build         # Production build all packages and apps (via Turborepo)
+npm run check-types   # TypeScript validation across workspace (via Turborepo)
+npm run lint          # Lint entire workspace (Ultracite/Biome, root-level)
 
 # Code quality
 npm run fix           # Auto-fix with Ultracite/Biome
-npm run check         # Check without fixing
+npm run check         # Check without fixing (root only)
 npm run knip          # Find unused exports, deps, and files
+
+# Dependency management (via Turborepo)
+npm run check-deps    # Check for outdated dependencies
+npm run update-deps   # Update dependencies interactively
 ```
+
+## Post-Feature Validation (IMPORTANT)
+
+**After implementing any feature or making code changes, ALWAYS run these commands to validate:**
+
+```bash
+# 1. Build all packages (catches import/export errors)
+npm run build
+
+# 2. Type check (catches TypeScript errors)
+npm run check-types
+
+# 3. Lint (catches code style and potential bugs)
+npm run lint
+
+# 4. Check for unused code (catches dead code)
+npm run knip
+```
+
+**Quick validation (runs all checks):**
+```bash
+npm run build && npm run check-types && npm run lint && npm run knip
+```
+
+These same checks run automatically on pre-commit via Husky hooks. If any command fails, fix the issues before committing.
 
 ## Form Management
 

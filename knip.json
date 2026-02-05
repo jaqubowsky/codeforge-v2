@@ -1,7 +1,7 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
   "tags": ["-lintignore"],
-  "ignoreDependencies": ["lint-staged", "@supabase/postgrest-js", "next"],
+  "ignoreDependencies": ["@biomejs/biome", "@supabase/postgrest-js", "next"],
   "ignoreBinaries": ["ncu", "supabase"],
   "workspaces": {
     ".": {},

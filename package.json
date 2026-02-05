@@ -7,16 +7,17 @@
     "packages/*"
   ],
   "scripts": {
-    "check": "ultracite check",
     "dev": "turbo dev",
+    "dev:web": "turbo -F web dev",
     "build": "turbo build",
+    "lint": "ultracite check",
     "check-types": "turbo check-types",
     "check-deps": "turbo check-deps",
     "update-deps": "turbo update-deps",
-    "dev:web": "turbo -F web dev",
-    "prepare": "husky",
+    "check": "ultracite check",
     "fix": "ultracite fix",
-    "knip": "knip"
+    "knip": "knip",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.14",
@@ -32,8 +33,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx}": [
-      "npx ultracite fix",
-      "npx ultracite fix"
+      "ultracite fix"
     ]
   },
   "commitlint": {

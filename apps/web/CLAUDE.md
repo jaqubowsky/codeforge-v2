@@ -5,11 +5,33 @@ Next.js 16 frontend with React 19 (App Router), Supabase Auth, and job offer dis
 ## Commands
 
 ```bash
+# Development
 npm run dev          # Start dev server on port 3001
 npm run build        # Production build
-npm run check-types  # TypeScript validation
-npx biome check --write --unsafe .  # Auto-fix linter issues (use --unsafe for unused variables)
+npm run start        # Start production server
+
+# Validation (run from monorepo root)
+npm run check-types  # TypeScript validation (this package)
+
+# Dependencies
+npm run check-deps   # Check for outdated dependencies
+npm run update-deps  # Update dependencies interactively
 ```
+
+## Post-Feature Validation
+
+**After implementing features, run from the monorepo root:**
+
+```bash
+npm run build && npm run check-types && npm run lint && npm run knip
+```
+
+- `build` - Builds all packages (catches import/export errors)
+- `check-types` - TypeScript validation across workspace
+- `lint` - Lints entire workspace with Ultracite/Biome
+- `knip` - Finds unused exports, deps, and files
+
+These checks also run automatically on pre-commit via Husky.
 
 ## Route Structure
 

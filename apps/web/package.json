@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack --port=3001",
-    "check-deps": "npx ncu --format group",
-    "check-types": "tsc --noEmit",
-    "update-deps": "npx ncu -u --format group",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "check-types": "tsc --noEmit",
+    "check-deps": "npx ncu --format group",
+    "update-deps": "npx ncu -u --format group"
   },
   "dependencies": {
     "@codeforge-v2/database": "*",
