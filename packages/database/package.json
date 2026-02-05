@@ -13,13 +13,14 @@
   "scripts": {
     "build": "tsc",
     "check-types": "tsc --noEmit",
-    "check-deps": "npx ncu --format group",
-    "update-deps": "npx ncu -u --format group",
-    "start": "npx supabase start",
-    "db-reset": "npx supabase db reset && npm run generate-api-types",
-    "generate-api-types": "npx supabase gen types typescript --local > src/database.types.ts && npx ultracite fix && npm run build"
+    "check-deps": "pnpm dlx npm-check-updates --format group",
+    "update-deps": "pnpm dlx npm-check-updates -u --format group",
+    "start": "pnpm dlx supabase start",
+    "db-reset": "pnpm dlx supabase db reset && pnpm generate-api-types",
+    "generate-api-types": "pnpm dlx supabase gen types typescript --local > src/database.types.ts && pnpm ultracite fix && pnpm build"
   },
   "dependencies": {
+    "@supabase/postgrest-js": "^2.94.1",
     "@supabase/supabase-js": "^2.94.0",
     "zod": "^4.3.6"
   },
@@ -32,7 +33,7 @@
     }
   },
   "devDependencies": {
-    "@codeforge-v2/typescript-config": "*",
+    "@codeforge-v2/typescript-config": "workspace:*",
     "typescript": "^5.9.3"
   }
 }

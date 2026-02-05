@@ -9,8 +9,8 @@ This package generates semantic embeddings (vector representations) of text usin
 ## Commands
 
 ```bash
-npm run build        # Compile TypeScript to dist/
-npm run check-types  # TypeScript validation
+pnpm build        # Compile TypeScript to dist/
+pnpm check-types  # TypeScript validation
 ```
 
 ## Architecture

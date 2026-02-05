@@ -15,11 +15,11 @@
   },
   "scripts": {
     "check-types": "tsc --noEmit",
-    "check-deps": "npx ncu --format group",
-    "update-deps": "npx ncu -u --format group"
+    "check-deps": "pnpm dlx npm-check-updates --format group",
+    "update-deps": "pnpm dlx npm-check-updates -u --format group"
   },
   "devDependencies": {
-    "@codeforge-v2/typescript-config": "*",
+    "@codeforge-v2/typescript-config": "workspace:*",
     "@types/node": "^25.2.0",
     "@types/react": "~19.2.10",
     "@types/react-dom": "19.2.3",

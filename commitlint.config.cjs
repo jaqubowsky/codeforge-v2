@@ -1,4 +1,4 @@
-// biome-ignore-all lint/style/noMagicNumbers: everything is fine:)
+"use strict";
 
 module.exports = {
   extends: ["@commitlint/config-conventional"],

@@ -6,16 +6,16 @@ Next.js 16 frontend with React 19 (App Router), Supabase Auth, and job offer dis
 
 ```bash
 # Development
-npm run dev          # Start dev server on port 3001
-npm run build        # Production build
-npm run start        # Start production server
+pnpm dev          # Start dev server on port 3001
+pnpm build        # Production build
+pnpm start        # Start production server
 
 # Validation (run from monorepo root)
-npm run check-types  # TypeScript validation (this package)
+pnpm check-types  # TypeScript validation (this package)
 
 # Dependencies
-npm run check-deps   # Check for outdated dependencies
-npm run update-deps  # Update dependencies interactively
+pnpm check-deps   # Check for outdated dependencies
+pnpm update-deps  # Update dependencies interactively
 ```
 
 ## Post-Feature Validation
@@ -23,7 +23,7 @@ npm run update-deps  # Update dependencies interactively
 **After implementing features, run from the monorepo root:**
 
 ```bash
-npm run build && npm run check-types && npm run lint && npm run knip
+pnpm build && pnpm check-types && pnpm lint && pnpm knip
 ```
 
 - `build` - Builds all packages (catches import/export errors)

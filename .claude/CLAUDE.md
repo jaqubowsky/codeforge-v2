@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Codeforge-v2 is a TypeScript monorepo for job offer scraping and display. It uses npm workspaces with Turborepo for build orchestration.
+Codeforge-v2 is a TypeScript monorepo for job offer scraping and display. It uses pnpm workspaces with Turborepo for build orchestration.
 
 ## Architecture
 
@@ -37,7 +37,7 @@ See app/package-specific CLAUDE.md files for detailed context:
 1. **Clone and install**:
    ```bash
    git clone <repo-url>
-   npm install
+   pnpm install
    ```
 
 2. **Environment setup**:
@@ -47,30 +47,30 @@ See app/package-specific CLAUDE.md files for detailed context:
 
 3. **Start development**:
    ```bash
-   npm run dev        # Start all apps (web on port 3001)
-   npm run dev:web    # Web app only
+   pnpm run dev        # Start all apps (web on port 3001)
+   pnpm run dev:web    # Web app only
    ```
 
 ## Development Commands
 
 ```bash
 # Development
-npm run dev           # Start all apps (web on port 3001)
-npm run dev:web       # Web app only
+pnpm run dev           # Start all apps (web on port 3001)
+pnpm run dev:web       # Web app only
 
 # Build & validation
-npm run build         # Production build all packages and apps (via Turborepo)
-npm run check-types   # TypeScript validation across workspace (via Turborepo)
-npm run lint          # Lint entire workspace (Ultracite/Biome, root-level)
+pnpm run build         # Production build all packages and apps (via Turborepo)
+pnpm run check-types   # TypeScript validation across workspace (via Turborepo)
+pnpm run lint          # Lint entire workspace (Ultracite/Biome, root-level)
 
 # Code quality
-npm run fix           # Auto-fix with Ultracite/Biome
-npm run check         # Check without fixing (root only)
-npm run knip          # Find unused exports, deps, and files
+pnpm run fix           # Auto-fix with Ultracite/Biome
+pnpm run check         # Check without fixing (root only)
+pnpm run knip          # Find unused exports, deps, and files
 
 # Dependency management (via Turborepo)
-npm run check-deps    # Check for outdated dependencies
-npm run update-deps   # Update dependencies interactively
+pnpm run check-deps    # Check for outdated dependencies
+pnpm run update-deps   # Update dependencies interactively
 ```
 
 ## Post-Feature Validation (IMPORTANT)
@@ -79,21 +79,21 @@ npm run update-deps   # Update dependencies interactively
 
 ```bash
 # 1. Build all packages (catches import/export errors)
-npm run build
+pnpm run build
 
 # 2. Type check (catches TypeScript errors)
-npm run check-types
+pnpm run check-types
 
 # 3. Lint (catches code style and potential bugs)
-npm run lint
+pnpm run lint
 
 # 4. Check for unused code (catches dead code)
-npm run knip
+pnpm run knip
 ```
 
 **Quick validation (runs all checks):**
 ```bash
-npm run build && npm run check-types && npm run lint && npm run knip
+pnpm run build && pnpm run check-types && pnpm run lint && pnpm run knip
 ```
 
 These same checks run automatically on pre-commit via Husky hooks. If any command fails, fix the issues before committing.
@@ -191,8 +191,8 @@ features/example/
 This project uses **Ultracite** (Biome-based) with pre-commit hooks. Code is auto-formatted on commit via Husky + lint-staged.
 
 **Commands**:
-- `npm run fix` - Format and fix all issues
-- `npm run check` - Check without fixing
+- `pnpm run fix` - Format and fix all issues
+- `pnpm run check` - Check without fixing
 
 **Project conventions** (enforced by linter):
 - No `console.log` or `debugger` in production

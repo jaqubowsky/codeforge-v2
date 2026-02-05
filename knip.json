@@ -1,10 +1,15 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
   "tags": ["-lintignore"],
-  "ignoreDependencies": ["@biomejs/biome", "@supabase/postgrest-js", "next"],
-  "ignoreBinaries": ["ncu", "supabase"],
+  "ignoreDependencies": [
+    "@biomejs/biome",
+    "next",
+    "@commitlint/config-conventional"
+  ],
   "workspaces": {
-    ".": {},
+    ".": {
+      "entry": ["commitlint.config.cjs"]
+    },
     "apps/web": {
       "ignore": ["src/app/index.css"]
     },

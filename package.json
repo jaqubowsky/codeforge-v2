@@ -2,10 +2,6 @@
   "name": "codeforge-v2",
   "private": true,
   "type": "module",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
     "dev": "turbo dev",
     "dev:web": "turbo -F web dev",
@@ -21,7 +17,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.14",
-    "@commitlint/cli": "^20.4.1",
     "@commitlint/config-conventional": "^20.4.1",
     "@types/node": "^25.2.0",
     "husky": "^9.1.7",
@@ -36,12 +31,7 @@
       "ultracite fix"
     ]
   },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "packageManager": "npm@11.8.0",
+  "packageManager": "pnpm@10.28.2",
   "version": "1.0.0",
   "description": "This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines Next.js, and more.",
   "repository": {

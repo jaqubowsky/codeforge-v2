@@ -5,8 +5,8 @@ Supabase client, queries, and generated TypeScript types.
 ## Commands
 
 ```bash
-npm run build        # Generate TypeScript types from Supabase schema
-npm run check-types  # TypeScript validation
+pnpm build        # Generate TypeScript types from Supabase schema
+pnpm check-types  # TypeScript validation
 ```
 
 ## Package Structure
@@ -101,7 +101,7 @@ Types are auto-generated from Supabase schema to `src/database.types.ts`.
 
 **Regenerate types**:
 ```bash
-npm run build  # In packages/database
+pnpm build  # In packages/database
 ```
 
 **Usage**:

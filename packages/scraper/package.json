@@ -13,16 +13,16 @@
   "scripts": {
     "build": "tsc",
     "check-types": "tsc --noEmit",
-    "check-deps": "npx ncu --format group",
-    "update-deps": "npx ncu -u --format group"
+    "check-deps": "pnpm dlx npm-check-updates --format group",
+    "update-deps": "pnpm dlx npm-check-updates -u --format group"
   },
   "dependencies": {
-    "@codeforge-v2/database": "*",
-    "@codeforge-v2/embeddings": "*",
+    "@codeforge-v2/database": "workspace:*",
+    "@codeforge-v2/embeddings": "workspace:*",
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@codeforge-v2/typescript-config": "*",
+    "@codeforge-v2/typescript-config": "workspace:*",
     "typescript": "^5.9.3"
   }
 }
