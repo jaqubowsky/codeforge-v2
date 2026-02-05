@@ -69,7 +69,7 @@ export function AuthLayout({
       </div>
 
       <div className="absolute bottom-8 text-center text-muted-foreground/60 text-xs">
-        <p>Codeforge</p>
+        <p>LandIT</p>
       </div>
     </div>
   );

@@ -65,6 +65,7 @@ npm run check-types   # TypeScript validation across workspace
 # Code quality
 npm run fix           # Auto-fix with Ultracite/Biome
 npm run check         # Check without fixing
+npm run knip          # Find unused exports, deps, and files
 ```
 
 ## Form Management

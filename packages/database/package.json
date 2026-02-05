@@ -12,9 +12,9 @@
   },
   "scripts": {
     "format": "biome check --write . --unsafe",
-    "check-deps": "ncu --format group",
+    "check-deps": "npx ncu --format group",
     "check-types": "tsc --noEmit",
-    "update-deps": "ncu -u --format group -u",
+    "update-deps": "npx ncu -u --format group",
     "build": "tsc",
     "start": "npx supabase start",
     "db-reset": "npx supabase db reset && npm run generate-api-types",
@@ -33,11 +33,7 @@
     }
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.14",
     "@codeforge-v2/typescript-config": "*",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
-    "typescript": "^5.9.3",
-    "ultracite": "^7.1.4"
+    "typescript": "^5.9.3"
   }
 }

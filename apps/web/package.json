@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack --port=3001",
-    "check-deps": "ncu --format group",
+    "check-deps": "npx ncu --format group",
     "check-types": "tsc --noEmit",
-    "update-deps": "ncu -u --format group -u",
+    "update-deps": "npx ncu -u --format group",
     "build": "next build",
     "start": "next start"
   },
@@ -16,6 +16,7 @@
     "@codeforge-v2/scraper": "*",
     "@hookform/resolvers": "^5.2.2",
     "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.50.2",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.563.0",
     "next": "16.1.6",
@@ -29,17 +30,14 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.14",
     "@codeforge-v2/typescript-config": "*",
     "@codeforge-v2/ui": "*",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "^25",
     "@types/react": "~19.2.10",
     "@types/react-dom": "^19",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
+    "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
-    "typescript": "^5",
-    "ultracite": "^7.1.4"
+    "typescript": "^5"
   }
 }

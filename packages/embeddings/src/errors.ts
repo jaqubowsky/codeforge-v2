@@ -17,7 +17,7 @@ export class EmbeddingError extends Error {
   }
 }
 
-export const ERROR_CODES = {
+const ERROR_CODES = {
   MODEL_LOAD_FAILED: "MODEL_LOAD_FAILED",
   VALIDATION_FAILED: "VALIDATION_FAILED",
   GENERATION_FAILED: "GENERATION_FAILED",

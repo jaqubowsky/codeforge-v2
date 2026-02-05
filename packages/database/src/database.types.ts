@@ -410,7 +410,7 @@ export interface Database {
         | "b2b"
         | "internship"
         | "mandate_contract";
-      experience_level_enum: "junior" | "mid" | "senior";
+      experience_level_enum: "junior" | "mid" | "senior" | "c-level";
       job_status_enum:
         | "saved"
         | "applied"
@@ -570,7 +570,7 @@ export const Constants = {
         "internship",
         "mandate_contract",
       ],
-      experience_level_enum: ["junior", "mid", "senior"],
+      experience_level_enum: ["junior", "mid", "senior", "c-level"],
       job_status_enum: [
         "saved",
         "applied",

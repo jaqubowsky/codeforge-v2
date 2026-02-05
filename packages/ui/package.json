@@ -15,19 +15,15 @@
   },
   "scripts": {
     "check-types": "tsc --noEmit",
-    "check-deps": "ncu --format group",
-    "update-deps": "ncu -u --format group -u"
+    "check-deps": "npx ncu --format group",
+    "update-deps": "npx ncu -u --format group"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.14",
     "@codeforge-v2/typescript-config": "*",
     "@types/node": "^25.2.0",
     "@types/react": "~19.2.10",
     "@types/react-dom": "19.2.3",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
-    "typescript": "5.9.3",
-    "ultracite": "^7.1.4"
+    "typescript": "5.9.3"
   },
   "peerDependencies": {
     "postcss": "^8.4.31",
@@ -39,18 +35,16 @@
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-checkbox": "^1.3.3",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
-    "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-popover": "^1.1.15",
     "@radix-ui/react-progress": "^1.1.8",
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slider": "^1.3.6",
     "@radix-ui/react-slot": "^1.2.4",
     "@radix-ui/react-tooltip": "^1.2.8",
-    "@tailwindcss/postcss": "^4.1.18",
-    "@tailwindcss/typography": "^0.5.19",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
+    "lucide-react": "^0.513.0",
     "next-themes": "^0.4.6",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0",

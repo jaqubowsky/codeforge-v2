@@ -1,0 +1,15 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "tags": ["-lintignore"],
+  "ignoreDependencies": ["lint-staged", "@supabase/postgrest-js", "next"],
+  "ignoreBinaries": ["ncu", "supabase"],
+  "workspaces": {
+    ".": {},
+    "apps/web": {
+      "ignore": ["src/app/index.css"]
+    },
+    "packages/typescript-config": {
+      "ignore": ["*.json"]
+    }
+  }
+}

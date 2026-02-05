@@ -13,17 +13,15 @@
   "scripts": {
     "build": "tsc",
     "check-types": "tsc --noEmit",
-    "check-deps": "ncu --format group",
-    "update-deps": "ncu -u --format group -u"
+    "check-deps": "npx ncu --format group",
+    "update-deps": "npx ncu -u --format group"
   },
   "dependencies": {
     "@xenova/transformers": "^2.17.2",
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.14",
     "@codeforge-v2/typescript-config": "*",
-    "typescript": "^5.9.3",
-    "ultracite": "^7.1.4"
+    "typescript": "^5.9.3"
   }
 }

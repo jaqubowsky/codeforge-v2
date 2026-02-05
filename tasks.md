@@ -569,6 +569,164 @@ packages/embeddings/
 
 ---
 
+## Milestone 8.7: Landing Page ✅ COMPLETE
+
+**Goal:** Create a high-converting landing page to attract users and communicate the product's value proposition.
+
+**Design Guidelines:** Follow the existing design system (glassmorphism, OKLCH colors, design tokens) and landing page best practices from the anatomy reference.
+
+### Tasks
+
+#### Feature 1: Landing Page Route & Layout
+- [x] **8.7.1 Create landing page route (`/`)**
+  - ✅ Server component with proper metadata for SEO
+  - ✅ Landing page shown to unauthenticated users
+  - ✅ Authenticated users redirected to dashboard
+  - ✅ Share design patterns with existing auth/dashboard pages
+
+#### Feature 2: Navigation/Navbar
+- [x] **8.7.2 Create landing navbar component**
+  - ✅ Logo (Briefcase icon with "Codeforge" text)
+  - ✅ Navigation links: Features, How it Works, Testimonials, FAQ
+  - ✅ Sticky on scroll with glassmorphism effect
+  - ✅ Primary CTA button: "Get Started" → `/signup`
+  - ✅ Mobile hamburger menu with `useMobileMenu` hook
+  - ✅ Theme toggle
+  - ✅ `useNavbarScroll` hook for scroll behavior
+
+#### Feature 3: Hero Section
+- [x] **8.7.3 Create hero section**
+  - ✅ Headline: Clear USP using WHO/WHY/WHAT framework
+  - ✅ Subheadline: Expand on the bold claim
+  - ✅ Primary CTA: "Start Finding Jobs" → `/signup`
+  - ✅ Secondary CTA: "See How It Works" (scroll to section)
+  - ✅ Hero visual: Dashboard preview mockup with `DashboardMockup` component
+  - ✅ `MockJobCard` component for realistic dashboard preview
+  - ✅ Radial gradient background (consistent with auth/dashboard)
+  - ✅ `useDelayedVisibility` hook for staggered animations
+
+#### Feature 4: Social Proof Section
+- [x] **8.7.4 Create social proof bar**
+  - ⏭️ Integrated into hero section (placeholder stats)
+  - ⏭️ Will add company logos when available
+
+#### Feature 5: Benefits Section
+- [x] **8.7.5 Create benefits section**
+  - ✅ Title: "Why Choose Codeforge?"
+  - ✅ Benefit cards using `BenefitCard` component
+  - ✅ Benefits sell outcomes, not features
+  - ✅ Colorful icons (Lucide) and design tokens
+  - ✅ Grid layout: 2x2 on desktop, stack on mobile
+  - ✅ Scroll reveal animations
+
+#### Feature 6: How It Works Section
+- [x] **8.7.6 Create how it works section**
+  - ✅ Title: "How It Works"
+  - ✅ 3-step process with `StepCard` component
+  - ✅ Visual step indicators with connectors
+  - ✅ Animate on scroll with `useScrollReveal` hook
+
+#### Feature 7: Features Showcase (Optional)
+- [x] **8.7.7 Create features section**
+  - ⏭️ Skipped - Dashboard mockup in hero serves this purpose
+  - ⏭️ Can add dedicated features section later if needed
+
+#### Feature 8: Testimonials Section
+- [x] **8.7.8 Create testimonials section**
+  - ✅ Title: "What Developers Say"
+  - ✅ Testimonial cards with `TestimonialCard` component
+  - ✅ Avatar, quote, name, job title, company
+  - ✅ GlassCard styling with hover effects
+  - ✅ Placeholder testimonials in content constants
+
+#### Feature 9: FAQ Section
+- [x] **8.7.9 Create FAQ section**
+  - ✅ Title: "Frequently Asked Questions"
+  - ✅ Accordion with `FaqItem` component
+  - ✅ `useFaqAccordion` hook for state management
+  - ✅ FAQ content in `constants/content.ts`
+  - ✅ Smooth expand/collapse animations
+
+#### Feature 10: Final CTA Section
+- [x] **8.7.10 Create final CTA section**
+  - ✅ `LandingCta` component
+  - ✅ Headline: "Ready to Find Your Dream Job?"
+  - ✅ Subheadline reinforcing value proposition
+  - ✅ Large primary CTA button
+  - ✅ Gradient background similar to hero
+
+#### Feature 11: Footer
+- [x] **8.7.11 Create footer component**
+  - ✅ `LandingFooter` component
+  - ✅ Logo and tagline
+  - ✅ Navigation links
+  - ✅ Social media icons (placeholder)
+  - ✅ Copyright notice
+  - ✅ Theme toggle
+
+#### Feature 12: Polish & Animations
+- [x] **8.7.12 Add scroll animations and polish**
+  - ✅ `useScrollReveal` shared hook for fade-in on scroll
+  - ✅ `useDelayedVisibility` for staggered animations
+  - ✅ Smooth scrolling for anchor links
+  - ✅ Responsive design on all breakpoints
+  - ✅ Dark/light mode support
+
+**What was built:**
+- Complete marketing landing page following conversion best practices
+- Consistent with existing design system (glassmorphism, OKLCH, design tokens)
+- Mobile-responsive with dark/light mode support
+- SEO-optimized with proper metadata
+- Modular component architecture for maintainability
+
+**Files created:**
+```
+apps/web/src/features/landing/
+├── components/
+│   ├── landing-navbar.tsx
+│   ├── landing-hero/
+│   │   ├── index.ts
+│   │   ├── landing-hero.tsx
+│   │   ├── dashboard-mockup.tsx
+│   │   └── mock-job-card.tsx
+│   ├── landing-benefits/
+│   │   ├── index.ts
+│   │   ├── landing-benefits.tsx
+│   │   └── benefit-card.tsx
+│   ├── landing-how-it-works/
+│   │   ├── index.ts
+│   │   ├── landing-how-it-works.tsx
+│   │   └── step-card.tsx
+│   ├── landing-testimonials/
+│   │   ├── index.ts
+│   │   ├── landing-testimonials.tsx
+│   │   └── testimonial-card.tsx
+│   ├── landing-faq/
+│   │   ├── index.ts
+│   │   ├── landing-faq.tsx
+│   │   └── faq-item.tsx
+│   ├── landing-cta.tsx
+│   └── landing-footer.tsx
+├── constants/
+│   └── content.ts
+├── hooks/
+│   ├── use-delayed-visibility.ts
+│   ├── use-faq-accordion.ts
+│   ├── use-mobile-menu.ts
+│   └── use-navbar-scroll.ts
+└── index.ts
+
+apps/web/src/shared/hooks/
+└── use-scroll-reveal.ts
+```
+
+**Files modified:**
+- `apps/web/src/app/page.tsx` - Landing page route
+- `apps/web/src/app/layout.tsx` - Updated metadata
+- `packages/ui/src/styles/globals.css` - Landing page styles
+
+---
+
 ## Milestone 9: Testing & QA
 
 **Goal:** Ensure stability before launch.
@@ -654,6 +812,7 @@ packages/embeddings/
 | 8 | UI Polish & Code Quality | ✅ Complete |
 | 8.5 | Enhanced Filtering & UX | ✅ Complete |
 | 8.6 | Enhanced Profile & Soft Delete | ✅ Complete |
+| 8.7 | Landing Page | ✅ Complete |
 | 9 | Testing | **← NEXT** |
 | 10 | Deployment | Not started |
 

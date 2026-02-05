@@ -12,9 +12,3 @@ export interface EmbeddingConfig {
   provider: ProviderType;
   modelName?: string;
 }
-
-export interface EmbeddingResult {
-  embedding: number[];
-  dimensions: number;
-  provider: string;
-}

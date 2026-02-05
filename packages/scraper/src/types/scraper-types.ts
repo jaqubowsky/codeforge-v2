@@ -4,34 +4,15 @@ export type Tables<T extends keyof Database["public"]["Tables"]> =
   Database["public"]["Tables"][T]["Row"];
 export type TablesInsert<T extends keyof Database["public"]["Tables"]> =
   Database["public"]["Tables"][T]["Insert"];
-export type TablesUpdate<T extends keyof Database["public"]["Tables"]> =
-  Database["public"]["Tables"][T]["Update"];
-export type Enums<T extends keyof Database["public"]["Enums"]> =
+type Enums<T extends keyof Database["public"]["Enums"]> =
   Database["public"]["Enums"][T];
 
-export type EmploymentType = Enums<"employment_type_enum"> | null;
 export type ExperienceLevel = Enums<"experience_level_enum"> | null;
-export type WorkingTime = Enums<"working_time_enum"> | null;
-export type WorkplaceType = Enums<"workplace_type_enum"> | null;
 export type SalaryPeriod = Enums<"salary_period_enum"> | null;
 export type SkillLevel = Enums<"skill_level_enum">;
-export type RunStatus = Enums<"run_status_enum"> | null;
 
 export type Offer = Tables<"offers">;
 export type OfferInsert = TablesInsert<"offers">;
-export type OfferUpdate = TablesUpdate<"offers">;
-export type Technology = Tables<"technologies">;
-export type TechnologyInsert = TablesInsert<"technologies">;
-export type OfferTechnology = Tables<"offer_technologies">;
-export type OfferTechnologyInsert = TablesInsert<"offer_technologies">;
-export type ScrapingRun = Tables<"scraping_runs">;
-export type ScrapingRunInsert = TablesInsert<"scraping_runs">;
-export type ScrapingRunUpdate = TablesUpdate<"scraping_runs">;
-
-export interface Skill {
-  name: Technology["name"];
-  level: SkillLevel;
-}
 
 export interface LocationInfo {
   city: Offer["city"];

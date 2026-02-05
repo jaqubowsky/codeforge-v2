@@ -11,7 +11,7 @@ export interface Technology {
   skillLevel: string;
 }
 
-export interface JobOffer {
+interface JobOffer {
   id: number;
   title: string;
   companyName: string | null;

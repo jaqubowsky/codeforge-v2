@@ -17,7 +17,7 @@ function createSkillSet(skills: string[]): Set<string> {
 /**
  * Counts matching skills between user skills and offer technologies
  */
-export function countSkillMatches(
+function countSkillMatches(
   userSkills: string[],
   offerTechnologies: string[]
 ): number {
@@ -36,18 +36,6 @@ export function countSkillMatches(
 /**
  * Calculates match score as percentage of user skills matched
  */
-export function calculateMatchScore(
-  userSkills: string[],
-  offerTechnologies: string[]
-): number {
-  if (userSkills.length === 0) {
-    return 0;
-  }
-
-  const matchCount = countSkillMatches(userSkills, offerTechnologies);
-  return Math.round((matchCount / userSkills.length) * 100);
-}
-
 /**
  * Filters prepared offer data by user skills
  * Returns only offers that have at least minMatchCount matching technologies

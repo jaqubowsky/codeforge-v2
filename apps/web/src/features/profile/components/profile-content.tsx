@@ -8,7 +8,7 @@ export async function ProfileContent() {
 
   if (!result.success) {
     return (
-      <div className="container max-w-4xl px-6 py-8">
+      <div className="container px-6 py-8">
         <ErrorDisplay message={result.error} />
       </div>
     );
@@ -22,7 +22,7 @@ export async function ProfileContent() {
           title="Your Profile"
         />
       </PageHero>
-      <div className="container max-w-4xl px-6 py-8">
+      <div className="container px-6 py-8">
         <ProfileForm initialData={result.data} />
       </div>
     </>

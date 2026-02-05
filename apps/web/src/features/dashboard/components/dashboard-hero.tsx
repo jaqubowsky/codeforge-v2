@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import { PageHero, PageHeroHeader } from "@/shared/components/ui/page-hero";
 import { StatCard } from "@/shared/components/ui/stat-card";
-import { StatusIndicator } from "@/shared/components/ui/status-indicator";
 import type { MatchRunInfo, UserOfferStatus } from "../types";
 import { RunNowButton } from "./run-now-button";
 
@@ -23,16 +22,6 @@ interface DashboardHeroProps {
   totalJobs: number;
   newJobsCount: number;
   statusCounts: StatusCounts;
-}
-
-function getIndicatorStatus(runStatus: MatchRunInfo["status"]) {
-  if (runStatus === "running") {
-    return "active";
-  }
-  if (runStatus === "failed") {
-    return "error";
-  }
-  return "idle";
 }
 
 export function DashboardHero({
@@ -54,9 +43,6 @@ export function DashboardHero({
         <PageHeroHeader
           action={<RunNowButton />}
           description="Your AI-powered command center for job hunting. Track applications, discover matches, and land your dream role."
-          statusIndicator={
-            <StatusIndicator status={getIndicatorStatus(lastRun.status)} />
-          }
           title="Job Tracker"
         />
 
