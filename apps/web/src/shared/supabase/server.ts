@@ -1,6 +1,10 @@
 import type { Database } from "@codeforge-v2/database";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import type { Result } from "@/shared/api";
+import { err, ok } from "@/shared/api";
+
+type SupabaseClient = Awaited<ReturnType<typeof createClient>>;
 
 export async function createClient() {
   const cookieStore = await cookies();
@@ -26,4 +30,20 @@ export async function createClient() {
       },
     }
   );
+}
+
+export async function createAuthenticatedClient(): Promise<
+  Result<{ supabase: SupabaseClient; userId: string }>
+> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser();
+
+  if (error || !user) {
+    return err("Not authenticated");
+  }
+
+  return ok({ supabase, userId: user.id });
 }

@@ -3,22 +3,17 @@
 import { embeddings } from "@codeforge-v2/embeddings";
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
-import { createClient } from "@/shared/supabase/server";
+import { createAuthenticatedClient } from "@/shared/supabase/server";
 import type { OnboardingFormData } from "../schemas/onboarding";
 
 export async function completeOnboarding(
   data: OnboardingFormData
 ): Promise<Result<void>> {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
-
-  if (userError || !user) {
-    return err("You must be logged in to complete onboarding");
+  const authResult = await createAuthenticatedClient();
+  if (!authResult.success) {
+    return authResult;
   }
+  const { supabase, userId } = authResult.data;
 
   const experienceLevels = data.experienceLevel.join(", ");
   const workLocations = data.preferredLocations.join(", ");
@@ -44,7 +39,7 @@ export async function completeOnboarding(
       onboarding_completed: true,
       updated_at: new Date().toISOString(),
     })
-    .eq("id", user.id);
+    .eq("id", userId);
 
   if (error) {
     return err(error.message);

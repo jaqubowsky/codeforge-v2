@@ -16,14 +16,16 @@ function getMatchScoreStyles(score: number) {
   return "stroke-warning text-warning";
 }
 
-function getWorkplaceBadgeVariant(type: string) {
+function getWorkplaceBadgeVariant(
+  type: string
+): "remote" | "hybrid" | "office" {
   if (type === "Remote") {
-    return "remote" as const;
+    return "remote";
   }
   if (type === "Hybrid") {
-    return "hybrid" as const;
+    return "hybrid";
   }
-  return "office" as const;
+  return "office";
 }
 
 interface MockJobCardProps {

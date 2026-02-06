@@ -101,7 +101,7 @@ export class ScrapingService<TTechnology = string | undefined> {
 
           const embedding = await embeddings.generateEmbedding(embeddingText);
 
-          (data.offer as Record<string, unknown>).embedding = embedding;
+          data.offer.embedding = JSON.stringify(embedding);
         } catch (_error) {
           // Skip failed embeddings
         }

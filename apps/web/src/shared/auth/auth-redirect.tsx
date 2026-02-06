@@ -15,19 +15,19 @@ export async function AuthRedirect({
   const authState = await getAuthState();
 
   if (requireAuth && !authState.authenticated) {
-    redirect("/login" as never);
+    redirect("/login");
   }
 
   if (!requireAuth && authState.authenticated) {
-    redirect(redirectTo as never);
+    redirect(redirectTo);
   }
 
   if (requireOnboarding && !authState.onboardingCompleted) {
-    redirect("/onboarding" as never);
+    redirect("/onboarding");
   }
 
   if (!requireOnboarding && authState.onboardingCompleted) {
-    redirect(redirectTo as never);
+    redirect(redirectTo);
   }
 
   return null;

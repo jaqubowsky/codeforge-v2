@@ -2,28 +2,23 @@
 
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
-import { createClient } from "@/shared/supabase/server";
+import { createAuthenticatedClient } from "@/shared/supabase/server";
 import type { ProfileData } from "../types/profile";
 import { mapProfile } from "./mappers/profile";
 
 export async function getProfile(): Promise<Result<ProfileData>> {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
-
-  if (userError || !user) {
-    return err("You must be logged in to view your profile");
+  const authResult = await createAuthenticatedClient();
+  if (!authResult.success) {
+    return authResult;
   }
+  const { supabase, userId } = authResult.data;
 
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
     .select(
       "experience_level, preferred_locations, skills, ideal_role_description"
     )
-    .eq("id", user.id)
+    .eq("id", userId)
     .single();
 
   if (profileError || !profile) {

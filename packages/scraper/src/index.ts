@@ -3,4 +3,7 @@ export type {
   ScrapeOffersOptions,
   ScrapeOffersResult,
 } from "./types/scraper-types";
-export { mapSkillsToCategories } from "./utils/skill-category-map";
+export {
+  mapSkillsToCategories,
+  mapSkillsToNoFluffJobsCategories,
+} from "./utils/skill-category-map";

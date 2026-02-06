@@ -7,9 +7,11 @@ export type TablesInsert<T extends keyof Database["public"]["Tables"]> =
 type Enums<T extends keyof Database["public"]["Enums"]> =
   Database["public"]["Enums"][T];
 
+export type EmploymentType = Enums<"employment_type_enum">;
 export type ExperienceLevel = Enums<"experience_level_enum"> | null;
 export type SalaryPeriod = Enums<"salary_period_enum"> | null;
 export type SkillLevel = Enums<"skill_level_enum">;
+export type WorkplaceType = Enums<"workplace_type_enum">;
 
 export type Offer = Tables<"offers">;
 export type OfferInsert = TablesInsert<"offers">;
@@ -56,7 +58,7 @@ export interface ScrapingStrategy<TTechnology = string | undefined> {
   ): Promise<PreparedOfferData[]>;
 }
 
-export const AVAILABLE_JOB_BOARDS = ["justjoinit"] as const;
+export const AVAILABLE_JOB_BOARDS = ["justjoinit", "nofluffjobs"] as const;
 export type JobBoard = (typeof AVAILABLE_JOB_BOARDS)[number];
 
 export interface ScrapeOffersOptions {

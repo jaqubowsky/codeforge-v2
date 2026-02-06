@@ -8,7 +8,7 @@ import {
 } from "@codeforge-v2/embeddings";
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
-import { createClient } from "@/shared/supabase/server";
+import { createAuthenticatedClient } from "@/shared/supabase/server";
 import type { MatchJobsData } from "../types/dashboard";
 
 type UserOfferInsert = Database["public"]["Tables"]["user_offers"]["Insert"];
@@ -20,23 +20,18 @@ const RERANK_COUNT = 20;
 const MIN_RERANK_SCORE = 0.5;
 
 export async function matchJobs(): Promise<Result<MatchJobsData>> {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
-
-  if (userError || !user) {
-    return err("You must be logged in to match jobs");
+  const authResult = await createAuthenticatedClient();
+  if (!authResult.success) {
+    return authResult;
   }
+  const { supabase, userId } = authResult.data;
 
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
     .select(
       "embedding, experience_level, preferred_locations, skills, ideal_role_description"
     )
-    .eq("id", user.id)
+    .eq("id", userId)
     .single();
 
   if (profileError || !profile) {
@@ -153,7 +148,7 @@ export async function matchJobs(): Promise<Result<MatchJobsData>> {
   const { data: existingOffers, error: existingError } = await supabase
     .from("user_offers")
     .select("offer_id")
-    .eq("user_id", user.id);
+    .eq("user_id", userId);
 
   if (existingError) {
     return err(`Failed to check existing offers: ${existingError.message}`);
@@ -172,7 +167,7 @@ export async function matchJobs(): Promise<Result<MatchJobsData>> {
   }
 
   const userOffers: UserOfferInsert[] = newMatches.map((match) => ({
-    user_id: user.id,
+    user_id: userId,
     offer_id: match.offerId,
     status: "saved",
     similarity_score: match.score,

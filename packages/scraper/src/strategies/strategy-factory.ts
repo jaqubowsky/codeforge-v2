@@ -5,17 +5,21 @@ import type {
 } from "../types/scraper-types";
 import { NotFoundError } from "../utils/errors";
 import { JustJoinItStrategy } from "./just-join-it/just-join-it.strategy";
+import { NoFluffJobsStrategy } from "./no-fluff-jobs/no-fluff-jobs.strategy";
 
-type StrategyConstructor = new (options: ScrapingOptions) => ScrapingStrategy;
+type StrategyConstructor = new (
+  options: ScrapingOptions
+) => ScrapingStrategy<string>;
 
 const strategies: Record<JobBoard, StrategyConstructor> = {
   justjoinit: JustJoinItStrategy,
+  nofluffjobs: NoFluffJobsStrategy,
 };
 
 export const getScrapingStrategy = (
   board: JobBoard,
   scrapingOptions: ScrapingOptions
-): ScrapingStrategy => {
+): ScrapingStrategy<string> => {
   const StrategyClass = strategies[board];
 
   if (!StrategyClass) {

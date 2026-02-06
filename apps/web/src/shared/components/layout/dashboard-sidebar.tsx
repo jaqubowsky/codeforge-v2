@@ -8,8 +8,8 @@ import { SignOutButton } from "@/features/auth";
 import { ModeToggle } from "@/shared/ui/theme-toggle";
 
 const NAV_ITEMS = [
-  { href: "/dashboard" as const, label: "Dashboard", icon: LayoutDashboard },
-  { href: "/profile" as const, label: "My Profile", icon: User },
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/profile", label: "My Profile", icon: User },
 ];
 
 interface DashboardSidebarProps {
@@ -60,7 +60,7 @@ export function DashboardSidebar({
                       ? "bg-foreground text-background"
                       : "hover:bg-accent"
                   )}
-                  href={item.href as never}
+                  href={item.href}
                 >
                   <Icon className="h-5 w-5" />
                   <span>{item.label}</span>

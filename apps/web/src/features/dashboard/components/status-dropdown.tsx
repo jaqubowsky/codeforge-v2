@@ -10,6 +10,10 @@ import {
 import { STATUS_OPTIONS } from "../constants/filter-options";
 import type { UserOfferStatus } from "../types/dashboard";
 
+function isUserOfferStatus(value: string): value is UserOfferStatus {
+  return STATUS_OPTIONS.some((opt) => opt.value === value);
+}
+
 interface StatusDropdownProps {
   currentStatus: UserOfferStatus;
   onStatusChange: (status: UserOfferStatus) => void;
@@ -24,7 +28,11 @@ export function StatusDropdown({
   return (
     <Select
       disabled={disabled}
-      onValueChange={(value) => onStatusChange(value as UserOfferStatus)}
+      onValueChange={(value) => {
+        if (isUserOfferStatus(value)) {
+          onStatusChange(value);
+        }
+      }}
       value={currentStatus}
     >
       <SelectTrigger className="w-[140px]">

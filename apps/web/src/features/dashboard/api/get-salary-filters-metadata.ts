@@ -2,28 +2,22 @@
 
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
-import { createClient } from "@/shared/supabase/server";
+import { createAuthenticatedClient } from "@/shared/supabase/server";
+import { VALID_CURRENCIES } from "../constants/filter-options";
 import type { Currency, SalaryFiltersMetadata } from "../types/dashboard";
 
-const VALID_CURRENCIES: Currency[] = ["PLN", "EUR", "USD", "GBP"];
-
 function isCurrency(value: string): value is Currency {
-  return VALID_CURRENCIES.includes(value as Currency);
+  return VALID_CURRENCIES.some((v) => v === value);
 }
 
 export async function getSalaryFiltersMetadata(): Promise<
   Result<SalaryFiltersMetadata>
 > {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
-
-  if (userError || !user) {
-    return err("Not authenticated");
+  const authResult = await createAuthenticatedClient();
+  if (!authResult.success) {
+    return authResult;
   }
+  const { supabase, userId } = authResult.data;
 
   const { data: jobsData, error: jobsError } = await supabase
     .from("user_offers")
@@ -36,7 +30,7 @@ export async function getSalaryFiltersMetadata(): Promise<
       )
     `
     )
-    .eq("user_id", user.id);
+    .eq("user_id", userId);
 
   if (jobsError) {
     return err(jobsError.message);

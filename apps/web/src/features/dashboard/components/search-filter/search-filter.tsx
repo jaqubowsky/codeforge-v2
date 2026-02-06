@@ -12,11 +12,7 @@ import {
   FilterBarRow,
 } from "@/shared/components/ui/filter-bar";
 import { STATUS_OPTIONS } from "../../constants/filter-options";
-import type {
-  Currency,
-  SortOption,
-  UserOfferStatus,
-} from "../../types/dashboard";
+import type { Currency, UserOfferStatus } from "../../types/dashboard";
 import { SalaryRangeFilter } from "../salary-range-filter";
 import { SortDropdown } from "../sort-dropdown";
 import { FILTER_BUTTON_STYLES, STATUS_INTENT } from "./filter-styles";
@@ -49,8 +45,8 @@ function getStatusButtonClass(
     return cn(FILTER_BUTTON_STYLES.base, FILTER_BUTTON_STYLES.activeDefault);
   }
 
-  const intent = STATUS_INTENT[buttonValue as keyof typeof STATUS_INTENT];
-  if (intent) {
+  if (buttonValue in STATUS_INTENT) {
+    const intent = STATUS_INTENT[buttonValue as keyof typeof STATUS_INTENT];
     return cn(FILTER_BUTTON_STYLES.base, intent.solid, "shadow-md");
   }
 
@@ -110,10 +106,7 @@ export function SearchFilter({
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
-            <SortDropdown
-              onChange={setSort}
-              value={(sort as SortOption) || "match_desc"}
-            />
+            <SortDropdown onChange={setSort} value={sort} />
 
             <Button
               className={cn(
@@ -145,11 +138,11 @@ export function SearchFilter({
         <FilterBarExpandable expanded={showAdvanced}>
           <SalaryRangeFilter
             availableCurrencies={currencies}
-            currency={(currency as Currency) || currencies[0] || "PLN"}
+            currency={currency}
             maxSalary={salaryMax ?? maxSalaryLimit}
             maxSalaryLimit={maxSalaryLimit}
             minSalary={salaryMin ?? 0}
-            onCurrencyChange={(curr) => setCurrency(curr as Currency)}
+            onCurrencyChange={setCurrency}
             onMaxChange={setSalaryMax}
             onMinChange={setSalaryMin}
           />

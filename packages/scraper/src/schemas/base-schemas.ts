@@ -7,6 +7,5 @@ export const baseProviderOptionsSchema = z.object({
   cityRadiusKm: z.coerce.number().positive().optional(),
 });
 
-export type BaseProviderOptions = z.infer<typeof baseProviderOptionsSchema>;
-
 export * from "./justjoinit";
+export * from "./nofluffjobs";

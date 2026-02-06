@@ -4,22 +4,17 @@ import { embeddings } from "@codeforge-v2/embeddings";
 import { revalidatePath } from "next/cache";
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
-import { createClient } from "@/shared/supabase/server";
+import { createAuthenticatedClient } from "@/shared/supabase/server";
 import type { ProfileFormData } from "../schemas/profile";
 
 export async function updateProfile(
   data: ProfileFormData
 ): Promise<Result<void>> {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
-
-  if (userError || !user) {
-    return err("You must be logged in to update your profile");
+  const authResult = await createAuthenticatedClient();
+  if (!authResult.success) {
+    return authResult;
   }
+  const { supabase, userId } = authResult.data;
 
   const experienceLevels = data.experienceLevel.join(", ");
   const workLocations = data.preferredLocations.join(", ");
@@ -44,7 +39,7 @@ export async function updateProfile(
       embedding: JSON.stringify(embedding),
       updated_at: new Date().toISOString(),
     })
-    .eq("id", user.id);
+    .eq("id", userId);
 
   if (error) {
     return err(error.message);

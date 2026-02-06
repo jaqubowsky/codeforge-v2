@@ -85,7 +85,7 @@ export function mapUserJobOffer(userOffer: UserOfferDTO): UserJobOffer | null {
     offerUrl: offer.offer_url,
     publishedAt: offer.published_at,
     similarityScore: userOffer.similarity_score,
-    status: userOffer.status as UserJobOffer["status"],
+    status: userOffer.status,
     matchedAt: userOffer.created_at,
   };
 }

@@ -1,31 +1,23 @@
 "use server";
 
-import { mapSkillsToCategories, scrapeOffers } from "@codeforge-v2/scraper";
+import {
+  mapSkillsToCategories,
+  mapSkillsToNoFluffJobsCategories,
+  scrapeOffers,
+} from "@codeforge-v2/scraper";
 import { revalidatePath } from "next/cache";
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
-import { createClient } from "@/shared/supabase/server";
+import {
+  createAuthenticatedClient,
+  type createClient,
+} from "@/shared/supabase/server";
 import type { ScrapeAndMatchData } from "../types/dashboard";
 import { matchJobs } from "./match-jobs";
 
 const RATE_LIMIT_HOURS = 1;
 
 type SupabaseClient = Awaited<ReturnType<typeof createClient>>;
-
-async function validateAuth(
-  supabase: SupabaseClient
-): Promise<string | Result<never>> {
-  const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
-
-  if (userError || !user) {
-    return err("Not authenticated");
-  }
-
-  return user.id;
-}
 
 async function checkRateLimit(
   supabase: SupabaseClient,
@@ -118,21 +110,37 @@ async function executeMatchingFlow(
     });
   }
 
-  const categories = mapSkillsToCategories(userSkills);
+  const jjiCategories = mapSkillsToCategories(userSkills);
+  const nfjCategories = mapSkillsToNoFluffJobsCategories(userSkills);
 
-  const scrapeResult = await scrapeOffers({
+  const justjoinitResult = await scrapeOffers({
+    board: "justjoinit",
     maxOffers: 500,
-    categories: categories.length > 0 ? categories : undefined,
+    categories: jjiCategories.length > 0 ? jjiCategories : undefined,
   });
 
-  if (!scrapeResult.success) {
+  const nofluffjobsResult = await scrapeOffers({
+    board: "nofluffjobs",
+    maxOffers: 500,
+    categories: nfjCategories.length > 0 ? nfjCategories : undefined,
+  });
+
+  const scrapeSuccess = justjoinitResult.success || nofluffjobsResult.success;
+
+  if (!scrapeSuccess) {
+    const errorMessage =
+      justjoinitResult.error ?? nofluffjobsResult.error ?? "Scraping failed";
+
     await updateMatchRun(supabase, matchRunId, {
       status: "failed",
-      errorMessage: scrapeResult.error ?? "Scraping failed",
+      errorMessage,
     });
 
-    return err(scrapeResult.error ?? "Failed to scrape jobs");
+    return err(errorMessage);
   }
+
+  const totalScraped =
+    (justjoinitResult.offersCount ?? 0) + (nofluffjobsResult.offersCount ?? 0);
 
   const secondMatchResult = await matchJobs();
 
@@ -152,19 +160,16 @@ async function executeMatchingFlow(
 
   return ok({
     newJobsCount: secondMatchResult.data.newMatchesCount,
-    scrapedCount: scrapeResult.offersCount,
+    scrapedCount: totalScraped,
   });
 }
 
 export async function scrapeAndMatch(): Promise<Result<ScrapeAndMatchData>> {
-  const supabase = await createClient();
-
-  const authResult = await validateAuth(supabase);
-  if (typeof authResult !== "string") {
+  const authResult = await createAuthenticatedClient();
+  if (!authResult.success) {
     return authResult;
   }
-
-  const userId = authResult;
+  const { supabase, userId } = authResult.data;
 
   const rateLimitResult = await checkRateLimit(supabase, userId);
   if (rateLimitResult) {

@@ -909,64 +909,6 @@ apps/web/src/shared/hooks/
 - `packages/embeddings/src/index.ts` — Exported reranker singleton, factory, types, formatting
 - `apps/web/src/features/dashboard/api/match-jobs.ts` — Integrated 2-stage pipeline
 
-## Milestone 8.10: Salary Parsing Bug Fixes
-
-**Goal:** Fix incorrect salary data parsing where salary values are mismatched with salary periods (e.g., 30,000-50,000 PLN with salary_period="day" instead of "month").
-
-**Problem Statement:**
-- Salary values like 30,000-50,000 are being saved with `salary_period = "day"` which is incorrect
-- This likely stems from wrong parsing logic in the scraper
-- Salary period should be inferred correctly from the source data or normalized based on value ranges
-
-### Phase 1: Analysis
-
-- [ ] **8.10.1 Investigate current salary parsing**
-  - Review JustJoinIT API response format for salary data
-  - Check how `salary_from`, `salary_to`, `salary_currency`, `salary_period` are mapped
-  - Identify where the parsing logic fails
-
-- [ ] **8.10.2 Audit existing data**
-  - Query offers table for suspicious salary/period combinations
-  - E.g., `SELECT * FROM offers WHERE salary_from > 1000 AND salary_period = 'day'`
-  - Document patterns of incorrect data
-
-### Phase 2: Fix Implementation
-
-- [ ] **8.10.3 Fix salary parser in scraper**
-  - Update `packages/scraper/` salary extraction logic
-  - Ensure `salary_period` is correctly mapped from API response
-  - Add validation: if period is "day" but values > X, normalize to "month"
-
-- [ ] **8.10.4 Add salary validation/normalization**
-  - Create utility function to validate salary ranges
-  - Auto-detect period based on value ranges (heuristic):
-    - Daily: 100-2,000
-    - Monthly: 3,000-100,000
-    - Yearly: 50,000-2,000,000
-  - Log warnings for suspicious values
-
-- [ ] **8.10.5 Create data cleanup migration**
-  - Migration to fix existing incorrect salary_period values
-  - Update offers where salary values don't match the period
-
-### Phase 3: Validation
-
-- [ ] **8.10.6 Add unit tests for salary parsing**
-  - Test various JustJoinIT response formats
-  - Test edge cases (no salary, partial salary, unusual periods)
-
-- [ ] **8.10.7 Manual verification**
-  - Re-scrape sample jobs and verify correct salary display
-  - Check dashboard salary filter works correctly with fixed data
-
-**Files likely to be modified:**
-- `packages/scraper/src/strategies/` - JustJoinIT salary parsing
-- `packages/scraper/src/mappers/` - Data transformation
-- `packages/database/supabase/migrations/` - Data cleanup migration
-- `apps/web/src/features/dashboard/utils/` - Salary display formatting
-
----
-
 ## Milestone 9: Testing & QA
 
 **Goal:** Ensure stability before launch.
@@ -1014,6 +956,84 @@ apps/web/src/shared/hooks/
 
 ---
 
+## Milestone 11: NoFluffJobs Scraping Strategy ✅ COMPLETE
+
+**Goal:** Add NoFluffJobs as a second job board scraping source, expanding job coverage for Polish IT market.
+
+**Context:** NoFluffJobs is the #2 Polish IT job board (after JustJoinIt). It has an internal JSON API that returns job listings with salary ranges, tech stacks, experience levels, and workplace types — very similar data to JustJoinIt.
+
+**Prerequisites:** Milestone 5 complete (scraper infrastructure with embeddings).
+
+### Phase 1: Discovery & API Research
+
+- [x] **11.1 Reverse-engineer NoFluffJobs API**
+  - ✅ Identified POST `/api/search/posting` endpoint with skill-based filtering
+  - ✅ Documented request/response shapes (page-based pagination, ~120 items/page)
+  - ✅ Rate limiting: 1.5s between requests (conservative for undocumented API)
+  - ✅ Mapped all 36 NoFluffJobs categories
+
+- [x] **11.2 Map NoFluffJobs fields to existing schema**
+  - ✅ Mapped all API fields to `PreparedOfferData` structure
+  - ✅ Normalization: workplace type (from location.places + hybridDesc), experience level (5→3 mapping), employment type (5 types including internship), salary (API normalizes to monthly)
+  - ✅ Gaps: no working_time field (defaults to full_time), no expires_at
+
+### Phase 2: Implementation
+
+- [x] **11.3 Create NoFluffJobs type definitions**
+  - ✅ Created `src/types/no-fluff-jobs.ts` with full API response types
+  - ✅ Interfaces: NoFluffJobsPosting, NoFluffJobsSearchResponse, NoFluffJobsSalary, NoFluffJobsLocation, etc.
+
+- [x] **11.4 Create NoFluffJobs validation schema**
+  - ✅ Created `src/schemas/nofluffjobs.ts` with Zod schema for provider options
+  - ✅ Options: salaryCurrency (PLN/USD/EUR), salaryPeriod (month/hour), region
+
+- [x] **11.5 Implement NoFluffJobs scraping strategy**
+  - ✅ Created `src/strategies/no-fluff-jobs/no-fluff-jobs.strategy.ts`
+  - ✅ Implements `ScrapingStrategy<string>` (uses direct skill keywords, not fixed categories)
+  - ✅ Page-based pagination with 1.5s rate limiting
+  - ✅ Full normalization: workplace type, experience level, salary, employment type, location, technologies
+
+- [x] **11.6 Create skill category mapping**
+  - ✅ Not needed — NoFluffJobs accepts free-form skill keywords directly (e.g., "React", "TypeScript")
+  - ✅ User skills passed directly as `criteriaSearch.requirement` array
+
+- [x] **11.7 Register strategy in factory**
+  - ✅ Added `"nofluffjobs"` to `AVAILABLE_JOB_BOARDS`
+  - ✅ Registered `NoFluffJobsStrategy` in `strategy-factory.ts`
+
+### Phase 3: Integration & Testing
+
+- [x] **11.8 Update scraping controller**
+  - ✅ Updated `scrape-and-match.ts` for sequential dual-board scraping
+  - ✅ JustJoinIt uses mapped categories, NoFluffJobs uses direct user skills
+  - ✅ Partial failure handling: one board can fail while other succeeds
+  - ✅ Deduplication handled by existing `offer_url` unique constraint
+
+- [x] **11.9 Validate end-to-end**
+  - ✅ `pnpm run build` — passed
+  - ✅ `pnpm run check-types` — passed
+  - ✅ `pnpm run lint` — passed
+  - ✅ `pnpm run knip` — passed
+
+**What was built:**
+- NoFluffJobs scraping strategy following same patterns as JustJoinIt
+- Sequential dual-board scraping (JustJoinIt → NoFluffJobs) with partial failure tolerance
+- Full data normalization: workplace type (4 cases), seniority (5→3 mapping), employment (5 types), salary, location, technologies
+- No database migration needed (same offers table schema)
+
+**Files created:**
+- `packages/scraper/src/types/no-fluff-jobs.ts` — API response type definitions
+- `packages/scraper/src/schemas/nofluffjobs.ts` — Zod validation for provider options
+- `packages/scraper/src/strategies/no-fluff-jobs/no-fluff-jobs.strategy.ts` — Full strategy implementation
+
+**Files modified:**
+- `packages/scraper/src/schemas/base-schemas.ts` — Added nofluffjobs schema export
+- `packages/scraper/src/strategies/strategy-factory.ts` — Registered NoFluffJobsStrategy
+- `packages/scraper/src/types/scraper-types.ts` — Added "nofluffjobs" to AVAILABLE_JOB_BOARDS
+- `apps/web/src/features/dashboard/api/scrape-and-match.ts` — Sequential dual-board scraping
+
+---
+
 ## Architecture Overview
 
 ```
@@ -1055,9 +1075,9 @@ apps/web/src/shared/hooks/
 | 8.7 | Landing Page | ✅ Complete |
 | 8.8 | AI Matching Improvements | ✅ Complete |
 | 8.9 | AI Matching v2 - Re-Ranking Pipeline | ✅ Complete |
-| 8.10 | Salary Parsing Bug Fixes | **← NEXT** |
 | 9 | Testing | Not started |
 | 10 | Deployment | Not started |
+| 11 | NoFluffJobs Scraping Strategy | ✅ Complete |
 
 **Existing Assets:**
 - ✅ `offers` table with full schema

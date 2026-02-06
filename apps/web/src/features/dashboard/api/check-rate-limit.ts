@@ -2,7 +2,7 @@
 
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
-import { createClient } from "@/shared/supabase/server";
+import { createAuthenticatedClient } from "@/shared/supabase/server";
 
 const RATE_LIMIT_HOURS = 1;
 
@@ -12,16 +12,11 @@ export interface RateLimitStatus {
 }
 
 export async function checkRateLimit(): Promise<Result<RateLimitStatus>> {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
-
-  if (userError || !user) {
-    return err("Not authenticated");
+  const authResult = await createAuthenticatedClient();
+  if (!authResult.success) {
+    return authResult;
   }
+  const { supabase, userId } = authResult.data;
 
   const rateLimitCutoff = new Date(
     Date.now() - RATE_LIMIT_HOURS * 60 * 60 * 1000
@@ -30,7 +25,7 @@ export async function checkRateLimit(): Promise<Result<RateLimitStatus>> {
   const { data: recentRuns, error: runsError } = await supabase
     .from("match_runs")
     .select("started_at")
-    .eq("user_id", user.id)
+    .eq("user_id", userId)
     .eq("status", "completed")
     .gte("started_at", rateLimitCutoff)
     .order("started_at", { ascending: false })

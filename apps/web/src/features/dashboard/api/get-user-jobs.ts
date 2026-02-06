@@ -2,18 +2,21 @@
 
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
-import { createClient } from "@/shared/supabase/server";
+import { createAuthenticatedClient } from "@/shared/supabase/server";
 import type { UserJobOffer, UserOfferStatus } from "../types/dashboard";
 import { mapUserJobOffer } from "./mappers/dashboard";
 
 const DEFAULT_JOB_LIMIT = 20;
 
-async function getUserJobsFromDB(
-  userId: string,
+export async function getUserJobs(
   status?: UserOfferStatus,
   limit = DEFAULT_JOB_LIMIT
-) {
-  const supabase = await createClient();
+): Promise<Result<UserJobOffer[]>> {
+  const authResult = await createAuthenticatedClient();
+  if (!authResult.success) {
+    return authResult;
+  }
+  const { supabase, userId } = authResult.data;
 
   let query = supabase
     .from("user_offers")
@@ -57,31 +60,8 @@ async function getUserJobsFromDB(
   const { data, error } = await query;
 
   if (error) {
-    throw new Error(error.message);
+    return err(error.message);
   }
 
-  return (data || []).map(mapUserJobOffer).filter((job) => job !== null);
-}
-
-export async function getUserJobs(
-  status?: UserOfferStatus,
-  limit = DEFAULT_JOB_LIMIT
-): Promise<Result<UserJobOffer[]>> {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser();
-
-  if (userError || !user) {
-    return err("You must be logged in to view jobs");
-  }
-
-  try {
-    const jobs = await getUserJobsFromDB(user.id, status, limit);
-    return ok(jobs);
-  } catch (error) {
-    return err(error instanceof Error ? error.message : "Failed to fetch jobs");
-  }
+  return ok((data || []).map(mapUserJobOffer).filter((job) => job !== null));
 }

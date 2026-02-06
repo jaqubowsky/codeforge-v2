@@ -34,35 +34,6 @@ export interface Database {
   };
   public: {
     Tables: {
-      dismissed_offers: {
-        Row: {
-          dismissed_at: string;
-          id: number;
-          offer_id: number;
-          user_id: string;
-        };
-        Insert: {
-          dismissed_at?: string;
-          id?: number;
-          offer_id: number;
-          user_id: string;
-        };
-        Update: {
-          dismissed_at?: string;
-          id?: number;
-          offer_id?: number;
-          user_id?: string;
-        };
-        Relationships: [
-          {
-            foreignKeyName: "dismissed_offers_offer_id_fkey";
-            columns: ["offer_id"];
-            isOneToOne: false;
-            referencedRelation: "offers";
-            referencedColumns: ["id"];
-          },
-        ];
-      };
       match_runs: {
         Row: {
           created_at: string;

@@ -9,10 +9,18 @@ import {
 } from "@codeforge-v2/ui/components/select";
 import { Slider } from "@codeforge-v2/ui/components/slider";
 import { DollarSign } from "lucide-react";
-import { SALARY_MIN, SALARY_STEP } from "../../constants/filter-options";
+import {
+  SALARY_MIN,
+  SALARY_STEP,
+  VALID_CURRENCIES,
+} from "../../constants/filter-options";
 import type { Currency } from "../../types/dashboard";
 import { formatSalaryRange } from "./salary-utils";
 import { useSalaryRangeFilter } from "./use-salary-range-filter";
+
+function isCurrency(value: string): value is Currency {
+  return VALID_CURRENCIES.some((v) => v === value);
+}
 
 interface SalaryRangeFilterProps {
   minSalary: number;
@@ -49,7 +57,14 @@ export function SalaryRangeFilter({
           <DollarSign className="h-4 w-4 text-muted-foreground" />
           <span className="font-medium text-sm">Salary Range</span>
         </div>
-        <Select onValueChange={onCurrencyChange} value={currency}>
+        <Select
+          onValueChange={(v) => {
+            if (isCurrency(v)) {
+              onCurrencyChange(v);
+            }
+          }}
+          value={currency}
+        >
           <SelectTrigger className="w-[100px]">
             <SelectValue />
           </SelectTrigger>

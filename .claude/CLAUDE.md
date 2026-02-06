@@ -22,13 +22,13 @@ packages/
 ```
 
 See app/package-specific CLAUDE.md files for detailed context:
-- `@apps/web/CLAUDE.md` - Auth system, routes, Next.js patterns
-- `@apps/scraper/CLAUDE.md` - Scraping strategies, deployment
-- `@packages/database/CLAUDE.md` - Schema, migrations, client vs adminClient usage
-- `@packages/embeddings/CLAUDE.md` - Bi-encoder + cross-encoder, two-stage retrieval, provider pattern
-- `@packages/scraper/CLAUDE.md` - Scraping pipeline, strategy pattern, adding job boards
-- `@packages/ui/CLAUDE.md` - Component inventory, custom components, theme system
-- `@packages/typescript-config/CLAUDE.md` - Shared presets (base, nextjs, react-library)
+- `apps/web/CLAUDE.md` - Routes, forms, server actions, co-location, type decoupling
+- `apps/scraper/CLAUDE.md` - Scraping strategies, deployment
+- `packages/database/CLAUDE.md` - Schema, migrations, client vs adminClient usage
+- `packages/embeddings/CLAUDE.md` - Bi-encoder + cross-encoder, two-stage retrieval, provider pattern
+- `packages/scraper/CLAUDE.md` - Scraping pipeline, strategy pattern, adding job boards
+- `packages/ui/CLAUDE.md` - Component inventory, custom components, theme system
+- `packages/typescript-config/CLAUDE.md` - Shared presets (base, nextjs, react-library)
 
 ## Getting Started
 
@@ -107,154 +107,18 @@ These same checks run automatically on pre-commit via Husky hooks. If any comman
 - Early returns over nested conditionals
 - Unused catch variables must be prefixed with underscore (e.g., `catch (_error)`)
 
-**Architecture conventions**:
-- Extract ALL business logic to custom hooks
-- Keep components presentation-only (JSX + props)
-- Extract constants to UPPER_CASE variables
-- No nested ternary expressions—use helper functions with if/else
-- Early returns with curly braces for block statements
-- Features cannot import from other features (maintain isolation)
-- Single-use constants belong close to usage, not in centralized constants file
+**Type safety conventions**:
+- Avoid type assertions (`as`)—use Zod `.parse()`, typed variables, or explicit return type annotations instead
+- `as` is only acceptable for external API boundaries (`response.json() as Promise<T>`) where we have no control
+- Use named types from DB enums (e.g., `EmploymentType`, `WorkplaceType`) instead of inline string literal unions
+- Use typed variables for literal values: `const period: SalaryPeriod = "month"` not `"month" as SalaryPeriod`
+- Use explicit return type annotations to narrow literals: `.map((x): MyType => ({ ... }))` not `as const`
+- Convert embeddings with `JSON.stringify()` for DB storage, never cast the parent object
 
 **File naming conventions**:
 - `index.ts` is ONLY for barrel exports (re-exports from other files)
 - Files with logic/definitions get descriptive names: `dashboard.ts`, `filter-options.ts`, `profile.ts`
 - Import from named files: `from "../types/dashboard"` not `from "../types"`
-
-**Co-location pattern** (component-specific logic):
-```
-components/
-├── simple-component.tsx           # Simple component - no wrapper folder needed
-└── complex-component/             # Component with specific hooks/utils
-    ├── index.ts                   # Barrel export: export { ComplexComponent } from "./complex-component"
-    ├── complex-component.tsx      # The component itself
-    ├── use-complex-hook.ts        # Component-specific hook (co-located)
-    └── complex-utils.ts           # Component-specific utils (co-located)
-```
-
-**When to co-locate**:
-- Hook/util/schema/constant used by ONE component → separate file IN that component's wrapper folder
-- Hook/util/schema/constant used by 2+ components → feature-level `hooks/`, `utils/`, `schemas/`, or `constants/` folder
-- Types/interfaces used by ONE file → inline directly into that file (no separate types file)
-- Types/interfaces used by 2+ files → feature-level `types/` folder
-
-## Web App Route Structure
-
-```
-apps/web/src/app/
-├── (app)/                    # Authenticated routes with sidebar layout
-│   ├── layout.tsx            # Auth check (requires onboarding), sidebar, navigation
-│   ├── dashboard/page.tsx    # /dashboard - main job listings
-│   └── profile/page.tsx      # /profile - user profile settings
-├── (auth)/                   # Public auth pages (redirects away if authenticated)
-│   ├── layout.tsx            # Auth check (redirects to /dashboard if logged in)
-│   ├── login/page.tsx        # /login
-│   └── signup/page.tsx       # /signup
-├── api/auth/callback/route.ts # /api/auth/callback - OAuth callback handler
-├── onboarding/page.tsx       # /onboarding - post-auth profile setup
-├── layout.tsx                # Root layout (providers, fonts)
-└── page.tsx                  # / - landing page
-```
-
-**Route groups**:
-- `(app)` - Authenticated + onboarding completed. Has sidebar layout.
-- `(auth)` - Public pages. Redirects to dashboard if already authenticated.
-- `onboarding` - Authenticated but onboarding NOT completed. Separate from both groups.
-
-**Why onboarding is outside both groups**:
-- Can't be in `(app)` - would cause redirect loop (app requires onboarding → redirects to onboarding)
-- Can't be in `(auth)` - requires authentication (auth pages redirect authenticated users away)
-
-## Form Management
-
-This project uses **react-hook-form** with **Zod resolver** for all forms.
-
-**Pattern**:
-```typescript
-// schemas/[feature-name].ts - Define schema with Zod
-export const myFormSchema = z.object({
-  field: z.string().min(1, "Required"),
-});
-export type MyFormData = z.infer<typeof myFormSchema>;
-
-// components/my-form/use-my-form.ts - Extract all form logic to custom hook (co-located)
-export function useMyForm() {
-  const form = useForm<MyFormData>({
-    resolver: zodResolver(myFormSchema),
-    defaultValues: { field: "" },
-    mode: "onChange",
-  });
-
-  const onSubmit = async (data: MyFormData) => {
-    // submission logic
-  };
-
-  return { ...form, onSubmit };
-}
-
-// components/my-form/my-form.tsx - Presentation only with Controller
-export function MyForm() {
-  const { control, errors, handleSubmit, onSubmit } = useMyForm();
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        control={control}
-        name="field"
-        render={({ field }) => <Input {...field} />}
-      />
-    </form>
-  );
-}
-```
-
-**Rules**:
-- ALL form logic in custom hooks (validation, submission, state)
-- Components are presentation-only
-- Use Controller for form fields
-- Zod schemas define both validation and TypeScript types
-
-## API Response Pattern
-
-Server actions return discriminated unions for type-safe error handling:
-
-```typescript
-// api/actions.ts
-import { ok, err, type Result } from "@/shared/api";
-
-export async function myAction(): Promise<Result<MyData>> {
-  if (error) return err("Error message");
-  return ok(data);
-}
-
-// Consumer - TypeScript narrows type after success check
-const result = await myAction();
-if (!result.success) {
-  toast.error(result.error); // error is string
-  return;
-}
-console.log(result.data); // data is MyData
-```
-
-## Database Type Decoupling
-
-App types are standalone (no database imports). Mappers convert database types to app types.
-
-```
-features/example/
-├── types/
-│   └── example.ts        # App types (NO database imports) - named file, not index.ts
-├── api/
-│   ├── mappers/
-│   │   └── example.ts    # Import Database types here, export mappers
-│   └── my-action.ts      # Uses mapper, returns Result<AppType>
-└── index.ts              # Barrel exports ONLY
-```
-
-**Type rules**:
-- App types (`types/`) must NOT import from `@codeforge-v2/database`
-- Only mappers (`api/mappers/`) import database types
-- Use `Pick<DatabaseRow, "field1" | "field2">` for DTOs in mappers
 
 ## Package Imports
 
@@ -277,7 +141,7 @@ import { embeddings, EmbeddingError } from "@codeforge-v2/embeddings";
 import { reranker, RerankingError, formatProfileQuery, formatJobDocument } from "@codeforge-v2/embeddings";
 ```
 
-**Important**: See @packages/database/CLAUDE.md for `client` vs `adminClient` usage patterns. See @packages/embeddings/CLAUDE.md for two-stage retrieval architecture.
+**Important**: See `packages/database/CLAUDE.md` for `client` vs `adminClient` usage patterns. See `packages/embeddings/CLAUDE.md` for two-stage retrieval architecture.
 
 ## Environment Variables
 

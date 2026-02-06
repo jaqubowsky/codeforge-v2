@@ -1,4 +1,4 @@
-import type { BaseProviderOptions } from "../../schemas/base-schemas";
+import { baseProviderOptionsSchema } from "../../schemas/base-schemas";
 import type { JustJoinItProviderOptions } from "../../schemas/justjoinit";
 import type {
   JustJoinItApiResponse,
@@ -51,39 +51,37 @@ export class JustJoinItStrategy
       ...options,
     };
 
-    const mappedOptions = this.mapProviderOptions(
-      options?.providerOptions as BaseProviderOptions | undefined
-    );
+    const baseOptions = options?.providerOptions
+      ? baseProviderOptionsSchema.parse(options.providerOptions)
+      : undefined;
 
     this.providerOptions = {
       ...DEFAULT_PROVIDER_OPTIONS,
-      ...mappedOptions,
+      ...this.mapProviderOptions(baseOptions),
     };
   }
 
   private mapProviderOptions(
-    baseOptions?: BaseProviderOptions
+    baseOptions?: ReturnType<typeof baseProviderOptionsSchema.parse>
   ): Partial<JustJoinItProviderOptions> {
     if (!baseOptions) {
       return {};
     }
 
-    const prevCurrency = baseOptions.currency;
-    const prevSortBy = baseOptions.sortBy;
-    const prevOrderBy = baseOptions.orderBy;
-
     const mapped: Partial<JustJoinItProviderOptions> = {};
 
-    if (prevCurrency) {
-      mapped.currency = prevCurrency;
+    if (baseOptions.currency) {
+      mapped.currency = baseOptions.currency;
     }
 
-    if (prevSortBy) {
-      mapped.sortBy = prevSortBy === "publishedAt" ? "publishedAt" : "salary";
+    if (baseOptions.sortBy) {
+      mapped.sortBy =
+        baseOptions.sortBy === "publishedAt" ? "publishedAt" : "salary";
     }
 
-    if (prevOrderBy) {
-      mapped.orderBy = prevOrderBy === "DESC" ? "descending" : "ascending";
+    if (baseOptions.orderBy) {
+      mapped.orderBy =
+        baseOptions.orderBy === "DESC" ? "descending" : "ascending";
     }
 
     if (baseOptions.cityRadiusKm) {
@@ -160,11 +158,13 @@ export class JustJoinItStrategy
       return this.getEmptySalary();
     }
 
+    const period: SalaryPeriod = "month";
+
     return {
       from,
       to,
       currency: currency?.toUpperCase(),
-      period: "month" as SalaryPeriod,
+      period,
       type: type === "any" ? undefined : type,
     };
   }

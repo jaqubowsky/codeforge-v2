@@ -26,9 +26,7 @@ export async function scrapeOffers(
     });
 
     const scrapingService = new ScrapingService(strategy);
-    const result = await scrapingService.scrapeOffers(
-      (categories ?? []) as never[]
-    );
+    const result = await scrapingService.scrapeOffers(categories ?? []);
 
     return {
       success: true,

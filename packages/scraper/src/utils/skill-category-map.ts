@@ -1,4 +1,117 @@
 import type { JustJoinItTechnology } from "../types/just-join-it";
+import type { NoFluffJobsCategory } from "../types/no-fluff-jobs";
+
+const SKILL_TO_NFJ_CATEGORY: Record<string, NoFluffJobsCategory> = {
+  react: "frontend",
+  typescript: "frontend",
+  javascript: "frontend",
+  html: "frontend",
+  css: "frontend",
+  tailwindcss: "frontend",
+  "tailwind css": "frontend",
+  sass: "frontend",
+  scss: "frontend",
+  bootstrap: "frontend",
+  vue: "frontend",
+  "vue.js": "frontend",
+  angular: "frontend",
+  svelte: "frontend",
+  redux: "frontend",
+  webpack: "frontend",
+  vite: "frontend",
+  jquery: "frontend",
+
+  "node.js": "backend",
+  nodejs: "backend",
+  express: "backend",
+  nestjs: "backend",
+  deno: "backend",
+  django: "backend",
+  flask: "backend",
+  fastapi: "backend",
+  spring: "backend",
+  "spring boot": "backend",
+  hibernate: "backend",
+  laravel: "backend",
+  symfony: "backend",
+  rails: "backend",
+  "ruby on rails": "backend",
+  graphql: "backend",
+  php: "backend",
+  ruby: "backend",
+  python: "backend",
+  java: "backend",
+  "c#": "backend",
+  csharp: "backend",
+  ".net": "backend",
+  dotnet: "backend",
+  "asp.net": "backend",
+  blazor: "backend",
+  go: "backend",
+  golang: "backend",
+  scala: "backend",
+  akka: "backend",
+  kotlin: "backend",
+  c: "backend",
+  "c++": "backend",
+  cpp: "backend",
+  rust: "backend",
+
+  nextjs: "fullstack",
+  "next.js": "fullstack",
+  nuxtjs: "fullstack",
+  "nuxt.js": "fullstack",
+
+  swift: "mobile",
+  "react native": "mobile",
+  flutter: "mobile",
+  dart: "mobile",
+  android: "mobile",
+  ios: "mobile",
+
+  selenium: "testing",
+  cypress: "testing",
+  playwright: "testing",
+  jest: "testing",
+
+  docker: "devops",
+  kubernetes: "devops",
+  k8s: "devops",
+  terraform: "devops",
+  ansible: "devops",
+  jenkins: "devops",
+  ci: "devops",
+  cd: "devops",
+  aws: "devops",
+  azure: "devops",
+  gcp: "devops",
+  "google cloud": "devops",
+  linux: "devops",
+  nginx: "devops",
+
+  figma: "ux",
+  sketch: "ux",
+  "adobe xd": "ux",
+
+  sql: "data",
+  postgresql: "data",
+  postgres: "data",
+  mongodb: "data",
+  mysql: "data",
+  redis: "data",
+  elasticsearch: "data",
+  cassandra: "data",
+  bigquery: "data",
+  spark: "data",
+  kafka: "data",
+
+  tensorflow: "ai-ml",
+  pytorch: "ai-ml",
+  "machine learning": "ai-ml",
+  ml: "ai-ml",
+  openai: "ai-ml",
+  llm: "ai-ml",
+};
 
 const SKILL_TO_CATEGORY: Record<string, JustJoinItTechnology> = {
   react: "javascript",
@@ -117,6 +230,22 @@ export function mapSkillsToCategories(
   for (const skill of skills) {
     const normalized = skill.toLowerCase().trim();
     const category = SKILL_TO_CATEGORY[normalized];
+    if (category) {
+      categories.add(category);
+    }
+  }
+
+  return Array.from(categories);
+}
+
+export function mapSkillsToNoFluffJobsCategories(
+  skills: string[]
+): NoFluffJobsCategory[] {
+  const categories = new Set<NoFluffJobsCategory>();
+
+  for (const skill of skills) {
+    const normalized = skill.toLowerCase().trim();
+    const category = SKILL_TO_NFJ_CATEGORY[normalized];
     if (category) {
       categories.add(category);
     }
