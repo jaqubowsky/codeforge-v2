@@ -1,14 +1,14 @@
 ---
 name: validate
-description: Run post-feature validation checks on the codebase. Use when (1) user says /validate, "validate", "run checks", "verify build", "run validation", (2) after implementing any feature or code change, (3) before committing code, (4) when user wants to ensure nothing is broken. Runs build, type-check, lint, and unused code detection in sequence.
+description: Run post-feature validation checks on the codebase. Use when (1) user says /validate, "validate", "run checks", "verify build", "run validation", (2) after implementing any feature or code change, (3) before committing code, (4) when user wants to ensure nothing is broken. Runs tests, build, type-check, lint, and unused code detection in sequence.
 ---
 
 # Post-Feature Validation
 
-Run all four validation steps in sequence, stopping on first failure:
+Run all five validation steps in sequence, stopping on first failure:
 
 ```bash
-pnpm run build && pnpm run check-types && pnpm run lint && pnpm run knip
+pnpm run test && pnpm run build && pnpm run check-types && pnpm run lint && pnpm run knip
 ```
 
 ## Execution
@@ -22,6 +22,7 @@ pnpm run build && pnpm run check-types && pnpm run lint && pnpm run knip
 On success:
 ```
 All checks passed:
+  - test
   - build
   - check-types
   - lint

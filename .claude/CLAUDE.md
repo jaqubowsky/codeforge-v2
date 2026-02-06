@@ -61,6 +61,9 @@ pnpm run build         # Production build all packages and apps (via Turborepo)
 pnpm run check-types   # TypeScript validation across workspace (via Turborepo)
 pnpm run lint          # Lint entire workspace (Ultracite/Biome, root-level)
 
+# Testing
+pnpm run test          # Run all tests across workspace (via Turborepo)
+
 # Code quality
 pnpm run fix           # Auto-fix with Ultracite/Biome
 pnpm run check         # Check without fixing (root only)
@@ -76,25 +79,28 @@ pnpm run update-deps   # Update dependencies interactively
 **After implementing any feature or making code changes, ALWAYS run these commands to validate:**
 
 ```bash
-# 1. Build all packages (catches import/export errors)
+# 1. Run tests (catches regressions in core logic)
+pnpm run test
+
+# 2. Build all packages (catches import/export errors)
 pnpm run build
 
-# 2. Type check (catches TypeScript errors)
+# 3. Type check (catches TypeScript errors)
 pnpm run check-types
 
-# 3. Lint (catches code style and potential bugs)
+# 4. Lint (catches code style and potential bugs)
 pnpm run lint
 
-# 4. Check for unused code (catches dead code)
+# 5. Check for unused code (catches dead code)
 pnpm run knip
 ```
 
 **Quick validation (runs all checks):**
 ```bash
-pnpm run check-types && pnpm run lint && pnpm run knip
+pnpm run test && pnpm run check-types && pnpm run lint && pnpm run knip
 ```
 
-These same checks run automatically on pre-commit via Husky hooks. If any command fails, fix the issues before committing.
+These same checks run automatically via Husky hooks (pre-commit: lint-staged + check-types + knip; pre-push: test). If any command fails, fix the issues before committing.
 
 **Project conventions** (enforced by linter):
 - No `console.log` or `debugger` in production

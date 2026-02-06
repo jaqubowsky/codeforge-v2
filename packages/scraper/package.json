@@ -12,6 +12,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "test": "vitest run",
     "check-types": "tsc --noEmit",
     "check-deps": "pnpm dlx npm-check-updates --format group",
     "update-deps": "pnpm dlx npm-check-updates -u --format group"
