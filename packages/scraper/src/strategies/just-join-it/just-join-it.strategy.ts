@@ -112,7 +112,7 @@ export class JustJoinItStrategy
   private async fetchOffers(
     cursor: number,
     itemsCount: number,
-    technology?: JustJoinItTechnology | undefined
+    categories: JustJoinItTechnology[]
   ): Promise<JustJoinItApiResponse> {
     const params = new URLSearchParams({
       cityRadius: this.providerOptions.cityRadiusKm.toString(),
@@ -123,8 +123,8 @@ export class JustJoinItStrategy
       sortBy: this.providerOptions.sortBy,
     });
 
-    if (technology) {
-      params.append("categories[]", technology);
+    for (const category of categories) {
+      params.append("categories", category);
     }
 
     const response = await fetch(`${API_BASE_URL}?${params.toString()}`);
@@ -154,7 +154,7 @@ export class JustJoinItStrategy
       return this.getEmptySalary();
     }
 
-    const { from, to, currency, type, unit } = employment;
+    const { from, to, currency, type } = employment;
     const hasNoSalary = from === null && to === null;
     if (hasNoSalary) {
       return this.getEmptySalary();
@@ -164,7 +164,7 @@ export class JustJoinItStrategy
       from,
       to,
       currency: currency?.toUpperCase(),
-      period: unit?.toLowerCase() as SalaryPeriod,
+      period: "month" as SalaryPeriod,
       type: type === "any" ? undefined : type,
     };
   }
@@ -255,7 +255,7 @@ export class JustJoinItStrategy
   }
 
   private async fetchAllOffers(
-    technology?: JustJoinItTechnology | undefined
+    categories: JustJoinItTechnology[]
   ): Promise<JustJoinItOffer[]> {
     const apiOffers: JustJoinItOffer[] = [];
     let cursor = 0;
@@ -264,7 +264,7 @@ export class JustJoinItStrategy
       const response = await this.fetchOffers(
         cursor,
         this.options.itemsPerPage,
-        technology
+        categories
       );
       apiOffers.push(...response.data);
 
@@ -283,11 +283,11 @@ export class JustJoinItStrategy
     return apiOffers;
   }
 
-  async getOffersByTechnology(
-    technology: JustJoinItTechnology | undefined,
+  async getOffers(
+    categories: JustJoinItTechnology[],
     scrapingRunId: number
   ): Promise<PreparedOfferData[]> {
-    const apiOffers = await this.fetchAllOffers(technology);
+    const apiOffers = await this.fetchAllOffers(categories);
 
     return executeInBatches(
       apiOffers,

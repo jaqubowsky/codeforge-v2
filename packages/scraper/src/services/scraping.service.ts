@@ -3,7 +3,7 @@ import { embeddings } from "@codeforge-v2/embeddings";
 import type {
   Offer,
   PreparedOfferData,
-  ScrapeOffersByTechnologyResult,
+  ScrapeRunResult,
   ScrapingStrategy,
   TechnologyLink,
 } from "../types/scraper-types";
@@ -183,9 +183,7 @@ export class ScrapingService<TTechnology = string | undefined> {
     });
   }
 
-  async scrapeOffersByTechnology(
-    technology: TTechnology
-  ): Promise<ScrapeOffersByTechnologyResult> {
+  async scrapeOffers(categories: TTechnology[]): Promise<ScrapeRunResult> {
     const { data: scrapingRun, error: runError } =
       await queries.scraping_runs.create({
         status: "running",
@@ -196,8 +194,8 @@ export class ScrapingService<TTechnology = string | undefined> {
     }
 
     try {
-      const preparedData = await this.strategy.getOffersByTechnology(
-        technology,
+      const preparedData = await this.strategy.getOffers(
+        categories,
         scrapingRun.id
       );
 

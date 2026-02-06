@@ -17,3 +17,7 @@ export const INPUT_LIMITS = {
   MIN_LENGTH: 1,
   MAX_LENGTH: 10_000,
 } as const;
+
+export const RERANKER_MODEL_IDS = {
+  local: "Xenova/ms-marco-MiniLM-L-6-v2",
+} as const;

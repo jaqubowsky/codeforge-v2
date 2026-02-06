@@ -18,10 +18,10 @@ export function useAuthState(): AuthState {
     const supabase = createClient();
 
     supabase.auth
-      .getSession()
-      .then(({ data: { session } }) => {
+      .getUser()
+      .then(({ data: { user } }) => {
         setState({
-          isAuthenticated: !!session,
+          isAuthenticated: user !== null,
           isLoading: false,
         });
       })
@@ -34,7 +34,11 @@ export function useAuthState(): AuthState {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "INITIAL_SESSION") {
+        return;
+      }
+
       setState({
         isAuthenticated: !!session,
         isLoading: false,

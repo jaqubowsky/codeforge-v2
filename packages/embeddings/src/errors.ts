@@ -23,6 +23,7 @@ const ERROR_CODES = {
   GENERATION_FAILED: "GENERATION_FAILED",
   PROVIDER_NOT_IMPLEMENTED: "PROVIDER_NOT_IMPLEMENTED",
   INVALID_DIMENSIONS: "INVALID_DIMENSIONS",
+  RERANKING_FAILED: "RERANKING_FAILED",
 } as const;
 
 export class ModelLoadError extends EmbeddingError {
@@ -63,5 +64,17 @@ export class InvalidDimensionsError extends EmbeddingError {
       provider
     );
     this.name = "InvalidDimensionsError";
+  }
+}
+
+export class RerankingError extends EmbeddingError {
+  constructor(provider: string, cause?: unknown) {
+    super(
+      `Failed to rerank documents: ${provider}`,
+      ERROR_CODES.RERANKING_FAILED,
+      provider,
+      cause
+    );
+    this.name = "RerankingError";
   }
 }

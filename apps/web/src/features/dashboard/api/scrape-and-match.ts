@@ -1,6 +1,6 @@
 "use server";
 
-import { scrapeOffers } from "@codeforge-v2/scraper";
+import { mapSkillsToCategories, scrapeOffers } from "@codeforge-v2/scraper";
 import { revalidatePath } from "next/cache";
 import type { Result } from "@/shared/api";
 import { err, ok } from "@/shared/api";
@@ -52,10 +52,10 @@ async function checkRateLimit(
   return null;
 }
 
-async function validateProfile(
+async function fetchUserSkills(
   supabase: SupabaseClient,
   userId: string
-): Promise<Result<never> | null> {
+): Promise<string[] | Result<never>> {
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
     .select("skills, embedding")
@@ -74,7 +74,7 @@ async function validateProfile(
     return err("No skills found in your profile. Please add skills first.");
   }
 
-  return null;
+  return profile.skills;
 }
 
 async function updateMatchRun(
@@ -99,7 +99,8 @@ async function updateMatchRun(
 
 async function executeMatchingFlow(
   supabase: SupabaseClient,
-  matchRunId: number
+  matchRunId: number,
+  userSkills: string[]
 ): Promise<Result<ScrapeAndMatchData>> {
   const firstMatchResult = await matchJobs();
 
@@ -117,8 +118,11 @@ async function executeMatchingFlow(
     });
   }
 
+  const categories = mapSkillsToCategories(userSkills);
+
   const scrapeResult = await scrapeOffers({
     maxOffers: 500,
+    categories: categories.length > 0 ? categories : undefined,
   });
 
   if (!scrapeResult.success) {
@@ -167,9 +171,9 @@ export async function scrapeAndMatch(): Promise<Result<ScrapeAndMatchData>> {
     return rateLimitResult;
   }
 
-  const profileResult = await validateProfile(supabase, userId);
-  if (profileResult) {
-    return profileResult;
+  const skillsResult = await fetchUserSkills(supabase, userId);
+  if (!Array.isArray(skillsResult)) {
+    return skillsResult;
   }
 
   const { data: matchRun, error: createError } = await supabase
@@ -186,7 +190,11 @@ export async function scrapeAndMatch(): Promise<Result<ScrapeAndMatchData>> {
   }
 
   try {
-    const result = await executeMatchingFlow(supabase, matchRun.id);
+    const result = await executeMatchingFlow(
+      supabase,
+      matchRun.id,
+      skillsResult
+    );
     revalidatePath("/dashboard");
     return result;
   } catch (error) {

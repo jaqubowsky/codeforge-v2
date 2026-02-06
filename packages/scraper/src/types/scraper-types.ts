@@ -35,7 +35,7 @@ export interface PreparedOfferData {
   technologies: TechnologyData[];
 }
 
-export interface ScrapeOffersByTechnologyResult {
+export interface ScrapeRunResult {
   runId: number;
   offersCount: number;
 }
@@ -50,8 +50,8 @@ export interface ScrapingOptions {
 }
 
 export interface ScrapingStrategy<TTechnology = string | undefined> {
-  getOffersByTechnology(
-    technology: TTechnology | undefined,
+  getOffers(
+    categories: TTechnology[],
     scrapingRunId: number
   ): Promise<PreparedOfferData[]>;
 }
@@ -62,6 +62,7 @@ export type JobBoard = (typeof AVAILABLE_JOB_BOARDS)[number];
 export interface ScrapeOffersOptions {
   board?: JobBoard;
   maxOffers?: number;
+  categories?: string[];
 }
 
 export interface ScrapeOffersResult {

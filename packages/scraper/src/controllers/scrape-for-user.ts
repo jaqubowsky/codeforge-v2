@@ -10,26 +10,14 @@ import { getErrorMessage } from "../utils/errors";
 const DEFAULT_BOARD: JobBoard = "justjoinit";
 const DEFAULT_MAX_OFFERS = 500;
 
-/**
- * Scrapes job offers and saves ALL of them to the database
- *
- * This is the main entry point for scraping. It fetches offers from
- * the job board, generates embeddings, and saves ALL to the offers table.
- *
- * Filtering by user preferences happens separately via the matchJobs
- * function, which saves matching offers to the user_offers table.
- *
- * This approach allows multiple users to share the same pool of scraped
- * offers, improving matching results for everyone.
- *
- * @param options - Scraping options (board, maxOffers)
- * @returns Result with success status and counts
- */
 export async function scrapeOffers(
   options?: ScrapeOffersOptions
 ): Promise<ScrapeOffersResult> {
-  const { board = DEFAULT_BOARD, maxOffers = DEFAULT_MAX_OFFERS } =
-    options ?? {};
+  const {
+    board = DEFAULT_BOARD,
+    maxOffers = DEFAULT_MAX_OFFERS,
+    categories,
+  } = options ?? {};
 
   try {
     const strategy = getScrapingStrategy(board, {
@@ -38,8 +26,9 @@ export async function scrapeOffers(
     });
 
     const scrapingService = new ScrapingService(strategy);
-
-    const result = await scrapingService.scrapeOffersByTechnology(undefined);
+    const result = await scrapingService.scrapeOffers(
+      (categories ?? []) as never[]
+    );
 
     return {
       success: true,

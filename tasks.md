@@ -838,7 +838,7 @@ apps/web/src/shared/hooks/
 
 **Key Decision:** Removed job title filter (e.g., "Frontend" keyword matching) because skill overlap is more reliable for technology-specific roles.
 
-## Milestone 8.9: AI Matching v2 - Re-Ranking Pipeline
+## Milestone 8.9: AI Matching v2 - Re-Ranking Pipeline ✅ COMPLETE
 
 **Goal:** Implement a "Two-Stage Retrieval" architecture to fix semantic "fuzziness" and improve precision.
 
@@ -850,54 +850,64 @@ apps/web/src/shared/hooks/
 
 ### Phase 1: Infrastructure Upgrade (Cross-Encoder)
 
-* [ ] **8.9.1 Update Embeddings Package**
-* Add support for **Cross-Encoders** to `@codeforge-v2/embeddings`
-* Model: `Xenova/ms-marco-MiniLM-L-6-v2` (Pre-trained on Bing search data, excellent for "Query vs Document" relevance)
-* Implement `rank_pairs(user_text, job_texts[])` function
-* *Note:* This runs locally; no training required.
+* [x] **8.9.1 Update Embeddings Package**
+* Added `ReRanker` interface + `RankedDocument` type to `types.ts`
+* Added `RERANKER_MODEL_IDS` constant for `Xenova/ms-marco-MiniLM-L-6-v2`
+* Added `RerankingError` class + `RERANKING_FAILED` error code
+* Created `local-reranker.ts` provider with lazy model loading (same pattern as bi-encoder)
+* Created `reranker-factory.ts` with singleton caching
 
 
-* [ ] **8.9.2 Create Re-Ranking Logic**
-* Logic:
-1. **Retrieval (Stage 1):** Use M8.8 SQL function to get Top 50 candidates (fast, filters hard constraints).
-2. **Re-Ranking (Stage 2):** Pass Top 50 candidates + User Profile to Cross-Encoder.
-3. **Sort:** Re-order based on the Cross-Encoder score (Sigmoid output 0-1).
-
-* Define the "User Query String" format: `"{Job Title} with {Years} exp in {Skills}. Looking for {Locations}."`
-* Define the "Job Document String" format: `"{Title} at {Company}. {Description fragment}..."`
+* [x] **8.9.2 Create Re-Ranking Logic**
+* Created `text-formatting.ts` with `formatProfileQuery()` and `formatJobDocument()` utilities
+* Labeled pipe-delimited format for cross-encoder input (Skills: X | Level: Y | Type: Z)
+* Profile query includes skills, experience levels, work locations, ideal role description
+* Job document includes title, company, level, type, location, tech stack, salary
 
 ### Phase 2: Implementation & Integration
 
-* [ ] **8.9.3 Update `matchJobs` Server Action**
-* Integrate the new 2-stage pipeline.
-* **Performance Guardrail:** Only re-rank the top 20-50 results to keep response time <5s on local hardware.
-* Store the new `relevance_score` in `user_offers` (distinct from the vector `similarity_score`).
+* [x] **8.9.3 Update `matchJobs` Server Action**
+* Integrated 2-stage pipeline: SQL RPC (top 50) → Cross-Encoder re-ranking (top 20)
+* Fetches full offer details (title, company, technologies, etc.) for re-ranking
+* Cross-encoder scores stored directly in `similarity_score` (no schema change needed)
+* Error handling: re-ranking failure returns user-friendly error
 
 
-* [ ] **8.9.4 Improve Text Representation**
-* Current embeddings use "bag of words" style concatenation.
-* Update `generateOfferEmbeddings` to structure text better for the model.
-* Ensure "Remote" vs "Office" is explicitly stated in the text string passed to the Cross-Encoder, as it handles negation and context better than vectors.
+* [x] **8.9.4 Improve Text Representation**
+* `formatProfileQuery()` — Skills, Experience, Work location, Ideal role description
+* `formatJobDocument()` — Title, Company, Level, Type, Location, Tech, Salary
+* Labeled fields help cross-encoder understand field semantics
 
 ### Phase 3: Data Quality (Synonyms)
 
-* [ ] **8.9.5 Implement Technology Normalization (Aliases)**
-* Create `technology_aliases` table or constant map.
-* Map variations to canonical names before matching (e.g., `ReactJS`, `React.js` -> `react`).
-* This improves the "Hard Filter" stage (M8.8) to ensure the Cross-Encoder actually gets relevant candidates to rank.
+* [x] **8.9.5 Implement Technology Normalization (Aliases)** — Skipped
+* Current `normalize_skill()` SQL function handles variants adequately (e.g., NextJS/Next.js)
+* Cross-encoder is robust to minor naming variations
 
 ### Phase 4: Feedback Loop
 
-* [ ] **8.9.6 Add User Feedback UI**
-* Add "Not Relevant" button to Job Card.
-* When clicked, ask "Why?": (Wrong Tech / Wrong Seniority / Not Remote).
-* Use this data to manually tune the hard filters in M8.8 if needed.
+* [x] **8.9.6 Add User Feedback UI** — Removed from plan
+* No immediate matching improvement without processing pipeline
+* Can be revisited in a future milestone
 
-**Files to modify:**
+**What was built:**
+- Cross-encoder re-ranking pipeline using `Xenova/ms-marco-MiniLM-L-6-v2` model
+- `ReRanker` interface with factory pattern (mirrors existing `EmbeddingProvider` architecture)
+- Text formatting utilities for profile queries and job documents
+- Two-stage retrieval: SQL hard filters (50 candidates) → Cross-encoder precision ranking (top 20)
+- No database migration needed — reuses existing `similarity_score` column
 
-* `packages/embeddings/src/providers/local.ts` - Add Cross-Encoder support
-* `apps/web/src/features/dashboard/api/match-jobs.ts` - Implement 2-stage logic
-* `packages/scraper/src/utils/text-prep.ts` - Better text formatting for models
+**Files created:**
+- `packages/embeddings/src/providers/local-reranker.ts` — Cross-encoder provider
+- `packages/embeddings/src/reranker-factory.ts` — Factory with singleton caching
+- `packages/embeddings/src/text-formatting.ts` — Profile/job text formatting utilities
+
+**Files modified:**
+- `packages/embeddings/src/types.ts` — Added `ReRanker`, `RankedDocument`
+- `packages/embeddings/src/constants.ts` — Added `RERANKER_MODEL_IDS`
+- `packages/embeddings/src/errors.ts` — Added `RerankingError`, `RERANKING_FAILED`
+- `packages/embeddings/src/index.ts` — Exported reranker singleton, factory, types, formatting
+- `apps/web/src/features/dashboard/api/match-jobs.ts` — Integrated 2-stage pipeline
 
 ## Milestone 8.10: Salary Parsing Bug Fixes
 
@@ -1044,8 +1054,8 @@ apps/web/src/shared/hooks/
 | 8.6 | Enhanced Profile & Soft Delete | ✅ Complete |
 | 8.7 | Landing Page | ✅ Complete |
 | 8.8 | AI Matching Improvements | ✅ Complete |
-| 8.9 | AI Matching v2 - Deep Improvements | **← NEXT** |
-| 8.10 | Salary Parsing Bug Fixes | Not started |
+| 8.9 | AI Matching v2 - Re-Ranking Pipeline | ✅ Complete |
+| 8.10 | Salary Parsing Bug Fixes | **← NEXT** |
 | 9 | Testing | Not started |
 | 10 | Deployment | Not started |
 

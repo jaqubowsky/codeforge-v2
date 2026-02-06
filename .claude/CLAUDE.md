@@ -15,20 +15,20 @@ apps/
 
 packages/
 ├── database/         # Supabase client, queries, and generated types
-├── embeddings/       # Local AI embeddings for job matching (transformers.js)
+├── embeddings/       # AI embeddings + cross-encoder re-ranking for job matching (transformers.js)
 ├── scraper/          # Core scraping logic for job offers (strategy pattern)
 ├── ui/               # Shared shadcn/ui components (Radix primitives)
 └── typescript-config/# Shared tsconfig presets (base, nextjs, react-library)
 ```
 
 See app/package-specific CLAUDE.md files for detailed context:
-- `apps/web/CLAUDE.md` - Auth system, routes, Next.js patterns
-- `apps/scraper/CLAUDE.md` - Scraping strategies, deployment
-- `packages/database/CLAUDE.md` - Schema, migrations, client vs adminClient usage
-- `packages/embeddings/CLAUDE.md` - Provider pattern, performance, error codes
-- `packages/scraper/CLAUDE.md` - Scraping pipeline, strategy pattern, adding job boards
-- `packages/ui/CLAUDE.md` - Component inventory, custom components, theme system
-- `packages/typescript-config/CLAUDE.md` - Shared presets (base, nextjs, react-library)
+- `@apps/web/CLAUDE.md` - Auth system, routes, Next.js patterns
+- `@apps/scraper/CLAUDE.md` - Scraping strategies, deployment
+- `@packages/database/CLAUDE.md` - Schema, migrations, client vs adminClient usage
+- `@packages/embeddings/CLAUDE.md` - Bi-encoder + cross-encoder, two-stage retrieval, provider pattern
+- `@packages/scraper/CLAUDE.md` - Scraping pipeline, strategy pattern, adding job boards
+- `@packages/ui/CLAUDE.md` - Component inventory, custom components, theme system
+- `@packages/typescript-config/CLAUDE.md` - Shared presets (base, nextjs, react-library)
 
 ## Getting Started
 
@@ -269,9 +269,15 @@ import { Badge } from "@codeforge-v2/ui/components/badge";
 
 // Database
 import { client, adminClient } from "@codeforge-v2/database";
+
+// Embeddings (bi-encoder for vector generation)
+import { embeddings, EmbeddingError } from "@codeforge-v2/embeddings";
+
+// Reranker (cross-encoder for precision re-ranking)
+import { reranker, RerankingError, formatProfileQuery, formatJobDocument } from "@codeforge-v2/embeddings";
 ```
 
-**Important**: See `packages/database/CLAUDE.md` for `client` vs `adminClient` usage patterns.
+**Important**: See @packages/database/CLAUDE.md for `client` vs `adminClient` usage patterns. See @packages/embeddings/CLAUDE.md for two-stage retrieval architecture.
 
 ## Environment Variables
 

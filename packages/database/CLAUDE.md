@@ -74,7 +74,6 @@ queries.offer_technologies.linkManyToOffer(links)
 | **offer_technologies** | M2M: offers ↔ technologies (skill_level: required/nice_to_have) |
 | **scraping_runs** | Scraper execution audit log |
 | **match_runs** | Job matching execution log |
-| **dismissed_offers** | Offers user dismissed |
 
 ### Key Enums
 
