@@ -42,7 +42,7 @@ export class ScrapingService<TTechnology = string | undefined> {
             techNameToId.set(name, techId);
           }
         } catch (_error) {
-          // Skip failed technology lookups
+          // intentional: skip failed lookups
         }
       })
     );
@@ -81,6 +81,22 @@ export class ScrapingService<TTechnology = string | undefined> {
     return technologyLinks;
   }
 
+  private deduplicateByOfferUrl(
+    preparedData: PreparedOfferData[]
+  ): PreparedOfferData[] {
+    const seen = new Map<string, PreparedOfferData>();
+    for (const data of preparedData) {
+      seen.set(data.offer.offer_url, data);
+    }
+    return Array.from(seen.values());
+  }
+
+  private filterOffersWithSalary(
+    preparedData: PreparedOfferData[]
+  ): PreparedOfferData[] {
+    return preparedData.filter((data) => data.offer.salary_from !== undefined);
+  }
+
   private async generateOfferEmbeddings(
     preparedData: PreparedOfferData[]
   ): Promise<void> {
@@ -103,7 +119,7 @@ export class ScrapingService<TTechnology = string | undefined> {
 
           data.offer.embedding = JSON.stringify(embedding);
         } catch (_error) {
-          // Skip failed embeddings
+          // intentional: skip failed embeddings
         }
       })
     );
@@ -199,7 +215,10 @@ export class ScrapingService<TTechnology = string | undefined> {
         scrapingRun.id
       );
 
-      if (preparedData.length === 0) {
+      const uniqueOffers = this.deduplicateByOfferUrl(preparedData);
+      const offersWithSalary = this.filterOffersWithSalary(uniqueOffers);
+
+      if (offersWithSalary.length === 0) {
         await this.updateScrapingRunSuccess(scrapingRun.id, 0);
         return {
           runId: scrapingRun.id,
@@ -207,9 +226,9 @@ export class ScrapingService<TTechnology = string | undefined> {
         };
       }
 
-      await this.generateOfferEmbeddings(preparedData);
+      await this.generateOfferEmbeddings(offersWithSalary);
 
-      const validOffers = preparedData.filter(
+      const validOffers = offersWithSalary.filter(
         (data) => data.offer.embedding !== undefined
       );
 
@@ -217,17 +236,20 @@ export class ScrapingService<TTechnology = string | undefined> {
 
       if (insertedOffers.length > 0) {
         const technologyLinks = await this.buildTechnologyLinks(
-          preparedData,
+          validOffers,
           insertedOffers
         );
         await this.linkTechnologiesToOffers(technologyLinks, scrapingRun.id);
       }
 
-      await this.updateScrapingRunSuccess(scrapingRun.id, preparedData.length);
+      await this.updateScrapingRunSuccess(
+        scrapingRun.id,
+        offersWithSalary.length
+      );
 
       return {
         runId: scrapingRun.id,
-        offersCount: preparedData.length,
+        offersCount: offersWithSalary.length,
       };
     } catch (error) {
       await this.updateScrapingRunFailure(

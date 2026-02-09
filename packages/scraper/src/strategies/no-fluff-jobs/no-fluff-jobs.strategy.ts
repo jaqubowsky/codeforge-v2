@@ -250,6 +250,17 @@ export class NoFluffJobsStrategy
       );
   }
 
+  private safeTimestampToISO(timestamp: number): string | undefined {
+    if (!Number.isFinite(timestamp) || timestamp === 0) {
+      return undefined;
+    }
+    const date = new Date(timestamp);
+    if (Number.isNaN(date.getTime())) {
+      return undefined;
+    }
+    return date.toISOString();
+  }
+
   private convertToOfferInsert(
     apiOffer: NoFluffJobsPosting,
     scrapingRunId: number
@@ -279,9 +290,9 @@ export class NoFluffJobsStrategy
       workplace_type: workplaceType,
       working_time: "full_time",
       experience_level: experienceLevel,
-      published_at: new Date(apiOffer.posted).toISOString(),
+      published_at: this.safeTimestampToISO(apiOffer.posted),
       expires_at: undefined,
-      last_published_at: new Date(apiOffer.renewed).toISOString(),
+      last_published_at: this.safeTimestampToISO(apiOffer.renewed),
       company_logo_thumb_url: logoUrl,
       application_url: `https://nofluffjobs.com/pl/job/${apiOffer.url}`,
     };
@@ -320,7 +331,20 @@ export class NoFluffJobsStrategy
       }
     }
 
-    return apiOffers;
+    return this.deduplicatePostings(apiOffers);
+  }
+
+  private deduplicatePostings(
+    postings: NoFluffJobsPosting[]
+  ): NoFluffJobsPosting[] {
+    const seen = new Map<string, NoFluffJobsPosting>();
+    for (const posting of postings) {
+      const key = `${posting.title}::${posting.name}`;
+      if (!seen.has(key)) {
+        seen.set(key, posting);
+      }
+    }
+    return Array.from(seen.values());
   }
 
   async getOffers(

@@ -118,7 +118,6 @@ export interface Database {
             | null;
           expires_at: string | null;
           id: number;
-          languages: Json | null;
           last_published_at: string | null;
           offer_url: string;
           published_at: string | null;
@@ -151,7 +150,6 @@ export interface Database {
             | null;
           expires_at?: string | null;
           id?: number;
-          languages?: Json | null;
           last_published_at?: string | null;
           offer_url: string;
           published_at?: string | null;
@@ -186,7 +184,6 @@ export interface Database {
             | null;
           expires_at?: string | null;
           id?: number;
-          languages?: Json | null;
           last_published_at?: string | null;
           offer_url?: string;
           published_at?: string | null;
