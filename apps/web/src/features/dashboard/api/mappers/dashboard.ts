@@ -41,7 +41,7 @@ type UserOfferDTO = Pick<
 
 type MatchRunDTO = Pick<
   MatchRunRow,
-  "created_at" | "jobs_found" | "new_jobs_count" | "status"
+  "created_at" | "new_jobs_count" | "status"
 >;
 
 function mapTechnology(offerTech: {
@@ -94,7 +94,6 @@ export function mapMatchRunInfo(dto: MatchRunDTO | null): MatchRunInfo {
   if (!dto) {
     return {
       lastRunAt: null,
-      jobsFound: 0,
       newJobsCount: 0,
       status: null,
     };
@@ -102,7 +101,6 @@ export function mapMatchRunInfo(dto: MatchRunDTO | null): MatchRunInfo {
 
   return {
     lastRunAt: dto.created_at,
-    jobsFound: dto.jobs_found ?? 0,
     newJobsCount: dto.new_jobs_count ?? 0,
     status: dto.status,
   };

@@ -158,14 +158,12 @@ describe("mapMatchRunInfo", () => {
   it("maps a valid match run DTO", () => {
     const result = mapMatchRunInfo({
       created_at: "2025-01-15T12:00:00Z",
-      jobs_found: 42,
       new_jobs_count: 10,
       status: "completed",
     });
 
     expect(result).toEqual({
       lastRunAt: "2025-01-15T12:00:00Z",
-      jobsFound: 42,
       newJobsCount: 10,
       status: "completed",
     });
@@ -176,28 +174,24 @@ describe("mapMatchRunInfo", () => {
 
     expect(result).toEqual({
       lastRunAt: null,
-      jobsFound: 0,
       newJobsCount: 0,
       status: null,
     });
   });
 
-  it("defaults null jobs_found and new_jobs_count to 0", () => {
+  it("defaults null new_jobs_count to 0", () => {
     const result = mapMatchRunInfo({
       created_at: "2025-01-15T12:00:00Z",
-      jobs_found: null,
       new_jobs_count: null,
       status: "running",
     });
 
-    expect(result.jobsFound).toBe(0);
     expect(result.newJobsCount).toBe(0);
   });
 
   it("preserves failed status", () => {
     const result = mapMatchRunInfo({
       created_at: "2025-01-15T12:00:00Z",
-      jobs_found: 0,
       new_jobs_count: 0,
       status: "failed",
     });

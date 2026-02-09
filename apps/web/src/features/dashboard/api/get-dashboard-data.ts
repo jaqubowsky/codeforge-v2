@@ -29,7 +29,7 @@ export async function getDashboardData(): Promise<Result<DashboardData>> {
 
   const { data: lastRun } = await supabase
     .from("match_runs")
-    .select("created_at, jobs_found, new_jobs_count, status")
+    .select("created_at, new_jobs_count, status")
     .eq("user_id", userId)
     .gt("new_jobs_count", 0)
     .order("created_at", { ascending: false })

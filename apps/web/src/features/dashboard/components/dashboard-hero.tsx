@@ -1,16 +1,7 @@
 "use client";
 
-import { Text } from "@codeforge-v2/ui/components/text";
-import { cn } from "@codeforge-v2/ui/lib/utils";
 import { formatDistanceToNow } from "date-fns";
-import {
-  Briefcase,
-  CheckCircle2,
-  Clock,
-  MessageSquare,
-  Sparkles,
-  TrendingUp,
-} from "lucide-react";
+import { Briefcase, CheckCircle2, MessageSquare, Sparkles } from "lucide-react";
 import { PageHero, PageHeroHeader } from "@/shared/components/ui/page-hero";
 import { StatCard } from "@/shared/components/ui/stat-card";
 import type { MatchRunInfo, UserOfferStatus } from "../types/dashboard";
@@ -79,40 +70,6 @@ export function DashboardHero({
             value={interviewingCount}
           />
         </div>
-
-        {lastRun.lastRunAt && lastRun.jobsFound > 0 && (
-          <div
-            className={cn(
-              "flex items-center justify-center gap-6",
-              "rounded-lg border border-border/50 bg-card/30 backdrop-blur-sm",
-              "p-4 text-center"
-            )}
-          >
-            <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4 text-muted-foreground" />
-              <Text as="span" variant="caption">
-                Last scan: {lastRunText}
-              </Text>
-            </div>
-            <div className="h-4 w-px bg-border" />
-            <div className="flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-muted-foreground" />
-              <Text as="span" variant="caption">
-                Found{" "}
-                <span className="font-medium text-foreground">
-                  {lastRun.jobsFound}
-                </span>{" "}
-                jobs
-                {lastRun.newJobsCount > 0 && (
-                  <span className="text-success">
-                    {" "}
-                    ({lastRun.newJobsCount} new)
-                  </span>
-                )}
-              </Text>
-            </div>
-          </div>
-        )}
       </div>
     </PageHero>
   );

@@ -37,7 +37,6 @@ export interface UserJobOffer extends JobOffer {
 
 export interface MatchRunInfo {
   lastRunAt: string | null;
-  jobsFound: number;
   newJobsCount: number;
   status: "running" | "completed" | "failed" | null;
 }

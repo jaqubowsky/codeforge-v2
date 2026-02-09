@@ -67,7 +67,7 @@ queries.offer_technologies.linkManyToOffer(links)
 
 | Table | Purpose |
 |-------|---------|
-| **profiles** | User profiles (1:1 with auth.users). Fields: job_title, skills[], embedding VECTOR(384), onboarding_completed |
+| **profiles** | User profiles (1:1 with auth.users). Fields: skills[], ideal_role_description, experience_level[], preferred_locations[], embedding VECTOR(384), onboarding_completed |
 | **offers** | Job listings. Fields: offer_url (unique), title, company_name, workplace_type, experience_level, salary_from/to, embedding |
 | **user_offers** | User-specific offer state (status: saved/applied/interviewing/rejected/offer_received/deleted, similarity_score) |
 | **technologies** | Master list of tech skills |
@@ -99,13 +99,16 @@ SUPABASE_SERVICE_KEY           # Optional: Service role key (needed for adminCli
 
 Validated on import via Zod schema in `env.ts`. App fails fast if required vars are missing.
 
-## Type Generation Flow
+## Type Generation - CRITICAL
 
-```
-Schema change → pnpm db-reset → runs migrations → supabase gen types → database.types.ts → pnpm build
+**NEVER manually edit `database.types.ts`** — always regenerate after schema changes:
+
+```bash
+pnpm generate-api-types   # From packages/database/ — regenerates types, runs linter, builds
+pnpm db-reset             # Full reset: runs migrations → generates types → builds
 ```
 
-**Never edit `database.types.ts`** - always modify the schema and regenerate.
+**When to regenerate**: After ANY migration (adding/dropping columns, tables, enums, functions). The command runs `supabase gen types typescript --local`, auto-fixes lint, and rebuilds the package.
 
 ## Migrations
 

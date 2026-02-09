@@ -40,7 +40,6 @@ export interface Database {
           error_message: string | null;
           finished_at: string | null;
           id: number;
-          jobs_found: number | null;
           new_jobs_count: number | null;
           started_at: string;
           status: Database["public"]["Enums"]["match_run_status"];
@@ -51,7 +50,6 @@ export interface Database {
           error_message?: string | null;
           finished_at?: string | null;
           id?: number;
-          jobs_found?: number | null;
           new_jobs_count?: number | null;
           started_at?: string;
           status?: Database["public"]["Enums"]["match_run_status"];
@@ -62,7 +60,6 @@ export interface Database {
           error_message?: string | null;
           finished_at?: string | null;
           id?: number;
-          jobs_found?: number | null;
           new_jobs_count?: number | null;
           started_at?: string;
           status?: Database["public"]["Enums"]["match_run_status"];
@@ -223,15 +220,12 @@ export interface Database {
             | null;
           id: string;
           ideal_role_description: string | null;
-          job_title: string | null;
-          job_titles: string[] | null;
           onboarding_completed: boolean;
           preferred_locations:
             | Database["public"]["Enums"]["profile_work_location"][]
             | null;
           skills: string[] | null;
           updated_at: string;
-          years_experience: number | null;
         };
         Insert: {
           created_at?: string;
@@ -241,15 +235,12 @@ export interface Database {
             | null;
           id: string;
           ideal_role_description?: string | null;
-          job_title?: string | null;
-          job_titles?: string[] | null;
           onboarding_completed?: boolean;
           preferred_locations?:
             | Database["public"]["Enums"]["profile_work_location"][]
             | null;
           skills?: string[] | null;
           updated_at?: string;
-          years_experience?: number | null;
         };
         Update: {
           created_at?: string;
@@ -259,15 +250,12 @@ export interface Database {
             | null;
           id?: string;
           ideal_role_description?: string | null;
-          job_title?: string | null;
-          job_titles?: string[] | null;
           onboarding_completed?: boolean;
           preferred_locations?:
             | Database["public"]["Enums"]["profile_work_location"][]
             | null;
           skills?: string[] | null;
           updated_at?: string;
-          years_experience?: number | null;
         };
         Relationships: [];
       };
