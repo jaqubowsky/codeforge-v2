@@ -10,7 +10,7 @@ export interface JustJoinItOffer {
   requiredSkills: JustJoinItSkill[];
   niceToHaveSkills: JustJoinItSkill[] | null;
   workplaceType: "remote" | "hybrid" | "office";
-  workingTime: "full_time" | "part_time" | "b2b" | "freelance";
+  workingTime: string;
   experienceLevel: "junior" | "mid" | "senior" | "c_level";
   employmentTypes: JustJoinItEmploymentType[];
   categoryId: number;

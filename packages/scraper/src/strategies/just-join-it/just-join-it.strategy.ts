@@ -1,3 +1,4 @@
+import type { Database } from "@codeforge-v2/database";
 import { baseProviderOptionsSchema } from "../../schemas/base-schemas";
 import type { JustJoinItProviderOptions } from "../../schemas/justjoinit";
 import type {
@@ -18,6 +19,17 @@ import type {
   SkillLevel,
   TechnologyData,
 } from "../../types/scraper-types";
+
+type WorkingTime = Database["public"]["Enums"]["working_time_enum"] | null;
+
+const VALID_WORKING_TIMES = new Set<string>([
+  "full_time",
+  "part_time",
+  "b2b",
+  "internship",
+  "freelance",
+]);
+
 import { executeInBatches } from "../../utils/batch-processor";
 import { sleep } from "../../utils/sleep";
 
@@ -176,6 +188,13 @@ export class JustJoinItStrategy
     };
   }
 
+  private normalizeWorkingTime(workingTime: string): WorkingTime {
+    if (VALID_WORKING_TIMES.has(workingTime)) {
+      return workingTime as Database["public"]["Enums"]["working_time_enum"];
+    }
+    return null;
+  }
+
   private normalizeExperienceLevel(apiOffer: JustJoinItOffer): ExperienceLevel {
     if (apiOffer.experienceLevel === "c_level") {
       return "c-level";
@@ -230,7 +249,7 @@ export class JustJoinItStrategy
       city: location.city,
       street: location.street,
       workplace_type: apiOffer.workplaceType,
-      working_time: apiOffer.workingTime,
+      working_time: this.normalizeWorkingTime(apiOffer.workingTime),
       experience_level: experienceLevel,
       published_at: apiOffer.publishedAt,
       expires_at: apiOffer.expiredAt,
