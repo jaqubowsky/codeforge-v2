@@ -2,7 +2,7 @@ import {
   AutoModelForSequenceClassification,
   AutoTokenizer,
   env as transformersEnv,
-} from "@xenova/transformers";
+} from "@huggingface/transformers";
 import { RERANKER_MODEL_IDS } from "../constants";
 import { ModelLoadError, RerankingError, ValidationError } from "../errors";
 import type { RankedDocument, ReRanker } from "../types";

@@ -3,23 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
   transpilePackages: ["@codeforge-v2/ui"],
-  serverExternalPackages: [
-    "@xenova/transformers",
-    "onnxruntime-web",
-    "onnxruntime-node",
-  ],
+  serverExternalPackages: ["@huggingface/transformers", "onnxruntime-web"],
   turbopack: {
     resolveAlias: {
       "onnxruntime-node": "./onnxruntime-stub.js",
     },
-  },
-  webpack: (config) => {
-    config.resolve = config.resolve ?? {};
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      "onnxruntime-node": false,
-    };
-    return config;
   },
   images: {
     remotePatterns: [

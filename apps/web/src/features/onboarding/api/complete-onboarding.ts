@@ -25,6 +25,7 @@ export async function completeOnboarding(
   try {
     embedding = await embeddings.generateEmbedding(profileText);
   } catch (_error) {
+    console.error("Embedding generation failed:", _error);
     return err("Failed to generate profile embedding. Please try again.");
   }
 

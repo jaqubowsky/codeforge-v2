@@ -1,4 +1,4 @@
-import { pipeline, env as transformersEnv } from "@xenova/transformers";
+import { pipeline, env as transformersEnv } from "@huggingface/transformers";
 import { DIMENSIONS, MODEL_IDS, PROVIDERS } from "../constants";
 import {
   InvalidDimensionsError,
