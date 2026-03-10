@@ -10,8 +10,7 @@ Codeforge-v2 is a TypeScript monorepo for job offer scraping and display. It use
 
 ```
 apps/
-├── web/              # Next.js 16 frontend (React 19, App Router)
-└── scraper/          # Google Cloud Functions serverless scraper
+└── web/              # Next.js 16 frontend (React 19, App Router)
 
 packages/
 ├── database/         # Supabase client, queries, and generated types
@@ -23,7 +22,6 @@ packages/
 
 See app/package-specific CLAUDE.md files for detailed context:
 - `apps/web/CLAUDE.md` - Routes, forms, server actions, co-location, type decoupling
-- `apps/scraper/CLAUDE.md` - Scraping strategies, deployment
 - `packages/database/CLAUDE.md` - Schema, migrations, client vs adminClient usage
 - `packages/embeddings/CLAUDE.md` - Bi-encoder + cross-encoder, two-stage retrieval, provider pattern
 - `packages/scraper/CLAUDE.md` - Scraping pipeline, strategy pattern, adding job boards
@@ -40,7 +38,6 @@ See app/package-specific CLAUDE.md files for detailed context:
 
 2. **Environment setup**:
    - Copy `apps/web/.env.example` to `apps/web/.env.local`
-   - Copy `apps/scraper/.env.example` to `apps/scraper/.env`
    - Fill in Supabase credentials (URL, anon key, service key)
 
 3. **Start development**:
@@ -151,10 +148,10 @@ import { reranker, RerankingError, formatProfileQuery, formatJobDocument } from 
 
 ## Environment Variables
 
-**Required for both apps** (from `@codeforge-v2/database` package):
+**Required** (from `@codeforge-v2/database` package):
 - `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase project URL
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Public anon key
-- `SUPABASE_SERVICE_KEY` - Service role key (scraper only)
+- `SUPABASE_SERVICE_KEY` - Service role key (server actions)
 
 Environment variables are validated on import via Zod schema. See `packages/database/src/env.ts` for validation rules.
 
