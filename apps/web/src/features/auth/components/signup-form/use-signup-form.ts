@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { createClient } from "@/shared/supabase/client";
@@ -12,7 +11,6 @@ export function useSignupForm() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const hasMinLength = password.length >= PASSWORD_MIN_LENGTH;
   const passwordsMatch = password === confirmPassword && password.length > 0;
@@ -50,9 +48,8 @@ export function useSignupForm() {
       return;
     }
 
-    toast.success("Account created successfully!");
-    router.push("/onboarding");
-    router.refresh();
+    toast.success("Check your email to confirm your account!");
+    setLoading(false);
   }
 
   return {

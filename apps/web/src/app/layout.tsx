@@ -26,6 +26,15 @@ export const metadata: Metadata = {
   title: "jobZ - AI-Powered Job Matching",
   description:
     "Stop scrolling through job boards. jobZ uses AI to match you with opportunities that actually fit your skills and career goals.",
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({

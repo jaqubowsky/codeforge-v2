@@ -10,7 +10,15 @@ interface CookieToSet {
 }
 
 export async function GET(request: NextRequest) {
-  const { searchParams, origin } = new URL(request.url);
+  const { searchParams } = new URL(request.url);
+
+  const forwardedHost = request.headers.get("x-forwarded-host");
+  const forwardedProto = request.headers.get("x-forwarded-proto") ?? "https";
+
+  const origin = forwardedHost
+    ? `${forwardedProto}://${forwardedHost}`
+    : new URL(request.url).origin;
+
   const code = searchParams.get("code");
   const next = searchParams.get("next") ?? "/dashboard";
 
