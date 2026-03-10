@@ -24,7 +24,7 @@ export function LandingBenefits() {
           ref={ref}
         >
           <Text as="span" className="mb-4 block" muted variant="mono">
-            Why LandIT
+            Why jobZ
           </Text>
           <Heading level={2}>
             Engineered for

@@ -76,7 +76,7 @@ export function AuthLayout({
 
       <div className="absolute bottom-8 text-center">
         <Text muted variant="mono-sm">
-          LandIT
+          jobZ
         </Text>
       </div>
     </div>

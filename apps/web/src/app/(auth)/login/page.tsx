@@ -1,7 +1,14 @@
 import Link from "next/link";
 import { AuthLayout, LoginForm } from "@/features/auth";
+import { AuthErrorAlert } from "@/features/auth/components/auth-error-alert";
 
-export default function LoginPage() {
+interface LoginPageProps {
+  searchParams: Promise<{ error?: string }>;
+}
+
+export default async function LoginPage({ searchParams }: LoginPageProps) {
+  const { error } = await searchParams;
+
   return (
     <AuthLayout
       footer={
@@ -18,6 +25,8 @@ export default function LoginPage() {
       subtitle="Enter your credentials to access your dashboard"
       title="Welcome back"
     >
+      <AuthErrorAlert message={error} />
+
       <LoginForm />
     </AuthLayout>
   );

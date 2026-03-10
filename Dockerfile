@@ -28,18 +28,24 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN pnpm turbo build --filter=web
 
 FROM node:22-slim AS runner
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV HOSTNAME="0.0.0.0"
 ENV PORT=3000
+ENV TRANSFORMERS_CACHE=/app/.cache
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
-USER nextjs
+RUN mkdir -p /app/.cache && chown nextjs:nodejs /app/.cache
 
 COPY --from=installer --chown=nextjs:nodejs /app/apps/web/.next/standalone ./
 COPY --from=installer --chown=nextjs:nodejs /app/apps/web/.next/static ./apps/web/.next/static
+COPY --chown=nextjs:nodejs scripts/download-models.sh ./scripts/download-models.sh
+
+USER nextjs
+RUN sh scripts/download-models.sh
 
 CMD ["node", "apps/web/server.js"]

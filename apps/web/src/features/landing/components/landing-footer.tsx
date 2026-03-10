@@ -26,7 +26,7 @@ export function LandingFooter() {
                 <Briefcase className="h-4 w-4" />
               </div>
               <span className="font-mono font-semibold text-sm uppercase tracking-tight">
-                LandIT
+                jobZ
               </span>
             </Link>
             <Text className="mt-4" variant="caption">
@@ -72,7 +72,7 @@ export function LandingFooter() {
 
         <div className="mt-16 border-border/30 border-t pt-8">
           <Text as="span" muted variant="mono-sm">
-            &copy; {currentYear} LandIT. All rights reserved.
+            &copy; {currentYear} jobZ. All rights reserved.
           </Text>
         </div>
       </div>

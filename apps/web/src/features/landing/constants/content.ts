@@ -14,7 +14,7 @@ export const HERO_CONTENT = {
   headline: "Stop Scrolling.",
   headlineAccent: "Start Matching.",
   subheadline:
-    "Your skills deserve better than endless job board scrolling. LandIT learns your profile and surfaces only the opportunities that actually fit.",
+    "Your skills deserve better than endless job board scrolling. jobZ learns your profile and surfaces only the opportunities that actually fit.",
   ctaPrimary: "Start Finding Jobs",
   ctaSecondary: "See How It Works",
 };
@@ -126,9 +126,9 @@ export const FAQ_ITEMS: Array<{
   answer: string;
 }> = [
   {
-    question: "Is LandIT free to use?",
+    question: "Is jobZ free to use?",
     answer:
-      "Yes! LandIT is completely free during our launch phase. We're focused on building the best job matching experience for developers.",
+      "Yes! jobZ is completely free during our launch phase. We're focused on building the best job matching experience for developers.",
   },
   {
     question: "Which job boards do you support?",

@@ -41,7 +41,7 @@ export function LandingNavbar() {
             <Briefcase className="h-4 w-4" />
           </div>
           <span className="font-mono font-semibold text-sm uppercase tracking-tight">
-            LandIT
+            jobZ
           </span>
         </Link>
 

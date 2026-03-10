@@ -17,6 +17,10 @@ let modelPromise: Promise<PipelineType> | null = null;
 transformersEnv.allowLocalModels = false;
 transformersEnv.useBrowserCache = false;
 
+if (process.env.TRANSFORMERS_CACHE) {
+  transformersEnv.cacheDir = process.env.TRANSFORMERS_CACHE;
+}
+
 async function initializeModel(): Promise<PipelineType> {
   try {
     const model = await pipeline(

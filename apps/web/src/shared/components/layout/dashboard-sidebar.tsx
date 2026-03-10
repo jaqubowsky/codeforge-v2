@@ -32,7 +32,7 @@ export function DashboardSidebar({
     >
       <div className="flex items-center justify-between border-b p-6">
         <h1 className="font-mono font-semibold text-sm uppercase tracking-tight">
-          LandIT
+          jobZ
         </h1>
         {onClose && (
           <button

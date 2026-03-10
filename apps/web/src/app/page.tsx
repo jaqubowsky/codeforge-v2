@@ -11,13 +11,13 @@ import {
 } from "@/features/landing";
 
 export const metadata: Metadata = {
-  title: "Codeforge - AI-Powered Job Matching for Developers",
+  title: "jobZ - AI-Powered Job Matching for Developers",
   description:
-    "Stop scrolling through irrelevant job listings. Codeforge learns your profile and surfaces only the opportunities that actually fit your skills and career goals.",
+    "Stop scrolling through irrelevant job listings. jobZ learns your profile and surfaces only the opportunities that actually fit your skills and career goals.",
   openGraph: {
-    title: "Codeforge - AI-Powered Job Matching for Developers",
+    title: "jobZ - AI-Powered Job Matching for Developers",
     description:
-      "Stop scrolling through irrelevant job listings. Codeforge learns your profile and surfaces only the opportunities that actually fit.",
+      "Stop scrolling through irrelevant job listings. jobZ learns your profile and surfaces only the opportunities that actually fit.",
     type: "website",
   },
 };

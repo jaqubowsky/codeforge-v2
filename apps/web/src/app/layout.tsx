@@ -23,9 +23,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LandIT - AI-Powered Job Matching",
+  title: "jobZ - AI-Powered Job Matching",
   description:
-    "Stop scrolling through job boards. LandIT uses AI to match you with opportunities that actually fit your skills and career goals.",
+    "Stop scrolling through job boards. jobZ uses AI to match you with opportunities that actually fit your skills and career goals.",
 };
 
 export default function RootLayout({

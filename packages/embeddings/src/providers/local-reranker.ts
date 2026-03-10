@@ -22,6 +22,10 @@ let loadPromise: Promise<void> | null = null;
 transformersEnv.allowLocalModels = false;
 transformersEnv.useBrowserCache = false;
 
+if (process.env.TRANSFORMERS_CACHE) {
+  transformersEnv.cacheDir = process.env.TRANSFORMERS_CACHE;
+}
+
 function sigmoid(x: number): number {
   return 1 / (1 + Math.exp(-x));
 }

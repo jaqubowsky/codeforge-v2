@@ -44,6 +44,12 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  // Return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/login?error=auth_callback_failed`);
+  const errorDescription = searchParams.get("error_description");
+  const errorMessage = errorDescription
+    ? decodeURIComponent(errorDescription)
+    : "Authentication failed. Please try again.";
+
+  return NextResponse.redirect(
+    `${origin}/login?error=${encodeURIComponent(errorMessage)}`
+  );
 }
