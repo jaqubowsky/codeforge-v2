@@ -9,9 +9,9 @@ export interface JustJoinItOffer {
   title: string;
   requiredSkills: JustJoinItSkill[];
   niceToHaveSkills: JustJoinItSkill[] | null;
-  workplaceType: "remote" | "hybrid" | "office";
+  workplaceType: string;
   workingTime: string;
-  experienceLevel: "junior" | "mid" | "senior" | "c_level";
+  experienceLevel: string;
   employmentTypes: JustJoinItEmploymentType[];
   categoryId: number;
   multilocation: JustJoinItLocation[];
@@ -37,7 +37,7 @@ export interface JustJoinItEmploymentType {
   from: number | null;
   to: number | null;
   currency: string;
-  type: "permanent" | "b2b" | "mandate_contract" | "any";
+  type: string;
   unit: "month" | "hour" | "year" | "day";
   gross: boolean;
   fromChf: number | null;

@@ -21,6 +21,10 @@ import type {
 } from "../../types/scraper-types";
 
 type WorkingTime = Database["public"]["Enums"]["working_time_enum"] | null;
+type WorkplaceType = Database["public"]["Enums"]["workplace_type_enum"] | null;
+type EmploymentType =
+  | Database["public"]["Enums"]["employment_type_enum"]
+  | null;
 
 const VALID_WORKING_TIMES = new Set<string>([
   "full_time",
@@ -29,6 +33,22 @@ const VALID_WORKING_TIMES = new Set<string>([
   "internship",
   "freelance",
 ]);
+
+const VALID_WORKPLACE_TYPES = new Set<string>(["remote", "hybrid", "office"]);
+
+const VALID_EMPLOYMENT_TYPES = new Set<string>([
+  "permanent",
+  "b2b",
+  "internship",
+  "mandate_contract",
+]);
+
+const EXPERIENCE_LEVEL_MAP: Record<string, ExperienceLevel> = {
+  junior: "junior",
+  mid: "mid",
+  senior: "senior",
+  c_level: "c-level",
+};
 
 import { executeInBatches } from "../../utils/batch-processor";
 import { sleep } from "../../utils/sleep";
@@ -177,7 +197,7 @@ export class JustJoinItStrategy
       to,
       currency: currency?.toUpperCase(),
       period,
-      type: type === "any" ? undefined : type,
+      type: this.normalizeEmploymentType(type),
     };
   }
 
@@ -195,11 +215,22 @@ export class JustJoinItStrategy
     return null;
   }
 
-  private normalizeExperienceLevel(apiOffer: JustJoinItOffer): ExperienceLevel {
-    if (apiOffer.experienceLevel === "c_level") {
-      return "c-level";
+  private normalizeWorkplaceType(workplaceType: string): WorkplaceType {
+    if (VALID_WORKPLACE_TYPES.has(workplaceType)) {
+      return workplaceType as Database["public"]["Enums"]["workplace_type_enum"];
     }
-    return apiOffer.experienceLevel;
+    return null;
+  }
+
+  private normalizeEmploymentType(type: string): EmploymentType {
+    if (VALID_EMPLOYMENT_TYPES.has(type)) {
+      return type as Database["public"]["Enums"]["employment_type_enum"];
+    }
+    return null;
+  }
+
+  private normalizeExperienceLevel(experienceLevel: string): ExperienceLevel {
+    return EXPERIENCE_LEVEL_MAP[experienceLevel] ?? null;
   }
 
   private createTechnologyData(
@@ -233,7 +264,9 @@ export class JustJoinItStrategy
   ): OfferInsert {
     const salary = this.normalizeSalary(apiOffer.employmentTypes);
     const location = this.normalizeLocation(apiOffer);
-    const experienceLevel = this.normalizeExperienceLevel(apiOffer);
+    const experienceLevel = this.normalizeExperienceLevel(
+      apiOffer.experienceLevel
+    );
 
     return {
       title: apiOffer.title,
@@ -248,7 +281,7 @@ export class JustJoinItStrategy
       employment_type: salary.type,
       city: location.city,
       street: location.street,
-      workplace_type: apiOffer.workplaceType,
+      workplace_type: this.normalizeWorkplaceType(apiOffer.workplaceType),
       working_time: this.normalizeWorkingTime(apiOffer.workingTime),
       experience_level: experienceLevel,
       published_at: apiOffer.publishedAt,
