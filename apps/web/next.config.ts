@@ -8,6 +8,19 @@ const nextConfig: NextConfig = {
     "onnxruntime-web",
     "onnxruntime-node",
   ],
+  turbopack: {
+    resolveAlias: {
+      "onnxruntime-node": "./onnxruntime-stub.js",
+    },
+  },
+  webpack: (config) => {
+    config.resolve = config.resolve ?? {};
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "onnxruntime-node": false,
+    };
+    return config;
+  },
   images: {
     remotePatterns: [
       {
