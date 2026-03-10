@@ -23,7 +23,7 @@ import { executeInBatches } from "../../utils/batch-processor";
 import { sleep } from "../../utils/sleep";
 
 const API_BASE_URL = "https://nofluffjobs.com/api/search/posting";
-const LOGO_BASE_URL = "https://nofluffjobs.com/";
+const LOGO_BASE_URL = "https://static.nofluffjobs.com/";
 
 const DEFAULT_OPTIONS: Required<Omit<ScrapingOptions, "providerOptions">> = {
   itemsPerPage: 120,
