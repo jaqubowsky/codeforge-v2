@@ -19,6 +19,21 @@ export const metadata: Metadata = {
     description:
       "Stop scrolling through irrelevant job listings. jobZ learns your profile and surfaces only the opportunities that actually fit.",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 633,
+        alt: "jobZ - AI-Powered Job Matching for Developers",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "jobZ - AI-Powered Job Matching for Developers",
+    description:
+      "Stop scrolling through irrelevant job listings. jobZ learns your profile and surfaces only the opportunities that actually fit.",
+    images: ["/og-image.png"],
   },
 };
 

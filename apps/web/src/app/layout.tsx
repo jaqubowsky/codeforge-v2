@@ -23,6 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://jobzzz.jnalewajk.me"),
   title: "jobZ - AI-Powered Job Matching",
   description:
     "Stop scrolling through job boards. jobZ uses AI to match you with opportunities that actually fit your skills and career goals.",
