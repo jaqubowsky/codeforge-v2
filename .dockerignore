@@ -1,0 +1,10 @@
+node_modules
+.next
+.turbo
+.git
+.env*
+*.md
+dist
+.cache
+.husky
+design
