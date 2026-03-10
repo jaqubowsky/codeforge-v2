@@ -11,7 +11,7 @@
       "entry": ["commitlint.config.cjs"]
     },
     "apps/web": {
-      "ignore": ["src/app/index.css"]
+      "ignore": ["src/app/index.css", "onnxruntime-stub.js"]
     },
     "packages/typescript-config": {
       "ignore": ["*.json"]
