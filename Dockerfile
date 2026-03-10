@@ -46,6 +46,13 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/web/.next/static ./apps/we
 COPY --from=installer --chown=nextjs:nodejs /app/apps/web/public ./apps/web/public
 COPY --chown=nextjs:nodejs scripts/download-models.sh ./scripts/download-models.sh
 
+# Copy onnxruntime-node native binaries (.so files)
+# Next.js standalone trace misses these because they're loaded via dlopen, not require()
+# This is needed because pnpm's symlinked store structure differs from npm's flat node_modules
+COPY --from=installer --chown=nextjs:nodejs \
+  /app/node_modules/.pnpm/onnxruntime-node@1.21.0/node_modules/onnxruntime-node \
+  ./node_modules/.pnpm/onnxruntime-node@1.21.0/node_modules/onnxruntime-node
+
 USER nextjs
 RUN sh scripts/download-models.sh
 
