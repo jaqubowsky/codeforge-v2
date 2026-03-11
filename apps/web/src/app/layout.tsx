@@ -49,6 +49,13 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
     >
+      <head>
+        <script
+          data-website-id="1e530111-1295-4db2-82d3-a7e06dd509ed"
+          defer
+          src="https://umami.jnalewajk.me/script.js"
+        />
+      </head>
       <body>
         <Providers>
           <NuqsAdapter>{children}</NuqsAdapter>
