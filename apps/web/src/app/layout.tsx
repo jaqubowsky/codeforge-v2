@@ -50,11 +50,13 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script
-          data-website-id="1e530111-1295-4db2-82d3-a7e06dd509ed"
-          defer
-          src="https://umami.jnalewajk.me/script.js"
-        />
+        {process.env.NODE_ENV === "production" && (
+          <script
+            data-website-id="1e530111-1295-4db2-82d3-a7e06dd509ed"
+            defer
+            src="https://umami.jnalewajk.me/script.js"
+          />
+        )}
       </head>
       <body>
         <Providers>
