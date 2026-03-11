@@ -70,9 +70,20 @@ export function LandingFooter() {
           </div>
         </div>
 
-        <div className="mt-16 border-border/30 border-t pt-8">
+        <div className="mt-16 flex flex-col items-start justify-between gap-2 border-border/30 border-t pt-8 sm:flex-row sm:items-center">
           <Text as="span" muted variant="mono-sm">
             &copy; {currentYear} jobZ. All rights reserved.
+          </Text>
+          <Text as="span" muted variant="mono-sm">
+            Built by{" "}
+            <a
+              className="text-foreground underline underline-offset-4 transition-colors hover:text-foreground/80"
+              href="https://jnalewajk.me"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Jakub Nalewajk
+            </a>
           </Text>
         </div>
       </div>

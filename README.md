@@ -72,3 +72,11 @@ pnpm run dev
 ```
 
 The web app runs on [http://localhost:3001](http://localhost:3001).
+
+## Author
+
+**Jakub Nalewajk** — Frontend Developer
+
+- Portfolio: [jnalewajk.me](https://jnalewajk.me)
+- GitHub: [@jaqubowsky](https://github.com/jaqubowsky)
+- LinkedIn: [jakub-nalewajk](https://www.linkedin.com/in/jakub-nalewajk/)
