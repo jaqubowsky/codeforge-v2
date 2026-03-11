@@ -30,7 +30,13 @@ export function ProfileForm({ initialData }: ProfileFormProps) {
             Changes will regenerate your AI profile for better job matching
           </Text>
         </div>
-        <Button disabled={isSubmitting} size="lg" type="submit" variant="dark">
+        <Button
+          data-umami-event="profile-save"
+          disabled={isSubmitting}
+          size="lg"
+          type="submit"
+          variant="dark"
+        >
           {isSubmitting ? "Saving..." : "Save Changes"}
         </Button>
       </div>

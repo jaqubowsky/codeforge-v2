@@ -36,6 +36,7 @@ export function WizardNavigation({ isSubmitting }: WizardNavigationProps) {
       {isLastStep ? (
         <Button
           className={cn("gap-2", WIZARD_COLORS.navigation.complete)}
+          data-umami-event="onboarding-complete"
           disabled={isSubmitting}
           type="submit"
         >

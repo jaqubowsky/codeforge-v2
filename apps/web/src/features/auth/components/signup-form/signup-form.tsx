@@ -92,6 +92,7 @@ export function SignupForm() {
       </div>
 
       <PrimaryButton
+        data-umami-event="signup-submit"
         disabled={!isValid}
         loading={loading}
         loadingText="Creating account..."

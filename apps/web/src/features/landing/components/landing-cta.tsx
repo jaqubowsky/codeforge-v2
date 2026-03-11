@@ -34,7 +34,7 @@ function CtaButton({
 
   return (
     <Button asChild className="group gap-2 px-8" size="lg" variant="dark">
-      <Link href="/signup">
+      <Link data-umami-event="cta-get-started" href="/signup">
         {CTA_CONTENT.button}
         <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
       </Link>

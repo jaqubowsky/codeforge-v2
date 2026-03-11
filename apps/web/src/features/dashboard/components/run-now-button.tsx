@@ -64,6 +64,7 @@ export function RunNowButton({ variant = "default" }: RunNowButtonProps) {
           isHero && "px-8 text-base shadow-lg",
           isDisabled && "opacity-70"
         )}
+        data-umami-event="scan-jobs"
         disabled={isDisabled}
         onClick={handleRun}
         size="lg"

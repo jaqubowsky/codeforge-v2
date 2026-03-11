@@ -38,6 +38,7 @@ export function LoginForm() {
       </div>
 
       <PrimaryButton
+        data-umami-event="login-submit"
         loading={loading}
         loadingText="Signing in..."
         type="submit"

@@ -195,7 +195,12 @@ export function JobCard({ job }: JobCardProps) {
               size="sm"
               variant="dark"
             >
-              <a href={jobUrl} rel="noopener noreferrer" target="_blank">
+              <a
+                data-umami-event="apply-job"
+                href={jobUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
                 <span>Apply</span>
                 <ExternalLink className="h-3.5 w-3.5" />
               </a>

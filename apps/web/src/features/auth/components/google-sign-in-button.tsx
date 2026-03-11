@@ -28,6 +28,7 @@ export function GoogleSignInButton() {
         "transition-all duration-200",
         "hover:bg-accent"
       )}
+      data-umami-event="signup-google"
       disabled={loading}
       onClick={handleGoogleSignIn}
       size="lg"

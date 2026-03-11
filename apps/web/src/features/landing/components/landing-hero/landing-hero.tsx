@@ -38,7 +38,7 @@ function HeroPrimaryButton({
 
   return (
     <Button asChild className="group gap-2 px-6" size="lg" variant="dark">
-      <Link href="/signup">
+      <Link data-umami-event="hero-get-started" href="/signup">
         {HERO_CONTENT.ctaPrimary}
         <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
       </Link>
@@ -97,7 +97,7 @@ export function LandingHero() {
                 size="lg"
                 variant="ghost"
               >
-                <Link href="#how-it-works">
+                <Link data-umami-event="hero-how-it-works" href="#how-it-works">
                   {HERO_CONTENT.ctaSecondary}
                   <ChevronDown className="h-3.5 w-3.5" />
                 </Link>
