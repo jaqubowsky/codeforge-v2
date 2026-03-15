@@ -131,6 +131,7 @@ export class NoFluffJobsStrategy
     const body = {
       rawSearch: "",
       page,
+      pageSize: this.options.itemsPerPage,
       criteriaSearch: {
         category: categories,
         requirement: [],
