@@ -47,7 +47,6 @@ const strategy = new NoFluffJobsStrategy() as unknown as {
     posting: NoFluffJobsPosting,
     scrapingRunId: number
   ) => PreparedOfferData;
-  deduplicatePostings: (postings: NoFluffJobsPosting[]) => NoFluffJobsPosting[];
 };
 
 describe("NoFluffJobsStrategy", () => {
@@ -153,43 +152,6 @@ describe("NoFluffJobsStrategy", () => {
       expect(result.technologies).toEqual([
         { technology_name: "TypeScript", skill_level: "required" },
       ]);
-    });
-  });
-
-  describe("posting deduplication", () => {
-    it("deduplicates postings with same title and company name", () => {
-      const warsaw = createTestPosting({
-        id: "job-warsaw",
-        url: "senior-developer-test-company-warsaw",
-      });
-      const krakow = createTestPosting({
-        id: "job-krakow",
-        url: "senior-developer-test-company-krakow",
-      });
-      const remote = createTestPosting({
-        id: "job-remote",
-        url: "senior-developer-test-company-remote",
-      });
-
-      const result = strategy.deduplicatePostings([warsaw, krakow, remote]);
-
-      expect(result).toHaveLength(1);
-      expect(result[0]?.id).toBe("job-warsaw");
-    });
-
-    it("keeps postings with different titles from same company", () => {
-      const frontend = createTestPosting({
-        id: "frontend-123",
-        title: "Frontend Developer",
-      });
-      const backend = createTestPosting({
-        id: "backend-456",
-        title: "Backend Developer",
-      });
-
-      const result = strategy.deduplicatePostings([frontend, backend]);
-
-      expect(result).toHaveLength(2);
     });
   });
 });

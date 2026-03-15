@@ -299,28 +299,25 @@ export class NoFluffJobsStrategy
     };
   }
 
-  private shouldStopFetching(
-    apiOffers: NoFluffJobsPosting[],
-    totalPages: number,
-    currentPage: number
-  ): boolean {
-    return (
-      apiOffers.length >= this.options.maxOffers || currentPage >= totalPages
-    );
-  }
-
   private async fetchAllOffers(
     categories: NoFluffJobsCategory[]
   ): Promise<NoFluffJobsPosting[]> {
-    const apiOffers: NoFluffJobsPosting[] = [];
+    const uniquePostings = new Map<string, NoFluffJobsPosting>();
     let currentPage = 1;
 
     for (let i = 0; i < this.options.maxIterations; i++) {
       const response = await this.fetchOffers(currentPage, categories);
-      apiOffers.push(...response.postings);
+
+      for (const posting of response.postings) {
+        const key = `${posting.title}::${posting.name}`;
+        if (!uniquePostings.has(key)) {
+          uniquePostings.set(key, posting);
+        }
+      }
 
       if (
-        this.shouldStopFetching(apiOffers, response.totalPages, currentPage)
+        uniquePostings.size >= this.options.maxOffers ||
+        currentPage >= response.totalPages
       ) {
         break;
       }
@@ -332,20 +329,7 @@ export class NoFluffJobsStrategy
       }
     }
 
-    return this.deduplicatePostings(apiOffers);
-  }
-
-  private deduplicatePostings(
-    postings: NoFluffJobsPosting[]
-  ): NoFluffJobsPosting[] {
-    const seen = new Map<string, NoFluffJobsPosting>();
-    for (const posting of postings) {
-      const key = `${posting.title}::${posting.name}`;
-      if (!seen.has(key)) {
-        seen.set(key, posting);
-      }
-    }
-    return Array.from(seen.values());
+    return Array.from(uniquePostings.values());
   }
 
   async getOffers(
