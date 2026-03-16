@@ -86,7 +86,7 @@ queries.offer_technologies.linkManyToOffer(links)
 ### Database Functions (RPC)
 
 - `get_or_create_technology(tech_name)` → technology ID
-- `match_jobs_for_user(user_embedding, user_experience_levels, user_job_titles, user_skills, user_work_locations, match_threshold, min_skill_matches, match_count)` → matching offers with similarity scores
+- `match_jobs_for_user(user_embedding, user_experience_levels, user_job_titles, user_skills, user_work_locations, match_threshold, min_skill_ratio, match_count)` → matching offers with similarity scores (min_skill_ratio: minimum % of offer skills that must match, default 0.3)
 - `normalize_skill(skill_name)` → normalized skill name
 
 ## Environment Variables

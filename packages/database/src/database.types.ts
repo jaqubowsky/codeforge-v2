@@ -352,7 +352,7 @@ export interface Database {
         Args: {
           match_count?: number;
           match_threshold?: number;
-          min_skill_matches?: number;
+          min_skill_ratio?: number;
           user_embedding: string;
           user_experience_levels: string[];
           user_job_titles: string[];

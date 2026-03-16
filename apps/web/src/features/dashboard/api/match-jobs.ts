@@ -14,10 +14,10 @@ import type { MatchJobsData } from "../types/dashboard";
 type UserOfferInsert = Database["public"]["Tables"]["user_offers"]["Insert"];
 
 const MATCH_THRESHOLD = 0.3;
-const MIN_SKILL_MATCHES = 1;
+const MIN_SKILL_RATIO = 0.3;
 const MATCH_COUNT = 50;
 const RERANK_COUNT = 20;
-const MIN_RERANK_SCORE = 0.5;
+const MIN_RERANK_SCORE = 0.6;
 
 export async function matchJobs(): Promise<Result<MatchJobsData>> {
   const authResult = await createAuthenticatedClient();
@@ -60,7 +60,7 @@ export async function matchJobs(): Promise<Result<MatchJobsData>> {
       user_work_locations: profile.preferred_locations,
       user_skills: profile.skills,
       match_threshold: MATCH_THRESHOLD,
-      min_skill_matches: MIN_SKILL_MATCHES,
+      min_skill_ratio: MIN_SKILL_RATIO,
       match_count: MATCH_COUNT,
     }
   );
@@ -129,6 +129,7 @@ export async function matchJobs(): Promise<Result<MatchJobsData>> {
   });
 
   let rerankedMatches: { offerId: number; score: number }[];
+
   try {
     const ranked = await reranker.rankPairs(profileQuery, jobDocuments);
     const top = ranked.slice(0, RERANK_COUNT);
