@@ -62,7 +62,7 @@ const DEFAULT_OPTIONS: Required<Omit<ScrapingOptions, "providerOptions">> = {
   concurrencyLimit: 5,
 };
 
-const RATE_LIMIT_DELAY_MS = 1000;
+const RATE_LIMIT_DELAY_MS = 1500;
 
 const DEFAULT_PROVIDER_OPTIONS: Required<JustJoinItProviderOptions> = {
   currency: "pln",
