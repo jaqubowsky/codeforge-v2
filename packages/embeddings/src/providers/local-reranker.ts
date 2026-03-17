@@ -1,17 +1,17 @@
 import {
   AutoModelForSequenceClassification,
   AutoTokenizer,
+  type PreTrainedModel,
+  type PreTrainedTokenizer,
   env as transformersEnv,
 } from "@huggingface/transformers";
-import { RERANKER_MODEL_IDS } from "../constants";
+import { RERANKER_MODEL_IDS, RERANKER_PROVIDERS } from "../constants";
 import { ModelLoadError, RerankingError, ValidationError } from "../errors";
 import type { RankedDocument, ReRanker } from "../types";
 import { validateInput } from "../validation";
 
-// biome-ignore lint/suspicious/noExplicitAny: Transformers.js model/tokenizer types are complex and not fully exported
-type ModelType = any;
-// biome-ignore lint/suspicious/noExplicitAny: Transformers.js model/tokenizer types are complex and not fully exported
-type TokenizerType = any;
+type ModelType = PreTrainedModel | null;
+type TokenizerType = PreTrainedTokenizer | null;
 
 const PROVIDER_NAME = "local-reranker";
 
@@ -32,11 +32,13 @@ function sigmoid(x: number): number {
 
 async function initializeModel(): Promise<void> {
   try {
-    const modelId = RERANKER_MODEL_IDS.local;
+    const modelId = RERANKER_MODEL_IDS[RERANKER_PROVIDERS.LOCAL];
+
     const [tokenizer, model] = await Promise.all([
       AutoTokenizer.from_pretrained(modelId),
       AutoModelForSequenceClassification.from_pretrained(modelId),
     ]);
+
     tokenizerInstance = tokenizer;
     modelInstance = model;
   } catch (error) {
@@ -72,23 +74,24 @@ async function rankPairs(
   }
 
   let validatedQuery: string;
+
   try {
     validatedQuery = validateInput(query);
   } catch (error) {
-    throw new ValidationError(
-      error instanceof Error ? error.message : "Invalid query input",
-      PROVIDER_NAME
-    );
+    const errorMessage =
+      error instanceof Error ? error.message : "Invalid query input";
+
+    throw new ValidationError(errorMessage, PROVIDER_NAME);
   }
 
   for (const doc of documents) {
     try {
       validateInput(doc);
     } catch (error) {
-      throw new ValidationError(
-        error instanceof Error ? error.message : "Invalid document input",
-        PROVIDER_NAME
-      );
+      const errorMessage =
+        error instanceof Error ? error.message : "Invalid document input";
+
+      throw new ValidationError(errorMessage, PROVIDER_NAME);
     }
   }
 
@@ -96,14 +99,21 @@ async function rankPairs(
 
   try {
     const results: RankedDocument[] = [];
+
+    if (!(tokenizerInstance && modelInstance)) {
+      throw new ModelLoadError(PROVIDER_NAME);
+    }
+
     for (let i = 0; i < documents.length; i++) {
       const inputs = tokenizerInstance(validatedQuery, {
         text_pair: documents[i],
         padding: true,
         truncation: true,
       });
+
       const output = await modelInstance(inputs);
       const logit = output.logits.data[0];
+
       results.push({ index: i, score: sigmoid(logit) });
     }
     return results.sort((a, b) => b.score - a.score);
@@ -111,12 +121,13 @@ async function rankPairs(
     if (error instanceof ValidationError) {
       throw error;
     }
+
     throw new RerankingError(PROVIDER_NAME, error);
   }
 }
 
 function getName(): string {
-  return `${PROVIDER_NAME} (${RERANKER_MODEL_IDS.local})`;
+  return `${PROVIDER_NAME} (${RERANKER_MODEL_IDS[RERANKER_PROVIDERS.LOCAL]})`;
 }
 
 export function createLocalReRanker(): ReRanker {

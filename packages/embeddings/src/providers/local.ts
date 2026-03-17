@@ -1,6 +1,11 @@
-import { pipeline, env as transformersEnv } from "@huggingface/transformers";
-import { DIMENSIONS, MODEL_IDS, PROVIDERS } from "../constants";
 import {
+  type FeatureExtractionPipeline,
+  pipeline,
+  env as transformersEnv,
+} from "@huggingface/transformers";
+import { DIMENSIONS, MODEL_IDS, REGULAR_PROVIDERS } from "../constants";
+import {
+  EmbeddingError,
   InvalidDimensionsError,
   ModelLoadError,
   ValidationError,
@@ -8,8 +13,7 @@ import {
 import type { EmbeddingProvider } from "../types";
 import { validateInput } from "../validation";
 
-// biome-ignore lint/suspicious/noExplicitAny: Transformers.js pipeline type is complex and not fully exported
-type PipelineType = any;
+type PipelineType = FeatureExtractionPipeline | null;
 
 let modelInstance: PipelineType = null;
 let modelPromise: Promise<PipelineType> | null = null;
@@ -25,11 +29,12 @@ async function initializeModel(): Promise<PipelineType> {
   try {
     const model = await pipeline(
       "feature-extraction",
-      MODEL_IDS[PROVIDERS.LOCAL]
+      MODEL_IDS[REGULAR_PROVIDERS.LOCAL]
     );
+
     return model;
   } catch (error) {
-    throw new ModelLoadError(PROVIDERS.LOCAL, error);
+    throw new ModelLoadError(REGULAR_PROVIDERS.LOCAL, error);
   }
 }
 
@@ -55,16 +60,20 @@ async function loadModel(): Promise<PipelineType> {
 
 async function generateEmbedding(text: string): Promise<number[]> {
   let validatedText: string;
+
   try {
     validatedText = validateInput(text);
   } catch (error) {
     throw new ValidationError(
       error instanceof Error ? error.message : "Invalid input",
-      PROVIDERS.LOCAL
+      REGULAR_PROVIDERS.LOCAL
     );
   }
 
   const model = await loadModel();
+  if (!model) {
+    throw new ModelLoadError(REGULAR_PROVIDERS.LOCAL);
+  }
 
   try {
     const output = await model(validatedText, {
@@ -72,13 +81,13 @@ async function generateEmbedding(text: string): Promise<number[]> {
       normalize: true,
     });
 
-    const embedding = Array.from(output.data) as number[];
+    const embedding: number[] = Array.from(output.data);
 
-    if (embedding.length !== DIMENSIONS[PROVIDERS.LOCAL]) {
+    if (embedding.length !== DIMENSIONS[REGULAR_PROVIDERS.LOCAL]) {
       throw new InvalidDimensionsError(
-        DIMENSIONS[PROVIDERS.LOCAL],
+        DIMENSIONS[REGULAR_PROVIDERS.LOCAL],
         embedding.length,
-        PROVIDERS.LOCAL
+        REGULAR_PROVIDERS.LOCAL
       );
     }
 
@@ -91,16 +100,21 @@ async function generateEmbedding(text: string): Promise<number[]> {
       throw error;
     }
 
-    throw new ModelLoadError(PROVIDERS.LOCAL, error);
+    throw new EmbeddingError(
+      "Failed to generate embedding",
+      "GENERATION_FAILED",
+      REGULAR_PROVIDERS.LOCAL,
+      error
+    );
   }
 }
 
 function getDimensions(): number {
-  return DIMENSIONS[PROVIDERS.LOCAL];
+  return DIMENSIONS[REGULAR_PROVIDERS.LOCAL];
 }
 
 function getName(): string {
-  return `${PROVIDERS.LOCAL} (${MODEL_IDS[PROVIDERS.LOCAL]})`;
+  return `${REGULAR_PROVIDERS.LOCAL} (${MODEL_IDS[REGULAR_PROVIDERS.LOCAL]})`;
 }
 
 export function createLocalProvider(): EmbeddingProvider {

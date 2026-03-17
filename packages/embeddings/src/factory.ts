@@ -1,51 +1,38 @@
-import { PROVIDERS } from "./constants";
+import { type REGULAR_MODELS, REGULAR_PROVIDERS } from "./constants";
 import { createLocalProvider } from "./providers/local";
 import { createOpenAIProvider } from "./providers/openai";
-import type { EmbeddingConfig, EmbeddingProvider, ProviderType } from "./types";
-import { validateConfig } from "./validation";
+import type { EmbeddingProvider } from "./types";
 
 const providerCache = new Map<string, EmbeddingProvider>();
 
 export function createEmbeddingProvider(
-  config?: Partial<EmbeddingConfig>
+  provider?: REGULAR_MODELS
 ): EmbeddingProvider {
-  const defaultConfig: EmbeddingConfig = {
-    provider:
-      (process.env.EMBEDDING_PROVIDER as ProviderType | undefined) ||
-      PROVIDERS.LOCAL,
-    modelName: config?.modelName,
-  };
+  const selectedProvider = provider || REGULAR_PROVIDERS.LOCAL;
 
-  const finalConfig: EmbeddingConfig = {
-    ...defaultConfig,
-    ...config,
-  };
-
-  validateConfig(finalConfig);
-
-  const cacheKey = `${finalConfig.provider}:${finalConfig.modelName || "default"}`;
-
-  if (providerCache.has(cacheKey)) {
-    return providerCache.get(cacheKey)!;
+  if (providerCache.has(selectedProvider)) {
+    return providerCache.get(selectedProvider)!;
   }
 
-  let provider: EmbeddingProvider;
+  let model: EmbeddingProvider;
 
-  switch (finalConfig.provider) {
-    case PROVIDERS.LOCAL:
-      provider = createLocalProvider();
+  switch (selectedProvider) {
+    case REGULAR_PROVIDERS.LOCAL:
+      model = createLocalProvider();
       break;
 
-    case PROVIDERS.OPENAI:
-      provider = createOpenAIProvider();
+    case REGULAR_PROVIDERS.OPENAI:
+      model = createOpenAIProvider();
       break;
 
-    default:
-      throw new Error(`Unknown provider: ${finalConfig.provider}`);
+    default: {
+      const _exhaustivenessCheck: never = selectedProvider;
+      throw new Error(`Unknown provider: ${provider}`);
+    }
   }
 
-  providerCache.set(cacheKey, provider);
-  return provider;
+  providerCache.set(selectedProvider, model);
+  return model;
 }
 
 export function getDefaultProvider(): EmbeddingProvider {
