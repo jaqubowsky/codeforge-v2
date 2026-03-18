@@ -3,8 +3,8 @@
 import { Label } from "@codeforge-v2/ui/components/label";
 import { Textarea } from "@codeforge-v2/ui/components/textarea";
 import { type Control, Controller, type FieldErrors } from "react-hook-form";
-import type { ProfileFormData } from "@/features/profile/schemas/profile";
 import { VALIDATION_RULES } from "@/shared/constants/profile";
+import type { ProfileFormData } from "@/shared/schemas/profile";
 
 interface IdealRoleFieldsProps {
   control: Control<ProfileFormData>;

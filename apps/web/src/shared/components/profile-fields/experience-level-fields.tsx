@@ -1,7 +1,6 @@
 "use client";
 
 import { type Control, Controller, type FieldErrors } from "react-hook-form";
-import type { ProfileFormData } from "@/features/profile/schemas/profile";
 import {
   FormError,
   FormLabel,
@@ -11,6 +10,7 @@ import {
   SelectableCardTitle,
 } from "@/shared/components/form";
 import { EXPERIENCE_LEVEL_OPTIONS } from "@/shared/constants/profile";
+import type { ProfileFormData } from "@/shared/schemas/profile";
 
 interface ExperienceLevelFieldsProps {
   control: Control<ProfileFormData>;

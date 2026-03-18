@@ -4,8 +4,8 @@ import { cn } from "@codeforge-v2/ui/lib/utils";
 import { LayoutDashboard, User, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SignOutButton } from "@/features/auth";
 import { ModeToggle } from "@/shared/ui/theme-toggle";
+import { SignOutButton } from "./sign-out-button";
 
 const NAV_ITEMS = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
