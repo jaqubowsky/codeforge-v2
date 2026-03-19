@@ -1,6 +1,6 @@
-# jobZ — AI-Powered Job Matching for Developers
+# jobZ — Fullstack AI-Powered Job Matching
 
-> Stop scrolling through job boards. jobZ scrapes listings from Polish job portals and ranks them against your profile using AI.
+> Got tired of manually browsing job offers across multiple boards. Built a fullstack platform that scrapes Polish job portals and ranks offers against my profile using vector embeddings and AI re-ranking.
 
 **[Live Demo](https://jobzzz.jnalewajk.me)**
 
@@ -45,17 +45,27 @@ Built on the **strategy pattern** — each job board is a pluggable strategy imp
 
 Adding a new job board = implementing one strategy class + registering it in the factory.
 
+## Key technical decisions
+
+- **Supabase (PostgreSQL) with Row Level Security** — designed the schema with RLS policies for multi-user data isolation, vector similarity search via `pgvector` for embedding retrieval
+- **Two-stage AI pipeline in TypeScript** — bi-encoder for fast candidate retrieval (~50 results via cosine similarity), cross-encoder for precise re-ranking. All inference runs locally via Transformers.js — no external AI APIs or costs
+- **Strategy pattern for scraping** — each job board is a pluggable strategy implementing a shared interface. Adding a new portal = one class + factory registration
+- **Turborepo monorepo** — separate packages for database, embeddings, scraper, and UI. Strict dependency boundaries, shared TypeScript config
+- **Self-hosted on Hetzner VPS** — Docker deployment via Dokploy
+
 ## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
-| Frontend | Next.js 16, React 19, Tailwind CSS, Radix UI |
-| Backend | Next.js Server Actions |
-| Database | Supabase (PostgreSQL), Row Level Security |
+| Framework | Next.js 16 (App Router, Server Actions) |
+| Language | TypeScript (strict) |
+| UI | React 19, Tailwind CSS, shadcn/ui (Radix) |
+| Database | Supabase (PostgreSQL), Row Level Security, pgvector |
 | AI/ML | Transformers.js (bi-encoder + cross-encoder) |
 | Monorepo | Turborepo, pnpm workspaces |
 | Validation | Zod (forms, API responses, scraper data) |
 | Quality | Biome (lint/format), Husky (git hooks), Knip (dead code) |
+| Infrastructure | Docker, Hetzner VPS + Dokploy |
 
 ## Getting Started
 
@@ -75,7 +85,7 @@ The web app runs on [http://localhost:3001](http://localhost:3001).
 
 ## Author
 
-**Jakub Nalewajk** — Frontend Developer
+**Jakub Nalewajk** — Fullstack Developer
 
 - Portfolio: [jnalewajk.me](https://jnalewajk.me)
 - GitHub: [@jaqubowsky](https://github.com/jaqubowsky)
