@@ -69,13 +69,11 @@ export interface NoFluffJobsPosting {
   onlineInterviewAvailable?: boolean;
 }
 
-export interface NoFluffJobsSearchResponse {
+export interface NoFluffJobsListingResponse {
   postings: NoFluffJobsPosting[];
   totalCount: number;
-  totalPages: number;
-  exactMatchesPages: number;
-  rawSearch: string;
-  locationCriteria: boolean;
+  totalUniqueCount: number;
+  pageUniqueCount: number;
 }
 
 export type NoFluffJobsCategory =

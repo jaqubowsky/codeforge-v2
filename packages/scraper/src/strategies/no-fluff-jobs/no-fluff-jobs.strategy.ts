@@ -2,9 +2,9 @@ import { baseProviderOptionsSchema } from "../../schemas/base-schemas";
 import type { NoFluffJobsProviderOptions } from "../../schemas/nofluffjobs";
 import type {
   NoFluffJobsCategory,
+  NoFluffJobsListingResponse,
   NoFluffJobsPosting,
   NoFluffJobsSalary,
-  NoFluffJobsSearchResponse,
   NoFluffJobsTiles,
 } from "../../types/no-fluff-jobs";
 import type {
@@ -20,9 +20,8 @@ import type {
   WorkplaceType,
 } from "../../types/scraper-types";
 import { executeInBatches } from "../../utils/batch-processor";
-import { sleep } from "../../utils/sleep";
 
-const API_BASE_URL = "https://nofluffjobs.com/api/search/posting";
+const API_BASE_URL = "https://nofluffjobs.com/api/posting";
 const LOGO_BASE_URL = "https://static.nofluffjobs.com/";
 
 const DEFAULT_OPTIONS: Required<Omit<ScrapingOptions, "providerOptions">> = {
@@ -31,8 +30,6 @@ const DEFAULT_OPTIONS: Required<Omit<ScrapingOptions, "providerOptions">> = {
   maxIterations: 5,
   concurrencyLimit: 5,
 };
-
-const RATE_LIMIT_DELAY_MS = 1500;
 
 const DEFAULT_PROVIDER_OPTIONS: Required<NoFluffJobsProviderOptions> = {
   salaryCurrency: "PLN",
@@ -118,36 +115,12 @@ export class NoFluffJobsStrategy
     };
   }
 
-  private async fetchOffers(
-    page: number,
-    categories: NoFluffJobsCategory[]
-  ): Promise<NoFluffJobsSearchResponse> {
-    const params = new URLSearchParams({
-      salaryCurrency: this.providerOptions.salaryCurrency,
-      salaryPeriod: this.providerOptions.salaryPeriod,
-      region: this.providerOptions.region,
-    });
-
-    const body = {
-      rawSearch: "",
-      page,
-      pageSize: this.options.itemsPerPage,
-      criteriaSearch: {
-        category: categories,
-        requirement: [],
-        city: [],
-        country: [],
-        employment: [],
-      },
-    };
-
-    const response = await fetch(`${API_BASE_URL}?${params.toString()}`, {
-      method: "POST",
+  private async fetchAllPostings(): Promise<NoFluffJobsListingResponse> {
+    const response = await fetch(API_BASE_URL, {
+      method: "GET",
       headers: {
-        "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(body),
     });
 
     if (!response.ok) {
@@ -156,7 +129,7 @@ export class NoFluffJobsStrategy
       );
     }
 
-    return response.json() as Promise<NoFluffJobsSearchResponse>;
+    return response.json() as Promise<NoFluffJobsListingResponse>;
   }
 
   private getEmptySalary() {
@@ -302,30 +275,24 @@ export class NoFluffJobsStrategy
   private async fetchAllOffers(
     categories: NoFluffJobsCategory[]
   ): Promise<NoFluffJobsPosting[]> {
+    const response = await this.fetchAllPostings();
+    const categorySet = new Set<string>(categories);
+
+    const filtered =
+      categorySet.size > 0
+        ? response.postings.filter((p) => categorySet.has(p.category))
+        : response.postings;
+
     const uniquePostings = new Map<string, NoFluffJobsPosting>();
-    let currentPage = 1;
 
-    for (let i = 0; i < this.options.maxIterations; i++) {
-      const response = await this.fetchOffers(currentPage, categories);
-
-      for (const posting of response.postings) {
-        const key = `${posting.title}::${posting.name}`;
-        if (!uniquePostings.has(key)) {
-          uniquePostings.set(key, posting);
-        }
+    for (const posting of filtered) {
+      const key = `${posting.title}::${posting.name}`;
+      if (!uniquePostings.has(key)) {
+        uniquePostings.set(key, posting);
       }
 
-      if (
-        uniquePostings.size >= this.options.maxOffers ||
-        currentPage >= response.totalPages
-      ) {
+      if (uniquePostings.size >= this.options.maxOffers) {
         break;
-      }
-
-      currentPage++;
-
-      if (i < this.options.maxIterations - 1) {
-        await sleep(RATE_LIMIT_DELAY_MS);
       }
     }
 

@@ -94,22 +94,6 @@ async function executeMatchingFlow(
   matchRunId: number,
   userSkills: string[]
 ): Promise<Result<ScrapeAndMatchData>> {
-  const firstMatchResult = await matchJobs();
-
-  if (
-    firstMatchResult.success &&
-    (firstMatchResult.data.newMatchesCount ?? 0) > 0
-  ) {
-    await updateMatchRun(supabase, matchRunId, {
-      status: "completed",
-      newJobsCount: firstMatchResult.data.newMatchesCount ?? 0,
-    });
-
-    return ok({
-      newJobsCount: firstMatchResult.data.newMatchesCount,
-    });
-  }
-
   const jjiCategories = mapSkillsToCategories(userSkills);
   const nfjCategories = mapSkillsToNoFluffJobsCategories(userSkills);
 
@@ -142,24 +126,20 @@ async function executeMatchingFlow(
   const totalScraped =
     (justjoinitResult.offersCount ?? 0) + (nofluffjobsResult.offersCount ?? 0);
 
-  const secondMatchResult = await matchJobs();
+  const matchResult = await matchJobs();
 
   await updateMatchRun(supabase, matchRunId, {
-    status: secondMatchResult.success ? "completed" : "failed",
-    newJobsCount: secondMatchResult.success
-      ? secondMatchResult.data.newMatchesCount
-      : 0,
-    errorMessage: secondMatchResult.success
-      ? undefined
-      : secondMatchResult.error,
+    status: matchResult.success ? "completed" : "failed",
+    newJobsCount: matchResult.success ? matchResult.data.newMatchesCount : 0,
+    errorMessage: matchResult.success ? undefined : matchResult.error,
   });
 
-  if (!secondMatchResult.success) {
-    return err(secondMatchResult.error);
+  if (!matchResult.success) {
+    return err(matchResult.error);
   }
 
   return ok({
-    newJobsCount: secondMatchResult.data.newMatchesCount,
+    newJobsCount: matchResult.data.newMatchesCount,
     scrapedCount: totalScraped,
   });
 }
