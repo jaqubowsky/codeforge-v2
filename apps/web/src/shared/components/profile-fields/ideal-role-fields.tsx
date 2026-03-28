@@ -3,7 +3,6 @@
 import { Label } from "@codeforge-v2/ui/components/label";
 import { Textarea } from "@codeforge-v2/ui/components/textarea";
 import { type Control, Controller, type FieldErrors } from "react-hook-form";
-import { VALIDATION_RULES } from "@/shared/constants/profile";
 import type { ProfileFormData } from "@/shared/schemas/profile";
 
 interface IdealRoleFieldsProps {
@@ -30,40 +29,20 @@ export function IdealRoleFields({
       )}
 
       <div className="space-y-2">
-        <Label htmlFor="idealRole">
-          Ideal Role Description <span className="text-destructive">*</span>
-        </Label>
+        <Label htmlFor="idealRole">Ideal Role Description</Label>
         <Controller
           control={control}
           name="idealRoleDescription"
-          render={({ field }) => {
-            const characterCount = field.value.length;
-            const isValid =
-              characterCount >= VALIDATION_RULES.MIN_IDEAL_ROLE_CHARS;
-
-            return (
-              <>
-                <Textarea
-                  {...field}
-                  aria-invalid={!!errors.idealRoleDescription}
-                  className="resize-none"
-                  id="idealRole"
-                  placeholder="I'm looking for a role where I can..."
-                  rows={6}
-                />
-                <div className="flex items-center justify-between text-xs">
-                  <span
-                    className={
-                      isValid ? "text-muted-foreground" : "text-destructive"
-                    }
-                  >
-                    {characterCount} / {VALIDATION_RULES.MIN_IDEAL_ROLE_CHARS}{" "}
-                    characters minimum
-                  </span>
-                </div>
-              </>
-            );
-          }}
+          render={({ field }) => (
+            <Textarea
+              {...field}
+              aria-invalid={!!errors.idealRoleDescription}
+              className="resize-none"
+              id="idealRole"
+              placeholder="I'm looking for a role where I can... (optional)"
+              rows={6}
+            />
+          )}
         />
         {errors.idealRoleDescription && (
           <p className="text-destructive text-sm">

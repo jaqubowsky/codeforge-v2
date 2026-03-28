@@ -50,11 +50,3 @@ export const WORK_LOCATION_OPTIONS: Array<{
     description: "On-site work only",
   },
 ] as const;
-
-export const VALIDATION_RULES = {
-  MIN_SKILLS: 3,
-  MIN_IDEAL_ROLE_CHARS: 50,
-  MIN_JOB_TITLE_CHARS: 2,
-  MIN_EXPERIENCE_LEVELS: 1,
-  MIN_WORK_LOCATIONS: 1,
-} as const;
