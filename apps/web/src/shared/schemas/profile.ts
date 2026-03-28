@@ -8,9 +8,7 @@ export const profileSchema = z.object({
   preferredLocations: z
     .array(z.enum(["remote", "hybrid", "office"]))
     .min(1, "Please select at least one work location"),
-  idealRoleDescription: z
-    .string()
-    .min(50, "Description must be at least 50 characters"),
+  idealRoleDescription: z.string(),
 });
 
 export type ProfileFormData = z.infer<typeof profileSchema>;
