@@ -51,6 +51,19 @@ export async function matchJobs(): Promise<Result<MatchJobsData>> {
     );
   }
 
+  const { data: existingOffers, error: existingError } = await supabase
+    .from("user_offers")
+    .select("offer_id")
+    .eq("user_id", userId);
+
+  if (existingError) {
+    return err(`Failed to check existing offers: ${existingError.message}`);
+  }
+
+  const excludedOfferIds = (existingOffers?.map((o) => o.offer_id) || []).map(
+    Number
+  );
+
   const { data: matches, error: matchError } = await supabase.rpc(
     "match_jobs_for_user",
     {
@@ -62,6 +75,7 @@ export async function matchJobs(): Promise<Result<MatchJobsData>> {
       match_threshold: MATCH_THRESHOLD,
       min_skill_ratio: MIN_SKILL_RATIO,
       match_count: MATCH_COUNT,
+      excluded_offer_ids: excludedOfferIds,
     }
   );
 
@@ -146,28 +160,11 @@ export async function matchJobs(): Promise<Result<MatchJobsData>> {
     return err("Failed to re-rank job matches. Please try again.");
   }
 
-  const { data: existingOffers, error: existingError } = await supabase
-    .from("user_offers")
-    .select("offer_id")
-    .eq("user_id", userId);
-
-  if (existingError) {
-    return err(`Failed to check existing offers: ${existingError.message}`);
-  }
-
-  const excludedOfferIds = new Set(
-    existingOffers?.map((o) => o.offer_id) || []
-  );
-
-  const newMatches = rerankedMatches.filter(
-    (match) => !excludedOfferIds.has(match.offerId)
-  );
-
-  if (newMatches.length === 0) {
+  if (rerankedMatches.length === 0) {
     return ok({ newMatchesCount: 0 });
   }
 
-  const userOffers: UserOfferInsert[] = newMatches.map((match) => ({
+  const userOffers: UserOfferInsert[] = rerankedMatches.map((match) => ({
     user_id: userId,
     offer_id: match.offerId,
     status: "saved",
@@ -182,5 +179,5 @@ export async function matchJobs(): Promise<Result<MatchJobsData>> {
     return err(`Failed to save matches: ${insertError.message}`);
   }
 
-  return ok({ newMatchesCount: newMatches.length });
+  return ok({ newMatchesCount: rerankedMatches.length });
 }
