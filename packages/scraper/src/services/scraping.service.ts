@@ -9,7 +9,7 @@ import type {
 } from "../types/scraper-types";
 import { BadRequestError, getErrorMessage } from "../utils/errors";
 
-export class ScrapingService<TTechnology = string | undefined> {
+export class ScrapingService<TTechnology = string> {
   private readonly strategy: ScrapingStrategy<TTechnology>;
 
   constructor(strategy: ScrapingStrategy<TTechnology>) {

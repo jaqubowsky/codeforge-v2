@@ -21,7 +21,7 @@ const ERROR_CODES = {
   MODEL_LOAD_FAILED: "MODEL_LOAD_FAILED",
   VALIDATION_FAILED: "VALIDATION_FAILED",
   GENERATION_FAILED: "GENERATION_FAILED",
-  PROVIDER_NOT_IMPLEMENTED: "PROVIDER_NOT_IMPLEMENTED",
+
   INVALID_DIMENSIONS: "INVALID_DIMENSIONS",
   RERANKING_FAILED: "RERANKING_FAILED",
 } as const;
@@ -42,17 +42,6 @@ export class ValidationError extends EmbeddingError {
   constructor(message: string, provider: string) {
     super(message, ERROR_CODES.VALIDATION_FAILED, provider);
     this.name = "ValidationError";
-  }
-}
-
-export class ProviderNotImplementedError extends EmbeddingError {
-  constructor(provider: string) {
-    super(
-      `Provider "${provider}" is not implemented yet`,
-      ERROR_CODES.PROVIDER_NOT_IMPLEMENTED,
-      provider
-    );
-    this.name = "ProviderNotImplementedError";
   }
 }
 

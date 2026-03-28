@@ -1,6 +1,5 @@
 import { type REGULAR_MODELS, REGULAR_PROVIDERS } from "./constants";
 import { createLocalProvider } from "./providers/local";
-import { createOpenAIProvider } from "./providers/openai";
 import type { EmbeddingProvider } from "./types";
 
 const providerCache = new Map<string, EmbeddingProvider>();
@@ -19,10 +18,6 @@ export function createEmbeddingProvider(
   switch (selectedProvider) {
     case REGULAR_PROVIDERS.LOCAL:
       model = createLocalProvider();
-      break;
-
-    case REGULAR_PROVIDERS.OPENAI:
-      model = createOpenAIProvider();
       break;
 
     default: {

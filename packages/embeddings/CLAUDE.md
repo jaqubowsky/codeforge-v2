@@ -23,8 +23,7 @@ src/
 ├── validation.ts         # Zod schemas for input text and config
 └── providers/
     ├── local.ts          # Bi-encoder: Xenova/all-MiniLM-L6-v2 (384 dims, feature-extraction)
-    ├── local-reranker.ts # Cross-encoder: Xenova/ms-marco-MiniLM-L-6-v2 (text-classification)
-    └── openai.ts         # Placeholder (throws ProviderNotImplementedError)
+    └── local-reranker.ts # Cross-encoder: Xenova/ms-marco-MiniLM-L-6-v2 (text-classification)
 ```
 
 ## Public API
@@ -67,10 +66,9 @@ Job matching uses a two-stage approach:
 ### Bi-Encoder (`EmbeddingProvider`)
 
 **Provider Pattern**: `EmbeddingProvider` interface with pluggable implementations.
-- `LocalProvider` (active): Xenova/all-MiniLM-L6-v2, 384 dimensions, `feature-extraction` pipeline
-- `OpenAIProvider` (placeholder): text-embedding-ada-002, 1536 dimensions, not implemented
+- `LocalProvider`: Xenova/all-MiniLM-L6-v2, 384 dimensions, `feature-extraction` pipeline
 
-**Factory**: `createEmbeddingProvider(config?)` returns cached instances. Default via `EMBEDDING_PROVIDER` env var (defaults to `"local"`).
+**Factory**: `createEmbeddingProvider(config?)` returns cached instances. Default: `"local"`.
 
 ### Cross-Encoder (`ReRanker`)
 
@@ -145,7 +143,7 @@ Custom error hierarchy with error codes:
 | `ValidationError` | `VALIDATION_FAILED` | Empty string or >10,000 chars |
 | `EmbeddingError` | `GENERATION_FAILED` | Embedding generation failure |
 | `RerankingError` | `RERANKING_FAILED` | Cross-encoder re-ranking failure |
-| `ProviderNotImplementedError` | `PROVIDER_NOT_IMPLEMENTED` | Using OpenAI provider |
+
 | `InvalidDimensionsError` | `INVALID_DIMENSIONS` | Wrong vector size returned |
 
 All consumers use non-blocking pattern: catch errors and either return `err()` or skip silently.
@@ -173,7 +171,7 @@ Embeddings stored as `VECTOR(384)` columns (pgvector) on `profiles` and `offers`
 ## Environment Variables
 
 ```bash
-EMBEDDING_PROVIDER=local  # Optional, defaults to "local". "openai" not implemented.
+EMBEDDING_PROVIDER=local  # Optional, defaults to "local".
 ```
 
 ## Dependencies
