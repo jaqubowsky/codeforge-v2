@@ -99,13 +99,13 @@ async function executeMatchingFlow(
 
   const justjoinitResult = await scrapeOffers({
     board: "justjoinit",
-    maxOffers: 1500,
+    maxOffers: 500,
     categories: jjiCategories.length > 0 ? jjiCategories : undefined,
   });
 
   const nofluffjobsResult = await scrapeOffers({
     board: "nofluffjobs",
-    maxOffers: 1500,
+    maxOffers: 500,
     categories: nfjCategories.length > 0 ? nfjCategories : undefined,
   });
 

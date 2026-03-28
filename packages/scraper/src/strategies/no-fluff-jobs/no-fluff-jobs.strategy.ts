@@ -23,6 +23,7 @@ import { executeInBatches } from "../../utils/batch-processor";
 
 const API_BASE_URL = "https://nofluffjobs.com/api/posting";
 const LOGO_BASE_URL = "https://static.nofluffjobs.com/";
+const PUBLISHED_WITHIN_DAYS = 14;
 
 const DEFAULT_OPTIONS: Required<Omit<ScrapingOptions, "providerOptions">> = {
   itemsPerPage: 120,
@@ -277,11 +278,15 @@ export class NoFluffJobsStrategy
   ): Promise<NoFluffJobsPosting[]> {
     const response = await this.fetchAllPostings();
     const categorySet = new Set<string>(categories);
+    const cutoffTimestamp =
+      Date.now() - PUBLISHED_WITHIN_DAYS * 24 * 60 * 60 * 1000;
 
-    const filtered =
-      categorySet.size > 0
-        ? response.postings.filter((p) => categorySet.has(p.category))
-        : response.postings;
+    const filtered = response.postings.filter((p) => {
+      if (categorySet.size > 0 && !categorySet.has(p.category)) {
+        return false;
+      }
+      return p.renewed >= cutoffTimestamp;
+    });
 
     const uniquePostings = new Map<string, NoFluffJobsPosting>();
 

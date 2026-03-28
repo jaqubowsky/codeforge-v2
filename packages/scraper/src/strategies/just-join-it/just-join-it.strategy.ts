@@ -63,6 +63,7 @@ const DEFAULT_OPTIONS: Required<Omit<ScrapingOptions, "providerOptions">> = {
 };
 
 const RATE_LIMIT_DELAY_MS = 1500;
+const PUBLISHED_WITHIN_DAYS = 14;
 
 const DEFAULT_PROVIDER_OPTIONS: Required<JustJoinItProviderOptions> = {
   currency: "pln",
@@ -144,6 +145,12 @@ export class JustJoinItStrategy
     itemsCount: number,
     categories: JustJoinItTechnology[]
   ): Promise<JustJoinItApiResponse> {
+    const publishedAfter = new Date(
+      Date.now() - PUBLISHED_WITHIN_DAYS * 24 * 60 * 60 * 1000
+    )
+      .toISOString()
+      .split("T")[0]!;
+
     const params = new URLSearchParams({
       cityRadius: this.providerOptions.cityRadiusKm.toString(),
       currency: this.providerOptions.currency,
@@ -151,6 +158,7 @@ export class JustJoinItStrategy
       itemsCount: itemsCount.toString(),
       orderBy: this.providerOptions.orderBy,
       sortBy: this.providerOptions.sortBy,
+      publishedAfter,
     });
 
     for (const category of categories) {
