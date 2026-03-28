@@ -25,7 +25,7 @@ export const INPUT_LIMITS = {
 } as const;
 
 export const RERANKER_MODEL_IDS = {
-  [RERANKER_PROVIDERS.LOCAL]: "Xenova/bge-reranker-base",
+  [RERANKER_PROVIDERS.LOCAL]: "Xenova/ms-marco-MiniLM-L-6-v2",
 } as const;
 
 export type RERANKER_MODELS = keyof typeof RERANKER_MODEL_IDS;

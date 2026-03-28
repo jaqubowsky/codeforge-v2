@@ -18,6 +18,6 @@ download_model() {
 COMMON_FILES="config.json tokenizer.json tokenizer_config.json special_tokens_map.json vocab.txt onnx/model_quantized.onnx"
 
 download_model "Xenova/all-MiniLM-L6-v2" $COMMON_FILES
-download_model "Xenova/bge-reranker-base" $COMMON_FILES
+download_model "Xenova/ms-marco-MiniLM-L-6-v2" $COMMON_FILES
 
 echo "All models downloaded to $CACHE_DIR"

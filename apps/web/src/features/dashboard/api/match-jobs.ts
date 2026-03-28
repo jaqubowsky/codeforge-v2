@@ -17,7 +17,7 @@ const MATCH_THRESHOLD = 0.3;
 const MIN_SKILL_RATIO = 0.3;
 const MATCH_COUNT = 50;
 const RERANK_COUNT = 20;
-const MIN_RERANK_SCORE = 0.5;
+const MIN_RERANK_SCORE = 0.6;
 
 export async function matchJobs(): Promise<Result<MatchJobsData>> {
   const authResult = await createAuthenticatedClient();
