@@ -19,7 +19,17 @@ export async function updateProfile(
   const experienceLevels = data.experienceLevel.join(", ");
   const workLocations = data.preferredLocations.join(", ");
 
-  const profileText = `Skills: ${data.skills.join(", ")} | Experience levels: ${experienceLevels} | Work locations: ${workLocations} | ${data.idealRoleDescription}`;
+  const profileParts = [
+    `Skills: ${data.skills.join(", ")}`,
+    `Experience levels: ${experienceLevels}`,
+    `Work locations: ${workLocations}`,
+  ];
+
+  if (data.idealRoleDescription) {
+    profileParts.push(data.idealRoleDescription);
+  }
+
+  const profileText = profileParts.join(" | ");
 
   let embedding: number[] | null = null;
 

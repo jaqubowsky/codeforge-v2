@@ -41,17 +41,8 @@ describe("onboardingSchema", () => {
     expect(result.success).toBe(false);
   });
 
-  it("rejects description shorter than 50 characters", () => {
-    const data = { ...validData(), idealRoleDescription: "Too short" };
-    const result = onboardingSchema.safeParse(data);
-    expect(result.success).toBe(false);
-  });
-
-  it("accepts description of exactly 50 characters", () => {
-    const data = {
-      ...validData(),
-      idealRoleDescription: "a".repeat(50),
-    };
+  it("accepts empty description", () => {
+    const data = { ...validData(), idealRoleDescription: "" };
     const result = onboardingSchema.safeParse(data);
     expect(result.success).toBe(true);
   });

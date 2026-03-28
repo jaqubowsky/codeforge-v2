@@ -11,9 +11,7 @@ const preferencesSchema = z.object({
 });
 
 const idealRoleSchema = z.object({
-  idealRoleDescription: z
-    .string()
-    .min(50, "Description must be at least 50 characters"),
+  idealRoleDescription: z.string(),
 });
 
 export const onboardingSchema = preferencesSchema.merge(idealRoleSchema);
