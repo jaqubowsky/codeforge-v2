@@ -14,10 +14,10 @@ import type { MatchJobsData } from "../types/dashboard";
 type UserOfferInsert = Database["public"]["Tables"]["user_offers"]["Insert"];
 
 const MATCH_THRESHOLD = 0.3;
-const MIN_SKILL_RATIO = 0.3;
+const MIN_SKILL_RATIO = 0.6;
 const MATCH_COUNT = 150;
 const RERANK_COUNT = 20;
-const MIN_RERANK_SCORE = 0.6;
+const MIN_RERANK_SCORE = 0.03;
 
 export async function matchJobs(): Promise<Result<MatchJobsData>> {
   const authResult = await createAuthenticatedClient();

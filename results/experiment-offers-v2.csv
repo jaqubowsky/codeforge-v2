@@ -1,0 +1,814 @@
+profile_name,offer_id,title,company,experience_level,workplace_type,city,technologies,salary_range,cross_score,relevant
+frontend-react-junior,183,"Junior React Developer","Link Group",junior,hybrid,"Warszawa","TypeScript; REST; React; API; JavaScript; HTML; CSS3","10080-10920 PLN",0.834022,1
+frontend-react-junior,138,"Junior Developer with AI - part time/full time","Pirxey",junior,remote,"Gdańsk","TypeScript; Angular; React; JavaScript; Node.js; HTML; Python; CSS; Vue.js; SQL; Analytical Thinking","5800-8000 PLN",0.825148,1
+frontend-react-junior,3949,"Junior Frontend Developer","best HR and PM solutions",junior,remote,"Cracow","JavaScript; HTML; CSS; Git; SEO; CMS","7000-9000 PLN",0.623132,1
+frontend-react-junior,209,"Junior Angular Developer","Link Group",junior,remote,"Warszawa","TypeScript; Angular; HTML; CSS; REST API; NgRx; Jasmine; RxJS; Karma","8400-13440 PLN",0.457301,0
+frontend-react-junior,737,"JS / Junior Developer","Arrmy.gg",junior,hybrid,"Gdynia","JavaScript; HTML; Git","6000-10000 PLN",0.339264,1
+frontend-react-junior,2485,"AI Fullstack Internship | RAS TECH Summer","Ringier Axel Springer Tech",junior,hybrid,"Kraków","TypeScript; React; Git","5400-5400 PLN",0.167371,1
+frontend-react-junior,1218,"CCM Developer","Quertum",junior,hybrid,"Warszawa","HTML; JSON; XML","7800-10800 PLN",0.092493,0
+frontend-react-junior,2486,"Fullstack Internship | RAS TECH Summer","Ringier Axel Springer Tech",junior,hybrid,"Kraków","TypeScript; JavaScript; R","5400-5400 PLN",0.043466,1
+frontend-mid,25,"Fullstack Developer (Node.js/Nest.js + Next.js) - Mid+/Senior (100% Remote)","iMakeable",mid,remote,"Wrocław","TypeScript; Next.js; Docker; Node.js; Express.js; CI/CD; ORM; Git; Nest.js; AWS","16800-24360 PLN",0.785400,1
+frontend-mid,452,"React Developer","RITS Professional Services",mid,remote,"Warszawa","TypeScript; ReactJS; HTML5; material UI; Redux; CSS3; SASS; JavaScript (ES6+); tailwind; React Query","18480-23520 PLN",0.729007,1
+frontend-mid,344,"Node.js Developer","ITLT",mid,remote,"Warszawa","Node.js; Nest.js; Redis; TypeORM; nx.dev","20160-25200 PLN",0.661053,1
+frontend-mid,290,"Node.js Developer","The Software House",mid,remote,"Gliwice","TypeScript; Node.js; CI/CD; Amazon AWS; SQL; React.JS","9500-16000 PLN",0.543116,1
+frontend-mid,209,"Junior Angular Developer","Link Group",junior,remote,"Warszawa","TypeScript; Angular; HTML; CSS; REST API; NgRx; Jasmine; RxJS; Karma","8400-13440 PLN",0.465255,1
+frontend-mid,472,"Web Developer","CodeTwo sp. z o.o. sp. k.",mid,remote,"Jelenia Góra","React; JavaScript; C#; CSS; Azure; ASP.NET; Visual Studio","10000-17000 PLN",0.450337,1
+frontend-mid,37,"Mid/Senior Fullstack & AI Integration Developer z j. angielskim lub niemieckim (Instore Sensorics and Data)","dmTECH Polska",mid,remote,"Wrocław","Angular; React; Node.js; AI; Vue.js","16800-30240 PLN",0.438504,1
+frontend-mid,213,"Fullstack Developer (Node.js, React)","Next Technology Professionals",mid,hybrid,"Warszawa","TypeScript; React; API; Node.js; AWS","13000-15000 PLN",0.434575,1
+frontend-mid,147,"React Native Developer","Goodspeed Digital",mid,remote,"Warszawa","TypeScript; React Native; Firebase","18000-23000 PLN",0.420198,1
+frontend-mid,363,"React.js Developer","SMART TOPAZ",mid,remote,"Poland (Remote)","Next.js; JavaScript; HTML; REST API; React.JS","14000-20000 PLN",0.415862,1
+frontend-mid,5282,"Fullstack developer (Node.js and React) (f/m/d)","FIEGE Sp. z.o.o.",mid,remote,"Warszawa","React; Node.js","15000-18000 PLN",0.415336,1
+frontend-mid,183,"Junior React Developer","Link Group",junior,hybrid,"Warszawa","TypeScript; REST; React; API; JavaScript; HTML; CSS3","10080-10920 PLN",0.413988,1
+frontend-mid,529,"React Developer | Fintech | Java Experience Required","Caspian One",mid,hybrid,"Kraków","TypeScript; React; Java","27300-37800 PLN",0.388703,1
+frontend-mid,4597,"Software Engineer (TypeScript)","CLMedia Sp. z o.o.",mid,hybrid,"Warszawa","TypeScript; PostgreSQL; Node.js; Vue.js; Tailwind CSS; PrimeVue; Node.js Express","23520-28560 PLN",0.374044,1
+frontend-mid,139,"Front-end Developer","Nocowanie.pl",mid,remote,"Warszawa","TypeScript; Next.js; React; JavaScript; Redux; Webpack","12000-17000 PLN",0.366280,1
+frontend-mid,3232,"Junior Fullstack Developer","P100",junior,hybrid,"Rzeszów","TypeScript; Next.js; PostgreSQL; AI; Nest.js; Python 3; Blockchain","4000-5000 PLN",0.365644,1
+frontend-mid,366,"Software Engineer - Frontend","Evidence Prime",mid,remote,"Kraków","TypeScript; React; JavaScript; HTML5; REST API; Git; CSS3","14000-16500 PLN",0.363984,1
+frontend-mid,182,"React Native Developer","GMI Software",mid,remote,"Warszawa","TypeScript; CI/CD; React Native; Expo","12000-18000 PLN",0.361499,1
+frontend-mid,3949,"Junior Frontend Developer","best HR and PM solutions",junior,remote,"Cracow","JavaScript; HTML; CSS; Git; SEO; CMS","7000-9000 PLN",0.358420,1
+frontend-mid,3231,"React Native Developer","Miquido",mid,remote,"Kraków","React; Git; JS","14280-19320 PLN",0.357291,1
+frontend-mid,210,"Mid Node.js Developer","Droplo",mid,hybrid,"Wałbrzych","TypeScript; Node.js; Node","11000-13000 PLN",0.354765,1
+frontend-mid,390,"Frontend Developer","Primaris Services",mid,remote,"Warszawa","TypeScript; Next.js; JavaScript; Python; Reac","20160-23520 PLN",0.345402,1
+frontend-mid,49,"Fullstack Developer (Mid)","Framna (formerly Bright Inventions)",mid,hybrid,"Gdańsk","TypeScript; Next.js; React; JavaScript; Node.js; nestJS; NoSQL; SQL; Databases; AWS","18772-21220 PLN",0.344829,1
+frontend-mid,5305,"Frontend Developer (Angular)","Experis Manpower Group",mid,remote,"Wrocław","TypeScript; Docker; JavaScript; Git; Kubernetes; RESTful API; HTML/CSS; UI/UX; Angular 12","20160-21840 PLN",0.334776,1
+frontend-mid,143,"Front-end Developer (Angular)","Eyzee S.A.",mid,remote,"Warszawa","JavaScript; Node.js; HTML5; CSS3; Angular 9+","12000-20000 PLN",0.330062,1
+frontend-mid,27,"Fullstack Developer","UNIVIO",mid,remote,"Wrocław","TypeScript; Next.js; React; API; Node.js; E-commerce; VTEX; Nest.js; AWS","13400-21800 PLN",0.329581,1
+frontend-mid,460,"Angular Developer (MID/SENIOR)","RITS Professional Services",mid,hybrid,"Warszawa","TypeScript; Angular; JavaScript; HTML5; Git; RxJS; CSS/SCSS; Reactive Forms; Angular Router; Angular Material","18480-25200 PLN",0.328431,1
+frontend-mid,90,"Full-Stack Developer","TaxCalc | Engager.app",mid,remote,"Wokingham","TypeScript; Angular; React; Python; Express.js; Git; Nest.js; Redis; SQL","14747-19663 PLN",0.325910,1
+frontend-mid,149,"Full Stack Developer","WAYF",mid,remote,"Poland (Remote)","TypeScript; Next.js; PostgreSQL; Node.js; React Native; Nest.js","10000-17000 PLN",0.317612,1
+frontend-mid,135,"Fullstack Engineer (NodeJS, ReactJS)","SwingDev—a hippo company",mid,remote,"Warszawa","TypeScript; React; JavaScript; Node.js; Microservices; Nest.js","23000-26000 PLN",0.317478,1
+frontend-mid,263,"Middle React Software Engineer","N-iX",mid,remote,"Kraków","TypeScript; React; GraphQL; REST API; English","14691-16160 PLN",0.316894,1
+frontend-mid,89,"Front-end Developer","rynekpierwotny.pl",mid,hybrid,"Warszawa","TypeScript; Docker; React; JavaScript; Node.js; REST API; Kubernetes","13000-17000 PLN",0.302826,1
+frontend-mid,184,"Frontend Developer","Klient Just Join IT",mid,hybrid,"Katowice","TypeScript; Next.js; React; Node.js; Vue.js; CMS; AWS","23000-27000 PLN",0.297344,1
+frontend-mid,358,"Middle FullStack Software Engineer","N-iX",mid,remote,"Kraków","TypeScript; React; Node.js; C#; AI; Vue.js; AWS","16042-19127 PLN",0.296542,1
+frontend-mid,244,"Full Stack Software Engineer (Node.js, React.js, AWS)","Bayer Sp. z o.o.",mid,hybrid,"Warszawa","TypeScript; JavaScript; Node.js; HTML; CSS; Git; Terraform; aws lambda; React.JS; AWS","15360-19200 PLN",0.284433,1
+frontend-mid,104,"Fullstack Software Engineer","Remitly",mid,hybrid,"Kraków","Next.js; React; Kotlin; Java; React Native; Golang; SSR","20000-23000 PLN",0.282795,1
+frontend-mid,4672,"Fullstack Software Engineer","autoMEE",mid,hybrid,"Gdańsk","TypeScript; PostgreSQL; React; RabbitMQ; Node.js Express; GenAI/LLM","12000-18000 PLN",0.278133,1
+frontend-mid,367,"Full Stack Developer (Frontend-focused) – React / Next.js / Java (m/k/n)","Upvanta sp. z o.o.",mid,remote,"Warszawa","Next.js; React; Java; HTML5; Redux; Kafka; Spring; Figma; WordPress; Front-End","18900-23100 PLN",0.270943,1
+frontend-mid,357,"Mid Angular Developer ","House of Angular",mid,remote,"Warszawa","TypeScript; Angular; JavaScript; Java; Spring; HTML/CSS; RxJS; State Management; Testy Automatyczne; English","10000-18000 PLN",0.267697,1
+frontend-mid,71,"Full Stack Developer (Java, TypeScript)","Upvanta sp. z o.o.",mid,remote,"Wrocław","TypeScript; PostgreSQL; React; JavaScript; Java; REST API; MongoDB; Kafka; Spring; Oracle","21000-25200 PLN",0.266925,1
+frontend-mid,163,"Web Portal Developer","Pretius",mid,remote,"Warszawa","TypeScript; Next.js; Zustand; React; Styled Components; web portal development; Tanstack Query; UI architectures; Hooks; Storybook","15120-20160 PLN",0.260360,0
+frontend-mid,50,"Backend Developer (Mid)","Framna (formerly Bright Inventions)",mid,hybrid,"Gdańsk","TypeScript; React; JavaScript; Node.js; AI; Nest.js; AWS","18772-21220 PLN",0.258813,1
+frontend-mid,1239,"Frontend Developer  (TypeScript)","optAd360",mid,hybrid,"Wrocław","TypeScript; Angular; React; HTML; CSS; Jest; Cypress; JS","12000-15500 PLN",0.254432,1
+frontend-mid,23,"Frontend Developer","UNIVIO",mid,remote,"Wrocław","TypeScript; Next.js; React; JavaScript; HTML; CSS; GraphQL; VTEX; WCAG; SEO","10900-18400 PLN",0.253956,1
+frontend-mid,4590,"Software Engineer (Frontend)","Revolut",mid,remote,"Kraków","TypeScript; ReactJS; JavaScript; English","28300-40000 PLN",0.252635,1
+frontend-mid,326,"Full-Stack Developer","Evionica",mid,remote,"Warszawa","TypeScript; React; JavaScript; Vue; Rust","20000-24000 PLN",0.242544,1
+frontend-mid,174,"Mid Frontend Developer","Jit Team",mid,hybrid,"Warszawa","TypeScript; React; JavaScript","10000-16000 PLN",0.241213,1
+frontend-mid,3556,"Fullstack TypeScript Developer","Crestt Sp. z o.o.",mid,remote,"","TypeScript; Node.js; Express.js; K8s","16800-19824 PLN",0.240306,1
+frontend-mid,461,"Fullstack Developer Frontend / .NET","QBUSOFT",mid,remote,"Gdańsk",".NET; JavaScript; HTML; CSS; Vue.js; Git; ASP.NET Core; Microsoft SQL; Entity Framework","12000-22000 PLN",0.238170,1
+frontend-mid,490,"Freelance Full Stack Developer","TeaCode S.C.",mid,remote,"Warszawa","TypeScript; Next.js; React; Node.js; Nest.js; AWS","10080-20160 PLN",0.231205,1
+frontend-mid,220,"Senior Full Stack Developer (Node.js + React)","DataArt",mid,remote,"Wrocław","Docker; PHP; JavaScript; Node.js; GraphQL; Git; nestJS; MySQL; React.JS; AWS","15000-17500 PLN",0.225467,1
+frontend-mid,40,"Software Engineer","Ciklum",mid,remote,"Gdańsk","TypeScript; JavaScript; AWS","17502-18356 PLN",0.224972,1
+frontend-mid,94,"Angular Developer","Miquido",mid,remote,"Kraków","TypeScript; Angular; HTML5; REST API; CSS3 / SCSS; RxJS","13440-16800 PLN",0.222831,1
+frontend-mid,142,"Mid Fullstack Engineer","Appliscale",mid,remote,"Kraków","TypeScript; JavaScript; .NET C#; AWS","14000-20000 PLN",0.221508,1
+frontend-mid,138,"Junior Developer with AI - part time/full time","Pirxey",junior,remote,"Gdańsk","TypeScript; Angular; React; JavaScript; Node.js; HTML; Python; CSS; Vue.js; SQL; Analytical Thinking","5800-8000 PLN",0.221114,1
+frontend-mid,316,"Full stack developer (Typescript&AWS)","Cyclad",mid,remote,"Warszawa","TypeScript; AWS","16800-20160 PLN",0.220926,1
+frontend-mid,100,"Fullstack Developer (React + Node.js)","Onwelo",mid,hybrid,"Warszawa","TypeScript; React; Node.js; REST API; PostreSQL","15750-19950 PLN",0.220410,1
+frontend-mid,395,"Senior Full Stack Developer (Node.js + React)","DataArt",mid,remote,"Wrocław","Docker; PHP; JavaScript; Node.js; GraphQL; Git; nestJS; MySQL; React.JS; AWS","15000-19500 PLN",0.215994,1
+frontend-mid,4530,"Fullstack Developer (Typescript/AWS)","Upvanta sp. z o.o.",mid,remote,"Warszawa","TypeScript; Node.js; Java; Python; GitHub Actions; NoSQL; SQL; Lambda; AWS; Bamboo","18900-23730 PLN",0.215596,1
+frontend-mid,129,"Mid Backend Developer - part time/full time","Pirxey",mid,remote,"Gdańsk","TypeScript; PHP; Node.js; Java; Python; C#; Unit Testing; SQL; Analytical Thinking; Software Architecture","8000-18000 PLN",0.212910,0
+frontend-mid,204,"Fullstack Developer","Asana",mid,hybrid,"Warszawa","TypeScript; React; JavaScript; Node.js; Scala","23667-33896 PLN",0.206876,1
+frontend-mid,295,"Full-stack Front-end Developer (React, Java)","Link Group",mid,remote,"Warszawa","TypeScript; React; JavaScript; Java","16800-26880 PLN",0.200878,1
+frontend-mid,225,"Regular React Native Developer","Spyrosoft",mid,remote,"Wrocław","TypeScript; JavaScript; CI/CD; Git; React Native","11760-18480 PLN",0.198862,1
+frontend-mid,449,"QA Automation Engineer","SMART TOPAZ",mid,remote,"Warszawa","TypeScript; Docker; PostgreSQL; JavaScript; Node.js; REST API; Automated Testing","16000-20000 PLN",0.195150,1
+frontend-mid,258,"Fullstack Developer (Node.js & Typescript)","7N",mid,hybrid,"Warszawa","TypeScript; REST; PostgreSQL; Node.js; HTML; CSS; GraphQL; SQL; GCP","25200-31920 PLN",0.191794,1
+frontend-mid,5124,"Fullstack Java Developer (Java + React/Next.js)","UpMenu.com",mid,remote,"Łódź","TypeScript; Next.js; Docker; JavaScript; Java; MySQL; Claude Code; GitLab; DevOps","16000-20000 PLN",0.185614,1
+frontend-mid,1444,"Web Portal Developer","Link Group",mid,remote,"","TypeScript; React; Headless CMS","16000-18480 PLN",0.184126,1
+frontend-mid,169,"TypeScript Engineer – Strapi (Regular)","VirtusLab",mid,remote,"Kraków","TypeScript; React; Node.js; strapi; Storybook","15000-22000 PLN",0.183292,1
+frontend-mid,737,"JS / Junior Developer","Arrmy.gg",junior,hybrid,"Gdynia","JavaScript; HTML; Git","6000-10000 PLN",0.177167,1
+frontend-mid,4509,"Fullstack Developer (React / .NET)","co.brick",mid,remote,"Gliwice",".NET; React","15120-16800 PLN",0.176512,1
+frontend-mid,93,"Frontend Developer (Vue.js)","FINANTEQ",mid,remote,"Lublin","TypeScript; JavaScript; Vue.js; UX/UI; Figma","12000-16000 PLN",0.173893,1
+frontend-mid,171,"Frontend Developer (React / UI-aware)","EduGO P.S.A.",mid,remote,"Łódź","TypeScript; HTML; CSS; CI/CD; UX/UI; Figma","17000-24000 PLN",0.169783,1
+frontend-mid,1227,"Frontend Developer (React / UI-aware)","EduGO P.S.A.",mid,remote,"Łódź","TypeScript; HTML; CSS; CI/CD; UX/UI; Figma","17000-24000 PLN",0.169783,1
+frontend-mid,208,"Front-end Software Engineer 2 - Consumer Experience","Allegro",mid,hybrid,"Poznań","TypeScript; React; JavaScript; Node.js; HTML; CSS; Jest; Playwright; Cypress; Generative AI","14200-19690 PLN",0.168766,1
+frontend-mid,3581,"Magento | Frontend Developer","Advox Studio",mid,remote,"Poznań","React; HTML; Git; JS; Magento; Hyva; Vue.js v2; Nuxt v2; PWA; CSS/LESS/SASS","8500-13500 PLN",0.168403,1
+frontend-mid,5221,"Mid Fullstack Developer - Global Fintech Project","Humanit",mid,remote,"Wrocław","Docker; React; Node.js; REST API; Redux; JavaScript / TypeScript; SQL (Postgres / MySQL)","14000-17000 PLN",0.163305,1
+frontend-mid,325,"Angular Developer 100% zdalnie","Ness Solution",mid,remote,"Warszawa","TypeScript; Angular; JavaScript; HTML; CSS","16800-23520 PLN",0.153286,1
+frontend-mid,16,"React Developer","ITMAGINATION",mid,remote,"","Next.js; Zustand; React","15120-17640 PLN",0.149800,1
+frontend-mid,241,"Full Stack Developer (Node.js+React)","Andersen",mid,remote,"Budapest","TypeScript; React; Node.js; AWS","6244-9182 PLN",0.146169,1
+frontend-mid,212,"Angular Frontend Developer (Mid / Mid+) / Projekt","Oskar Wegner",mid,hybrid,"Szczecin","TypeScript; Angular; JavaScript; HTML5; Git; CSS3; NgRx; RxJS","14000-16000 PLN",0.145655,1
+frontend-mid,364,"React/Frontend Developer","SellIntegro",mid,remote,"Wrocław","Docker; .NET; React; C#; Unit Testing; Git; SQL; ASP.NET Core; JS","12000-16000 PLN",0.145135,1
+frontend-mid,102,"Frontend Developer (React)","Connectis",mid,hybrid,"Warszawa","React; JavaScript; CI/CD","20000-23000 PLN",0.139422,1
+frontend-mid,491,"Regular Fullstack Developer (B2B | 100% remote)","TeaCode S.C.",mid,remote,"Warszawa","TypeScript; Next.js; PostgreSQL; React; Node.js; React Native; Nest.js; Supabase","10080-20160 PLN",0.133632,1
+frontend-mid,2942,"Remote Front End Developer","Coalition Technologies",mid,remote,"Los Angeles","HTML5; jQuery; Bootstrap; SCSS; JavaScript ES6+","10489-21595 PLN",0.133159,1
+frontend-mid,497,"React & Java / Spring Boot Full-Stack Engineer","UWS ie Ltd.",mid,remote,"Katowice","TypeScript; Spring Boot; Angular; React; Java; Redux","12875-21458 PLN",0.132871,1
+frontend-mid,361,"Programista Frontend","Ness Solution",mid,hybrid,"Warszawa","TypeScript; Angular; JavaScript; HTML; CSS","15960-19320 PLN",0.132753,1
+frontend-mid,61,"Programista Front-end (k/m)","Grupa Komputronik",mid,hybrid,"Poznań","JavaScript; AI; CSS; HTML5; SaaS","6000-10000 PLN",0.132275,1
+frontend-mid,3918,"Full Stack Developer (Java, TypeScript)","Upvanta",mid,remote,"","Java; REST API; Spring","21000-25200 PLN",0.131603,1
+frontend-mid,369,"QA Automation Engineer","SMART TOPAZ",mid,remote,"Poland (Remote)","TypeScript; Docker; PostgreSQL; JavaScript; Node.js; REST API; Automated Testing","16000-20000 PLN",0.129252,1
+frontend-mid,47,"Frontend Developer","FAKTURA.PL",mid,remote,"Warszawa","TypeScript; JavaScript; HTML; CSS","12000-16000 PLN",0.128126,1
+frontend-mid,4984,"Full-stack Developer (React, .NET)","Fabres",mid,hybrid,"Poznań",".NET; React; C#","18480-21840 PLN",0.125442,1
+frontend-mid,159,"Mid Fullstack JavaScript Developer (Node&Vue)","STATSCORE Sp. z o.o.",mid,hybrid,"Katowice","TypeScript; JavaScript; Node.js; HTML; CSS; Vue.js; SQL; RabbitMQ","10500-18000 PLN",0.122696,1
+frontend-mid,270,"Programista / Programistka Frontend","Lumicode Sp. z o.o. (Pentacomp Group)",mid,remote,"Warszawa","Angular; JavaScript; Node.js; HTML5; NPM; CSS3; Bootstrap; Agile","15120-19320 PLN",0.120846,1
+frontend-mid,4627,"Frontend Developer (React Native)","Boldare",mid,hybrid,"Wrocław","TypeScript; React; React Native","10000-16000 PLN",0.120469,1
+frontend-mid,342,"Frontend Developer","Comfortel",mid,hybrid,"Tychy","TypeScript; Angular; HTML5; REST API; NPM; CSS3; RxJS; Angular CLI; SCSS; HTTP","11000-13000 PLN",0.119236,1
+frontend-mid,368,"Frontend Developer (Angular) 🧠","Ness Solution",mid,hybrid,"Warszawa","TypeScript; Angular; JavaScript; HTML; CSS","15120-18480 PLN",0.118440,1
+frontend-mid,4300,"Full Stack Engineer","TechTree",mid,hybrid,"Warszawa","TypeScript; React; JavaScript; Node.js; SQL databases","23276-46552 PLN",0.116503,1
+frontend-mid,323,"Software Engineer (Node)","Kingfisher plc",mid,hybrid,"Kraków","TypeScript; Docker; JavaScript; Node.js; GraphQL; Git; Visual Studio Code; AWS","13000-22000 PLN",0.113014,0
+frontend-mid,255,"Full-Stack Engineer (AI)","ArdentCode",mid,remote,"Wrocław","TypeScript; React; JavaScript; Node.js; Python; AI; Django","16000-20000 PLN",0.111979,1
+frontend-mid,347,"Programista Frontend praca zdalna","Ness Solution",mid,remote,"Warszawa","TypeScript; Angular; JavaScript; HTML; CSS","16800-23520 PLN",0.109683,1
+frontend-mid,2944,"Remote Shopify Developer","Coalition Technologies",mid,remote,"Los Angeles","JavaScript; E-commerce; HTML5; Shopify; SCSS","10489-21595 PLN",0.109440,1
+frontend-mid,215,"Full-stack Engineer (JavaScript/React)","Motorola Solutions",mid,hybrid,"Kraków","React; JavaScript; AWS","14000-19000 PLN",0.108439,1
+frontend-mid,167,"Blockchain Payments Integration - Backend Engineer (TypeScript)","gmi.software",mid,remote,"Gdańsk","TypeScript; PostgreSQL; Node.js; Vitest","14000-20000 PLN",0.106437,1
+frontend-mid,3206,"Fullstack Developer (Node.js + React) (m/k)","Devire",mid,remote,"","TypeScript; React; Node.js","16800-21000 PLN",0.105448,1
+frontend-mid,2834,"Software Engineer - PHP/JavaScript (k/m)","NEXAI Sp. z o.o.",mid,hybrid,"Poznań","TypeScript; PHP; JavaScript","12000-15000 PLN",0.104445,1
+frontend-mid,5375,"JavaScript Full-stack Engineer","Full Stack House",mid,hybrid,"Poznań","TypeScript; React; JavaScript","8400-16800 PLN",0.103500,1
+frontend-mid,354,"Frontend Developer (Angular) 🧠 100% zdalnie","Ness Solution",mid,remote,"Warszawa","TypeScript; Angular; JavaScript; HTML; CSS","15120-18480 PLN",0.101259,1
+frontend-mid,51,"Mid Angular Developer (z Ionic)","Angry Nerds",mid,remote,"Wrocław","TypeScript; Angular; JavaScript; Ionic","11700-16800 PLN",0.099960,1
+frontend-mid,478,"Software Engineer (node.js, backend)","OneRail Poland Sp. z o.o.",mid,hybrid,"Kraków","TypeScript; Node.js","18000-22000 PLN",0.099831,1
+frontend-mid,335,"FullStack Developer (React + Node.js)","ALTIMI",mid,remote,"Wrocław","React; Node.js; GCP","16800-23520 PLN",0.099265,1
+frontend-mid,108,"Software Engineer III (Level 4)","Software Mansion",mid,hybrid,"Kraków","TypeScript; React; JavaScript; Python; React Native","17000-25000 PLN",0.097368,1
+frontend-mid,249,"Fullstack Engineer (React & Node.js & Python)","Holisticon Connect",mid,remote,"Wrocław","TypeScript; Docker; React; API; JavaScript; Node.js; Python; AI; Linux; AWS","23520-26880 PLN",0.096741,1
+frontend-mid,349,"Frontend Developer (Angular) - 100% zdalnie","Ness Solution",mid,remote,"Warszawa","TypeScript; Angular; JavaScript; HTML; CSS","16800-23520 PLN",0.087245,1
+frontend-mid,4987,"Java Developer","DCG",mid,remote,"","Java; SQL; MySQL","20160-22680 PLN",0.085871,0
+frontend-mid,343,"Business Automation Engineer (Python/Node.js)","Yard Corporate",mid,remote,"Kraków","Node.js; Python; Salesforce","100-130 PLN",0.084640,0
+frontend-mid,739,"Product Frontend Developer (React / UI-UX) – GFComply","GFComply Sàrl",mid,remote,"","TypeScript; React; UI","21840-23520 PLN",0.079984,1
+frontend-mid,746,"Fullstack Engineer (Node.js + React)","Square One Resources",mid,hybrid,"Warsaw","PostgreSQL; React; AWS","20160-23520 PLN",0.078479,1
+frontend-mid,738,"Full Stack Engineer (NodejS/ React) ","Tenth Revolution Group",mid,hybrid,"Warszawa","React; JavaScript; Node.js","20000-28000 PLN",0.076549,1
+frontend-mid,99,"Front End Engineer (Poland, Remote)","First Connect Insurance",mid,remote,"Gdańsk","TypeScript; Docker; React; JavaScript; Git; Large Language Models; AWS","23000-26000 PLN",0.074492,1
+frontend-mid,165,"Projektant Aplikacji","Neontri",mid,hybrid,"Warszawa","JavaScript; CI/CD","15120-18480 PLN",0.071729,1
+frontend-mid,181,"Full-Stack Engineer -  AI Platform","Perfect Gym Solutions",mid,remote,"Warszawa","TypeScript; React; Java","22000-26000 PLN",0.071590,1
+frontend-mid,191,"Frontend Developer","Pretius",mid,hybrid,"Warszawa","TypeScript; Angular; JavaScript; Web Applications; RxJS","13440-15120 PLN",0.070765,1
+frontend-mid,121,"Node Developer","OneRail Poland Sp. z o.o.",mid,hybrid,"Kraków","TypeScript; Node.js","18000-22000 PLN",0.069977,1
+frontend-mid,1254,"Web Developer / Web Master (WordPress + E-commerce + Automatyzacje)","Nomos sp. z o.o. sp.k.",mid,hybrid,"Warszawa","PHP; JavaScript; HTML; CSS; Git; WooCommerce; WordPress; Elementor; BaseLinker; PrestaShop","6100-11200 PLN",0.066904,1
+frontend-mid,4277,"Fullstack Developer (Java+Angular) short-term project","ITMAGINATION",mid,remote,"","Java","25200-28560 PLN",0.064680,1
+frontend-mid,1781,"Mid Full-Stack Engineer (AI)","ArdentCode",mid,hybrid,"Wrocław","React; JavaScript; Node.js","16000-20000 PLN",0.064520,1
+frontend-mid,221,"Frontend Developer (NextJs & React)","Naturaily",mid,remote,"Wrocław","Next.js; React; GraphQL; REST API","13440-20160 PLN",0.064401,1
+frontend-mid,471,"Angular Software Engineer","Motorola Solutions",mid,hybrid,"Kraków","TypeScript; Angular; HTML; CSS; RESTful; API Testing; NgRx","14000-17000 PLN",0.062690,1
+frontend-mid,265,"Senior Backend Developer (Node.js + Hydra + AWS)","SCALO",mid,remote,"Kraków","Node; AWS","20160-22680 PLN",0.060602,1
+frontend-mid,233,"Frontend Engineer (IIoT Platform)","cloudatus",mid,remote,"Rzeszów","TypeScript; Angular; React; HTML; CSS; CI/CD; D3.js; plotly","12500-19500 PLN",0.057106,1
+frontend-mid,2916,"FullStack Engineer React/Node.js","Marska",mid,hybrid,"Kraków","TypeScript; Angular; React; Node.js; GCP; AWS","18060-25284 PLN",0.055671,1
+frontend-mid,3569,"Full Stack Developer Java","Makeitright Sp. z o.o.",mid,remote,"","React; API; Java; AWS","18480-23520 PLN",0.055012,1
+frontend-mid,4635,"Frontend Regular React Developer","SquareOne",mid,remote,"","Next.js; React; React.JS","13440-16800 PLN",0.052294,1
+frontend-mid,5395,"Java Developer","XTB",mid,hybrid,"Warsaw","Java; Kafka; Rancher","15300-19400 PLN",0.049560,0
+frontend-mid,526,"Remote WordPress Developer","Coalition Technologies",mid,remote,"Los Angeles","PHP; JavaScript; HTML5; WooCommerce; WordPress; SCSS","10489-21595 PLN",0.048480,1
+frontend-mid,141,"Shopify Developer (osoba na stanowisku Shopify Developera)","Strix",mid,remote,"Kraków","React; JavaScript; HTML; CSS; REST API; Shopify","11000-15000 PLN",0.047165,1
+frontend-mid,111,"Front-End Engineer (React + Java), Officer","State Street",mid,hybrid,"Kraków","TypeScript; React; JavaScript; Java; Redux; CSS3; Jest; Playwright; Cypress; RxJS","12000-18000 PLN",0.046958,1
+frontend-mid,521,"GOC | Frontend Engineer","WPP Media",mid,hybrid,"Warszawa","Angular; React; JavaScript; HTML; CSS","6333-12500 PLN",0.045343,1
+frontend-mid,79,"Palantir Front-End Engineer","ALTIMI",mid,remote,"Wrocław","React; Typescrip; Palantir Foundry; UI","27398-36050 PLN",0.041956,1
+frontend-mid,4,"Fullstack Developer (Laravel + React) – ASAP k/m/*","Square One Resources",mid,remote,"","PostgreSQL; React; PHP","16800-23520 PLN",0.040761,1
+frontend-mid,5363,"Java Developer [M/F]","Stackmine",mid,hybrid,"Poznań","Java; Kafka; Spring","16800-21840 PLN",0.031934,0
+frontend-mid,2979,"Shopify Developer","Cloudflight Poland",mid,remote,"Wrocław","TypeScript; JavaScript; CSS; REST API; Shopify; MySQL; Figma; SASS; Hydrogen","10080-14280 PLN",0.030510,1
+frontend-mid,1445,"Frontend Engineer (Platform)","eSkill",mid,hybrid,"Kraków","JavaScript","18000-23000 PLN",0.028580,1
+frontend-mid,4273,"Fullstack Engineer (.NET & Angular & T-SQL)","Sunscrapers",mid,hybrid,"Warszawa",".NET; C#; AI","18000-24000 PLN",0.027302,1
+frontend-mid,1452,"Fullstack Developer (Java + Angular)","Scalo",mid,hybrid,"Gdańsk","Spring Boot; Angular; Java","16800-20160 PLN",0.026510,1
+frontend-mid,1100,"Front End Developer (Vue.js) - fully remote within Europe (m/f/d)","JobLeads",mid,remote,"","HTML; Vue.js; MySQL","17762-24866 PLN",0.022823,0
+frontend-mid,4985,"Java Software Engineer","Motorola Solutions Systems Polska",mid,hybrid,"Kraków","Docker; Java; K8s","14600-19000 PLN",0.020805,0
+frontend-mid,1248,"Programista WordPress (Elementor + ACF)","OSK ELKA SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",mid,hybrid,"Warszawa","PHP; JavaScript; HTML5; REST API; CSS3; MySQL; WordPress; ACF; Elementor","6500-8500 PLN",0.019266,0
+frontend-mid,1218,"CCM Developer","Quertum",junior,hybrid,"Warszawa","HTML; JSON; XML","7800-10800 PLN",0.018249,0
+frontend-mid,743,"AI Full-Stack Developer (m/k/n)","Upvanta",mid,remote,"","Python; AI; Azure","26040-26040 PLN",0.011467,1
+fullstack-junior,201,"Junior Full Stack Developer","DreamAI Technologies",junior,office,"Warszawa","TypeScript; React; JavaScript; Express.js; Microservices; React Native; Nest.js; MongoDB; Figma","7500-10000 PLN",0.977328,1
+fullstack-junior,5795,"Junior Fullstack Developer","DataFuze",junior,office,"Warszawa","Python; AI; SQL","7000-10000 PLN",0.943553,1
+fullstack-junior,138,"Junior Developer with AI - part time/full time","Pirxey",junior,remote,"Gdańsk","TypeScript; Angular; React; JavaScript; Node.js; HTML; Python; CSS; Vue.js; SQL; Analytical Thinking","5800-8000 PLN",0.847004,1
+fullstack-junior,183,"Junior React Developer","Link Group",junior,hybrid,"Warszawa","TypeScript; REST; React; API; JavaScript; HTML; CSS3","10080-10920 PLN",0.812536,1
+fullstack-junior,3949,"Junior Frontend Developer","best HR and PM solutions",junior,remote,"Cracow","JavaScript; HTML; CSS; Git; SEO; CMS","7000-9000 PLN",0.747674,1
+fullstack-junior,209,"Junior Angular Developer","Link Group",junior,remote,"Warszawa","TypeScript; Angular; HTML; CSS; REST API; NgRx; Jasmine; RxJS; Karma","8400-13440 PLN",0.738400,0
+fullstack-junior,4671,"Junior Node.js Backend Developer (he/she/they)","Lite e-Commerce",junior,remote,"Warszawa","TypeScript; Docker; PostgreSQL; Node.js; GraphQL; Redis","7000-9000 PLN",0.659166,1
+fullstack-junior,737,"JS / Junior Developer","Arrmy.gg",junior,hybrid,"Gdynia","JavaScript; HTML; Git","6000-10000 PLN",0.645211,1
+fullstack-junior,5778,"Junior Java Developer (f/m)","Netcompany Poland",junior,office,"Warsaw","Java; OOP; IT-related University degree","8000-9000 PLN",0.500596,0
+fullstack-junior,348,"Junior Frontend Developer (K/M)","OstroVit",junior,office,"Zambrów","JavaScript; HTML; CSS; WordPress","4806-5400 PLN",0.498180,1
+fullstack-junior,1094,"Junior Low-Code Developer (Mendix)","BiModal Solutions",junior,office,"Kraków","JavaScript; HTML; CSS","5880-6384 PLN",0.441074,1
+fullstack-junior,2486,"Fullstack Internship | RAS TECH Summer","Ringier Axel Springer Tech",junior,hybrid,"Kraków","TypeScript; JavaScript; R","5400-5400 PLN",0.408868,1
+fullstack-junior,1092,"Junior Java Developer","VHV Informatyka Sp. z o.o.",junior,office,"Warszawa","Java; Git; SQL","8000-12000 PLN",0.406070,1
+fullstack-junior,5679,"Frontend Developer","Mindpal Sp. z o.o.",junior,office,"Gliwice","TypeScript; React; JavaScript","8000-10000 PLN",0.335918,1
+fullstack-junior,222,"Independent Developer","Lunar Logic",junior,hybrid,"Kraków","JavaScript; Node.js; Amazon AWS; Git; SQL; Ruby on Rails; Security","10000-14000 PLN",0.227380,1
+fullstack-junior,2485,"AI Fullstack Internship | RAS TECH Summer","Ringier Axel Springer Tech",junior,hybrid,"Kraków","TypeScript; React; Git","5400-5400 PLN",0.209798,1
+fullstack-junior,5769,"Web Developer ","Ptak Warsaw Expo Sp. z o.o.",junior,office,"Nadarzyn","HTML; WordPress; Excel","7000-9000 PLN",0.154144,1
+fullstack-junior,1218,"CCM Developer","Quertum",junior,hybrid,"Warszawa","HTML; JSON; XML","7800-10800 PLN",0.128703,0
+fullstack-junior,5752,"Junior Frontend Software Engineer - e-Xperience Program Associate","Allegro",junior,office,"Poznań","HTML; Java; CSS","7000-7000 PLN",0.124440,1
+fullstack-junior,5509,"Junior Software Engineer (Java)","Sopra Steria Poland",junior,office,"Katowice","Spring Boot; Java; REST API","5500-8500 PLN",0.108930,0
+fullstack-junior,5646,"Backend Internship | RAS TECH Summer","Ringier Axel Springer Tech",junior,hybrid,"Kraków","Node.js; Python; Go","5400-5400 PLN",0.098666,0
+fullstack-junior,5647,"Junior Python Software Engineer - e-Xperience Program Associate","Allegro",junior,office,"Poznań","Java; AI","7000-7000 PLN",0.074496,1
+fullstack-junior,158,"Junior Software Engineer in Hotel Tech","JOURNEY",junior,office,"Poznań","TypeScript; React; Programming; Node; Web Development; eXtremeProgramming; n8n; TDD; Agentic Coding; AWS","9914-14420 PLN",0.057423,0
+fullstack-junior,2136,"Financial Engineering - Internship","HSBC Technology Poland",junior,office,"Kraków","React; Python; Communication skills","4500-4500 PLN",0.009050,0
+fullstack-mid,213,"Fullstack Developer (Node.js, React)","Next Technology Professionals",mid,hybrid,"Warszawa","TypeScript; React; API; Node.js; AWS","13000-15000 PLN",0.977490,1
+fullstack-mid,5282,"Fullstack developer (Node.js and React) (f/m/d)","FIEGE Sp. z.o.o.",mid,remote,"Warszawa","React; Node.js","15000-18000 PLN",0.968685,1
+fullstack-mid,100,"Fullstack Developer (React + Node.js)","Onwelo",mid,hybrid,"Warszawa","TypeScript; React; Node.js; REST API; PostreSQL","15750-19950 PLN",0.961350,1
+fullstack-mid,220,"Senior Full Stack Developer (Node.js + React)","DataArt",mid,remote,"Wrocław","Docker; PHP; JavaScript; Node.js; GraphQL; Git; nestJS; MySQL; React.JS; AWS","15000-17500 PLN",0.959679,1
+fullstack-mid,5731,"Fullstack Developer (React + Node.js)","Mood Up",mid,hybrid,"Poznań","TypeScript; React; JavaScript","16000-21000 PLN",0.959081,1
+fullstack-mid,335,"FullStack Developer (React + Node.js)","ALTIMI",mid,remote,"Wrocław","React; Node.js; GCP","16800-23520 PLN",0.957825,1
+fullstack-mid,395,"Senior Full Stack Developer (Node.js + React)","DataArt",mid,remote,"Wrocław","Docker; PHP; JavaScript; Node.js; GraphQL; Git; nestJS; MySQL; React.JS; AWS","15000-19500 PLN",0.957137,1
+fullstack-mid,1087,"Fullstack Developer (Java, React)","ITFS Sp. z o.o.",mid,hybrid,"Warszawa","TypeScript; React; JavaScript","15120-18480 PLN",0.948496,1
+fullstack-mid,49,"Fullstack Developer (Mid)","Framna (formerly Bright Inventions)",mid,hybrid,"Gdańsk","TypeScript; Next.js; React; JavaScript; Node.js; nestJS; NoSQL; SQL; Databases; AWS","18772-21220 PLN",0.947922,1
+fullstack-mid,71,"Full Stack Developer (Java, TypeScript)","Upvanta sp. z o.o.",mid,remote,"Wrocław","TypeScript; PostgreSQL; React; JavaScript; Java; REST API; MongoDB; Kafka; Spring; Oracle","21000-25200 PLN",0.943177,1
+fullstack-mid,4530,"Fullstack Developer (Typescript/AWS)","Upvanta sp. z o.o.",mid,remote,"Warszawa","TypeScript; Node.js; Java; Python; GitHub Actions; NoSQL; SQL; Lambda; AWS; Bamboo","18900-23730 PLN",0.939219,1
+fullstack-mid,1237,"Fullstack Developer - Backend background (he/she)] -  (F/M)","ASTEK Polska",mid,remote,"Warsaw","TypeScript; React; JavaScript; Node.js; Git; nestJS; RESTful API; Neo4j; Cypher; NPM/Yarn","15750-24150 PLN",0.933325,1
+fullstack-mid,322,"Full-Stack(Node.js+ React) Developer","SNI",mid,remote,"Wrocław","TypeScript; React; Node.js; AWS","16800-20160 PLN",0.926569,1
+fullstack-mid,5221,"Mid Fullstack Developer - Global Fintech Project","Humanit",mid,remote,"Wrocław","Docker; React; Node.js; REST API; Redux; JavaScript / TypeScript; SQL (Postgres / MySQL)","14000-17000 PLN",0.926350,1
+fullstack-mid,5748," Fullstack Developer (Node, react, typescript)","Link Group",mid,remote,"","TypeScript; React; Node.js","15000-20000 PLN",0.925857,1
+fullstack-mid,25,"Fullstack Developer (Node.js/Nest.js + Next.js) - Mid+/Senior (100% Remote)","iMakeable",mid,remote,"Wrocław","TypeScript; Next.js; Docker; Node.js; Express.js; CI/CD; ORM; Git; Nest.js; AWS","16800-24360 PLN",0.924893,1
+fullstack-mid,290,"Node.js Developer","The Software House",mid,remote,"Gliwice","TypeScript; Node.js; CI/CD; Amazon AWS; SQL; React.JS","9500-16000 PLN",0.923643,1
+fullstack-mid,5124,"Fullstack Java Developer (Java + React/Next.js)","UpMenu.com",mid,remote,"Łódź","TypeScript; Next.js; Docker; JavaScript; Java; MySQL; Claude Code; GitLab; DevOps","16000-20000 PLN",0.920231,1
+fullstack-mid,241,"Full Stack Developer (Node.js+React)","Andersen",mid,remote,"Budapest","TypeScript; React; Node.js; AWS","6244-9182 PLN",0.920191,1
+fullstack-mid,491,"Regular Fullstack Developer (B2B | 100% remote)","TeaCode S.C.",mid,remote,"Warszawa","TypeScript; Next.js; PostgreSQL; React; Node.js; React Native; Nest.js; Supabase","10080-20160 PLN",0.913658,1
+fullstack-mid,3206,"Fullstack Developer (Node.js + React) (m/k)","Devire",mid,remote,"","TypeScript; React; Node.js","16800-21000 PLN",0.912522,1
+fullstack-mid,54,"Fullstack Developer","speedapp",mid,remote,"Warszawa","TypeScript; Next.js; PostgreSQL; React; Node.js; HTML; CSS; ORM; REST API; UX/UI","18000-19999 PLN",0.912357,1
+fullstack-mid,3556,"Fullstack TypeScript Developer","Crestt Sp. z o.o.",mid,remote,"","TypeScript; Node.js; Express.js; K8s","16800-19824 PLN",0.903604,1
+fullstack-mid,4509,"Fullstack Developer (React / .NET)","co.brick",mid,remote,"Gliwice",".NET; React","15120-16800 PLN",0.895903,1
+fullstack-mid,27,"Fullstack Developer","UNIVIO",mid,remote,"Wrocław","TypeScript; Next.js; React; API; Node.js; E-commerce; VTEX; Nest.js; AWS","13400-21800 PLN",0.892412,1
+fullstack-mid,3992,"Fullstack TypeScript Developer","Crestt",mid,remote,"Warszawa","TypeScript; PostgreSQL; Node.js; LLM; Express.js; MongoDB; Cloud; RabbitMQ; RESTful API; OOP","16800-19824 PLN",0.877705,1
+fullstack-mid,1245,"Fullstack Developer - Backend background (he/she)","ASTEK Polska",mid,remote,"Warszawa","TypeScript; React; JavaScript; Node.js; Git; Nest.js; Neo4j","15750-24150 PLN",0.876845,1
+fullstack-mid,315,"Fullstack Developer","tonik",mid,remote,"Poznań","Next.js; Docker; PostgreSQL; React; JavaScript; HTML; Python; CSS; Rust; Microsoft Azure","18000-25000 PLN",0.875137,1
+fullstack-mid,244,"Full Stack Software Engineer (Node.js, React.js, AWS)","Bayer Sp. z o.o.",mid,hybrid,"Warszawa","TypeScript; JavaScript; Node.js; HTML; CSS; Git; Terraform; aws lambda; React.JS; AWS","15360-19200 PLN",0.867052,1
+fullstack-mid,204,"Fullstack Developer","Asana",mid,hybrid,"Warszawa","TypeScript; React; JavaScript; Node.js; Scala","23667-33896 PLN",0.865902,1
+fullstack-mid,490,"Freelance Full Stack Developer","TeaCode S.C.",mid,remote,"Warszawa","TypeScript; Next.js; React; Node.js; Nest.js; AWS","10080-20160 PLN",0.852325,1
+fullstack-mid,271,"Full-Stack Software Engineer (JavaScript / TypeScript)","Calimala.ai",mid,remote,"Warszawa","React; Node.js; Azure; JavaScript / TypeScript; cloud-native development; CI/CD & Git Workflows; Testing & QA; Performance optimization; Collaboration with Product & UX Teams; AWS","16000-32000 PLN",0.836827,1
+fullstack-mid,149,"Full Stack Developer","WAYF",mid,remote,"Poland (Remote)","TypeScript; Next.js; PostgreSQL; Node.js; React Native; Nest.js","10000-17000 PLN",0.834196,1
+fullstack-mid,258,"Fullstack Developer (Node.js & Typescript)","7N",mid,hybrid,"Warszawa","TypeScript; REST; PostgreSQL; Node.js; HTML; CSS; GraphQL; SQL; GCP","25200-31920 PLN",0.830510,1
+fullstack-mid,9,"Fullstack Developer (.NET + React)","DCG",mid,remote,"","TypeScript; .NET; React","18480-20160 PLN",0.817672,1
+fullstack-mid,249,"Fullstack Engineer (React & Node.js & Python)","Holisticon Connect",mid,remote,"Wrocław","TypeScript; Docker; React; API; JavaScript; Node.js; Python; AI; Linux; AWS","23520-26880 PLN",0.812763,1
+fullstack-mid,316,"Full stack developer (Typescript&AWS)","Cyclad",mid,remote,"Warszawa","TypeScript; AWS","16800-20160 PLN",0.801397,1
+fullstack-mid,4,"Fullstack Developer (Laravel + React) – ASAP k/m/*","Square One Resources",mid,remote,"","PostgreSQL; React; PHP","16800-23520 PLN",0.800405,1
+fullstack-mid,295,"Full-stack Front-end Developer (React, Java)","Link Group",mid,remote,"Warszawa","TypeScript; React; JavaScript; Java","16800-26880 PLN",0.774848,1
+fullstack-mid,522,"Typescript Developer (Node.js)","CrustLab",mid,remote,"Kraków","TypeScript; Docker; PostgreSQL; Node.js; Express.js; MongoDB; DDD; AWS","15000-20000 PLN",0.768677,1
+fullstack-mid,90,"Full-Stack Developer","TaxCalc | Engager.app",mid,remote,"Wokingham","TypeScript; Angular; React; Python; Express.js; Git; Nest.js; Redis; SQL","14747-19663 PLN",0.757673,1
+fullstack-mid,326,"Full-Stack Developer","Evionica",mid,remote,"Warszawa","TypeScript; React; JavaScript; Vue; Rust","20000-24000 PLN",0.741267,1
+fullstack-mid,4652,"Node.js Developer","Antal Sp. z o.o.",mid,remote,"Wrocław","Node.js","23500-26800 PLN",0.731405,1
+fullstack-mid,746,"Fullstack Engineer (Node.js + React)","Square One Resources",mid,hybrid,"Warsaw","PostgreSQL; React; AWS","20160-23520 PLN",0.722832,1
+fullstack-mid,4672,"Fullstack Software Engineer","autoMEE",mid,hybrid,"Gdańsk","TypeScript; PostgreSQL; React; RabbitMQ; Node.js Express; GenAI/LLM","12000-18000 PLN",0.711511,1
+fullstack-mid,3574,"Full-stack Front-end Developer (React, Java)","Link Group",mid,remote,"","TypeScript; React; JavaScript; Java","16800-26880 PLN",0.710935,1
+fullstack-mid,5477,"Mid React Developer","Link Group",mid,remote,"","TypeScript; React; JavaScript","13000-16500 PLN",0.705229,1
+fullstack-mid,210,"Mid Node.js Developer","Droplo",mid,hybrid,"Wałbrzych","TypeScript; Node.js; Node","11000-13000 PLN",0.695967,1
+fullstack-mid,135,"Fullstack Engineer (NodeJS, ReactJS)","SwingDev—a hippo company",mid,remote,"Warszawa","TypeScript; React; JavaScript; Node.js; Microservices; Nest.js","23000-26000 PLN",0.694737,1
+fullstack-mid,5037,"Mid Node.js Developer","H2B Group",mid,remote,"Gdańsk","Node.js; GraphQL; Amazon AWS; Terraform; aws lambda; DynamoDB","15120-20160 PLN",0.691196,1
+fullstack-mid,37,"Mid/Senior Fullstack & AI Integration Developer z j. angielskim lub niemieckim (Instore Sensorics and Data)","dmTECH Polska",mid,remote,"Wrocław","Angular; React; Node.js; AI; Vue.js","16800-30240 PLN",0.652319,1
+fullstack-mid,5787,"Fullstack Developer","Connectis_",mid,hybrid,"Warszawa","React; API; Headless CMS","29400-31920 PLN",0.636228,1
+fullstack-mid,159,"Mid Fullstack JavaScript Developer (Node&Vue)","STATSCORE Sp. z o.o.",mid,hybrid,"Katowice","TypeScript; JavaScript; Node.js; HTML; CSS; Vue.js; SQL; RabbitMQ","10500-18000 PLN",0.575102,1
+fullstack-mid,3569,"Full Stack Developer Java","Makeitright Sp. z o.o.",mid,remote,"","React; API; Java; AWS","18480-23520 PLN",0.560193,1
+fullstack-mid,4984,"Full-stack Developer (React, .NET)","Fabres",mid,hybrid,"Poznań",".NET; React; C#","18480-21840 PLN",0.552948,1
+fullstack-mid,89,"Front-end Developer","rynekpierwotny.pl",mid,hybrid,"Warszawa","TypeScript; Docker; React; JavaScript; Node.js; REST API; Kubernetes","13000-17000 PLN",0.514063,1
+fullstack-mid,358,"Middle FullStack Software Engineer","N-iX",mid,remote,"Kraków","TypeScript; React; Node.js; C#; AI; Vue.js; AWS","16042-19127 PLN",0.466453,1
+fullstack-mid,147,"React Native Developer","Goodspeed Digital",mid,remote,"Warszawa","TypeScript; React Native; Firebase","18000-23000 PLN",0.431435,1
+fullstack-mid,121,"Node Developer","OneRail Poland Sp. z o.o.",mid,hybrid,"Kraków","TypeScript; Node.js","18000-22000 PLN",0.425152,1
+fullstack-mid,129,"Mid Backend Developer - part time/full time","Pirxey",mid,remote,"Gdańsk","TypeScript; PHP; Node.js; Java; Python; C#; Unit Testing; SQL; Analytical Thinking; Software Architecture","8000-18000 PLN",0.407053,0
+fullstack-mid,500,"Backend Developer (Typescript)","Blue Bolt",mid,hybrid,"Warszawa","TypeScript; Docker; Node.js; GraphQL; Microservices; REST API; nestJS; SQL; Firebase; Sequelize","16000-22000 PLN",0.404706,1
+fullstack-mid,2916,"FullStack Engineer React/Node.js","Marska",mid,hybrid,"Kraków","TypeScript; Angular; React; Node.js; GCP; AWS","18060-25284 PLN",0.394918,1
+fullstack-mid,738,"Full Stack Engineer (NodejS/ React) ","Tenth Revolution Group",mid,hybrid,"Warszawa","React; JavaScript; Node.js","20000-28000 PLN",0.381403,1
+fullstack-mid,50,"Backend Developer (Mid)","Framna (formerly Bright Inventions)",mid,hybrid,"Gdańsk","TypeScript; React; JavaScript; Node.js; AI; Nest.js; AWS","18772-21220 PLN",0.379543,1
+fullstack-mid,529,"React Developer | Fintech | Java Experience Required","Caspian One",mid,hybrid,"Kraków","TypeScript; React; Java","27300-37800 PLN",0.375427,1
+fullstack-mid,4627,"Frontend Developer (React Native)","Boldare",mid,hybrid,"Wrocław","TypeScript; React; React Native","10000-16000 PLN",0.365581,1
+fullstack-mid,278,"Fullstack Software Engineer - Widgets","monday.com",mid,hybrid,"Warszawa","TypeScript; Node.js; NoSQL; SQL; SQS/SNS/Kafka; AWS","31000-49000 PLN",0.360536,1
+fullstack-mid,5659,"React Native Developer","Smart Topaz sp. z o.o.",mid,remote,"","TypeScript; JavaScript; React Native","16000-22000 PLN",0.345379,1
+fullstack-mid,4300,"Full Stack Engineer","TechTree",mid,hybrid,"Warszawa","TypeScript; React; JavaScript; Node.js; SQL databases","23276-46552 PLN",0.340555,1
+fullstack-mid,86,"Frontend Developer","MindPal",mid,hybrid,"Gliwice","TypeScript; PostgreSQL; React; API; JavaScript; Ruby on Rails; Backend","8000-10000 PLN",0.337728,1
+fullstack-mid,283,"Web3 Backend Developer (EVM + Rust)","Next Enterprises Sp. z o.o.",mid,remote,"Gdynia","TypeScript; Docker; PostgreSQL; Node.js; Solidity; ether.js; Rust; wagmi","10000-12000 PLN",0.307080,1
+fullstack-mid,184,"Frontend Developer","Klient Just Join IT",mid,hybrid,"Katowice","TypeScript; Next.js; React; Node.js; Vue.js; CMS; AWS","23000-27000 PLN",0.302788,1
+fullstack-mid,363,"React.js Developer","SMART TOPAZ",mid,remote,"Poland (Remote)","Next.js; JavaScript; HTML; REST API; React.JS","14000-20000 PLN",0.295587,1
+fullstack-mid,5,"Frontend Developer","the.good.code;",mid,hybrid,"Gdańsk","TypeScript; Next.js; React","13440-16800 PLN",0.290124,1
+fullstack-mid,225,"Regular React Native Developer","Spyrosoft",mid,remote,"Wrocław","TypeScript; JavaScript; CI/CD; Git; React Native","11760-18480 PLN",0.288373,1
+fullstack-mid,255,"Full-Stack Engineer (AI)","ArdentCode",mid,remote,"Wrocław","TypeScript; React; JavaScript; Node.js; Python; AI; Django","16000-20000 PLN",0.269971,1
+fullstack-mid,142,"Mid Fullstack Engineer","Appliscale",mid,remote,"Kraków","TypeScript; JavaScript; .NET C#; AWS","14000-20000 PLN",0.258143,1
+fullstack-mid,182,"React Native Developer","GMI Software",mid,remote,"Warszawa","TypeScript; CI/CD; React Native; Expo","12000-18000 PLN",0.252834,1
+fullstack-mid,139,"Front-end Developer","Nocowanie.pl",mid,remote,"Warszawa","TypeScript; Next.js; React; JavaScript; Redux; Webpack","12000-17000 PLN",0.251210,1
+fullstack-mid,202,"Node.js | 100% remote | (3219)","RITS Professional Services",mid,remote,"Warszawa","TypeScript; Angular; React; JavaScript; Node.js; REST API; Bazy Danych; Testing","20160-23520 PLN",0.246605,1
+fullstack-mid,6640,"Mid Angular Developer","Link Group",mid,remote,"","TypeScript; Angular; HTML","13000-18000 PLN",0.244821,0
+fullstack-mid,5775,"NodeJS Software Engineer (e-mobility & energy)","Spyrosoft",mid,remote,"","TypeScript; JavaScript; Node.js","13440-26880 PLN",0.236497,1
+fullstack-mid,323,"Software Engineer (Node)","Kingfisher plc",mid,hybrid,"Kraków","TypeScript; Docker; JavaScript; Node.js; GraphQL; Git; Visual Studio Code; AWS","13000-22000 PLN",0.230084,1
+fullstack-mid,1239,"Frontend Developer  (TypeScript)","optAd360",mid,hybrid,"Wrocław","TypeScript; Angular; React; HTML; CSS; Jest; Cypress; JS","12000-15500 PLN",0.228795,1
+fullstack-mid,351,"Mid-level Front-End Developer (Project Lead) eComm agency","commerce-ui",mid,remote,"Gdańsk","TypeScript; Next.js; React; CSS","14000-21000 PLN",0.227036,1
+fullstack-mid,87,"Frontend Developer (Angular)","Link Group",mid,hybrid,"Warszawa","TypeScript; Angular; JavaScript; Node.js; Webpack","25000-30000 PLN",0.216980,1
+fullstack-mid,16,"React Developer","ITMAGINATION",mid,remote,"","Next.js; Zustand; React","15120-17640 PLN",0.211488,1
+fullstack-mid,23,"Frontend Developer","UNIVIO",mid,remote,"Wrocław","TypeScript; Next.js; React; JavaScript; HTML; CSS; GraphQL; VTEX; WCAG; SEO","10900-18400 PLN",0.210178,1
+fullstack-mid,5375,"JavaScript Full-stack Engineer","Full Stack House",mid,hybrid,"Poznań","TypeScript; React; JavaScript","8400-16800 PLN",0.210035,1
+fullstack-mid,390,"Frontend Developer","Primaris Services",mid,remote,"Warszawa","TypeScript; Next.js; JavaScript; Python; Reac","20160-23520 PLN",0.207929,1
+fullstack-mid,221,"Frontend Developer (NextJs & React)","Naturaily",mid,remote,"Wrocław","Next.js; React; GraphQL; REST API","13440-20160 PLN",0.193171,1
+fullstack-mid,5432,"Programista/ Programistka Fullstack (Java + React/Angular)","DCG sp. z o.o.",mid,hybrid,"Poland","Angular; React; Java","21840-25200 PLN",0.192172,1
+fullstack-mid,5700," Middle Java Software Engineer","SoftServe",mid,remote,"","React; Java; GraphQL","13000-16000 PLN",0.187270,1
+fullstack-mid,4635,"Frontend Regular React Developer","SquareOne",mid,remote,"","Next.js; React; React.JS","13440-16800 PLN",0.186975,1
+fullstack-mid,739,"Product Frontend Developer (React / UI-UX) – GFComply","GFComply Sàrl",mid,remote,"","TypeScript; React; UI","21840-23520 PLN",0.180419,1
+fullstack-mid,1781,"Mid Full-Stack Engineer (AI)","ArdentCode",mid,hybrid,"Wrocław","React; JavaScript; Node.js","16000-20000 PLN",0.178280,1
+fullstack-mid,1444,"Web Portal Developer","Link Group",mid,remote,"","TypeScript; React; Headless CMS","16000-18480 PLN",0.177930,1
+fullstack-mid,215,"Full-stack Engineer (JavaScript/React)","Motorola Solutions",mid,hybrid,"Kraków","React; JavaScript; AWS","14000-19000 PLN",0.166403,1
+fullstack-mid,181,"Full-Stack Engineer -  AI Platform","Perfect Gym Solutions",mid,remote,"Warszawa","TypeScript; React; Java","22000-26000 PLN",0.159461,1
+fullstack-mid,169,"TypeScript Engineer – Strapi (Regular)","VirtusLab",mid,remote,"Kraków","TypeScript; React; Node.js; strapi; Storybook","15000-22000 PLN",0.156479,1
+fullstack-mid,174,"Mid Frontend Developer","Jit Team",mid,hybrid,"Warszawa","TypeScript; React; JavaScript","10000-16000 PLN",0.153878,1
+fullstack-mid,216,"NodeJS Software Engineer (e-mobility & energy)","Spyrosoft",mid,remote,"Kraków","TypeScript; JavaScript; Node.js","12600-26880 PLN",0.153167,1
+fullstack-mid,3236,"Software Engineer","CoverTree",mid,hybrid,"Kraków","TypeScript; React; Node.js; AWS CDK; AWS","13938-20132 PLN",0.152413,1
+fullstack-mid,478,"Software Engineer (node.js, backend)","OneRail Poland Sp. z o.o.",mid,hybrid,"Kraków","TypeScript; Node.js","18000-22000 PLN",0.151242,1
+fullstack-mid,40,"Software Engineer","Ciklum",mid,remote,"Gdańsk","TypeScript; JavaScript; AWS","17502-18356 PLN",0.144872,1
+fullstack-mid,497,"React & Java / Spring Boot Full-Stack Engineer","UWS ie Ltd.",mid,remote,"Katowice","TypeScript; Spring Boot; Angular; React; Java; Redux","12875-21458 PLN",0.142849,1
+fullstack-mid,4590,"Software Engineer (Frontend)","Revolut",mid,remote,"Kraków","TypeScript; ReactJS; JavaScript; English","28300-40000 PLN",0.140134,1
+fullstack-mid,112,"Salesforce Engineer with frontend skills","Link Group",mid,hybrid,"Warszawa","TypeScript; Next.js; React; Node.js; Python; C#; UX/UI; Tailwind CSS; Salesforce","35000-47000 PLN",0.132937,1
+fullstack-mid,449,"QA Automation Engineer","SMART TOPAZ",mid,remote,"Warszawa","TypeScript; Docker; PostgreSQL; JavaScript; Node.js; REST API; Automated Testing","16000-20000 PLN",0.127464,1
+fullstack-mid,265,"Senior Backend Developer (Node.js + Hydra + AWS)","SCALO",mid,remote,"Kraków","Node; AWS","20160-22680 PLN",0.126467,1
+fullstack-mid,364,"React/Frontend Developer","SellIntegro",mid,remote,"Wrocław","Docker; .NET; React; C#; Unit Testing; Git; SQL; ASP.NET Core; JS","12000-16000 PLN",0.125747,1
+fullstack-mid,263,"Middle React Software Engineer","N-iX",mid,remote,"Kraków","TypeScript; React; GraphQL; REST API; English","14691-16160 PLN",0.123048,1
+fullstack-mid,462,"Node.js Engineer","SMART TOPAZ",mid,remote,"Poland (Remote)","Docker; PostgreSQL; JavaScript; Node.js; Git; Cloud; RESTful API","20160-26880 PLN",0.113276,1
+fullstack-mid,479,"React Developer","Devapo",mid,remote,"Warszawa","React; Git","15120-21840 PLN",0.111859,1
+fullstack-mid,208,"Front-end Software Engineer 2 - Consumer Experience","Allegro",mid,hybrid,"Poznań","TypeScript; React; JavaScript; Node.js; HTML; CSS; Jest; Playwright; Cypress; Generative AI","14200-19690 PLN",0.108251,0
+fullstack-mid,276,"Backend Developer (Node.js)","Andersen",mid,remote,"Turkey","Node.js; NoSQL; MongoDB","12120-17629 PLN",0.103412,1
+fullstack-mid,102,"Frontend Developer (React)","Connectis",mid,hybrid,"Warszawa","React; JavaScript; CI/CD","20000-23000 PLN",0.094307,1
+fullstack-mid,5452,".NET/ C# Developer","Upvanta",mid,remote,"",".NET; C#; AWS","25200-27300 PLN",0.092838,0
+fullstack-mid,194,"Web Portal Developer","Link Group",mid,remote,"Kraków","TypeScript; Next.js; Zustand; React; Tanstack Query; Storybook","16000-18480 PLN",0.090761,1
+fullstack-mid,5602,".Net Developer","1dea",mid,remote,"",".NET; AWS","23520-44520 PLN",0.090522,1
+fullstack-mid,3231,"React Native Developer","Miquido",mid,remote,"Kraków","React; Git; JS","14280-19320 PLN",0.089567,1
+fullstack-mid,4495,"Angular Developer (K/M/N)","Randlab",mid,hybrid,"Warszawa","TypeScript; Docker; REST; Angular; GraphQL; Git; Webpack; NgRx; RxJS","16800-20160 PLN",0.087615,0
+fullstack-mid,5801,"Frontend Developer","Shiji Poland",mid,hybrid,"Katowice","TypeScript; React; JavaScript","13440-20160 PLN",0.086129,1
+fullstack-mid,3978,"Frontend Angular Developer (MID)","FlyHigh.PRO",mid,remote,"Warszawa","Angular; HTML5; CSS3; JS","11000-15000 PLN",0.081932,1
+fullstack-mid,4987,"Java Developer","DCG",mid,remote,"","Java; SQL; MySQL","20160-22680 PLN",0.078468,0
+fullstack-mid,167,"Blockchain Payments Integration - Backend Engineer (TypeScript)","gmi.software",mid,remote,"Gdańsk","TypeScript; PostgreSQL; Node.js; Vitest","14000-20000 PLN",0.074462,1
+fullstack-mid,108,"Software Engineer III (Level 4)","Software Mansion",mid,hybrid,"Kraków","TypeScript; React; JavaScript; Python; React Native","17000-25000 PLN",0.069821,1
+fullstack-mid,4597,"Software Engineer (TypeScript)","CLMedia Sp. z o.o.",mid,hybrid,"Warszawa","TypeScript; PostgreSQL; Node.js; Vue.js; Tailwind CSS; PrimeVue; Node.js Express","23520-28560 PLN",0.066189,1
+fullstack-mid,5780,"Python Developer","Link Group",mid,remote,"","PostgreSQL; Python; SQL","20160-23520 PLN",0.058624,0
+fullstack-mid,369,"QA Automation Engineer","SMART TOPAZ",mid,remote,"Poland (Remote)","TypeScript; Docker; PostgreSQL; JavaScript; Node.js; REST API; Automated Testing","16000-20000 PLN",0.056113,1
+fullstack-mid,2834,"Software Engineer - PHP/JavaScript (k/m)","NEXAI Sp. z o.o.",mid,hybrid,"Poznań","TypeScript; PHP; JavaScript","12000-15000 PLN",0.054844,0
+fullstack-mid,5738,"AI Fullstack Engineer","Ringier Axel Springer Tech",mid,hybrid,"Kraków","TypeScript; JavaScript; n8n","12400-20600 PLN",0.051689,1
+fullstack-mid,163,"Web Portal Developer","Pretius",mid,remote,"Warszawa","TypeScript; Next.js; Zustand; React; Styled Components; web portal development; Tanstack Query; UI architectures; Hooks; Storybook","15120-20160 PLN",0.048952,0
+fullstack-mid,5796,"Mid/Senior Python Software Engineer","Shelton AI",mid,remote,"","Python; SQL; Django","18000-32000 PLN",0.047138,0
+fullstack-mid,3581,"Magento | Frontend Developer","Advox Studio",mid,remote,"Poznań","React; HTML; Git; JS; Magento; Hyva; Vue.js v2; Nuxt v2; PWA; CSS/LESS/SASS","8500-13500 PLN",0.041983,0
+fullstack-mid,5065,"Frontend Software Engineer","Grupa Agora",mid,remote,"Warszawa","TypeScript; Next.js; JavaScript","11000-14000 PLN",0.038628,1
+fullstack-mid,253,"Full-stack Engineer (Regular) @Makimo","Makimo",mid,remote,"Łódź","Angular; PostgreSQL; React; JavaScript; Python; Elixir; Vue; AWS","13000-16000 PLN",0.036803,1
+fullstack-mid,99,"Front End Engineer (Poland, Remote)","First Connect Insurance",mid,remote,"Gdańsk","TypeScript; Docker; React; JavaScript; Git; Large Language Models; AWS","23000-26000 PLN",0.034368,1
+fullstack-mid,5684,"Remote Software Engineering Manager","Open Rewards",mid,remote,"","React; Android; iOS","20000-30000 PLN",0.031020,0
+fullstack-mid,5632,"Programista/Programistka Backend","Poznańskie Centrum Superkomputerowo - Sieciowe",mid,hybrid,"Poznań","Java; SQL; JVM","9000-15000 PLN",0.027211,0
+fullstack-mid,9964,"Software Engineer (Data Science)","Xebia sp. z o.o.",mid,hybrid,"Rzeszów","Kotlin; Java; SQL","16700-21700 PLN",0.025007,0
+fullstack-mid,5489,"Python Backend Developer","Smart Topaz sp. z o.o.",mid,remote,"","Python; Azure; SQL","19000-24000 PLN",0.022506,0
+fullstack-mid,207,"Software Engineer II","LegalZoom",mid,hybrid,"Kraków","PostgreSQL; JavaScript; Go; Amazon AWS; Backend; Front-End","20833-22500 PLN",0.021669,0
+fullstack-mid,79,"Palantir Front-End Engineer","ALTIMI",mid,remote,"Wrocław","React; Typescrip; Palantir Foundry; UI","27398-36050 PLN",0.021479,1
+fullstack-mid,5383,"Shopify Developer (osoba na stanowisku Shopify Developera)","Strix",mid,hybrid,"Kraków","React; JavaScript; Shopify","11000-15000 PLN",0.021390,0
+fullstack-mid,343,"Business Automation Engineer (Python/Node.js)","Yard Corporate",mid,remote,"Kraków","Node.js; Python; Salesforce","100-130 PLN",0.020994,1
+fullstack-mid,5669,"Frontend Developer (Angular)","ITFS Sp. z o.o.",mid,hybrid,"Warszawa","TypeScript; Angular; JavaScript","16800-20160 PLN",0.020443,0
+fullstack-mid,5662,"Hybrid Java Developer","Codeloop",mid,hybrid,"Warszawa","Java; Git; SQL","13500-27000 PLN",0.019074,0
+fullstack-mid,4543,"WordPress & WooCommerce Programmer","Media4U",mid,remote,"Łódź","PHP; HTML; CSS; REST API; MySQL; JS","8000-14000 PLN",0.014879,0
+fullstack-mid,4985,"Java Software Engineer","Motorola Solutions Systems Polska",mid,hybrid,"Kraków","Docker; Java; K8s","14600-19000 PLN",0.008230,0
+frontend-senior,103,"Senior Frontend / AI Solutions Engineer (React / TypeScript / GraphQL)","Trui",senior,remote,"Poznań","TypeScript; React; AI; GraphQL","18000-28000 PLN",0.976871,1
+frontend-senior,303,"Lead FullStack Software Engineer","N-iX",senior,remote,"Kraków","TypeScript; Next.js; Angular; React; Node.js; HTML; C#; CSS; Vue; AWS","22951-28503 PLN",0.968655,1
+frontend-senior,96,"Senior Frontend Developer (React)","TQLO SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",senior,remote,"Warszawa","TypeScript; React; HTML; CSS; CI/CD; REST API","21840-25200 PLN",0.967148,1
+frontend-senior,239,"Senior Front End Engineer (Vue 3/TypeScript)","N-iX",senior,remote,"Kraków","TypeScript; Vue","16042-21595 PLN",0.961233,1
+frontend-senior,3235,"(Senior) Frontend Developer - Freelance","Netguru",senior,remote,"Warszawa","TypeScript; React; JavaScript; GraphQL API; Copilot; Claude","24397-24397 PLN",0.960711,1
+frontend-senior,261,"Senior Frontend Developer","Lincor Software",senior,remote,"Warszawa","TypeScript; Docker; React; JavaScript; HTML; CSS; Unit Testing; Git","16000-24000 PLN",0.955917,1
+frontend-senior,339,"Senior Frontend Developer (React / Gatsby) – 100% zdalnie 🌎","Ness Solution",senior,remote,"Warszawa","TypeScript; Docker; React; REST API; Mikroserwisy; Gatsby","18480-23520 PLN",0.952438,1
+frontend-senior,457,"Senior Frontend Engineer","CKSource",senior,remote,"Warszawa","TypeScript; JavaScript; AI","24000-32000 PLN",0.950510,1
+frontend-senior,237,"Senior Frontend Developer part/full time","Pirxey",senior,remote,"Gdańsk","TypeScript; React; PHP; Node.js; HTML; CSS; Vue.js; Mobile Apps","14000-28000 PLN",0.947198,1
+frontend-senior,266,"Senior Frontend Developer","Link Group",senior,remote,"Warszawa","TypeScript; React; JavaScript; GraphQL; REST API; Git; Webpack; Babel","120-150 PLN",0.946698,1
+frontend-senior,92,"Frontend Engineer (Mid – Senior)","Arx City",senior,remote,"Poland (Remote)","TypeScript; React; JavaScript; HTML; Python; CSS; Amazon AWS; Cypress","16815-22846 PLN",0.945819,1
+frontend-senior,495,"Senior Frontend Developer","Merixstudio",senior,remote,"Poznań","TypeScript; React; JavaScript; HTML5; CSS 3","15500-22000 PLN",0.944729,1
+frontend-senior,4508,"Senior Frontend Developer (Angular)","Inspeerity",senior,remote,"Warsaw","TypeScript; Angular; JavaScript; HTML; CSS; CI/CD; Unit Testing; Cloud","15120-23520 PLN",0.935192,1
+frontend-senior,34,"Backend Engineer (Node.js/TypeScript)","Experis Manpower Group",senior,remote,"Warszawa","TypeScript; Node.js; Azure","25200-27720 PLN",0.926033,0
+frontend-senior,4497,"Senior Frontend Developer (React)","Inspeerity",senior,remote,"Warszawa","TypeScript; Next.js; React; JavaScript; HTML; CSS; CI/CD; Cloud","15120-23520 PLN",0.924350,1
+frontend-senior,345,"Senior Frontend Developer (Angular)","Lumicode Sp. z o.o. (Pentacomp Group)",senior,remote,"Warszawa","Angular; Node.js; HTML; CSS","15120-20160 PLN",0.922914,1
+frontend-senior,4999,"Senior Frontend Developer (k/m)","Lumicode Sp. z o.o. (Pentacomp Group)",senior,remote,"Warszawa","Angular; JavaScript","15120-18480 PLN",0.922602,1
+frontend-senior,5278,"Senior Frontend Developer (k/m)","Lumicode Sp. z o.o. (Pentacomp Group)",senior,remote,"Warszawa","Angular; JavaScript","15120-18480 PLN",0.922602,1
+frontend-senior,527,"Senior Frontend Developer (Part-time; 100% remote)","DevsData LLC",senior,remote,"Warsaw","JavaScript; HTML; CSS","16800-24360 PLN",0.921438,1
+frontend-senior,299,"Lead Fullstack (React+Next.js +Node.js)","N-iX",senior,remote,"Warszawa","TypeScript; Next.js; React; Node.js","23873-25709 PLN",0.908569,1
+frontend-senior,1219,"React Frontend Developer (4/5 part-time)","Hero.dot Sp. z o.o.",senior,remote,"Warszawa","TypeScript; HTML; CSS; Tailwind CSS","12000-16000 PLN",0.908190,1
+frontend-senior,5269,"AI-First Senior Frontend Developer","PhotoAiD",senior,remote,"Warszawa","TypeScript; React; AI; Claude Code / Codex / Cursor","23000-30000 PLN",0.907043,1
+frontend-senior,327,"Lead Fullstack (React+Next.js)","N-iX",senior,remote,"Cracow","TypeScript; Next.js; React; Node.js; Azure DevOps","23873-25709 PLN",0.905876,1
+frontend-senior,1193,"Senior Full-Stack / Frontend Engineer","ZYNT",senior,remote,"Warszawa","TypeScript; Next.js; PostgreSQL; React; Node.js; REST API; UX/UI; Python 3","18000-22000 PLN",0.904586,1
+frontend-senior,127,"Senior Frontend Developer (Angular)","Trimetis Services",senior,remote,"Lublin","TypeScript; Angular; JavaScript; SASS","19000-24000 PLN",0.903251,1
+frontend-senior,3977,"Senior Frontend React Developer","Link Group",senior,remote,"Warszawa","TypeScript; React; JavaScript; GCP","21840-25200 PLN",0.887982,1
+frontend-senior,189,"Senior Frontend Developer - Vue3","Bluebinary.io",senior,remote,"Wrocław","TypeScript; JavaScript; Nuxt; Vue","18000-24000 PLN",0.884803,1
+frontend-senior,525,"Frontend/Full Stack Software Engineer","Remodevs",senior,remote,"Warszawa","TypeScript; React; JavaScript; Vue","24432-30725 PLN",0.884106,1
+frontend-senior,309,"Senior Front-End Developer (React / Next.js)","ExpoPlatform",senior,remote,"Poland (Remote)","TypeScript; Next.js; React; CI/CD; WebSocket; Design Patterns","17167-23604 PLN",0.883756,1
+frontend-senior,494,"Back-end Tech Lead","Startup House",senior,remote,"Warszawa","TypeScript; Next.js; Node.js; Nest.js","25000-33400 PLN",0.881404,1
+frontend-senior,229,"Senior Frontend Developer","DO OK • Life-changing software services",senior,remote,"Wrocław","Next.js; React","15000-21000 PLN",0.881225,1
+frontend-senior,197,"Frontend Developer (React/TypeScript)","Holisticon Connect",senior,remote,"Wrocław","TypeScript; Docker; REST; React; JavaScript; Node.js; Python; Linux; Webpack; Bash","21840-25200 PLN",0.874772,1
+frontend-senior,192,"Senior Frontend Developer - React","Bluebinary.io",senior,remote,"Wrocław","TypeScript; Next.js; React; JavaScript","18000-24000 PLN",0.869769,1
+frontend-senior,487,"Senior / Mid Fullstack ​Developer z j. niemieckim - Loyalty Core Services","dmTECH Polska",senior,remote,"Wrocław","TypeScript; Spring Boot; React; Kotlin; Java; Azure; Playwright; Automated Testing; AWS; Electron","16800-30240 PLN",0.860853,1
+frontend-senior,62,"Frontend Developer (JavaScript/ Angular/ Node.js)","TSS",senior,remote,"Warszawa","TypeScript; React; JavaScript; Node.js; Git; jQuery; Angular 2+","19000-22500 PLN",0.845455,1
+frontend-senior,5340,"Tech Lead, Web Core Product & Chrome Extension","Speechify",senior,remote,"","React; Redux; Vanilla JS","5000-10000 USD",0.841945,1
+frontend-senior,67,"Frontend Developer","Superdevs",senior,remote,"Poland (Remote)","TypeScript; React; JavaScript; CSS; Azure; Microsoft Dynamics; Azure Directory; Microsoft Power Platform","18480-21000 PLN",0.827259,1
+frontend-senior,88,"Frontend Developer (Vue.js / TypeScript)","Ready4S",senior,remote,"Kraków","TypeScript; Vue.js","28000-40000 PLN",0.823735,1
+frontend-senior,3957,"Frontend Developer (Angular)","Neontri",senior,remote,"Warszawa","TypeScript; Angular; JavaScript; HTML; CSS","21840-25200 PLN",0.823462,1
+frontend-senior,128,"Frontend Developer (React) with Backend Exposure (Golang)","Kumaa Group Ltd.",senior,remote,"Poland (Remote)","TypeScript; React; CSS; React Native; Mobile Development; Android SDK; iOS SDK; Amazon Web Services; Front-End","21500-30100 PLN",0.820367,1
+frontend-senior,33,"Front-end Developer","Holisticon Connect",senior,remote,"Wrocław","TypeScript; React; JavaScript; REST API; Git; Redux","18480-24360 PLN",0.819942,1
+frontend-senior,1124,"AI Technical Lead","Vazco",senior,remote,"Wrocław","TypeScript; Next.js; React; Python; AI; Node; RAG","23000-28800 PLN",0.817613,1
+frontend-senior,58,"React Frontend Developer (AWS)","Nexio Management",senior,remote,"Warszawa","React; JavaScript; CSS; HTML5; AWS","16800-21840 PLN",0.815332,1
+frontend-senior,73,"Palantir Front-End Engineer","ALTIMI",senior,remote,"Wrocław","React; Typescrip; Palantir Foundry; UI","27398-36050 PLN",0.812817,1
+frontend-senior,32,"Senior Software Engineer (React Native, React and TypeScript)","HL Tech",senior,remote,"Warszawa","TypeScript; React; JavaScript; GraphQL; REST API; detox; React Native; Redux; MOBX; Jest","20000-29000 PLN",0.811822,1
+frontend-senior,4680,"Front-end UI/UX Engineer","Holisticon Connect",senior,remote,"Wrocław","TypeScript; React; API; CSS; UX/UI","20160-25200 PLN",0.804485,1
+frontend-senior,91,"Frontend Developer (Angular) (K/M)","Fabrity S.A.",senior,remote,"Warszawa","TypeScript; Angular; JavaScript; HTML5; Actions; CSS3; GitHub; ES6+; RestAPI; Codemagic","20160-23520 PLN",0.798233,1
+frontend-senior,248,"Senior React Engineer","Link Group",senior,remote,"Warszawa","TypeScript; React; JavaScript; HTML; CSS; CI/CD; REST API; Git","23520-26880 PLN",0.790502,1
+frontend-senior,466,"Senior Next.js Developer","Graftcode S.A.",senior,remote,"Warszawa","TypeScript; Docker; ReactJS; AI; English; Azure DevOps; NodeJS; GitFLow; NextJS; Web Services","17000-21000 PLN",0.772286,1
+frontend-senior,2859,"Senior Software Engineer (React/Typescript)","HR Contact",senior,remote,"Kraków","TypeScript; React; JavaScript","18000-22000 PLN",0.758468,1
+frontend-senior,3580,"Senior Fullstack Engineer (Node.js/React)","Appliscale",senior,remote,"Kraków","TypeScript; React; JavaScript; Node.js","19000-25000 PLN",0.732832,1
+frontend-senior,217,"Senior Angular Developer","Link Group",senior,remote,"Warszawa","TypeScript; Angular; CI/CD; HTML5; REST API; Git; CSS3; RxJS; Front-End","16800-21840 PLN",0.731995,1
+frontend-senior,340,"Frontend Developer (Angular)","SPEEDNET",senior,remote,"Gdańsk","TypeScript; Angular; Vue.js; Jest","20160-23520 PLN",0.730653,1
+frontend-senior,280,"Senior Backend Developer (Node.js/TypeScript)","Relout",senior,remote,"Warszawa","TypeScript; Node.js; Kubernetes; Serverless; Automated Testing; AWS","25000-32000 PLN",0.707648,1
+frontend-senior,5235,"Senior JavaScript / TypeScript Developer","co.brick",senior,remote,"Gliwice","TypeScript; REST; JavaScript; GraphQL; CommerceTools","25200-28560 PLN",0.704494,1
+frontend-senior,72,"Senior Fullstack Engineer (React + Node.js)","SCALO",senior,remote,"Kraków","TypeScript; Angular; React; Node.js; AWS","21840-25200 PLN",0.703044,1
+frontend-senior,5236,"Senior / Staff Full-Stack Engineer (Node.js + AWS)","Blue Language Labs Inc.",senior,remote,"Dover","TypeScript; React; Node.js; AI; AWS","40000-50000 PLN",0.687553,1
+frontend-senior,233,"Frontend Engineer (IIoT Platform)","cloudatus",mid,remote,"Rzeszów","TypeScript; Angular; React; HTML; CSS; CI/CD; D3.js; plotly","12500-19500 PLN",0.679347,1
+frontend-senior,9987,"Senior Fullstack Engineer (Next.js & React)","Be in IT",senior,remote,"Warszawa","Next.js; React; Git; AI-first","30898-37078 PLN",0.675159,1
+frontend-senior,211,"Senior Fullstack Engineer","SwingDev—a hippo company",senior,remote,"Warszawa","TypeScript; Next.js; React; Node.js; Nest.js; GCP; BigQuery","26000-32000 PLN",0.658479,1
+frontend-senior,175,"👉 Senior Node.js Developer","Xebia sp. z o.o.",senior,remote,"Wrocław","TypeScript; Node.js; Backend","20000-26000 PLN",0.625403,1
+frontend-senior,84,"Frontend Developer","SCALO",senior,remote,"Wrocław","Angular 2+","18480-20160 PLN",0.621966,1
+frontend-senior,170,"TypeScript Engineer – Strapi (Senior)","VirtusLab",senior,remote,"Kraków","TypeScript; React; Node.js; strapi; Storybook","21000-27000 PLN",0.620218,1
+frontend-senior,366,"Software Engineer - Frontend","Evidence Prime",mid,remote,"Kraków","TypeScript; React; JavaScript; HTML5; REST API; Git; CSS3","14000-16500 PLN",0.617860,1
+frontend-senior,505,"Senior Full-Stack Developer (Next.js&TypeScript)","Rite NRG",senior,remote,"Wrocław","TypeScript; Next.js; Docker; JavaScript; AI; RESTful API","20160-25200 PLN",0.617516,1
+frontend-senior,5305,"Frontend Developer (Angular)","Experis Manpower Group",mid,remote,"Wrocław","TypeScript; Docker; JavaScript; Git; Kubernetes; RESTful API; HTML/CSS; UI/UX; Angular 12","20160-21840 PLN",0.594990,1
+frontend-senior,4590,"Software Engineer (Frontend)","Revolut",mid,remote,"Kraków","TypeScript; ReactJS; JavaScript; English","28300-40000 PLN",0.594212,1
+frontend-senior,262,"Senior Product Engineer ","BITROPY SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",senior,remote,"Poznań","TypeScript; REST; Python; AI; GraphQL; Go","23000-30000 PLN",0.593411,1
+frontend-senior,324,"Senior Fullstack (React+Next.js)","N-iX",senior,remote,"Cracow","TypeScript; Next.js; React; Node.js; Azure DevOps","20200-22036 PLN",0.576152,1
+frontend-senior,172,"Senior Fullstack Developer","TeaCode S.C.",senior,remote,"Warszawa","TypeScript; Next.js; React; Node.js; React Native; Nest.js; Supabase","20160-33600 PLN",0.562339,1
+frontend-senior,5277,"Frontend Engineer (Angular)","Cyclad",mid,remote,"Warszawa","Angular; Front-End","16800-20160 PLN",0.558392,1
+frontend-senior,463,"Senior Node.js Developer","RITS Professional Services",senior,remote,"Warszawa","TypeScript; Node; Nest.js","26880-29400 PLN",0.544357,1
+frontend-senior,252,"Senior Fullstack Engineer","Remodevs",senior,remote,"Warszawa","React; Node.js; React Native","21933-32533 PLN",0.541211,1
+frontend-senior,10,"Fullstack Software Engineer (Node.js, React)","Link Group",senior,remote,"","TypeScript; React; Node.js","15120-16800 PLN",0.538675,1
+frontend-senior,200,"Mobile Developer (React Native) – Mid+ / Senior","Spyrosoft",senior,remote,"Wrocław","TypeScript; REST; JavaScript; GraphQL; React Native; Mobile ecosystem","15120-21840 PLN",0.528512,1
+frontend-senior,70,"Senior Fullstack Developer (React, Node.js)","Future Processing",senior,remote,"Gliwice","TypeScript; React; JavaScript; Node.js; Nest.js; AWS","18480-26880 PLN",0.495125,1
+frontend-senior,390,"Frontend Developer","Primaris Services",mid,remote,"Warszawa","TypeScript; Next.js; JavaScript; Python; Reac","20160-23520 PLN",0.494654,1
+frontend-senior,5224,"React, Next.js Developer","DataArt",senior,remote,"Wrocław","Next.js; React; JavaScript","18000-20800 PLN",0.485201,1
+frontend-senior,17,"Front-end Developer","Biostat Sp. z o.o.",senior,remote,"","HTML; AI; CSS","13000-20000 PLN",0.485069,1
+frontend-senior,4607,"Senior Full Stack Engineer (Poland, Remote)","First Connect Insurance",senior,remote,"Gdańsk","TypeScript; React; Node.js; Software Development; AWS","26000-31000 PLN",0.452131,1
+frontend-senior,23,"Frontend Developer","UNIVIO",mid,remote,"Wrocław","TypeScript; Next.js; React; JavaScript; HTML; CSS; GraphQL; VTEX; WCAG; SEO","10900-18400 PLN",0.448028,1
+frontend-senior,243,"Senior Backend Developer (node.js)","Intent",senior,remote,"Warszawa","Next.js; Node.js; AWS","20160-30240 PLN",0.432080,1
+frontend-senior,93,"Frontend Developer (Vue.js)","FINANTEQ",mid,remote,"Lublin","TypeScript; JavaScript; Vue.js; UX/UI; Figma","12000-16000 PLN",0.429341,1
+frontend-senior,3230,"Senior React Native Developer","Miquido",senior,remote,"Kraków","React; Git; JS","21000-26040 PLN",0.418835,1
+frontend-senior,65,"Full Stack Engineer","Inuits",senior,remote,"Kraków","TypeScript; Angular; Python; SQL","21840-23520 PLN",0.413697,1
+frontend-senior,359,"Senior Full Stack Engineer - Core UX (Europe)","Kalepa",senior,remote,"New York","React; JavaScript; Python","26014-47440 PLN",0.409691,1
+frontend-senior,48,"Senior Elixir Engineer","Tellent",senior,remote,"Poland (Remote)","TypeScript; React; Elixir","20000-28000 PLN",0.384610,1
+frontend-senior,296,"React Native Developer","Link Group",senior,remote,"Warszawa","TypeScript; React; JavaScript; HTML; CSS; React Native; SQL; UX/UI; SASS","18480-23520 PLN",0.382138,1
+frontend-senior,101,"Fullstack React & Node Developer","Codepole",senior,remote,"Warszawa","TypeScript; Docker; PostgreSQL; React; Node.js; Cloud","20000-30000 PLN",0.365154,1
+frontend-senior,4486,"React Developer","Angry Nerds",senior,remote,"Wrocław","TypeScript; Next.js; React; JavaScript; Node; Firebase; AWS","16800-22000 PLN",0.358514,1
+frontend-senior,221,"Frontend Developer (NextJs & React)","Naturaily",mid,remote,"Wrocław","Next.js; React; GraphQL; REST API","13440-20160 PLN",0.345756,1
+frontend-senior,171,"Frontend Developer (React / UI-aware)","EduGO P.S.A.",mid,remote,"Łódź","TypeScript; HTML; CSS; CI/CD; UX/UI; Figma","17000-24000 PLN",0.341815,1
+frontend-senior,1227,"Frontend Developer (React / UI-aware)","EduGO P.S.A.",mid,remote,"Łódź","TypeScript; HTML; CSS; CI/CD; UX/UI; Figma","17000-24000 PLN",0.341815,1
+frontend-senior,47,"Frontend Developer","FAKTURA.PL",mid,remote,"Warszawa","TypeScript; JavaScript; HTML; CSS","12000-16000 PLN",0.338264,1
+frontend-senior,199,"Senior Fullstack (Node+React)","co.brick",senior,remote,"Gliwice","React; Node.js; TDD","23520-25200 PLN",0.325772,1
+frontend-senior,263,"Middle React Software Engineer","N-iX",mid,remote,"Kraków","TypeScript; React; GraphQL; REST API; English","14691-16160 PLN",0.325388,1
+frontend-senior,3922,"Senior Angular Developer","AVENGA (Agencja Pracy, nr KRAZ: 8448)",senior,remote,"","Spring Boot; Angular; Java","25200-28560 PLN",0.314597,1
+frontend-senior,290,"Node.js Developer","The Software House",mid,remote,"Gliwice","TypeScript; Node.js; CI/CD; Amazon AWS; SQL; React.JS","9500-16000 PLN",0.305699,0
+frontend-senior,79,"Palantir Front-End Engineer","ALTIMI",mid,remote,"Wrocław","React; Typescrip; Palantir Foundry; UI","27398-36050 PLN",0.303573,1
+frontend-senior,508,"React Developer z Javą","Antal Sp. z o.o.",senior,remote,"Warszawa","TypeScript; React; JavaScript; Java","20160-25200 PLN",0.301018,1
+frontend-senior,5225,"Senior React Developer","DataArt",senior,remote,"Wrocław","REST; React; JavaScript","17000-19700 PLN",0.290497,1
+frontend-senior,295,"Full-stack Front-end Developer (React, Java)","Link Group",mid,remote,"Warszawa","TypeScript; React; JavaScript; Java","16800-26880 PLN",0.280602,1
+frontend-senior,346,"Senior Fullstack Node.js + React (US time zone)","Remodevs",senior,remote,"Gdańsk","TypeScript; React; JavaScript; Node.js","26239-29988 PLN",0.280450,1
+frontend-senior,531,"Senior Full‑Stack Developer - Chrome Extension (E‑commerce Data Cloud)","best HR and PM solutions",senior,remote,"Kraków","TypeScript; Node.js; CSS; CSP; MV3; WebAssembly","23520-36960 PLN",0.279850,1
+frontend-senior,731,"Fullstack Developer ","AVENGA (Agencja Pracy, nr KRAZ: 8448)",senior,remote,"","TypeScript; Java; Spring","18480-21840 PLN",0.275522,0
+frontend-senior,106,"Senior Full Stack Developer (Java+React)","Altimetrik Poland",senior,remote,"Kraków","TypeScript; React; Kotlin; JavaScript; HTML; Java","24000-28000 PLN",0.274277,1
+frontend-senior,452,"React Developer","RITS Professional Services",mid,remote,"Warszawa","TypeScript; ReactJS; HTML5; material UI; Redux; CSS3; SASS; JavaScript (ES6+); tailwind; React Query","18480-23520 PLN",0.257780,1
+frontend-senior,90,"Full-Stack Developer","TaxCalc | Engager.app",mid,remote,"Wokingham","TypeScript; Angular; React; Python; Express.js; Git; Nest.js; Redis; SQL","14747-19663 PLN",0.252879,0
+frontend-senior,147,"React Native Developer","Goodspeed Digital",mid,remote,"Warszawa","TypeScript; React Native; Firebase","18000-23000 PLN",0.231996,1
+frontend-senior,347,"Programista Frontend praca zdalna","Ness Solution",mid,remote,"Warszawa","TypeScript; Angular; JavaScript; HTML; CSS","16800-23520 PLN",0.220057,1
+frontend-senior,37,"Mid/Senior Fullstack & AI Integration Developer z j. angielskim lub niemieckim (Instore Sensorics and Data)","dmTECH Polska",mid,remote,"Wrocław","Angular; React; Node.js; AI; Vue.js","16800-30240 PLN",0.205897,1
+frontend-senior,182,"React Native Developer","GMI Software",mid,remote,"Warszawa","TypeScript; CI/CD; React Native; Expo","12000-18000 PLN",0.199205,1
+frontend-senior,249,"Fullstack Engineer (React & Node.js & Python)","Holisticon Connect",mid,remote,"Wrocław","TypeScript; Docker; React; API; JavaScript; Node.js; Python; AI; Linux; AWS","23520-26880 PLN",0.194898,1
+frontend-senior,169,"TypeScript Engineer – Strapi (Regular)","VirtusLab",mid,remote,"Kraków","TypeScript; React; Node.js; strapi; Storybook","15000-22000 PLN",0.178864,1
+frontend-senior,502,"Fullstack Developer (Angular + Python)","Code and Pepper",senior,remote,"Suwałki","Angular; Python; FAST API","24000-33000 PLN",0.172075,1
+frontend-senior,29,"Fullstack Developer (Angular + Python)","Code and Pepper",senior,remote,"Suwałki","Angular; Python; FAST API","24000-33000 PLN",0.172075,1
+frontend-senior,358,"Middle FullStack Software Engineer","N-iX",mid,remote,"Kraków","TypeScript; React; Node.js; C#; AI; Vue.js; AWS","16042-19127 PLN",0.170026,1
+frontend-senior,364,"React/Frontend Developer","SellIntegro",mid,remote,"Wrocław","Docker; .NET; React; C#; Unit Testing; Git; SQL; ASP.NET Core; JS","12000-16000 PLN",0.169815,1
+frontend-senior,363,"React.js Developer","SMART TOPAZ",mid,remote,"Poland (Remote)","Next.js; JavaScript; HTML; REST API; React.JS","14000-20000 PLN",0.163206,1
+frontend-senior,135,"Fullstack Engineer (NodeJS, ReactJS)","SwingDev—a hippo company",mid,remote,"Warszawa","TypeScript; React; JavaScript; Node.js; Microservices; Nest.js","23000-26000 PLN",0.161395,1
+frontend-senior,353,"Senior Full Stack Developer (Java, React)","Clurgo",senior,remote,"Warszawa","React; Java","20160-26880 PLN",0.157510,1
+frontend-senior,349,"Frontend Developer (Angular) - 100% zdalnie","Ness Solution",mid,remote,"Warszawa","TypeScript; Angular; JavaScript; HTML; CSS","16800-23520 PLN",0.146692,1
+frontend-senior,354,"Frontend Developer (Angular) 🧠 100% zdalnie","Ness Solution",mid,remote,"Warszawa","TypeScript; Angular; JavaScript; HTML; CSS","15120-18480 PLN",0.141968,1
+frontend-senior,357,"Mid Angular Developer ","House of Angular",mid,remote,"Warszawa","TypeScript; Angular; JavaScript; Java; Spring; HTML/CSS; RxJS; State Management; Testy Automatyczne; English","10000-18000 PLN",0.127867,1
+frontend-senior,501,"Fullstack Developer (Angular + Python)","Code and Pepper",senior,remote,"Gdańsk","Angular; Python; FAST API","24000-33000 PLN",0.126978,1
+frontend-senior,461,"Fullstack Developer Frontend / .NET","QBUSOFT",mid,remote,"Gdańsk",".NET; JavaScript; HTML; CSS; Vue.js; Git; ASP.NET Core; Microsoft SQL; Entity Framework","12000-22000 PLN",0.124055,1
+frontend-senior,145,"Senior Angular Developer","P&P Solutions",senior,remote,"Warszawa","Angular","15120-17640 PLN",0.120856,1
+frontend-senior,255,"Full-Stack Engineer (AI)","ArdentCode",mid,remote,"Wrocław","TypeScript; React; JavaScript; Node.js; Python; AI; Django","16000-20000 PLN",0.120102,1
+frontend-senior,22,"Fullstack Developer (Angular + Python)","Code and Pepper",senior,remote,"Łódź","Angular; Python; FAST API","24000-33000 PLN",0.116302,1
+frontend-senior,472,"Web Developer","CodeTwo sp. z o.o. sp. k.",mid,remote,"Jelenia Góra","React; JavaScript; C#; CSS; Azure; ASP.NET; Visual Studio","10000-17000 PLN",0.114280,1
+frontend-senior,40,"Software Engineer","Ciklum",mid,remote,"Gdańsk","TypeScript; JavaScript; AWS","17502-18356 PLN",0.096988,0
+frontend-senior,27,"Fullstack Developer","UNIVIO",mid,remote,"Wrocław","TypeScript; Next.js; React; API; Node.js; E-commerce; VTEX; Nest.js; AWS","13400-21800 PLN",0.089610,0
+frontend-senior,490,"Freelance Full Stack Developer","TeaCode S.C.",mid,remote,"Warszawa","TypeScript; Next.js; React; Node.js; Nest.js; AWS","10080-20160 PLN",0.086258,1
+frontend-senior,326,"Full-Stack Developer","Evionica",mid,remote,"Warszawa","TypeScript; React; JavaScript; Vue; Rust","20000-24000 PLN",0.080364,1
+frontend-senior,3206,"Fullstack Developer (Node.js + React) (m/k)","Devire",mid,remote,"","TypeScript; React; Node.js","16800-21000 PLN",0.073772,1
+frontend-senior,3231,"React Native Developer","Miquido",mid,remote,"Kraków","React; Git; JS","14280-19320 PLN",0.069724,1
+frontend-senior,316,"Full stack developer (Typescript&AWS)","Cyclad",mid,remote,"Warszawa","TypeScript; AWS","16800-20160 PLN",0.067980,1
+frontend-senior,16,"React Developer","ITMAGINATION",mid,remote,"","Next.js; Zustand; React","15120-17640 PLN",0.065376,1
+frontend-senior,4,"Fullstack Developer (Laravel + React) – ASAP k/m/*","Square One Resources",mid,remote,"","PostgreSQL; React; PHP","16800-23520 PLN",0.051660,1
+frontend-senior,163,"Web Portal Developer","Pretius",mid,remote,"Warszawa","TypeScript; Next.js; Zustand; React; Styled Components; web portal development; Tanstack Query; UI architectures; Hooks; Storybook","15120-20160 PLN",0.050301,0
+frontend-senior,4509,"Fullstack Developer (React / .NET)","co.brick",mid,remote,"Gliwice",".NET; React","15120-16800 PLN",0.048591,1
+frontend-senior,5282,"Fullstack developer (Node.js and React) (f/m/d)","FIEGE Sp. z.o.o.",mid,remote,"Warszawa","React; Node.js","15000-18000 PLN",0.048246,1
+frontend-senior,325,"Angular Developer 100% zdalnie","Ness Solution",mid,remote,"Warszawa","TypeScript; Angular; JavaScript; HTML; CSS","16800-23520 PLN",0.046021,1
+frontend-senior,51,"Mid Angular Developer (z Ionic)","Angry Nerds",mid,remote,"Wrocław","TypeScript; Angular; JavaScript; Ionic","11700-16800 PLN",0.035778,1
+frontend-senior,107,"Full Stack Engineer (Angular+.NET)","Andersen",mid,remote,"Kraków","Angular; .NET; Unit Testing; CI/CD pipelines; aws cloud","16868-18742 PLN",0.034109,1
+frontend-senior,253,"Full-stack Engineer (Regular) @Makimo","Makimo",mid,remote,"Łódź","Angular; PostgreSQL; React; JavaScript; Python; Elixir; Vue; AWS","13000-16000 PLN",0.031579,0
+frontend-senior,335,"FullStack Developer (React + Node.js)","ALTIMI",mid,remote,"Wrocław","React; Node.js; GCP","16800-23520 PLN",0.025514,1
+frontend-senior,2979,"Shopify Developer","Cloudflight Poland",mid,remote,"Wrocław","TypeScript; JavaScript; CSS; REST API; Shopify; MySQL; Figma; SASS; Hydrogen","10080-14280 PLN",0.019126,0
+frontend-senior,141,"Shopify Developer (osoba na stanowisku Shopify Developera)","Strix",mid,remote,"Kraków","React; JavaScript; HTML; CSS; REST API; Shopify","11000-15000 PLN",0.012017,1
+frontend-senior,743,"AI Full-Stack Developer (m/k/n)","Upvanta",mid,remote,"","Python; AI; Azure","26040-26040 PLN",0.011686,0
+backend-python-mid,5489,"Python Backend Developer","Smart Topaz sp. z o.o.",mid,remote,"","Python; Azure; SQL","19000-24000 PLN",0.876074,1
+backend-python-mid,315,"Fullstack Developer","tonik",mid,remote,"Poznań","Next.js; Docker; PostgreSQL; React; JavaScript; HTML; Python; CSS; Rust; Microsoft Azure","18000-25000 PLN",0.625000,0
+backend-python-mid,5780,"Python Developer","Link Group",mid,remote,"","PostgreSQL; Python; SQL","20160-23520 PLN",0.439388,1
+backend-python-mid,290,"Node.js Developer","The Software House",mid,remote,"Gliwice","TypeScript; Node.js; CI/CD; Amazon AWS; SQL; React.JS","9500-16000 PLN",0.420322,0
+backend-python-mid,90,"Full-Stack Developer","TaxCalc | Engager.app",mid,remote,"Wokingham","TypeScript; Angular; React; Python; Express.js; Git; Nest.js; Redis; SQL","14747-19663 PLN",0.405202,0
+backend-python-mid,40,"Software Engineer","Ciklum",mid,remote,"Gdańsk","TypeScript; JavaScript; AWS","17502-18356 PLN",0.352628,0
+backend-python-mid,5729,"Python Developer with Azure","DCG sp. z o.o.",mid,hybrid,"Poland","FastAPI; Python; Django","21840-25200 PLN",0.331452,1
+backend-python-mid,207,"Software Engineer II","LegalZoom",mid,hybrid,"Kraków","PostgreSQL; JavaScript; Go; Amazon AWS; Backend; Front-End","20833-22500 PLN",0.318583,1
+backend-python-mid,5796,"Mid/Senior Python Software Engineer","Shelton AI",mid,remote,"","Python; SQL; Django","18000-32000 PLN",0.215862,1
+backend-python-mid,316,"Full stack developer (Typescript&AWS)","Cyclad",mid,remote,"Warszawa","TypeScript; AWS","16800-20160 PLN",0.201208,1
+backend-python-mid,265,"Senior Backend Developer (Node.js + Hydra + AWS)","SCALO",mid,remote,"Kraków","Node; AWS","20160-22680 PLN",0.180194,1
+backend-python-mid,4530,"Fullstack Developer (Typescript/AWS)","Upvanta sp. z o.o.",mid,remote,"Warszawa","TypeScript; Node.js; Java; Python; GitHub Actions; NoSQL; SQL; Lambda; AWS; Bamboo","18900-23730 PLN",0.168166,0
+backend-python-mid,4987,"Java Developer","DCG",mid,remote,"","Java; SQL; MySQL","20160-22680 PLN",0.166062,0
+backend-python-mid,5787,"Fullstack Developer","Connectis_",mid,hybrid,"Warszawa","React; API; Headless CMS","29400-31920 PLN",0.133637,0
+backend-python-mid,742,"Fullstack Developer (Django + Angular)","Pro Business Solutions IT",mid,hybrid,"Katowice","Angular; Python; Django","16800-20160 PLN",0.119400,1
+backend-python-mid,522,"Typescript Developer (Node.js)","CrustLab",mid,remote,"Kraków","TypeScript; Docker; PostgreSQL; Node.js; Express.js; MongoDB; DDD; AWS","15000-20000 PLN",0.118993,0
+backend-python-mid,5602,".Net Developer","1dea",mid,remote,"",".NET; AWS","23520-44520 PLN",0.103604,1
+backend-python-mid,213,"Fullstack Developer (Node.js, React)","Next Technology Professionals",mid,hybrid,"Warszawa","TypeScript; React; API; Node.js; AWS","13000-15000 PLN",0.098180,1
+backend-python-mid,4,"Fullstack Developer (Laravel + React) – ASAP k/m/*","Square One Resources",mid,remote,"","PostgreSQL; React; PHP","16800-23520 PLN",0.093596,0
+backend-python-mid,5452,".NET/ C# Developer","Upvanta",mid,remote,"",".NET; C#; AWS","25200-27300 PLN",0.087531,0
+backend-python-mid,5662,"Hybrid Java Developer","Codeloop",mid,hybrid,"Warszawa","Java; Git; SQL","13500-27000 PLN",0.074007,0
+backend-python-mid,9964,"Software Engineer (Data Science)","Xebia sp. z o.o.",mid,hybrid,"Rzeszów","Kotlin; Java; SQL","16700-21700 PLN",0.066011,0
+backend-python-mid,5632,"Programista/Programistka Backend","Poznańskie Centrum Superkomputerowo - Sieciowe",mid,hybrid,"Poznań","Java; SQL; JVM","9000-15000 PLN",0.059703,1
+backend-python-mid,343,"Business Automation Engineer (Python/Node.js)","Yard Corporate",mid,remote,"Kraków","Node.js; Python; Salesforce","100-130 PLN",0.052650,1
+backend-python-mid,215,"Full-stack Engineer (JavaScript/React)","Motorola Solutions",mid,hybrid,"Kraków","React; JavaScript; AWS","14000-19000 PLN",0.048288,0
+backend-python-mid,3569,"Full Stack Developer Java","Makeitright Sp. z o.o.",mid,remote,"","React; API; Java; AWS","18480-23520 PLN",0.047407,1
+backend-python-mid,743,"AI Full-Stack Developer (m/k/n)","Upvanta",mid,remote,"","Python; AI; Azure","26040-26040 PLN",0.046609,0
+backend-python-mid,5606,"Kotlin/Java Developer","Mindbox Sp. z o.o.",mid,hybrid,"Kraków","API; Kotlin; Java","24150-26250 PLN",0.046177,0
+backend-python-mid,5745,"Fullstack Engineer (Python/ API/ Security)","Antal",mid,hybrid,"Kraków","API; Python; frontend","25200-33600 PLN",0.045060,1
+backend-python-mid,278,"Fullstack Software Engineer - Widgets","monday.com",mid,hybrid,"Warszawa","TypeScript; Node.js; NoSQL; SQL; SQS/SNS/Kafka; AWS","31000-49000 PLN",0.042680,0
+backend-python-mid,253,"Full-stack Engineer (Regular) @Makimo","Makimo",mid,remote,"Łódź","Angular; PostgreSQL; React; JavaScript; Python; Elixir; Vue; AWS","13000-16000 PLN",0.033791,0
+backend-python-mid,746,"Fullstack Engineer (Node.js + React)","Square One Resources",mid,hybrid,"Warsaw","PostgreSQL; React; AWS","20160-23520 PLN",0.030209,1
+backend-python-mid,249,"Fullstack Engineer (React & Node.js & Python)","Holisticon Connect",mid,remote,"Wrocław","TypeScript; Docker; React; API; JavaScript; Node.js; Python; AI; Linux; AWS","23520-26880 PLN",0.026518,1
+backend-python-mid,4985,"Java Software Engineer","Motorola Solutions Systems Polska",mid,hybrid,"Kraków","Docker; Java; K8s","14600-19000 PLN",0.016649,0
+backend-python-mid,317,"Full Stack Engineer (Python/Angular & Azure)","Poland",mid,hybrid,"Warszawa","Docker; Angular; Python; Azure; Kubernetes; Flask","25200-26880 PLN",0.009340,1
+backend-java-senior,136,"Senior Back-end Engineer (NodeJS)","SwingDev—a hippo company",senior,remote,"Warszawa","TypeScript; PostgreSQL; JavaScript; Node.js; Microservices","26000-32000 PLN",0.958335,1
+backend-java-senior,4644,"Senior Software Engineer (Java/Kotlin)","ARDURA Consulting",senior,remote,"","TypeScript; Kotlin; Java","24360-26880 PLN",0.954045,1
+backend-java-senior,3582,"Senior Backend Engineer (Node.js / AWS)","Appliscale",senior,remote,"Kraków","TypeScript; JavaScript; Node.js; REST API; Amazon AWS; Terraform","19500-25000 PLN",0.952915,1
+backend-java-senior,196,"Backend Engineer","FIXLY SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",senior,remote,"Poznań","TypeScript; PostgreSQL; Node.js; Amazon AWS; Golang; DynamoDB","20000-25000 PLN",0.925960,1
+backend-java-senior,4473,"Senior Back-end Engineer (Node.js)","SwingDev—a hippo company",senior,remote,"Warszawa","TypeScript; JavaScript; Node.js; Microservices; Nest.js","26000-32000 PLN",0.922753,1
+backend-java-senior,97,"Senior Backend Developer  (TypeScript / NestJS / AWS)","TQLO SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",senior,hybrid,"Warszawa","TypeScript; JavaScript; REST API; Nest.js; AWS","25200-30240 PLN",0.896897,1
+backend-java-senior,68,"Staff / Senior Backend Software Engineer (Node.js & PHP)","iTeamly",senior,remote,"Kraków","PostgreSQL; PHP; Node.js; AWS","23000-34500 PLN",0.880396,1
+backend-java-senior,4992,"Senior / Staff Full-Stack Engineer (Node.js  +  AWS)","Blue Language Labs Inc.",senior,remote,"","TypeScript; Node.js; AWS","40000-50000 PLN",0.880309,0
+backend-java-senior,5038,"Staff / Senior Backend Software Engineer (Node.js & PHP)","iTeamly",senior,remote,"Kraków","PostgreSQL; PHP; Node.js; AWS","25000-36500 PLN",0.873700,1
+backend-java-senior,5336,"Lead Backend Engineer Java & Test Automation","Mindbox Sp. z o.o.",senior,hybrid,"Kraków","Java; Design Patterns; Microservices architecture","33600-37800 PLN",0.867422,1
+backend-java-senior,5488,"Middle/Senior Backend Engineer (Kafka, Java, ELK)","N-iX",senior,hybrid,"Gdynia","Java; Kafka; Spring","4000-4845 USD",0.867373,1
+backend-java-senior,5470,"Senior Backend Developer / Developerka (Java)","ASTEK Polska",senior,hybrid,"Warszawa","Spring Boot; Java; REST API","25200-27300 PLN",0.863705,1
+backend-java-senior,280,"Senior Backend Developer (Node.js/TypeScript)","Relout",senior,remote,"Warszawa","TypeScript; Node.js; Kubernetes; Serverless; Automated Testing; AWS","25000-32000 PLN",0.857977,1
+backend-java-senior,5367,"Staff Software Engineer, Back-end (Identity Engineering)","Affirm",senior,remote,"","Kotlin; Python; AWS","29833-38166 PLN",0.841393,1
+backend-java-senior,5614,"Senior Java Engineer (HCL Commerce & AWS)","Localhost, s.r.o.",senior,hybrid,"Prague","Java; AWS; HCL","18000-22000 PLN",0.837646,1
+backend-java-senior,4573,"Senior Frontend Engineer (Angular & AWS Integration)","Chabre IT Services Sp. z.o.o",senior,remote,"Warszawa","Angular; Node.js; AWS","21000-25500 PLN",0.814918,0
+backend-java-senior,2845,"Remote Senior Frontend Developer","LINCOR Software",senior,hybrid,"Warszawa","TypeScript; React; Java","16000-24000 PLN",0.814604,0
+backend-java-senior,5566,"IDE Engineer (Senior/Staff)","VirtusLab",senior,hybrid,"Kielce","Kotlin; Multithreaded Programming; Plugin Development","21000-31080 PLN",0.812107,0
+backend-java-senior,4980,"Senior Java Developer","AVENGA (Agencja Pracy, nr KRAZ: 8448)",senior,hybrid,"Warszawa","Spring Boot; Java; Kafka","28560-33600 PLN",0.785762,1
+backend-java-senior,243,"Senior Backend Developer (node.js)","Intent",senior,remote,"Warszawa","Next.js; Node.js; AWS","20160-30240 PLN",0.770878,1
+backend-java-senior,245,"Senior Fullstack Software Engineer","Bayer Sp. z o.o.",senior,hybrid,"Warszawa","TypeScript; JavaScript; Node.js; GraphQL; React.JS; AWS","20240-25300 PLN",0.767934,0
+backend-java-senior,1102,"Senior Software Engineer, Fullstack (Servicing International)","Affirm",senior,remote,"","Kotlin; Python; MySQL; AWS","25083-33416 PLN",0.764671,1
+backend-java-senior,333,"Senior FullStack Engineer (NodeJS + React)","Winged IT",senior,hybrid,"Warszawa","TypeScript; React; JavaScript; Node.js; MongoDB; AWS","28560-32760 PLN",0.754780,0
+backend-java-senior,5430,"Senior Java Developer","Verita HR",senior,hybrid,"Kraków","Java; Cloud; Agile","28350-31500 PLN",0.743900,1
+backend-java-senior,1442,"Senior Full Stack Engineer","Mindbox Sp. z o.o.",senior,hybrid,"Kraków","Spring Boot; Java; REST API; Web Applications","33600-37800 PLN",0.736654,1
+backend-java-senior,5434,"Senior Full Stack Engineer (Java+React)","N-iX",senior,hybrid,"Gdynia","React; Java; TDD","5500-6445 USD",0.723459,1
+backend-java-senior,5454,"Kotlin Developer","Verita HR",senior,hybrid,"Kraków","API; Kotlin; SQL","27300-32550 PLN",0.718188,1
+backend-java-senior,5352,"Senior N8N Engineer","Xebia sp. z o.o.",senior,hybrid,"Rzeszów","Kotlin; LLM; n8n","17000-28200 PLN",0.717773,0
+backend-java-senior,5426,"Senior Backend .NET Developer","OneRail Poland Sp. z o.o.",senior,hybrid,"Kraków",".NET; Microservices; MySQL","22000-28000 PLN",0.711893,1
+backend-java-senior,246,"Senior Fullstack Developer + DevOps (Node,AWS,React)","ITDS",senior,remote,"Warszawa","TypeScript; Docker; React; JavaScript; Amazon AWS; Node","24000-30240 PLN",0.708149,1
+backend-java-senior,144,"Fullstack Engineer","Experis Manpower Group",senior,hybrid,"Warszawa","Kotlin; JavaScript; Python","21840-23520 PLN",0.706444,1
+backend-java-senior,1,"Senior Frontend Engineer (AdTech)","Ringier Axel Springer Tech",senior,hybrid,"Kraków","TypeScript; Github copilot; JavaScript","16400-27300 PLN",0.695255,0
+backend-java-senior,5343,"Senior Java Developer","Tooploox",senior,hybrid,"Wroclaw","Java; GraphQL; Spring","19000-24000 PLN",0.692177,1
+backend-java-senior,257,"Full-stack Engineer (ReactJS + Java)","ITLT",senior,hybrid,"Kraków","Java; React JS","26880-29400 PLN",0.668365,1
+backend-java-senior,223,"Fullstack Developer Java + Angular z umiejętnością analizy systemowej (m/k/n)","Upvanta sp. z o.o.",senior,remote,"Wrocław","Docker; Angular; Java; Kubernetes","18900-21000 PLN",0.664337,1
+backend-java-senior,5403,"Senior Java Engineer","N-iX",senior,hybrid,"Kraków","Java; Spring; Project Reactor","5712-6384 USD",0.661484,1
+backend-java-senior,21,"Senior Software Engineer","LegalZoom",senior,hybrid,"Kraków","JavaScript; Python; C#; Datadog; APIs; Go; SQL; AWS","25000-27917 PLN",0.649771,0
+backend-java-senior,314,"Principal Engineer (JavaScript)","Codepole",senior,remote,"Warszawa","TypeScript; Docker; PostgreSQL; React; Node.js; Cloud","35000-45000 PLN",0.628735,1
+backend-java-senior,1433,"Back-End/Full-Stack Developer","Cognitran",senior,hybrid,"Szczecin","Java; DynamoDB; AWS","18480-30240 PLN",0.627343,1
+backend-java-senior,453,"Senior UI Engineer","TPConnects Technologies",senior,hybrid,"Warszawa","Next.js; React; JavaScript; SQL; RESTful API","25000-30000 PLN",0.623935,1
+backend-java-senior,5458,"Java Software Engineer (AWS)","Spyrosoft",senior,hybrid,"Kraków","Java; SQL; AWS","20160-29400 PLN",0.607845,1
+backend-java-senior,1187,"Senior React Developer","TQLO SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",senior,hybrid,"Warszawa","TypeScript; React; JavaScript","21840-25200 PLN",0.606754,0
+backend-java-senior,1435," Web Engineer","AVENGA (Agencja Pracy, nr KRAZ: 8448)",senior,hybrid,"Warszawa","React; JavaScript; Kafka","28560-31920 PLN",0.597922,1
+backend-java-senior,3,"Fullstack Developer Java + Angular z umiejętnością analizy systemowej (m/k/n)","Upvanta",senior,remote,"","Docker; Angular; Java","18900-21000 PLN",0.588764,1
+backend-java-senior,2859,"Senior Software Engineer (React/Typescript)","HR Contact",senior,remote,"Kraków","TypeScript; React; JavaScript","18000-22000 PLN",0.580149,0
+backend-java-senior,294,"Senior React Developer","7N",senior,hybrid,"Warszawa","TypeScript; React; JavaScript; Node.js; AWS","25200-30240 PLN",0.578267,1
+backend-java-senior,487,"Senior / Mid Fullstack ​Developer z j. niemieckim - Loyalty Core Services","dmTECH Polska",senior,remote,"Wrocław","TypeScript; Spring Boot; React; Kotlin; Java; Azure; Playwright; Automated Testing; AWS; Electron","16800-30240 PLN",0.572886,1
+backend-java-senior,186,"Senior React Engineer + Python","N-iX",senior,remote,"Kraków","React; Python; Apache Spark; MySQL; Kubernetes; AWS","18363-21669 PLN",0.565612,0
+backend-java-senior,173,"Full Stack Engineer – Java / React (50/50)","j-labs",senior,hybrid,"Kraków","TypeScript; Spring Boot; PostgreSQL; React; JavaScript; Java; Microservices; RESTful; Spring; GCP","23520-28560 PLN",0.539962,1
+backend-java-senior,5397,"Principal Product Engineer","CKSource",senior,hybrid,"Poznań","TypeScript; JavaScript; AI","38000-45000 PLN",0.522084,0
+backend-java-senior,5532,"Senior Java Full Stack Developer","Tenth Revolution Group",senior,hybrid,"Warszawa","Spring Boot; React; Java","20000-28000 PLN",0.520572,1
+backend-java-senior,14,"Full stack engineer (Java/Python + React)","Antal",senior,hybrid,"Kraków","Web API; Java; Python","30240-33600 PLN",0.512226,1
+backend-java-senior,4529,"Full-Stack Developer (Java + Angular)","Upvanta sp. z o.o.",senior,hybrid,"Wrocław","Spring Boot; Docker; Angular; Java; Microservices; Kubernetes","18900-21000 PLN",0.511360,1
+backend-java-senior,457,"Senior Frontend Engineer","CKSource",senior,remote,"Warszawa","TypeScript; JavaScript; AI","24000-32000 PLN",0.503356,0
+backend-java-senior,77,"Senior Fullstack Developer","Framna (formerly Bright Inventions)",senior,hybrid,"Gdańsk","TypeScript; Next.js; React; JavaScript; Node.js; nestJS; NoSQL; SQL; Databases; AWS","20000-24000 PLN",0.483712,0
+backend-java-senior,4544,"Senior FullStack Engineer","Future Media Ltd",senior,remote,"Poland (Remote)","TypeScript; Next.js; REST; PostgreSQL; Node.js; Amazon AWS; Nest.js; Kubernetes","21344-24760 PLN",0.480592,0
+backend-java-senior,3922,"Senior Angular Developer","AVENGA (Agencja Pracy, nr KRAZ: 8448)",senior,remote,"","Spring Boot; Angular; Java","25200-28560 PLN",0.468394,1
+backend-java-senior,5406,"Senior Node.js Developer","Green Minds Sp.zo.o.",senior,hybrid,"Warsaw","Node.js; GraphQL; Kafka","30240-33600 PLN",0.461984,0
+backend-java-senior,7,"Senior Fullstack Developer (Java+Angular) (m/k)","Devire",senior,hybrid,"Wrocław","Spring Boot; Angular; Java","28560-33600 PLN",0.461853,1
+backend-java-senior,24,"Senior FullStack Developer","Reply Polska Sp. z o. o.",senior,hybrid,"Katowice","TypeScript; Node.js; Java; Amazon AWS","13000-22000 PLN",0.456180,1
+backend-java-senior,731,"Fullstack Developer ","AVENGA (Agencja Pracy, nr KRAZ: 8448)",senior,remote,"","TypeScript; Java; Spring","18480-21840 PLN",0.452894,1
+backend-java-senior,3211,"Senior Fullstack Developer (Java + Angular)","Scalo",senior,hybrid,"Poznań","Angular; Java; Spring","24360-26040 PLN",0.447876,1
+backend-java-senior,2139,"Web Engineer ","Mindbox Sp. z o.o.",senior,hybrid,"Warszawa","TypeScript; React; JavaScript","27300-33600 PLN",0.445728,0
+backend-java-senior,114,"Senior Frontend Developer (Angular)","Reply Polska Sp. z o. o.",senior,hybrid,"Katowice","TypeScript; Angular; Java; Spring; RxJS","13000-22000 PLN",0.444082,1
+backend-java-senior,106,"Senior Full Stack Developer (Java+React)","Altimetrik Poland",senior,remote,"Kraków","TypeScript; React; Kotlin; JavaScript; HTML; Java","24000-28000 PLN",0.441607,1
+backend-java-senior,507,"Full Stack Data & AI Engineer (100% zdalnie)","Next Technology Professionals",senior,remote,"Warszawa","TypeScript; Docker; PostgreSQL; API; JavaScript; Node.js; LLM; RAG; AWS","28000-38000 PLN",0.434527,1
+backend-java-senior,35,"Senior Javascript Engineer","Appliscale",senior,remote,"Kraków","JavaScript; Java; C++","24000-30000 PLN",0.426198,1
+backend-java-senior,268,"Full Stack Developer","Alfavox",senior,remote,"Poznań","TypeScript; Next.js; Docker; PostgreSQL; React; C#; Redis; Kubernetes; .NET Core","18480-21840 PLN",0.423655,0
+backend-java-senior,1097,"AI Native Software Engineer","Proof IT",senior,hybrid,"Riga","Java; AI; SQL","23500-27000 PLN",0.422776,1
+backend-java-senior,5505,"Senior Fullstack Developer (Java/React)","Grape Up",senior,hybrid,"Kraków","React; Java; AWS","18300-26400 PLN",0.422059,1
+backend-java-senior,58,"React Frontend Developer (AWS)","Nexio Management",senior,remote,"Warszawa","React; JavaScript; CSS; HTML5; AWS","16800-21840 PLN",0.419890,1
+backend-java-senior,484,"React Developer (React + Node.js)","Pretius",senior,remote,"Warszawa","TypeScript; Docker; Angular; React; Node.js; Kubernetes; AWS Serverless","21840-30240 PLN",0.419547,1
+backend-java-senior,5415,"Java Tech Lead","CSHARK Sp. z o.o.",senior,hybrid,"Wrocław","React; Java; Spring","28560-31920 PLN",0.418734,1
+backend-java-senior,3583,"Senior Node.js Developer","RITS Professional Services",senior,remote,"Warszawa","TypeScript; Node.js; MongoDB; Kafka; Kubernetes","6720-8400 PLN",0.413978,1
+backend-java-senior,113,"Senior Frontend Developer (Angular) (B2B)","Reply Polska Sp. z o. o.",senior,hybrid,"Katowice","TypeScript; Angular; Java; Spring; RxJS","16800-29400 PLN",0.413179,1
+backend-java-senior,59,"Senior Full Stack/Web Performance Engineer","RTB House",senior,remote,"Warszawa","JavaScript; Java","36960-43680 PLN",0.405093,1
+backend-java-senior,3202,"Senior Fullstack Developer (Java+React)","Integral Solutions",senior,hybrid,"Warszawa","React; Java; Spring","6720-9240 USD",0.402300,1
+backend-java-senior,4280,"Fullstack Engineer (Python+React)","Square One Resources",senior,hybrid,"Kraków","PostgreSQL; React; Python","20160-23520 PLN",0.397988,0
+backend-java-senior,282,"Senior Full-Stack Developer (Angular / Java / AWS)","Cyclad",senior,hybrid,"Wrocław","Angular; Java; AWS","20160-22680 PLN",0.393944,1
+backend-java-senior,5361,"Java Developer (BPMN / Microservices)  m/k/n","Upvanta",senior,remote,"","Spring Boot; Java; Spring","23100-26880 PLN",0.393574,1
+backend-java-senior,4661,"Senior Fullstack Developer","Infogain",senior,hybrid,"Kraków","TypeScript; REST; React; Java; Google Cloud Platform; NoSQL; SQL; Kafka","21840-25200 PLN",0.389460,0
+backend-java-senior,5225,"Senior React Developer","DataArt",senior,remote,"Wrocław","REST; React; JavaScript","17000-19700 PLN",0.387689,0
+backend-java-senior,359,"Senior Full Stack Engineer - Core UX (Europe)","Kalepa",senior,remote,"New York","React; JavaScript; Python","26014-47440 PLN",0.384619,0
+backend-java-senior,5435,"UI Engineer","Mindbox Sp. z o.o.",senior,hybrid,"Kraków","JavaScript; HTML; CSS","29400-33600 PLN",0.382845,0
+backend-java-senior,4496,"Senior Fullstack Developer (.Net + Angular)","Jit Team",senior,hybrid,"Gdańsk","Docker; Angular; .NET; JavaScript; AI; CI/CD; SQL; Kubernetes","18000-25000 PLN",0.381863,1
+backend-java-senior,5450,"Java Developer","Antal",senior,hybrid,"Warszawa","Java; Spring; Groovy","23520-28560 PLN",0.379831,1
+backend-java-senior,5569,"Java Developer (Workflow Specialist)","CSHARK Sp. z o.o.",senior,hybrid,"Wrocław","Java","23520-28560 PLN",0.376386,1
+backend-java-senior,5378,"Lead Power Platforms Developer","Mindbox Sp. z o.o.",senior,hybrid,"Kraków","Spring Boot; PostgreSQL; Java","31500-35700 PLN",0.372386,1
+backend-java-senior,3958,"Lead Node.js  Engineer","iTeamly",senior,remote,"Kraków","PostgreSQL; PHP; Node.js; AWS","26000-37000 PLN",0.356238,1
+backend-java-senior,164,"Senior Node.js Developer","The Software House",senior,remote,"Gliwice","TypeScript; Node.js; Python; Amazon AWS; Nest.js; SQL","17000-26000 PLN",0.351926,0
+backend-java-senior,1088,"Senior Fullstack Engineer","Ringier Axel Springer Tech",senior,hybrid,"Wrocław","TypeScript; React; JavaScript","16356-27260 PLN",0.347344,0
+backend-java-senior,2840,"Senior Android Developer","Square One Resources",senior,remote,"","Kotlin; Retrofit; ROOM","28560-31920 PLN",0.346592,0
+backend-java-senior,5497,"Golang Developer","AVENGA (Agencja Pracy, nr KRAZ: 8448)",senior,hybrid,"Warszawa","Docker; Golang; K8s","25200-31920 PLN",0.345122,0
+backend-java-senior,3208,"FullStack Engineer (API Engineer)","Antal",senior,hybrid,"Kraków","API; Java; Degree","30240-33600 PLN",0.338633,0
+backend-java-senior,31,"Fullstack Developer (AWS, Node.js, React)","Craftware",senior,remote,"Warszawa","TypeScript; PostgreSQL; React; JavaScript; Node.js; AWS","25200-33600 PLN",0.330419,1
+backend-java-senior,5223,"Software Engineer (React)","Remodevs",senior,hybrid,"Warszawa","TypeScript; React; JavaScript","15089-17665 PLN",0.324385,0
+backend-java-senior,3979,"Senior Fullstack Developer (.NET/Angular)","DCG",senior,hybrid,"Gdańsk","TypeScript; Docker; Angular; JavaScript; HTML; CSS; SQL; Kubernetes; .NET C#","21000-25200 PLN",0.323608,1
+backend-java-senior,132,"Senior Typescript Engineer (Wallet Experience) - FinTech / Crypto","Incubly",senior,hybrid,"Łódź","TypeScript; React; JavaScript","27300-31500 PLN",0.323464,0
+backend-java-senior,5511,"Java Developer","ITFS Sp. z o.o.",senior,hybrid,"Warszawa","Java; SQL; Pandas","30240-36960 PLN",0.320123,1
+backend-java-senior,3210,"Senior Fullstack Developer – TypeScript/Java","teems.it sp. z o.o.",senior,hybrid,"Kraków","TypeScript; JavaScript; CSS","21000-25000 PLN",0.317967,1
+backend-java-senior,117,"Senior Typescript Engineer (Device Experience) - FinTech / Crypto","Incubly",senior,hybrid,"Łódź","TypeScript; JavaScript","27300-31500 PLN",0.317761,1
+backend-java-senior,5376,"Senior .NET Engineer","Kellton Europe",senior,hybrid,"Wrocław","Docker; .NET; GitHub Actions","23520-30240 PLN",0.314735,0
+backend-java-senior,365,"FullStack Developer 🍿 (Angular+React) 📺 100% zdalnie🌍","Ness Solution",senior,remote,"Warszawa","Docker; Angular; React; Java; Spring; MyBatis; Oracle; Apache Kafka","23520-30240 PLN",0.311645,1
+backend-java-senior,332,"Principal JavaScript Engineer","Winged IT",senior,hybrid,"Warszawa","React; JavaScript; Node.js; AWS","36960-42840 PLN",0.311012,1
+backend-java-senior,5366,"Senior .Net Developer","Scalo",senior,hybrid,"Łódź","Java; C#; .NET Core","21840-23520 PLN",0.303513,0
+backend-java-senior,1096,"CTO","Plecto ApS",senior,remote,"","PostgreSQL; Python; Django","30000-35000 PLN",0.302954,0
+backend-java-senior,5453,"Senior Automation Tester/QA (Java)","Scalo",senior,hybrid,"Warszawa","Java; REST API; Selenium","19320-21000 PLN",0.301032,1
+backend-java-senior,284,"Senior Frontend Developer","DCG",senior,remote,"Warszawa","TypeScript; React; JavaScript","21840-26040 PLN",0.300364,0
+backend-java-senior,505,"Senior Full-Stack Developer (Next.js&TypeScript)","Rite NRG",senior,remote,"Wrocław","TypeScript; Next.js; Docker; JavaScript; AI; RESTful API","20160-25200 PLN",0.292716,0
+backend-java-senior,4660,"Frontend Developer/Tech Lead","speedapp",senior,hybrid,"Warszawa","TypeScript; Docker; Angular; JavaScript; WCAG; RxJS","21840-28560 PLN",0.287219,0
+backend-java-senior,203,"Senior Fullstack Developer Java with Angular – vehicle leasing and fleet management (f/m/x)","Sii",senior,hybrid,"Warszawa","Angular; JavaScript; HTML; Java; Oracle Applications; CSS3; SQL; Hibernate; Spring; JSON","21000-26000 PLN",0.285676,1
+backend-java-senior,4999,"Senior Frontend Developer (k/m)","Lumicode Sp. z o.o. (Pentacomp Group)",senior,remote,"Warszawa","Angular; JavaScript","15120-18480 PLN",0.282978,1
+backend-java-senior,5278,"Senior Frontend Developer (k/m)","Lumicode Sp. z o.o. (Pentacomp Group)",senior,remote,"Warszawa","Angular; JavaScript","15120-18480 PLN",0.282978,1
+backend-java-senior,5526,"Expert Java Developer","j-labs software specialist",senior,hybrid,"Kraków","Java; Spring; Cloud","26880-28560 PLN",0.280717,1
+backend-java-senior,70,"Senior Fullstack Developer (React, Node.js)","Future Processing",senior,remote,"Gliwice","TypeScript; React; JavaScript; Node.js; Nest.js; AWS","18480-26880 PLN",0.273193,0
+backend-java-senior,116,"Senior Typescript Engineer (Coin Integration) - FinTech / Crypto","Incubly",senior,hybrid,"Łódź","TypeScript; JavaScript","27300-31500 PLN",0.272674,1
+backend-java-senior,298,"Experienced Node.js Developer (Mid/Senior)","Future Mind",senior,remote,"Warszawa","TypeScript; Node.js; JavaScript (ES6+)","16000-22000 PLN",0.265031,0
+backend-java-senior,140,"Full Stack Engineer - Frontend","P&P Solutions",senior,remote,"Warszawa","Spring Boot; Angular; JavaScript; Java","140-150 PLN",0.259394,1
+backend-java-senior,277,"Node.js Developer","Klient Just Join IT",senior,hybrid,"Katowice","Docker; REST; JavaScript; Node.js; Redis; MySQL; MongoDB; WebSocket; PostreSQL; AWS","16000-30000 PLN",0.254379,0
+backend-java-senior,4292,"Expert Fullstack Developer (Java & Angular)","Devire",senior,remote,"","Angular; Java; Spring Framework","28560-33600 PLN",0.251908,1
+backend-java-senior,353,"Senior Full Stack Developer (Java, React)","Clurgo",senior,remote,"Warszawa","React; Java","20160-26880 PLN",0.242927,1
+backend-java-senior,5472,"Fullstack Engineer (React & Node.js & Python)","Holisticon Connect",senior,hybrid,"Wrocław","TypeScript; React; JavaScript","23520-26880 PLN",0.239999,0
+backend-java-senior,360,"Senior Node.js Developer","H2B Group",senior,remote,"Gdańsk","PostgreSQL; Node.js; GCP","20160-25200 PLN",0.235754,0
+backend-java-senior,4285,"Senior Full-Stack Software Developer – Freelance (Remote)","ITSENSE AG",senior,remote,"","Docker; .NET; JavaScript","21483-26859 PLN",0.210055,1
+backend-java-senior,5374,"Senior Fullstack Developer (Java, React)","ITFS Sp. z o.o.",senior,hybrid,"Warszawa","TypeScript; React; JavaScript","18480-23520 PLN",0.207285,1
+backend-java-senior,3970,"Fullstack Developer (Go / React / Node.js)","Link Group",senior,remote,"Kraków","TypeScript; Docker; React; Node.js; Go; Kubernetes; Golang; GCP; AWS","23000-23000 PLN",0.202329,0
+backend-java-senior,1091,"React Frontend Developer","i2asolutions",senior,hybrid,"Kraków","React; JavaScript; REST API","18000-25000 PLN",0.193947,0
+backend-java-senior,3562,"Senior Fullstack Developer","Grape Up",senior,hybrid,"Kraków","PostgreSQL; React; Java; AWS","18300-26400 PLN",0.193173,1
+backend-java-senior,74,"Senior Angular Developer","Devapo",senior,hybrid,"Warszawa","Angular; JavaScript","18480-23520 PLN",0.192009,1
+backend-java-senior,527,"Senior Frontend Developer (Part-time; 100% remote)","DevsData LLC",senior,remote,"Warsaw","JavaScript; HTML; CSS","16800-24360 PLN",0.182680,0
+backend-java-senior,5560,"Senior Software Engineer, Blockchain","N-iX",senior,hybrid,"Krakow","Java; Microservices; Blockchain","6000-9500 USD",0.181376,1
+backend-java-senior,238,"Webflow Developer","Physitrack",senior,remote,"London","JavaScript; Webflow","15021-17167 PLN",0.176719,1
+backend-java-senior,81,"Senior Node.JS Developer","Yard Corporate",senior,remote,"Warszawa","TypeScript; Node.js; AWS","29382-36727 PLN",0.171613,0
+backend-java-senior,741,"Starszy Programista/Starsza Programistka Full-Stack (.NET + Web)","DCG Sp. z o.o",senior,hybrid,"Warszawa",".NET; JavaScript; C#","20160-26040 PLN",0.169930,0
+backend-java-senior,3919,"Frontend Developer","AVENGA (Agencja Pracy, nr KRAZ: 8448)",senior,hybrid,"Warszawa","Next.js; JavaScript; Node.js","18480-23520 PLN",0.155705,0
+backend-java-senior,267,"Staff Node.js","iTeamly",senior,remote,"Kraków","PostgreSQL; PHP; Node.js; AWS","23000-34500 PLN",0.154276,1
+backend-java-senior,1086,"Expert Fullstack Developer (Java, React)","ITFS Sp. z o.o.",senior,hybrid,"Warszawa","TypeScript; React; JavaScript","23520-28560 PLN",0.152126,1
+backend-java-senior,745,"Full-Stack Software Developer (Python + React)","Link Group",senior,remote,"","PostgreSQL; React; Python","21000-22680 PLN",0.147215,0
+backend-java-senior,451,"Senior JavaScript React Developer (Next.js)","Cyclad",senior,hybrid,"Warszawa","Next.js; Docker; React; JavaScript","21000-21000 PLN",0.135751,1
+backend-java-senior,275,"Tech Lead Manager - Core UX (Europe)","Kalepa",senior,remote,"New York","React; JavaScript; Python","42849-56622 PLN",0.130854,0
+backend-java-senior,105,"Typescript Developer (Node.js)","CrustLab",senior,remote,"Kraków","TypeScript; Docker; PostgreSQL; Node.js; Express.js; MongoDB; DDD; AWS","22000-27000 PLN",0.123867,0
+backend-java-senior,5750,"Senior Rust Engineer","j-labs software specialist",senior,hybrid,"Kraków","Terraform; Rust; AWS","23520-30240 PLN",0.122416,0
+backend-java-senior,101,"Fullstack React & Node Developer","Codepole",senior,remote,"Warszawa","TypeScript; Docker; PostgreSQL; React; Node.js; Cloud","20000-30000 PLN",0.105310,0
+backend-java-senior,5399,"Frontend Developer (Angular)","Scalo",senior,hybrid,"Poznań","TypeScript; Angular; JavaScript","20160-21840 PLN",0.101194,0
+backend-java-senior,528,"Associate Frontend Team Lead","Remodevs",senior,hybrid,"Warszawa","TypeScript; React; JavaScript","25912-29614 PLN",0.099475,0
+backend-java-senior,5417,"Full Stack Developer with Python and C++","ITMAGINATION",senior,hybrid,"Warszawa","Python; C++; C","23520-28560 PLN",0.091766,1
+backend-java-senior,52,"Senior Frontend Developer (React)","HAYS Poland",senior,remote,"Warszawa","TypeScript; React; JavaScript; GraphQL; Amazon AWS","24360-26880 PLN",0.089529,1
+backend-java-senior,5224,"React, Next.js Developer","DataArt",senior,remote,"Wrocław","Next.js; React; JavaScript","18000-20800 PLN",0.074636,0
+backend-java-senior,5093,"Node.js Developer","OKE Poland",senior,hybrid,"Gdańsk","JavaScript; Node.js; CI/CD; Azure; Nest.js; AWS","13440-25200 PLN",0.067556,0
+backend-java-senior,5620,"Senior Full Stack PHP Developer with German","Superdevs",senior,remote,"","PHP; JavaScript; jQuery","21840-26880 PLN",0.014881,0
+go-backend-senior,196,"Backend Engineer","FIXLY SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",senior,remote,"Poznań","TypeScript; PostgreSQL; Node.js; Amazon AWS; Golang; DynamoDB","20000-25000 PLN",0.674321,1
+go-backend-senior,5736,"Senior Golang FullStack Engineer","N-iX",senior,remote,"","JavaScript; Go; Golang","4500-6300 USD",0.656933,1
+go-backend-senior,3582,"Senior Backend Engineer (Node.js / AWS)","Appliscale",senior,remote,"Kraków","TypeScript; JavaScript; Node.js; REST API; Amazon AWS; Terraform","19500-25000 PLN",0.623639,1
+go-backend-senior,265,"Senior Backend Developer (Node.js + Hydra + AWS)","SCALO",mid,remote,"Kraków","Node; AWS","20160-22680 PLN",0.500768,1
+go-backend-senior,3970,"Fullstack Developer (Go / React / Node.js)","Link Group",senior,remote,"Kraków","TypeScript; Docker; React; Node.js; Go; Kubernetes; Golang; GCP; AWS","23000-23000 PLN",0.322427,1
+go-backend-senior,150,"Senior Backend Developer (NodeJS, TypeScript and AWS) (B2B)","Reply Polska Sp. z o. o.",senior,remote,"Katowice","TypeScript; Node.js; Nest.js; Kubernetes; Terraform; GitLab; Helm; AWS","20160-27720 PLN",0.189659,1
+go-backend-senior,5759,"Fullstack Developer (Go / React / Node.js)","Link Group",senior,remote,"","TypeScript; React; Golang","23000-23000 PLN",0.186524,1
+go-backend-senior,68,"Staff / Senior Backend Software Engineer (Node.js & PHP)","iTeamly",senior,remote,"Kraków","PostgreSQL; PHP; Node.js; AWS","23000-34500 PLN",0.179835,1
+go-backend-senior,5038,"Staff / Senior Backend Software Engineer (Node.js & PHP)","iTeamly",senior,remote,"Kraków","PostgreSQL; PHP; Node.js; AWS","25000-36500 PLN",0.170352,1
+go-backend-senior,186,"Senior React Engineer + Python","N-iX",senior,remote,"Kraków","React; Python; Apache Spark; MySQL; Kubernetes; AWS","18363-21669 PLN",0.157007,0
+go-backend-senior,25,"Fullstack Developer (Node.js/Nest.js + Next.js) - Mid+/Senior (100% Remote)","iMakeable",mid,remote,"Wrocław","TypeScript; Next.js; Docker; Node.js; Express.js; CI/CD; ORM; Git; Nest.js; AWS","16800-24360 PLN",0.140682,0
+go-backend-senior,5533,"Senior Software Engineer, Back-end (Fraud)","Affirm",senior,remote,"","Kotlin; Python; AWS","25083-33416 PLN",0.131198,1
+go-backend-senior,5676,"Senior Software Engineer – Billy Team","Cast AI",senior,remote,"","Golang; Feature flag systems","6500-9000 EUR",0.127016,1
+go-backend-senior,759,"Senior Software Developer/Engineer - NodeJS / NestJS JS/TS","RevoEngine",senior,remote,"Warszawa","TypeScript; Angular; JavaScript; nestJS; Redis; Google Cloud Platform; SQL; WebSocket; Golang; NodeJS","16800-25200 PLN",0.120001,0
+go-backend-senior,280,"Senior Backend Developer (Node.js/TypeScript)","Relout",senior,remote,"Warszawa","TypeScript; Node.js; Kubernetes; Serverless; Automated Testing; AWS","25000-32000 PLN",0.115065,1
+go-backend-senior,40,"Software Engineer","Ciklum",mid,remote,"Gdańsk","TypeScript; JavaScript; AWS","17502-18356 PLN",0.115003,0
+go-backend-senior,4992,"Senior / Staff Full-Stack Engineer (Node.js  +  AWS)","Blue Language Labs Inc.",senior,remote,"","TypeScript; Node.js; AWS","40000-50000 PLN",0.103154,0
+go-backend-senior,243,"Senior Backend Developer (node.js)","Intent",senior,remote,"Warszawa","Next.js; Node.js; AWS","20160-30240 PLN",0.095739,1
+go-backend-senior,4544,"Senior FullStack Engineer","Future Media Ltd",senior,remote,"Poland (Remote)","TypeScript; Next.js; REST; PostgreSQL; Node.js; Amazon AWS; Nest.js; Kubernetes","21344-24760 PLN",0.093073,0
+go-backend-senior,5732,"Staff Software Engineer, Backend (Deal reporting)","Affirm",senior,remote,"","Kotlin; Python; AWS","29833-38166 PLN",0.090838,1
+go-backend-senior,267,"Staff Node.js","iTeamly",senior,remote,"Kraków","PostgreSQL; PHP; Node.js; AWS","23000-34500 PLN",0.089076,1
+go-backend-senior,268,"Full Stack Developer","Alfavox",senior,remote,"Poznań","TypeScript; Next.js; Docker; PostgreSQL; React; C#; Redis; Kubernetes; .NET Core","18480-21840 PLN",0.081136,0
+go-backend-senior,4573,"Senior Frontend Engineer (Angular & AWS Integration)","Chabre IT Services Sp. z.o.o",senior,remote,"Warszawa","Angular; Node.js; AWS","21000-25500 PLN",0.073516,0
+go-backend-senior,314,"Principal Engineer (JavaScript)","Codepole",senior,remote,"Warszawa","TypeScript; Docker; PostgreSQL; React; Node.js; Cloud","35000-45000 PLN",0.072498,0
+go-backend-senior,246,"Senior Fullstack Developer + DevOps (Node,AWS,React)","ITDS",senior,remote,"Warszawa","TypeScript; Docker; React; JavaScript; Amazon AWS; Node","24000-30240 PLN",0.072264,0
+go-backend-senior,3,"Fullstack Developer Java + Angular z umiejętnością analizy systemowej (m/k/n)","Upvanta",senior,remote,"","Docker; Angular; Java","18900-21000 PLN",0.071995,0
+go-backend-senior,5367,"Staff Software Engineer, Back-end (Identity Engineering)","Affirm",senior,remote,"","Kotlin; Python; AWS","29833-38166 PLN",0.063522,1
+go-backend-senior,3958,"Lead Node.js  Engineer","iTeamly",senior,remote,"Kraków","PostgreSQL; PHP; Node.js; AWS","26000-37000 PLN",0.062203,1
+go-backend-senior,360,"Senior Node.js Developer","H2B Group",senior,remote,"Gdańsk","PostgreSQL; Node.js; GCP","20160-25200 PLN",0.055478,0
+go-backend-senior,5796,"Mid/Senior Python Software Engineer","Shelton AI",mid,remote,"","Python; SQL; Django","18000-32000 PLN",0.053308,1
+go-backend-senior,484,"React Developer (React + Node.js)","Pretius",senior,remote,"Warszawa","TypeScript; Docker; Angular; React; Node.js; Kubernetes; AWS Serverless","21840-30240 PLN",0.052668,1
+go-backend-senior,223,"Fullstack Developer Java + Angular z umiejętnością analizy systemowej (m/k/n)","Upvanta sp. z o.o.",senior,remote,"Wrocław","Docker; Angular; Java; Kubernetes","18900-21000 PLN",0.048752,1
+go-backend-senior,507,"Full Stack Data & AI Engineer (100% zdalnie)","Next Technology Professionals",senior,remote,"Warszawa","TypeScript; Docker; PostgreSQL; API; JavaScript; Node.js; LLM; RAG; AWS","28000-38000 PLN",0.046383,0
+go-backend-senior,5715,".Net Developer with AWS","1dea",senior,remote,"",".NET; AWS","22680-26880 PLN",0.043015,1
+go-backend-senior,105,"Typescript Developer (Node.js)","CrustLab",senior,remote,"Kraków","TypeScript; Docker; PostgreSQL; Node.js; Express.js; MongoDB; DDD; AWS","22000-27000 PLN",0.042294,1
+go-backend-senior,262,"Senior Product Engineer ","BITROPY SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",senior,remote,"Poznań","TypeScript; REST; Python; AI; GraphQL; Go","23000-30000 PLN",0.041079,0
+go-backend-senior,1096,"CTO","Plecto ApS",senior,remote,"","PostgreSQL; Python; Django","30000-35000 PLN",0.040268,1
+go-backend-senior,5799,"Senior Python Cloud Engineer","j-labs software specialist",senior,remote,"","Python; Terraform; AWS","25200-30240 PLN",0.037101,1
+go-backend-senior,164,"Senior Node.js Developer","The Software House",senior,remote,"Gliwice","TypeScript; Node.js; Python; Amazon AWS; Nest.js; SQL","17000-26000 PLN",0.036471,0
+go-backend-senior,3575,"Full-Stack / Backend Developer (Java + AWS+ React.js)","Link Group",mid,remote,"","Spring Boot; Java; MongoDB; AWS","16800-26880 PLN",0.035686,1
+go-backend-senior,5037,"Mid Node.js Developer","H2B Group",mid,remote,"Gdańsk","Node.js; GraphQL; Amazon AWS; Terraform; aws lambda; DynamoDB","15120-20160 PLN",0.033510,0
+go-backend-senior,5527,"Senior C# Engineer","Link Group",senior,remote,"",".NET; C#; AWS","30000-44000 PLN",0.032543,0
+go-backend-senior,5746,"Java Developer ADF experience","Link Group",senior,remote,"","Java; SQL; Relational database","21840-26040 PLN",0.032126,0
+go-backend-senior,123,"Full Stack Engineer","Latent AI",senior,remote,"Tel Aviv-Yafo","TypeScript; Next.js; PostgreSQL; React; ORM","22210-29614 PLN",0.030343,1
+go-backend-senior,31,"Fullstack Developer (AWS, Node.js, React)","Craftware",senior,remote,"Warszawa","TypeScript; PostgreSQL; React; JavaScript; Node.js; AWS","25200-33600 PLN",0.029730,0
+go-backend-senior,745,"Full-Stack Software Developer (Python + React)","Link Group",senior,remote,"","PostgreSQL; React; Python","21000-22680 PLN",0.029710,0
+go-backend-senior,290,"Node.js Developer","The Software House",mid,remote,"Gliwice","TypeScript; Node.js; CI/CD; Amazon AWS; SQL; React.JS","9500-16000 PLN",0.028163,0
+go-backend-senior,5780,"Python Developer","Link Group",mid,remote,"","PostgreSQL; Python; SQL","20160-23520 PLN",0.024836,0
+go-backend-senior,101,"Fullstack React & Node Developer","Codepole",senior,remote,"Warszawa","TypeScript; Docker; PostgreSQL; React; Node.js; Cloud","20000-30000 PLN",0.024216,0
+go-backend-senior,5602,".Net Developer","1dea",mid,remote,"",".NET; AWS","23520-44520 PLN",0.023712,1
+go-backend-senior,522,"Typescript Developer (Node.js)","CrustLab",mid,remote,"Kraków","TypeScript; Docker; PostgreSQL; Node.js; Express.js; MongoDB; DDD; AWS","15000-20000 PLN",0.021511,1
+go-backend-senior,276,"Backend Developer (Node.js)","Andersen",mid,remote,"Turkey","Node.js; NoSQL; MongoDB","12120-17629 PLN",0.020002,1
+go-backend-senior,81,"Senior Node.JS Developer","Yard Corporate",senior,remote,"Warszawa","TypeScript; Node.js; AWS","29382-36727 PLN",0.019760,0
+go-backend-senior,6645,"Senior Python/NodeJS Developer","Euvic S.A.",senior,remote,"","Node.js; Python; AWS","21840-26040 PLN",0.019708,0
+go-backend-senior,4285,"Senior Full-Stack Software Developer – Freelance (Remote)","ITSENSE AG",senior,remote,"","Docker; .NET; JavaScript","21483-26859 PLN",0.016629,0
+go-backend-senior,5671,"Java Fullstack Developer (Java/React)","DCG",senior,remote,"","PostgreSQL; Java; MySQL","18480-20160 PLN",0.015018,0
+go-backend-senior,5452,".NET/ C# Developer","Upvanta",mid,remote,"",".NET; C#; AWS","25200-27300 PLN",0.014608,0
+go-backend-senior,3583,"Senior Node.js Developer","RITS Professional Services",senior,remote,"Warszawa","TypeScript; Node.js; MongoDB; Kafka; Kubernetes","6720-8400 PLN",0.012212,1
+go-backend-senior,5522,"Senior Python Developer","AVENGA (Agencja Pracy, nr KRAZ: 8448)",senior,remote,"","Python; SQL; Snowflake","25200-30240 PLN",0.012076,0
+go-backend-senior,316,"Full stack developer (Typescript&AWS)","Cyclad",mid,remote,"Warszawa","TypeScript; AWS","16800-20160 PLN",0.011521,1
+go-backend-senior,4998,"Backend Python Developer","Link Group",senior,remote,"","FastAPI; Python; Django","21840-22680 PLN",0.010596,1
+go-backend-senior,5552,"Senior Python Developer - Remote ","Link Group",senior,remote,"","Python; Django; Flask","23000-26000 PLN",0.008266,0
+go-backend-senior,4,"Fullstack Developer (Laravel + React) – ASAP k/m/*","Square One Resources",mid,remote,"","PostgreSQL; React; PHP","16800-23520 PLN",0.007547,0
+go-backend-senior,4987,"Java Developer","DCG",mid,remote,"","Java; SQL; MySQL","20160-22680 PLN",0.007485,0
+go-backend-senior,5489,"Python Backend Developer","Smart Topaz sp. z o.o.",mid,remote,"","Python; Azure; SQL","19000-24000 PLN",0.006271,1
+go-backend-senior,5593,"Guidewire Developer","Link Group",mid,remote,"","Java; Gosu; Guidewire","20160-28560 PLN",0.004069,0
+mobile-mid,147,"React Native Developer","Goodspeed Digital",mid,remote,"Warszawa","TypeScript; React Native; Firebase","18000-23000 PLN",0.646251,1
+mobile-mid,225,"Regular React Native Developer","Spyrosoft",mid,remote,"Wrocław","TypeScript; JavaScript; CI/CD; Git; React Native","11760-18480 PLN",0.588303,1
+mobile-mid,182,"React Native Developer","GMI Software",mid,remote,"Warszawa","TypeScript; CI/CD; React Native; Expo","12000-18000 PLN",0.582559,1
+mobile-mid,3231,"React Native Developer","Miquido",mid,remote,"Kraków","React; Git; JS","14280-19320 PLN",0.567200,1
+mobile-mid,5477,"Mid React Developer","Link Group",mid,remote,"","TypeScript; React; JavaScript","13000-16500 PLN",0.553128,1
+mobile-mid,5659,"React Native Developer","Smart Topaz sp. z o.o.",mid,remote,"","TypeScript; JavaScript; React Native","16000-22000 PLN",0.477639,1
+mobile-mid,4627,"Frontend Developer (React Native)","Boldare",mid,hybrid,"Wrocław","TypeScript; React; React Native","10000-16000 PLN",0.389779,1
+mobile-mid,529,"React Developer | Fintech | Java Experience Required","Caspian One",mid,hybrid,"Kraków","TypeScript; React; Java","27300-37800 PLN",0.268540,1
+mobile-mid,5748," Fullstack Developer (Node, react, typescript)","Link Group",mid,remote,"","TypeScript; React; Node.js","15000-20000 PLN",0.218190,1
+mobile-mid,297,"React Native Engineer (Talent Pool)","iteo",mid,remote,"Katowice","TypeScript; Kotlin; Java; React Native; Redux; MOBX; XCode; Android Studio; Swift","9000-16000 PLN",0.215848,1
+mobile-mid,1087,"Fullstack Developer (Java, React)","ITFS Sp. z o.o.",mid,hybrid,"Warszawa","TypeScript; React; JavaScript","15120-18480 PLN",0.206229,1
+mobile-mid,263,"Middle React Software Engineer","N-iX",mid,remote,"Kraków","TypeScript; React; GraphQL; REST API; English","14691-16160 PLN",0.193050,1
+mobile-mid,210,"Mid Node.js Developer","Droplo",mid,hybrid,"Wałbrzych","TypeScript; Node.js; Node","11000-13000 PLN",0.172307,0
+mobile-mid,479,"React Developer","Devapo",mid,remote,"Warszawa","React; Git","15120-21840 PLN",0.168795,1
+mobile-mid,149,"Full Stack Developer","WAYF",mid,remote,"Poland (Remote)","TypeScript; Next.js; PostgreSQL; Node.js; React Native; Nest.js","10000-17000 PLN",0.168235,0
+mobile-mid,9,"Fullstack Developer (.NET + React)","DCG",mid,remote,"","TypeScript; .NET; React","18480-20160 PLN",0.167077,1
+mobile-mid,213,"Fullstack Developer (Node.js, React)","Next Technology Professionals",mid,hybrid,"Warszawa","TypeScript; React; API; Node.js; AWS","13000-15000 PLN",0.164005,1
+mobile-mid,5774,"Cross‑Platform Engineer (C++ / C# / KMP)","Experis Polska",mid,remote,"","Kotlin; C#; C++","30240-33600 PLN",0.144228,0
+mobile-mid,5,"Frontend Developer","the.good.code;",mid,hybrid,"Gdańsk","TypeScript; Next.js; React","13440-16800 PLN",0.133723,1
+mobile-mid,3206,"Fullstack Developer (Node.js + React) (m/k)","Devire",mid,remote,"","TypeScript; React; Node.js","16800-21000 PLN",0.132961,1
+mobile-mid,174,"Mid Frontend Developer","Jit Team",mid,hybrid,"Warszawa","TypeScript; React; JavaScript","10000-16000 PLN",0.125952,1
+mobile-mid,139,"Front-end Developer","Nocowanie.pl",mid,remote,"Warszawa","TypeScript; Next.js; React; JavaScript; Redux; Webpack","12000-17000 PLN",0.122573,0
+mobile-mid,108,"Software Engineer III (Level 4)","Software Mansion",mid,hybrid,"Kraków","TypeScript; React; JavaScript; Python; React Native","17000-25000 PLN",0.119352,1
+mobile-mid,5700," Middle Java Software Engineer","SoftServe",mid,remote,"","React; Java; GraphQL","13000-16000 PLN",0.118972,0
+mobile-mid,5731,"Fullstack Developer (React + Node.js)","Mood Up",mid,hybrid,"Poznań","TypeScript; React; JavaScript","16000-21000 PLN",0.111810,1
+mobile-mid,390,"Frontend Developer","Primaris Services",mid,remote,"Warszawa","TypeScript; Next.js; JavaScript; Python; Reac","20160-23520 PLN",0.111173,1
+mobile-mid,490,"Freelance Full Stack Developer","TeaCode S.C.",mid,remote,"Warszawa","TypeScript; Next.js; React; Node.js; Nest.js; AWS","10080-20160 PLN",0.107267,0
+mobile-mid,102,"Frontend Developer (React)","Connectis",mid,hybrid,"Warszawa","React; JavaScript; CI/CD","20000-23000 PLN",0.096591,0
+mobile-mid,5606,"Kotlin/Java Developer","Mindbox Sp. z o.o.",mid,hybrid,"Kraków","API; Kotlin; Java","24150-26250 PLN",0.096361,1
+mobile-mid,2834,"Software Engineer - PHP/JavaScript (k/m)","NEXAI Sp. z o.o.",mid,hybrid,"Poznań","TypeScript; PHP; JavaScript","12000-15000 PLN",0.093760,0
+mobile-mid,3236,"Software Engineer","CoverTree",mid,hybrid,"Kraków","TypeScript; React; Node.js; AWS CDK; AWS","13938-20132 PLN",0.085022,1
+mobile-mid,16,"React Developer","ITMAGINATION",mid,remote,"","Next.js; Zustand; React","15120-17640 PLN",0.081614,0
+mobile-mid,241,"Full Stack Developer (Node.js+React)","Andersen",mid,remote,"Budapest","TypeScript; React; Node.js; AWS","6244-9182 PLN",0.081242,1
+mobile-mid,351,"Mid-level Front-End Developer (Project Lead) eComm agency","commerce-ui",mid,remote,"Gdańsk","TypeScript; Next.js; React; CSS","14000-21000 PLN",0.080918,1
+mobile-mid,4509,"Fullstack Developer (React / .NET)","co.brick",mid,remote,"Gliwice",".NET; React","15120-16800 PLN",0.080730,1
+mobile-mid,1444,"Web Portal Developer","Link Group",mid,remote,"","TypeScript; React; Headless CMS","16000-18480 PLN",0.080630,1
+mobile-mid,316,"Full stack developer (Typescript&AWS)","Cyclad",mid,remote,"Warszawa","TypeScript; AWS","16800-20160 PLN",0.080504,1
+mobile-mid,6640,"Mid Angular Developer","Link Group",mid,remote,"","TypeScript; Angular; HTML","13000-18000 PLN",0.079809,0
+mobile-mid,739,"Product Frontend Developer (React / UI-UX) – GFComply","GFComply Sàrl",mid,remote,"","TypeScript; React; UI","21840-23520 PLN",0.075179,1
+mobile-mid,6649," Backend Node.js Developer","Green Minds Sp.zo.o.",mid,hybrid,"Warsaw","TypeScript; Node.js; AI","23520-27720 PLN",0.074027,0
+mobile-mid,100,"Fullstack Developer (React + Node.js)","Onwelo",mid,hybrid,"Warszawa","TypeScript; React; Node.js; REST API; PostreSQL","15750-19950 PLN",0.071383,1
+mobile-mid,295,"Full-stack Front-end Developer (React, Java)","Link Group",mid,remote,"Warszawa","TypeScript; React; JavaScript; Java","16800-26880 PLN",0.069292,1
+mobile-mid,194,"Web Portal Developer","Link Group",mid,remote,"Kraków","TypeScript; Next.js; Zustand; React; Tanstack Query; Storybook","16000-18480 PLN",0.066896,0
+mobile-mid,322,"Full-Stack(Node.js+ React) Developer","SNI",mid,remote,"Wrocław","TypeScript; React; Node.js; AWS","16800-20160 PLN",0.066296,1
+mobile-mid,5282,"Fullstack developer (Node.js and React) (f/m/d)","FIEGE Sp. z.o.o.",mid,remote,"Warszawa","React; Node.js","15000-18000 PLN",0.063951,1
+mobile-mid,3574,"Full-stack Front-end Developer (React, Java)","Link Group",mid,remote,"","TypeScript; React; JavaScript; Java","16800-26880 PLN",0.063945,1
+mobile-mid,4672,"Fullstack Software Engineer","autoMEE",mid,hybrid,"Gdańsk","TypeScript; PostgreSQL; React; RabbitMQ; Node.js Express; GenAI/LLM","12000-18000 PLN",0.062354,0
+mobile-mid,478,"Software Engineer (node.js, backend)","OneRail Poland Sp. z o.o.",mid,hybrid,"Kraków","TypeScript; Node.js","18000-22000 PLN",0.062271,1
+mobile-mid,4,"Fullstack Developer (Laravel + React) – ASAP k/m/*","Square One Resources",mid,remote,"","PostgreSQL; React; PHP","16800-23520 PLN",0.061867,0
+mobile-mid,204,"Fullstack Developer","Asana",mid,hybrid,"Warszawa","TypeScript; React; JavaScript; Node.js; Scala","23667-33896 PLN",0.061431,1
+mobile-mid,497,"React & Java / Spring Boot Full-Stack Engineer","UWS ie Ltd.",mid,remote,"Katowice","TypeScript; Spring Boot; Angular; React; Java; Redux","12875-21458 PLN",0.059767,0
+mobile-mid,135,"Fullstack Engineer (NodeJS, ReactJS)","SwingDev—a hippo company",mid,remote,"Warszawa","TypeScript; React; JavaScript; Node.js; Microservices; Nest.js","23000-26000 PLN",0.055020,0
+mobile-mid,746,"Fullstack Engineer (Node.js + React)","Square One Resources",mid,hybrid,"Warsaw","PostgreSQL; React; AWS","20160-23520 PLN",0.053190,0
+mobile-mid,326,"Full-Stack Developer","Evionica",mid,remote,"Warszawa","TypeScript; React; JavaScript; Vue; Rust","20000-24000 PLN",0.052364,1
+mobile-mid,5684,"Remote Software Engineering Manager","Open Rewards",mid,remote,"","React; Android; iOS","20000-30000 PLN",0.042660,1
+mobile-mid,169,"TypeScript Engineer – Strapi (Regular)","VirtusLab",mid,remote,"Kraków","TypeScript; React; Node.js; strapi; Storybook","15000-22000 PLN",0.042438,1
+mobile-mid,40,"Software Engineer","Ciklum",mid,remote,"Gdańsk","TypeScript; JavaScript; AWS","17502-18356 PLN",0.040711,0
+mobile-mid,5375,"JavaScript Full-stack Engineer","Full Stack House",mid,hybrid,"Poznań","TypeScript; React; JavaScript","8400-16800 PLN",0.040553,1
+mobile-mid,5524," Java Kotlin Developer ","Makeitright Sp. z o.o.",mid,hybrid,"Warszawa","Kotlin; Java","18480-21840 PLN",0.036210,1
+mobile-mid,5801,"Frontend Developer","Shiji Poland",mid,hybrid,"Katowice","TypeScript; React; JavaScript","13440-20160 PLN",0.033481,1
+mobile-mid,4984,"Full-stack Developer (React, .NET)","Fabres",mid,hybrid,"Poznań",".NET; React; C#","18480-21840 PLN",0.030489,0
+mobile-mid,4635,"Frontend Regular React Developer","SquareOne",mid,remote,"","Next.js; React; React.JS","13440-16800 PLN",0.030275,0
+mobile-mid,5065,"Frontend Software Engineer","Grupa Agora",mid,remote,"Warszawa","TypeScript; Next.js; JavaScript","11000-14000 PLN",0.030236,0
+mobile-mid,5775,"NodeJS Software Engineer (e-mobility & energy)","Spyrosoft",mid,remote,"","TypeScript; JavaScript; Node.js","13440-26880 PLN",0.028109,0
+mobile-mid,5738,"AI Fullstack Engineer","Ringier Axel Springer Tech",mid,hybrid,"Kraków","TypeScript; JavaScript; n8n","12400-20600 PLN",0.026773,0
+mobile-mid,5669,"Frontend Developer (Angular)","ITFS Sp. z o.o.",mid,hybrid,"Warszawa","TypeScript; Angular; JavaScript","16800-20160 PLN",0.025266,0
+mobile-mid,181,"Full-Stack Engineer -  AI Platform","Perfect Gym Solutions",mid,remote,"Warszawa","TypeScript; React; Java","22000-26000 PLN",0.024364,1
+mobile-mid,5383,"Shopify Developer (osoba na stanowisku Shopify Developera)","Strix",mid,hybrid,"Kraków","React; JavaScript; Shopify","11000-15000 PLN",0.022057,0
+mobile-mid,1781,"Mid Full-Stack Engineer (AI)","ArdentCode",mid,hybrid,"Wrocław","React; JavaScript; Node.js","16000-20000 PLN",0.020973,0
+mobile-mid,9964,"Software Engineer (Data Science)","Xebia sp. z o.o.",mid,hybrid,"Rzeszów","Kotlin; Java; SQL","16700-21700 PLN",0.020901,0
+mobile-mid,5432,"Programista/ Programistka Fullstack (Java + React/Angular)","DCG sp. z o.o.",mid,hybrid,"Poland","Angular; React; Java","21840-25200 PLN",0.020801,0
+mobile-mid,5787,"Fullstack Developer","Connectis_",mid,hybrid,"Warszawa","React; API; Headless CMS","29400-31920 PLN",0.018158,0
+mobile-mid,216,"NodeJS Software Engineer (e-mobility & energy)","Spyrosoft",mid,remote,"Kraków","TypeScript; JavaScript; Node.js","12600-26880 PLN",0.017673,0
+mobile-mid,121,"Node Developer","OneRail Poland Sp. z o.o.",mid,hybrid,"Kraków","TypeScript; Node.js","18000-22000 PLN",0.017668,1
+mobile-mid,215,"Full-stack Engineer (JavaScript/React)","Motorola Solutions",mid,hybrid,"Kraków","React; JavaScript; AWS","14000-19000 PLN",0.014801,0
+mobile-mid,2916,"FullStack Engineer React/Node.js","Marska",mid,hybrid,"Kraków","TypeScript; Angular; React; Node.js; GCP; AWS","18060-25284 PLN",0.014607,0
+mobile-mid,79,"Palantir Front-End Engineer","ALTIMI",mid,remote,"Wrocław","React; Typescrip; Palantir Foundry; UI","27398-36050 PLN",0.013027,1
+mobile-mid,335,"FullStack Developer (React + Node.js)","ALTIMI",mid,remote,"Wrocław","React; Node.js; GCP","16800-23520 PLN",0.013010,0
+mobile-mid,738,"Full Stack Engineer (NodejS/ React) ","Tenth Revolution Group",mid,hybrid,"Warszawa","React; JavaScript; Node.js","20000-28000 PLN",0.007152,0
+mobile-mid,4300,"Full Stack Engineer","TechTree",mid,hybrid,"Warszawa","TypeScript; React; JavaScript; Node.js; SQL databases","23276-46552 PLN",0.006469,1
