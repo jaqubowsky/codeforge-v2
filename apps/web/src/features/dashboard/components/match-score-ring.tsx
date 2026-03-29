@@ -3,10 +3,10 @@
 import { cn } from "@codeforge-v2/ui/lib/utils";
 
 const MATCH_SCORE_COLORS = {
-  excellent: "bg-success",
-  good: "bg-info",
-  fair: "bg-warning",
-  poor: "bg-destructive/70",
+  excellent: { bg: "bg-success", text: "text-success" },
+  good: { bg: "bg-info", text: "text-info" },
+  fair: { bg: "bg-warning", text: "text-warning" },
+  poor: { bg: "bg-destructive/70", text: "text-destructive/70" },
 } as const;
 
 type MatchScoreLevel = keyof typeof MATCH_SCORE_COLORS;
@@ -42,7 +42,7 @@ export function MatchScoreRing({
 }: MatchScoreRingProps) {
   const config = SIZE_CONFIG[size];
   const scoreLevel = getScoreLevel(percentage);
-  const bgColor = MATCH_SCORE_COLORS[scoreLevel];
+  const { text: textColor } = MATCH_SCORE_COLORS[scoreLevel];
 
   const radius = 18;
   const circumference = 2 * Math.PI * radius;
@@ -73,10 +73,7 @@ export function MatchScoreRing({
           strokeWidth={config.stroke}
         />
         <circle
-          className={cn(
-            "transition-all duration-500",
-            bgColor.replace("bg-", "text-")
-          )}
+          className={cn("transition-all duration-500", textColor)}
           cx="20"
           cy="20"
           fill="none"
